@@ -1,4 +1,3 @@
-import { Text } from '@mantine/core'
 import React from 'react'
 
 interface HomeProps {}
@@ -7,7 +6,7 @@ const Home: React.FC<HomeProps> = () => {
   return (
     <div>
       {' '}
-      <Text>Welcome to Home!</Text>
+      <h2>Welcome to Home!</h2>
     </div>
   )
 }

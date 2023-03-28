@@ -1,9 +1,14 @@
-import { MantineProvider, Text } from '@mantine/core'
+// import Home from './screens/Home'
+import { GlobalStyle } from './GlobalStyles'
+import HeroGrid from './layout/HeroGrid'
 
 export default function App () {
   return (
-    <MantineProvider withGlobalStyles withNormalizeCSS>
-      <Text>Welcome to Mantine!</Text>
-    </MantineProvider>
+    <>
+      {' '}
+      <GlobalStyle />
+      {/* <Home /> */}
+      <HeroGrid />
+    </>
   )
 }
