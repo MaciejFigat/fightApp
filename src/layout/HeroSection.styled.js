@@ -68,7 +68,7 @@ export const HeroArticleSection = styled.div`
     /* border-bottom: 1px solid var(--background-blur2); */
   }
 `
-export const HeroArticleBigSection = styled(HeroArticleSection)`
+export const HeroArticleSideSection = styled(HeroArticleSection)`
   overflow-y: scroll;
   /* max-height: 100%; */
 
@@ -77,7 +77,7 @@ export const HeroArticleBigSection = styled(HeroArticleSection)`
   }
   /* border-top: 1px solid var(--background-blur2); */
 `
-export const HeroArticleSmallSection = styled(HeroArticleSection)`
+export const HeroArticleMainSection = styled(HeroArticleSection)`
   overflow-y: scroll;
 
   ::-webkit-scrollbar {
@@ -85,9 +85,7 @@ export const HeroArticleSmallSection = styled(HeroArticleSection)`
   }
   border-left: 1px solid var(--background-blur2);
 `
-export const HeroArticleSmallSectionFlexStart = styled(HeroArticleSmallSection)`
-  place-items: flex-start;
-`
+
 export const HeroArticleBottomBigSection = styled(HeroArticleSection)`
   /* border-top: 1px solid var(--background-blur2); */
   border-bottom: 1px solid var(--background-blur2);

@@ -1,10 +1,11 @@
 import React from 'react'
+import SportChoiceScreen from '../screens/SportChoiceScreen'
 
 import {
-  HeroArticleBigSection,
+  HeroArticleSideSection,
   HeroArticleBottomBigSection,
   HeroArticleBottomSmallSection,
-  HeroArticleSmallSection,
+  HeroArticleMainSection,
   HeroGridWrapper,
   HeroMainArticle,
   HeroMainContainer,
@@ -20,16 +21,18 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
     <HeroGridWrapper>
       <HeroNavigation>
         <HeroNavOne>Nav one</HeroNavOne>
-        {/* <HeroNavOne>2 </HeroNavOne> */}
+
         <HeroNavTwo> 3</HeroNavTwo>
         <HeroNavTwo>4 </HeroNavTwo>
       </HeroNavigation>
 
       <HeroMainContainer>
         <HeroMainArticle>
-          <HeroArticleBigSection>Big Section</HeroArticleBigSection>
-          <HeroArticleSmallSection>222</HeroArticleSmallSection>
-          {/* <HeroArticleSmallSection>222</HeroArticleSmallSection> */}
+          <HeroArticleSideSection>
+            <SportChoiceScreen />
+          </HeroArticleSideSection>
+          <HeroArticleMainSection>222</HeroArticleMainSection>
+
           <HeroArticleBottomBigSection>
             {' '}
             HeroArticleBottomBigSection 1

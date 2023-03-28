@@ -56,6 +56,11 @@ const GlobalStyle = createGlobalStyle`
     --border-radius1: 10px;
     --border-radius2: 15px;
     --border-radius3: 20px;
+
+    --transition-one: 0.1s;
+    --transition-two: 0.2s;
+    --transition-three: 0.3s;
+
    }
 `
 
