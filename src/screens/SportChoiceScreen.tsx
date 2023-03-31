@@ -1,56 +1,30 @@
 import React from 'react'
+import { useAppDispatch, useAppSelector } from '../app/reduxHooks'
+import { AppDispatch } from '../app/store'
 import SportCard from '../components/SportCard'
+import { editDisciplineChosen } from '../features/sports/sportsSlice'
 import { SportsData } from '../interface'
-import SportsStore from '../store/SportsStore'
-import { observer } from 'mobx-react'
 
 interface SportChoiceScreenProps {}
 
-const SportChoiceScreen: React.FC<SportChoiceScreenProps> = observer(() => {
-  const mockSportsData: SportsData[] = [
-    {
-      name: 'BJJ',
-      rules: 'gi IBJJF',
-      organization: 'IBJJF WorldStar'
-    },
-    {
-      name: 'BJJ',
-      rules: 'nogi IBJJF',
-      organization: 'IBJJF WorldStar'
-    },
-    {
-      name: 'grappling',
-      rules: 'nogi ADCC',
-      organization: 'ADCC Poland'
-    },
-    {
-      name: 'grappling',
-      rules: 'nogi 10th planet',
-      organization: '10th planet'
-    },
-    {
-      name: 'boxing',
-      rules: 'WBA pro',
-      organization: 'WBA WorldStar'
-    }
-  ]
-
-  const sportsStore = new SportsStore(mockSportsData)
-
-  const sportClickHelper = (item: SportsData) => {
-    sportsStore.chooseSport(item)
-    // console.log(item)
+const SportChoiceScreen: React.FC<SportChoiceScreenProps> = () => {
+  const dispatch: AppDispatch = useAppDispatch()
+  const sportsData: SportsData[] = useAppSelector(
+    state => state.sports.availableDisciplines
+  )
+  const chooseSportHelper = (item: SportsData) => {
+    dispatch(editDisciplineChosen(item))
   }
 
   return (
     <>
-      {sportsStore.sortedSports.map((item: SportsData, index: number) => (
-        <div key={index} onClick={() => sportClickHelper(item)}>
+      {sportsData.map((item: SportsData, index: number) => (
+        <div key={index} onClick={() => chooseSportHelper(item)}>
           <SportCard data={item} />
         </div>
       ))}
     </>
   )
-})
+}
 
 export default SportChoiceScreen

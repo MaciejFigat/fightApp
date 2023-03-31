@@ -1,4 +1,5 @@
 import React from 'react'
+import Home from '../screens/Home'
 import SportChoiceScreen from '../screens/SportChoiceScreen'
 
 import {
@@ -31,7 +32,9 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
           <HeroArticleSideSection>
             <SportChoiceScreen />
           </HeroArticleSideSection>
-          <HeroArticleMainSection>222</HeroArticleMainSection>
+          <HeroArticleMainSection>
+            <Home />
+          </HeroArticleMainSection>
 
           <HeroArticleBottomBigSection>
             {' '}
