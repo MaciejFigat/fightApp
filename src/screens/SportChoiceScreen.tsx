@@ -3,7 +3,7 @@ import { useAppDispatch, useAppSelector } from '../app/reduxHooks'
 import { AppDispatch } from '../app/store'
 import SportCard from '../components/SportCard'
 import { editDisciplineChosen } from '../features/sports/sportsSlice'
-import { SportsData } from '../interface'
+import { SportsData } from '../interfaces'
 
 interface SportChoiceScreenProps {}
 

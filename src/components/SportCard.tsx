@@ -1,5 +1,5 @@
 import React from 'react'
-import { SportsData } from '../interface'
+import { SportsData } from '../interfaces'
 import { SportCardWrapper } from './SportCard.styled'
 
 interface SportCardProps {

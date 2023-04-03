@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { SportsData } from "../../interface"
+import { SportsData } from "../../interfaces"
 
 const mockSportsData: SportsData[] = [
     {
@@ -13,17 +13,17 @@ const mockSportsData: SportsData[] = [
         organization: 'IBJJF WorldStar'
     },
     {
-        name: 'grappling',
+        name: 'Submission grappling',
         rules: 'nogi ADCC',
         organization: 'ADCC Poland'
     },
     {
-        name: 'grappling',
-        rules: 'nogi 10th planet',
-        organization: '10th planet'
+        name: 'MMA',
+        rules: 'UFC',
+        organization: 'UFC'
     },
     {
-        name: 'boxing',
+        name: 'Boxing',
         rules: 'WBA pro',
         organization: 'WBA WorldStar'
     }
@@ -35,7 +35,7 @@ const sportsSlice = createSlice({
     initialState: {
         availableDisciplines: mockSportsData,
         disciplineChosen: {
-            name: '',
+            name: 'None',
             rules: '',
             organization: ''
         },

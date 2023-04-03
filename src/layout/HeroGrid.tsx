@@ -1,5 +1,5 @@
 import React from 'react'
-import Home from '../screens/Home'
+import HomeScreen from '../screens/HomeScreen'
 import SportChoiceScreen from '../screens/SportChoiceScreen'
 
 import {
@@ -14,6 +14,7 @@ import {
   HeroNavOne,
   HeroNavTwo
 } from './HeroSection.styled'
+import EventsScreen from '../screens/EventsScreen'
 
 interface HeroGridProps {}
 
@@ -33,7 +34,8 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
             <SportChoiceScreen />
           </HeroArticleSideSection>
           <HeroArticleMainSection>
-            <Home />
+            {/* <HomeScreen /> */}
+            <EventsScreen />
           </HeroArticleMainSection>
 
           <HeroArticleBottomBigSection>
