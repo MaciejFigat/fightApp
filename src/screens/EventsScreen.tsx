@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../app/reduxHooks'
-import { SportEventData } from '../interfaces'
+import { SportEventData, SportsData } from '../interfaces'
 import { AppDispatch } from '../app/store'
 import { editSportEvents } from '../features/sportEvents/eventsSlice'
 import { eventsBJJ } from '../mockData/mockBJJEvents'
@@ -13,7 +13,7 @@ interface EventsScreenProps {}
 const EventsScreen: React.FC<EventsScreenProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
 
-  const disciplineChosen = useAppSelector(
+  const disciplineChosen: SportsData = useAppSelector(
     state => state.sports.disciplineChosen
   )
   const sportEventData: SportEventData[] = useAppSelector(

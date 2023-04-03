@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit"
+import { SportEventData } from "../../interfaces"
 
-
+interface EventsState {
+    sportEvents: SportEventData[]
+}
+const initialState: EventsState = {
+    sportEvents: [],
+}
 const eventsSlice = createSlice({
     name: 'events',
-    initialState: {
-        sportEvents: [],
-
-
-    },
+    initialState,
     reducers: {
 
         editSportEvents(state, action) {

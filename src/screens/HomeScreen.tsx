@@ -1,12 +1,11 @@
 import React from 'react'
 import { useAppSelector } from '../app/reduxHooks'
-// import { SportsData } from '../interfaces'
+import { SportsData } from '../interfaces'
 
 interface HomeScreenProps {}
 
 const HomeScreen: React.FC<HomeScreenProps> = () => {
-  // const disciplineChosen: SportsData = useAppSelector(
-  const disciplineChosen = useAppSelector(
+  const disciplineChosen: SportsData = useAppSelector(
     state => state.sports.disciplineChosen
   )
   return (

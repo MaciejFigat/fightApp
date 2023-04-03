@@ -28,22 +28,24 @@ const mockSportsData: SportsData[] = [
         organization: 'WBA WorldStar'
     }
 ]
-
+interface SportsState {
+    availableDisciplines: SportsData[]
+    disciplineChosen: SportsData
+    sortingOption: string;
+}
+const initialState: SportsState = {
+    availableDisciplines: mockSportsData,
+    disciplineChosen: {
+        name: 'None',
+        rules: '',
+        organization: ''
+    },
+    sortingOption: '',
+}
 
 const sportsSlice = createSlice({
     name: 'sports',
-    initialState: {
-        availableDisciplines: mockSportsData,
-        disciplineChosen: {
-            name: 'None',
-            rules: '',
-            organization: ''
-        },
-        sortingOption: '',
-
-
-
-    },
+    initialState,
     reducers: {
 
         editDisciplineChosen(state, action) {
