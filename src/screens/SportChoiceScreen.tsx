@@ -1,7 +1,7 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '../app/reduxHooks'
 import { AppDispatch } from '../app/store'
-import SportCard from '../components/SportCard'
+import SportCard from '../components/SportCard/SportCard'
 import { editDisciplineChosen } from '../features/sports/sportsSlice'
 import { SportsData } from '../interfaces'
 

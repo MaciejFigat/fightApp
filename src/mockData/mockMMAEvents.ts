@@ -1,3 +1,4 @@
+import { Discipline } from "../consts";
 import { SportEventData } from "../interfaces";
 
 
@@ -6,7 +7,7 @@ export const eventsMMA: SportEventData[] = [
         name: "Fight Night 1",
         date: "2023-04-10",
         location: "Las Vegas, Nevada",
-        discipline: 'MMA',
+        discipline: Discipline.MMA,
         organization: "UFC",
         fights: [
             {
@@ -36,7 +37,7 @@ export const eventsMMA: SportEventData[] = [
         name: "UFC 300",
         date: "2023-05-05",
         location: "Las Vegas, Nevada",
-        discipline: 'MMA',
+        discipline: Discipline.MMA,
         organization: "UFC",
         fights: [
             {
@@ -67,7 +68,7 @@ export const eventsMMA: SportEventData[] = [
         name: "Bellator 250",
         date: "2023-05-15",
         location: "New York, New York",
-        discipline: 'MMA',
+        discipline: Discipline.MMA,
         organization: "Bellator MMA",
         fights: [
             {
@@ -87,7 +88,7 @@ export const eventsMMA: SportEventData[] = [
         name: "ONE Championship: Unbreakable",
         date: "2023-05-20",
         location: "Singapore Indoor Stadium, Kallang, Singapore",
-        discipline: 'MMA',
+        discipline: Discipline.MMA,
         organization: "ONE Championship",
         fights: [
             {
@@ -107,7 +108,7 @@ export const eventsMMA: SportEventData[] = [
         name: "PFL 10",
         date: "2023-05-27",
         location: "New York, New York",
-        discipline: 'MMA',
+        discipline: Discipline.MMA,
         organization: "Professional Fighters League",
         fights: [
             {

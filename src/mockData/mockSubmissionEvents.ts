@@ -1,3 +1,4 @@
+import { Discipline } from "../consts";
 import { SportEventData } from "../interfaces";
 
 
@@ -6,7 +7,7 @@ export const eventsSubmission: SportEventData[] = [
         name: "ADCC World Championship",
         date: "2023-09-15",
         location: "Las Vegas, Nevada",
-        discipline: 'Submission grappling',
+        discipline: Discipline.SubmissionGrappling,
         organization: "ADCC",
         fights: [
             {
@@ -37,7 +38,7 @@ export const eventsSubmission: SportEventData[] = [
         name: "Polarsubmission Championship",
         date: "2023-11-05",
         location: "Moscow, Russia",
-        discipline: 'Submission grappling',
+        discipline: Discipline.SubmissionGrappling,
         organization: "Polarsubmission",
         fights: [
             {
@@ -68,7 +69,7 @@ export const eventsSubmission: SportEventData[] = [
         name: "Submission Underground 25",
         date: "2023-12-02",
         location: "Portland, Oregon",
-        discipline: 'Submission grappling',
+        discipline: Discipline.SubmissionGrappling,
         organization: "Submission Underground",
         fights: [
             {

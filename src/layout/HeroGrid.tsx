@@ -15,6 +15,7 @@ import {
   HeroNavTwo
 } from './HeroSection.styled'
 import EventsScreen from '../screens/EventsScreen'
+import DragColumns from '../components/DragColumns/DragColumns'
 
 interface HeroGridProps {}
 
@@ -35,7 +36,8 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
           </HeroArticleSideSection>
           <HeroArticleMainSection>
             {/* <HomeScreen /> */}
-            <EventsScreen />
+            <DragColumns />
+            {/* <EventsScreen /> */}
           </HeroArticleMainSection>
 
           <HeroArticleBottomBigSection>

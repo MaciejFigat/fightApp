@@ -89,6 +89,7 @@ export const HeroArticleMainSection = styled(HeroArticleSection)`
 export const HeroArticleBottomBigSection = styled(HeroArticleSection)`
   /* border-top: 1px solid var(--background-blur2); */
   border-bottom: 1px solid var(--background-blur2);
+  /* border-right: 1px solid var(--background-blur2); */
 `
 export const HeroArticleBottomSmallSection = styled(HeroArticleSection)`
   border-left: 1px solid var(--background-blur2);

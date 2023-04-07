@@ -1,3 +1,4 @@
+import { Discipline } from '../consts';
 import { SportEventData } from '../interfaces.js'
 
 export const eventsBJJ: SportEventData[] = [
@@ -5,7 +6,7 @@ export const eventsBJJ: SportEventData[] = [
         name: "IBJJF World Championship",
         date: "2023-06-01",
         location: "Long Beach, California",
-        discipline: 'BJJ',
+        discipline: Discipline.BJJ,
         organization: "IBJJF",
         fights: [
             {
@@ -36,7 +37,7 @@ export const eventsBJJ: SportEventData[] = [
         name: "Pan Jiu-Jitsu Championship",
         date: "2023-07-08",
         location: "Irvine, California",
-        discipline: 'BJJ',
+        discipline: Discipline.BJJ,
         organization: "IBJJF",
         fights: [
             {
@@ -67,7 +68,7 @@ export const eventsBJJ: SportEventData[] = [
         name: "World Master Jiu-Jitsu Championship",
         date: "2023-08-12",
         location: "Las Vegas, Nevada",
-        discipline: 'BJJ',
+        discipline: Discipline.BJJ,
         organization: "IBJJF",
         fights: [
             {
@@ -98,7 +99,7 @@ export const eventsBJJ: SportEventData[] = [
         name: "Pan American Championships",
         date: "2023-06-07",
         location: "Orlando, Florida",
-        discipline: 'BJJ',
+        discipline: Discipline.BJJ,
 
         organization: "IBJJF",
         fights: [
@@ -130,7 +131,7 @@ export const eventsBJJ: SportEventData[] = [
         name: "Mundials",
         date: "2023-08-10",
         location: "Rio de Janeiro, Brazil",
-        discipline: 'BJJ',
+        discipline: Discipline.BJJ,
 
         organization: "IBJJF",
         fights: [

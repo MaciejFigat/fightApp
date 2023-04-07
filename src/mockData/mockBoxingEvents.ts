@@ -1,3 +1,4 @@
+import { Discipline } from "../consts";
 import { SportEventData } from "../interfaces";
 
 export const eventsBoxing: SportEventData[] = [
@@ -5,7 +6,7 @@ export const eventsBoxing: SportEventData[] = [
         name: "Battle of the Undefeated",
         date: "2023-05-20",
         location: "Los Angeles, California",
-        discipline: 'Boxing',
+        discipline: Discipline.Boxing,
         organization: "Golden Boy Promotions",
         fights: [
             {
@@ -36,7 +37,7 @@ export const eventsBoxing: SportEventData[] = [
         name: "Boxing Extravaganza",
         date: "2023-04-15",
         location: "New York, New York",
-        discipline: 'Boxing',
+        discipline: Discipline.Boxing,
         organization: "Top Rank Boxing",
         fights: [
             {
@@ -56,7 +57,7 @@ export const eventsBoxing: SportEventData[] = [
         name: "Knockout Kings",
         date: "2023-06-03",
         location: "Las Vegas, Nevada",
-        discipline: 'Boxing',
+        discipline: Discipline.Boxing,
         organization: "Top Rank Boxing",
         fights: [
             {
@@ -76,7 +77,7 @@ export const eventsBoxing: SportEventData[] = [
         name: "Rumble in the Garden",
         date: "2023-06-24",
         location: "New York, New York",
-        discipline: 'Boxing',
+        discipline: Discipline.Boxing,
         organization: "Matchroom Boxing",
         fights: [
             {
@@ -107,7 +108,7 @@ export const eventsBoxing: SportEventData[] = [
         name: "East-West Showdown",
         date: "2023-07-15",
         location: "Moscow, Russia",
-        discipline: 'Boxing',
+        discipline: Discipline.Boxing,
         organization: "World of Boxing",
         fights: [
             {
