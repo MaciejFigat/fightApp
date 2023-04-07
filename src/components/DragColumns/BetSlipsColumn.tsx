@@ -30,7 +30,7 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
   return (
     <div>
       <h3>unconfirmed bets </h3>
-      <Droppable key={'0'} droppableId={`0`}>
+      <Droppable key={'1'} droppableId={`1`}>
         {(provided, snapshot) => (
           <div
             ref={provided.innerRef}
