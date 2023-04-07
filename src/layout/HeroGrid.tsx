@@ -26,7 +26,7 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
         <HeroNavOne>Nav one</HeroNavOne>
 
         <HeroNavTwo> 3</HeroNavTwo>
-        <HeroNavTwo>4 </HeroNavTwo>
+        {/* <HeroNavTwo>4 </HeroNavTwo> */}
       </HeroNavigation>
 
       <HeroMainContainer>
