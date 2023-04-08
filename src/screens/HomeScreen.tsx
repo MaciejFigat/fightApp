@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useAppSelector } from '../app/reduxHooks'
-import { MMAEventData, SportsData } from '../interfaces'
+import { AvailableEventSimpleData, SportsData } from '../interfaces'
 
 interface HomeScreenProps {}
 
@@ -8,7 +8,7 @@ const HomeScreen: React.FC<HomeScreenProps> = () => {
   const disciplineChosen: SportsData = useAppSelector(
     state => state.sports.disciplineChosen
   )
-  const [data, setData] = useState<MMAEventData[]>([])
+  const [data, setData] = useState<AvailableEventSimpleData[]>([])
 
   const fetchMMAData = useCallback(async () => {
     const MMA_API_KEY = process.env.REACT_APP_MMA_API_KEY
