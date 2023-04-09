@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useAppSelector } from '../app/reduxHooks'
-import { AvailableEventSimpleData, SportsData } from '../interfaces'
+import { AvailableEventSimpleData, SportChosen } from '../interfaces'
 
 interface HomeScreenProps {}
 
 const HomeScreen: React.FC<HomeScreenProps> = () => {
-  const disciplineChosen: SportsData = useAppSelector(
+  const disciplineChosen: SportChosen = useAppSelector(
     state => state.sports.disciplineChosen
   )
   const [data, setData] = useState<AvailableEventSimpleData[]>([])

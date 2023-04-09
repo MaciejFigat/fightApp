@@ -29,7 +29,7 @@ const getListStyle = (isDraggingOver: any) => ({
 const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
   return (
     <div>
-      <h3>unconfirmed bets </h3>
+      <h3>unconfirmed fight bets </h3>
       <Droppable key={'1'} droppableId={`1`}>
         {(provided, snapshot) => (
           <div
@@ -56,6 +56,7 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
                 }}
               </Draggable>
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>

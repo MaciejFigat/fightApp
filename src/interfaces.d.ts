@@ -1,6 +1,6 @@
 import { Discipline } from './consts'
 
-interface SportsData {
+interface SportChosen {
   name: Discipline
   rules: string
   organization: string
@@ -95,12 +95,13 @@ interface EventAllData {
 }
 
 export {
-  SportsData,
+  SportChosen,
   SportEventData,
   FightAllData,
   //   FightData,
   //   FighterData,
   FighterProfile,
   AvailableEventSimpleData,
-  ApiRetrivalHttpError
+  ApiRetrivalHttpError,
+  EventAllData
 }

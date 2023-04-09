@@ -16,6 +16,7 @@ import {
 } from './HeroSection.styled'
 import EventsScreen from '../screens/EventsScreen'
 import DragColumns from '../components/DragColumns/DragColumns'
+import DisciplineDropdown from '../components/Dropdowns/DisciplineDropdown'
 
 interface HeroGridProps {}
 
@@ -23,7 +24,9 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
   return (
     <HeroGridWrapper>
       <HeroNavigation>
-        <HeroNavOne>Nav one</HeroNavOne>
+        <HeroNavOne>
+          <DisciplineDropdown />
+        </HeroNavOne>
 
         <HeroNavTwo> 3</HeroNavTwo>
         {/* <HeroNavTwo>4 </HeroNavTwo> */}
@@ -32,12 +35,11 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
       <HeroMainContainer>
         <HeroMainArticle>
           <HeroArticleSideSection>
-            <SportChoiceScreen />
+            <EventsScreen />
           </HeroArticleSideSection>
           <HeroArticleMainSection>
             {/* <HomeScreen /> */}
             <DragColumns />
-            {/* <EventsScreen /> */}
           </HeroArticleMainSection>
 
           <HeroArticleBottomBigSection>

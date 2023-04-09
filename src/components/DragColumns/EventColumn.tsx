@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react'
 import { useAppSelector } from '../../app/reduxHooks'
-import { AvailableEventSimpleData, SportsData } from '../../interfaces'
+import { AvailableEventSimpleData, SportChosen } from '../../interfaces'
 import { Draggable, Droppable } from 'react-beautiful-dnd'
 
 interface EventColumnProps {
@@ -8,7 +8,7 @@ interface EventColumnProps {
 }
 
 const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
-  const disciplineChosen: SportsData = useAppSelector(
+  const disciplineChosen: SportChosen = useAppSelector(
     state => state.sports.disciplineChosen
   )
   const [data, setData] = useState<AvailableEventSimpleData[]>([])
@@ -32,9 +32,9 @@ const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
   // event id https://api.sportsdata.io/v3/mma/scores/json/Event/{eventid}?key=${MMA_API_KEY}
 
   // todo for now disabled
-  useEffect(() => {
-    fetchMMAData()
-  }, [fetchMMAData])
+  // useEffect(() => {
+  //   fetchMMAData()
+  // }, [fetchMMAData])
   const getItemStyle = (isDragging: any, draggableStyle: any) => ({
     userSelect: 'none',
     borderRadius: '20px',
@@ -60,10 +60,10 @@ const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
       {' '}
       {/* Chosen sport is {disciplineChosen.name} with ruleset:{' '} */}
       {/* {disciplineChosen.rules} */}
-      <h3>Event Col</h3>
-      {data.map((item: any, index) => (
+      <h3>Fights available</h3>
+      {/* {data.map((item: any, index) => (
         <div key={index}>{item.Name}</div>
-      ))}
+      ))} */}
       {/* {state[0].map((event: any) => (
         <div key={event.id}>{event.content}</div>
       ))} */}
@@ -93,6 +93,7 @@ const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
                 }}
               </Draggable>
             ))}
+            {provided.placeholder}
           </div>
         )}
       </Droppable>
