@@ -1,16 +1,14 @@
-import React, { useCallback, useEffect } from 'react'
+import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../app/reduxHooks'
 import {
   SportEventData,
   SportChosen,
-  AvailableEventSimpleData,
-  EventAllData
+  AvailableEventSimpleData
 } from '../interfaces'
 import { AppDispatch } from '../app/store'
 import {
-  editAvailableEvents,
-  editCurrentEvent,
-  editSportEvents
+  editSportEvents,
+  fetchMMAData
 } from '../features/sportEvents/eventsSlice'
 import { eventsBJJ } from '../mockData/mockBJJEvents'
 import { eventsMMA } from '../mockData/mockMMAEvents'
@@ -32,43 +30,6 @@ const EventsScreen: React.FC<EventsScreenProps> = () => {
   const availableEvents: AvailableEventSimpleData[] = useAppSelector(
     state => state.events.availableEvents
   )
-  const eventsPreviouslyChosen: EventAllData[] = useAppSelector(
-    state => state.events.eventsPreviouslyChosen
-  )
-
-  const fetchMMAData = useCallback(async () => {
-    const MMA_API_KEY = process.env.REACT_APP_MMA_API_KEY
-    const league = 'UFC'
-    const date = new Date()
-    const season = date.getFullYear().toString()
-    const response = await fetch(
-      `https://api.sportsdata.io/v3/mma/scores/json/Schedule/${league}/${season}?key=${MMA_API_KEY}`
-    )
-    const data = await response.json()
-    dispatch(editAvailableEvents(data))
-    console.log(data)
-  }, [dispatch])
-
-  const chooseEventHandler = useCallback(
-    async (eventId: number) => {
-      const MMA_API_KEY = process.env.REACT_APP_MMA_API_KEY
-
-      const eventAlreadyChosen = eventsPreviouslyChosen.find(
-        eventMatchingId => eventMatchingId.EventId === eventId
-      )
-      if (eventAlreadyChosen) {
-        dispatch(editCurrentEvent(eventAlreadyChosen))
-      } else {
-        const response = await fetch(
-          `https://api.sportsdata.io/v3/mma/scores/json/Event/${eventId}?key=${MMA_API_KEY}`
-        )
-        const data = await response.json()
-        dispatch(editCurrentEvent(data))
-        console.log(data)
-      }
-    },
-    [dispatch, eventsPreviouslyChosen]
-  )
 
   useEffect(() => {
     switch (disciplineChosen.name) {
@@ -86,10 +47,10 @@ const EventsScreen: React.FC<EventsScreenProps> = () => {
         break
       case 'MMA':
         console.log('fetch MMA events and set them as availableEvents')
-        fetchMMAData()
+        dispatch(fetchMMAData())
         break
     }
-  }, [disciplineChosen, dispatch, fetchMMAData])
+  }, [disciplineChosen, dispatch])
 
   return (
     <div>
@@ -108,11 +69,7 @@ const EventsScreen: React.FC<EventsScreenProps> = () => {
       ) : (
         availableEvents.length > 0 &&
         availableEvents.map(chosenEvent => (
-          <EventCard
-            key={chosenEvent.EventId}
-            chooseEventHandler={chooseEventHandler}
-            chosenEvent={chosenEvent}
-          />
+          <EventCard key={chosenEvent.EventId} chosenEvent={chosenEvent} />
         ))
       )}
     </div>

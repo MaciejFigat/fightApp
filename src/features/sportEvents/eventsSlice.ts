@@ -1,4 +1,4 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import {
   AvailableEventSimpleData,
   EventAllData,
@@ -9,15 +9,46 @@ interface EventsState {
   sportEvents: SportEventData[]
   availableEvents: AvailableEventSimpleData[]
   currentEvent: EventAllData | null
-  eventsPreviouslyChosen: EventAllData[]
+  eventsPreviouslyFetched: EventAllData[]
+  loading: boolean
 }
 
+const MMA_API_KEY = process.env.REACT_APP_MMA_API_KEY
+export const fetchMMAData = createAsyncThunk(
+  'events/fetchMMAData',
+
+  async () => {
+    const league = 'UFC'
+    const date = new Date()
+    const season = date.getFullYear().toString()
+    const response = await fetch(
+      `https://api.sportsdata.io/v3/mma/scores/json/Schedule/${league}/${season}?key=${MMA_API_KEY}`
+    )
+    const data = await response.json()
+
+    return data
+  }
+)
+
+export const fetchEvent = createAsyncThunk(
+  'events/fetchEvent',
+  async (eventId: number) => {
+    const response = await fetch(
+      `https://api.sportsdata.io/v3/mma/scores/json/Event/${eventId}?key=${MMA_API_KEY}`
+    )
+    const event = await response.json()
+
+    return event
+  }
+)
 const initialState: EventsState = {
   sportEvents: [],
   currentEvent: null,
   availableEvents: [],
-  eventsPreviouslyChosen: []
+  eventsPreviouslyFetched: [],
+  loading: false
 }
+
 const eventsSlice = createSlice({
   name: 'events',
   initialState,
@@ -34,17 +65,60 @@ const eventsSlice = createSlice({
     editCurrentEvent (state, action: PayloadAction<EventAllData>) {
       state.currentEvent = action.payload
 
-      const { EventId } = action.payload
-      const existingPrevEvent = state.eventsPreviouslyChosen.find(
-        prevEvent => prevEvent.EventId === EventId
-      )
+      // const { EventId } = action.payload
+      // const existingPrevEvent = state.eventsPreviouslyFetched.find(
+      //   prevEvent => prevEvent.EventId === EventId
+      // )
 
-      if (!existingPrevEvent)
-        state.eventsPreviouslyChosen = [
-          ...state.eventsPreviouslyChosen,
-          action.payload
-        ]
+      // if (!existingPrevEvent)
+      //   state.eventsPreviouslyFetched = [
+      //     ...state.eventsPreviouslyFetched,
+      //     action.payload
+      //   ]
     }
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchMMAData.pending, state => {
+        state.loading = true
+      })
+      .addCase(
+        fetchMMAData.fulfilled,
+        (state, action: PayloadAction<AvailableEventSimpleData[]>) => {
+          state.loading = false
+          state.availableEvents = action.payload
+        }
+      )
+      .addCase(fetchMMAData.rejected, state => {
+        state.loading = false
+      })
+      .addCase(fetchEvent.pending, state => {
+        state.loading = true
+      })
+      .addCase(
+        fetchEvent.fulfilled,
+        (state, action: PayloadAction<EventAllData>) => {
+          state.loading = false
+
+          state.currentEvent = action.payload
+          state.eventsPreviouslyFetched = [
+            ...state.eventsPreviouslyFetched,
+            action.payload
+          ]
+          // const { EventId } = action.payload
+          // const existingPrevEvent = state.eventsPreviouslyFetched.find(
+          //   prevEvent => prevEvent.EventId === EventId
+          // )
+          // if (!existingPrevEvent)
+          //   state.eventsPreviouslyFetched = [
+          //     ...state.eventsPreviouslyFetched,
+          //     action.payload
+          //   ]
+        }
+      )
+      .addCase(fetchEvent.rejected, state => {
+        state.loading = false
+      })
   }
 })
 
