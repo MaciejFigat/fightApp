@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import {
   AvailableEventSimpleData,
   EventAllData,
@@ -22,19 +22,23 @@ const eventsSlice = createSlice({
   name: 'events',
   initialState,
   reducers: {
-    editSportEvents (state, action) {
+    editSportEvents (state, action: PayloadAction<SportEventData[]>) {
       state.sportEvents = action.payload
     },
-    editAvailableEvents (state, action) {
+    editAvailableEvents (
+      state,
+      action: PayloadAction<AvailableEventSimpleData[]>
+    ) {
       state.availableEvents = action.payload
     },
-    editCurrentEvent (state, action) {
+    editCurrentEvent (state, action: PayloadAction<EventAllData>) {
       state.currentEvent = action.payload
 
-      const { EventID } = action.payload
+      const { EventId } = action.payload
       const existingPrevEvent = state.eventsPreviouslyChosen.find(
-        prevEvent => prevEvent.EventId === EventID
+        prevEvent => prevEvent.EventId === EventId
       )
+
       if (!existingPrevEvent)
         state.eventsPreviouslyChosen = [
           ...state.eventsPreviouslyChosen,

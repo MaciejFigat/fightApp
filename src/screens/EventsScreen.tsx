@@ -35,6 +35,7 @@ const EventsScreen: React.FC<EventsScreenProps> = () => {
   const eventsPreviouslyChosen: EventAllData[] = useAppSelector(
     state => state.events.eventsPreviouslyChosen
   )
+
   const fetchMMAData = useCallback(async () => {
     const MMA_API_KEY = process.env.REACT_APP_MMA_API_KEY
     const league = 'UFC'
@@ -51,15 +52,24 @@ const EventsScreen: React.FC<EventsScreenProps> = () => {
   const chooseEventHandler = useCallback(
     async (eventId: number) => {
       const MMA_API_KEY = process.env.REACT_APP_MMA_API_KEY
-      const response = await fetch(
-        `https://api.sportsdata.io/v3/mma/scores/json/Event/${eventId}?key=${MMA_API_KEY}`
+
+      const eventAlreadyChosen = eventsPreviouslyChosen.find(
+        eventMatchingId => eventMatchingId.EventId === eventId
       )
-      const data = await response.json()
-      dispatch(editCurrentEvent(data))
-      console.log(data)
+      if (eventAlreadyChosen) {
+        dispatch(editCurrentEvent(eventAlreadyChosen))
+      } else {
+        const response = await fetch(
+          `https://api.sportsdata.io/v3/mma/scores/json/Event/${eventId}?key=${MMA_API_KEY}`
+        )
+        const data = await response.json()
+        dispatch(editCurrentEvent(data))
+        console.log(data)
+      }
     },
-    [dispatch]
+    [dispatch, eventsPreviouslyChosen]
   )
+
   useEffect(() => {
     switch (disciplineChosen.name) {
       case 'Boxing':
@@ -78,7 +88,6 @@ const EventsScreen: React.FC<EventsScreenProps> = () => {
         console.log('fetch MMA events and set them as availableEvents')
         fetchMMAData()
         break
-      // default:
     }
   }, [disciplineChosen, dispatch, fetchMMAData])
 
@@ -106,9 +115,6 @@ const EventsScreen: React.FC<EventsScreenProps> = () => {
           />
         ))
       )}
-      <button onClick={() => console.log(eventsPreviouslyChosen)}>
-        CLICK TEST{' '}
-      </button>
     </div>
   )
 }

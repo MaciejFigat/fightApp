@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { SportChosen } from '../../interfaces'
 import { Discipline } from '../../consts'
 
@@ -48,13 +48,13 @@ const sportsSlice = createSlice({
   name: 'sports',
   initialState,
   reducers: {
-    editDisciplineChosen (state, action) {
+    editDisciplineChosen (state, action: PayloadAction<SportChosen>) {
       state.disciplineChosen = action.payload
     },
-    editSortingOption (state, action) {
+    editSortingOption (state, action: PayloadAction<string>) {
       state.sortingOption = action.payload
     },
-    editAvailableDisciplines (state, action) {
+    editAvailableDisciplines (state, action: PayloadAction<SportChosen[]>) {
       state.availableDisciplines = action.payload
     }
   }
