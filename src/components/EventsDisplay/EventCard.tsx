@@ -16,7 +16,7 @@ const EventCard: React.FC<EventCardProps> = ({ chosenEvent }) => {
   const eventsPreviouslyFetched: EventAllData[] = useAppSelector(
     state => state.events.eventsPreviouslyFetched
   )
-  //   I check if the event has been fetched before, if it has, I dispatch the editCurrentEvent action with event data with matching EventId, if not, I dispatch the fetchEvent action
+  //   I check if the event has been fetched before, if true => currentEvent = machingEvent from eventsPreviouslyFetched if false => fetchEvent
   const chosenEventHandler = (EventId: number) => {
     const eventAlreadyFetched = eventsPreviouslyFetched.find(
       eventMatchingId => eventMatchingId.EventId === EventId

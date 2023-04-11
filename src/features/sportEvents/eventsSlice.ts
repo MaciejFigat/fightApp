@@ -14,6 +14,7 @@ interface EventsState {
 }
 
 const MMA_API_KEY = process.env.REACT_APP_MMA_API_KEY
+
 export const fetchMMAData = createAsyncThunk(
   'events/fetchMMAData',
 
@@ -41,6 +42,7 @@ export const fetchEvent = createAsyncThunk(
     return event
   }
 )
+
 const initialState: EventsState = {
   sportEvents: [],
   currentEvent: null,
@@ -64,17 +66,6 @@ const eventsSlice = createSlice({
     },
     editCurrentEvent (state, action: PayloadAction<EventAllData>) {
       state.currentEvent = action.payload
-
-      // const { EventId } = action.payload
-      // const existingPrevEvent = state.eventsPreviouslyFetched.find(
-      //   prevEvent => prevEvent.EventId === EventId
-      // )
-
-      // if (!existingPrevEvent)
-      //   state.eventsPreviouslyFetched = [
-      //     ...state.eventsPreviouslyFetched,
-      //     action.payload
-      //   ]
     }
   },
   extraReducers: builder => {
@@ -105,15 +96,6 @@ const eventsSlice = createSlice({
             ...state.eventsPreviouslyFetched,
             action.payload
           ]
-          // const { EventId } = action.payload
-          // const existingPrevEvent = state.eventsPreviouslyFetched.find(
-          //   prevEvent => prevEvent.EventId === EventId
-          // )
-          // if (!existingPrevEvent)
-          //   state.eventsPreviouslyFetched = [
-          //     ...state.eventsPreviouslyFetched,
-          //     action.payload
-          //   ]
         }
       )
       .addCase(fetchEvent.rejected, state => {
