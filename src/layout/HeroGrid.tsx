@@ -1,7 +1,4 @@
 import React from 'react'
-import HomeScreen from '../screens/HomeScreen'
-import SportChoiceScreen from '../screens/SportChoiceScreen'
-
 import {
   HeroArticleSideSection,
   HeroArticleBottomBigSection,
@@ -34,11 +31,11 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
 
       <HeroMainContainer>
         <HeroMainArticle>
+          {/* Left side section */}
           <HeroArticleSideSection>
             <EventsScreen />
           </HeroArticleSideSection>
           <HeroArticleMainSection>
-            {/* <HomeScreen /> */}
             <DragColumns />
           </HeroArticleMainSection>
 

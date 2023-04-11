@@ -47,10 +47,11 @@ const EventsScreen: React.FC<EventsScreenProps> = () => {
         break
       case 'MMA':
         console.log('fetch MMA events and set them as availableEvents')
-        dispatch(fetchMMAData())
+        // I will fetch MMA events from different API then the other sports
+        if (availableEvents.length === 0) dispatch(fetchMMAData())
         break
     }
-  }, [disciplineChosen, dispatch])
+  }, [disciplineChosen, dispatch, availableEvents.length])
 
   return (
     <div>
