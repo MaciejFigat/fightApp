@@ -14,6 +14,7 @@ import {
 import EventsScreen from '../screens/EventsScreen'
 import DragColumns from '../components/DragColumns/DragColumns'
 import DisciplineDropdown from '../components/Dropdowns/DisciplineDropdown'
+// import DragParent from '../components/DnDKit/DragParent'
 
 interface HeroGridProps {}
 
@@ -37,6 +38,7 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
           </HeroArticleSideSection>
           <HeroArticleMainSection>
             <DragColumns />
+            {/* <DragParent /> */}
           </HeroArticleMainSection>
 
           <HeroArticleBottomBigSection>

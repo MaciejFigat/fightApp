@@ -1,9 +1,10 @@
 import React from 'react'
 
-import { Draggable, Droppable } from 'react-beautiful-dnd'
+import { Draggable, Droppable } from '@hello-pangea/dnd'
+import { BetData } from '../../interfaces'
 
 interface EventColumnProps {
-  state: any[]
+  state: BetData[][]
 }
 
 const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
@@ -38,29 +39,41 @@ const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
             style={getListStyle(snapshot.isDraggingOver)}
             {...provided.droppableProps}
           >
-            {state[0].map((event: any, index: number) => (
-              <Draggable key={event.id} draggableId={event.id} index={index}>
-                {(provided, snapshot) => {
-                  return (
-                    <div
-                      ref={provided.innerRef}
-                      {...provided.draggableProps}
-                      {...provided.dragHandleProps}
-                      style={getItemStyle(
-                        snapshot.isDragging,
-                        provided.draggableProps.style
-                      )}
-                    >
-                      <div key={event.id}>{event.content}</div>
-                    </div>
-                  )
-                }}
-              </Draggable>
-            ))}
+            {Array.isArray(state[0]) &&
+              state[0]
+                .filter((bet: BetData) => bet.activated === false)
+                .map((bet: any, index: number) => (
+                  // draggableId expects a string
+                  <Draggable
+                    key={bet.id}
+                    draggableId={bet.id.toString()}
+                    index={index}
+                  >
+                    {(provided, snapshot) => {
+                      return (
+                        <div
+                          ref={provided.innerRef}
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          style={getItemStyle(
+                            snapshot.isDragging,
+                            provided.draggableProps.style
+                          )}
+                        >
+                          <div key={bet.id}>{bet.name}</div>
+                        </div>
+                      )
+                    }}
+                  </Draggable>
+                ))}
             {provided.placeholder}
           </div>
         )}
-      </Droppable>
+      </Droppable>{' '}
+      {Array.isArray(state[0]) &&
+        state[0]
+          .filter((bet: BetData) => bet.activated === false)
+          .map((bet: any) => <h2 key={bet.id}>{bet.name}</h2>)}
     </div>
   )
 }

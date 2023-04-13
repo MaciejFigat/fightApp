@@ -2,89 +2,130 @@ import React, { useState } from 'react'
 import { DragColContainer, MainColumn, SideColumn } from './DragColumns.styled'
 import EventColumn from './EventColumn'
 import BetSlipsColumn from './BetSlipsColumn'
-import { DragDropContext } from 'react-beautiful-dnd'
+import {
+  DragDropContext,
+  DraggableLocation,
+  DropResult
+} from '@hello-pangea/dnd'
+import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
+import { AppDispatch } from '../../app/store'
+import {
+  addUnconfirmedBet,
+  removeUnconfirmedBet
+} from '../../features/bets/betsSlice'
+import { BetData } from '../../interfaces'
+
 interface DragColumnsProps {}
 
-//* reordering the items within a list
+type ResultType = {
+  [key: string]: BetData[]
+}
+type ListType<T> = T[] | readonly T[]
 
-const reorder = (list: any[], startIndex: number, endIndex: number): any[] => {
+//- need trailing comma in the generic type in .tsx file
+//prettier-ignore
+const reorder = <T, >(
+  list: ListType<T>,
+  startIndex: number,
+  endIndex: number
+): T[] => {
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)
-
-  return result
-}
-/**
- * //* Moves an item from one list to another list.
- */
-const move = (
-  source: any,
-  destination: any,
-  droppableSource: any,
-  droppableDestination: any
-) => {
-  const sourceClone = Array.from(source)
-  const destClone = Array.from(destination)
-
-  //* removed array that is a sourceClone without droppableSource.index
-  const [removed] = sourceClone.splice(droppableSource.index, 1)
-
-  //* adding removed array
-  destClone.splice(droppableDestination.index, 0, removed)
-
-  const result: any = {}
-  result[droppableSource.droppableId] = sourceClone
-  result[droppableDestination.droppableId] = destClone
-  //* so I'll have result
-  //* {droppableSource.droppableId: sourceClone, droppableDestination.droppableId: destClone}
-
+  console.log('reorder')
   return result
 }
 
 const DragColumns: React.FC<DragColumnsProps> = () => {
+  const dispatch: AppDispatch = useAppDispatch()
+
+  const betsUnconfirmed: BetData[] = useAppSelector(
+    state => state.bets.betsUnconfirmed
+  )
+
+  const move = (
+    source: BetData[],
+    destination: BetData[],
+    droppableSource: DraggableLocation,
+    droppableDestination: DraggableLocation
+  ) => {
+    const sourceClone = Array.from(source)
+    const destClone = Array.from(destination)
+
+    // shorthand:
+    // const [removed] = sourceClone.splice(droppableSource.index, 1)
+    const removed = sourceClone[droppableSource.index]
+    sourceClone.splice(droppableSource.index, 1)
+
+    destClone.splice(droppableDestination.index, 0, removed)
+
+    const result: ResultType = {}
+
+    result[droppableSource.droppableId] = sourceClone
+    result[droppableDestination.droppableId] = destClone
+
+    return result
+  }
   const [state, setState] = useState([
     [
-      { id: '1', content: 'First task' },
-      { id: '2', content: 'Second task' },
-      { id: '22', content: 'Second task 2' },
-      { id: '23', content: 'Second task 3' },
-      { id: '24', content: 'Second task 5' }
+      { id: 2312, name: 'Bet 1212', FightId: 12387621, activated: false },
+      { id: 32332, name: 'BETTT SDSD', FightId: 12387621, activated: false },
+      {
+        id: 31231,
+        name: 'I love vetting',
+        FightId: 12387621,
+        activated: false
+      },
+      { id: 3231, name: 'fafbet', FightId: 12387621, activated: false },
+      { id: 123124, name: 'betrbete', FightId: 12387621, activated: false }
     ],
-    [
-      { id: '3', content: 'Third task' },
-      { id: '4', content: 'Fourth task' },
-      { id: '5', content: 'Fifth task' }
-    ]
+    betsUnconfirmed
   ])
 
-  function onDragEnd (result: any) {
+  function onDragEnd (result: DropResult) {
     const { source, destination } = result
 
+    const newState: BetData[][] = [...state]
+    const sourceIndex: number = +source.droppableId
+
+    // dropped bet
+    const droppedBet: BetData = state[sourceIndex][source.index]
+    const { id: idBetToRemove } = droppedBet
+
     // dropped outside the list
+
     if (!destination) {
+      if (sourceIndex === 1) {
+        dispatch(removeUnconfirmedBet(idBetToRemove))
+        // console.log('no destination', sourceIndex)
+        // remove from the state if dropped outside the list
+        newState[sourceIndex] = newState[sourceIndex].filter(
+          bet => bet.id !== droppedBet.id
+        )
+        //add it back to available bets
+        const activatedBet = { ...droppedBet, activated: false }
+        if (activatedBet.FightId === newState[0][0].FightId) {
+          newState[0] = [...newState[0], activatedBet]
+          console.log('Testing this with fightID match', activatedBet)
+        }
+        // newState[0] = [...newState[0], droppedBet]
+        setState(newState)
+        console.log('general example', droppedBet, newState)
+      }
       return
     }
-    // * The unary plus operator (+) precedes its operand and evaluates to its operand but attempts to convert it into a number, if it isn't already.
-    const sourceIndex = +source.droppableId
-    const destinationIndex = +destination.droppableId
-    // * reordering within the same array
-    //* this is how I access the fragment I just dropped
-    // const droppedFragment: any = state[source.droppableId][source.index]
-    // const droppableId = destination.droppableId
-    // const { _id, keywordValue: keywordValueDropped } = droppedFragment
+    const destinationIndex: number = +destination.droppableId
 
     if (sourceIndex === destinationIndex) {
-      const items: any[] = reorder(
+      const items: BetData[] = reorder(
         state[sourceIndex],
         source.index,
         destination.index
       )
-      const newState: any[][] = [...state]
-      newState[sourceIndex] = items
+
+      newState[+sourceIndex] = items
       setState(newState)
     } else {
-      //* HERE Begins section of adding keyword to fragment dragged
-
       const result = move(
         state[sourceIndex],
         state[destinationIndex],
@@ -92,12 +133,20 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
         destination
       )
 
-      const newState = [...state]
-      //todo targetting the list of this index
+      if (sourceIndex === 0 && destinationIndex === 1) {
+        const activatedBet = { ...droppedBet, activated: true }
+        dispatch(addUnconfirmedBet(activatedBet))
+        // console.log('added', activatedBet)
+      }
+
+      if (sourceIndex === 1 && destinationIndex === 0) {
+        dispatch(removeUnconfirmedBet(idBetToRemove))
+        // console.log('removed', idBetToRemove)
+      }
+
       newState[sourceIndex] = result[sourceIndex]
       newState[destinationIndex] = result[destinationIndex]
 
-      //* this will not remove empty one
       setState(newState)
     }
   }

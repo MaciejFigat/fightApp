@@ -1,10 +1,8 @@
 import React from 'react'
-import { Droppable, Draggable } from '@hello-pangea/dnd'
-import { BetData } from '../../interfaces'
-import { useAppSelector } from '../../app/reduxHooks'
+import { Droppable, Draggable } from 'react-beautiful-dnd'
 
 interface BetSlipsColumnProps {
-  state: BetData[][]
+  state: any[]
 }
 
 const getItemStyle = (isDragging: any, draggableStyle: any) => ({
@@ -29,10 +27,6 @@ const getListStyle = (isDraggingOver: any) => ({
 })
 
 const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
-  const betsUnconfirmed: BetData[] = useAppSelector(
-    state => state.bets.betsUnconfirmed
-  )
-
   return (
     <div>
       <h3>unconfirmed fight bets </h3>
@@ -43,14 +37,8 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
             style={getListStyle(snapshot.isDraggingOver)}
             {...provided.droppableProps}
           >
-            {/* {betsUnconfirmed.map((event: any, index: number) => ( */}
-            {state[1].map((bet: BetData, index: number) => (
-              <Draggable
-                key={bet.id}
-                // expects a string
-                draggableId={bet.id.toString()}
-                index={index}
-              >
+            {state[1].map((event: any, index: number) => (
+              <Draggable key={event.id} draggableId={event.id} index={index}>
                 {(provided, snapshot) => {
                   return (
                     <div
@@ -62,7 +50,7 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
                         provided.draggableProps.style
                       )}
                     >
-                      <div key={bet.id}>{bet.name}</div>
+                      <div key={event.id}>{event.content}</div>
                     </div>
                   )
                 }}

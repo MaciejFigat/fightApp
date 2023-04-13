@@ -94,6 +94,13 @@ interface EventAllData {
   Status: string
 }
 
+interface BetData {
+  id: number
+  name: string
+  FightId: number
+  activated: boolean
+}
+
 export {
   SportChosen,
   SportEventData,
@@ -103,5 +110,6 @@ export {
   FighterProfile,
   AvailableEventSimpleData,
   ApiRetrivalHttpError,
-  EventAllData
+  EventAllData,
+  BetData
 }
