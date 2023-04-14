@@ -70,10 +70,6 @@ const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
           </div>
         )}
       </Droppable>{' '}
-      {Array.isArray(state[0]) &&
-        state[0]
-          .filter((bet: BetData) => bet.activated === false)
-          .map((bet: any) => <h2 key={bet.id}>{bet.name}</h2>)}
     </div>
   )
 }
