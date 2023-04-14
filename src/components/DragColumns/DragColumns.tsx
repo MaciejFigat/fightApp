@@ -13,6 +13,9 @@ import {
 } from './dragColumnsFunctions'
 
 import { BetData } from '../../interfaces'
+import Accordion from '../Accordion/Accordion'
+import { motion } from 'framer-motion'
+import { EventAllData } from '../../interfaces'
 
 interface DragColumnsProps {}
 
@@ -22,6 +25,10 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
   const betsUnconfirmed: BetData[] = useAppSelector(
     state => state.bets.betsUnconfirmed
   )
+  const currentEvent: EventAllData | null = useAppSelector(
+    state => state.events.currentEvent
+  )
+  const { Name: EventName, Fights: CurrentEventFights } = currentEvent ?? {}
 
   const [state, setState] = useState([
     [
@@ -70,12 +77,35 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
       )
     }
   }
+  const [expanded, setExpanded] = useState<false | number>(0)
+  const accordionIds = [0, 1, 2, 3]
 
   return (
     <DragColContainer>
       <DragDropContext onDragEnd={onDragEnd}>
-        <MainColumn>
-          <EventColumn state={state} />
+        <MainColumn as={motion.div} layout>
+          {CurrentEventFights
+            ? CurrentEventFights.map(fight => (
+                <Accordion
+                  key={fight.FightId}
+                  i={fight.FightId}
+                  fighters={fight.Fighters}
+                  expanded={expanded}
+                  setExpanded={setExpanded}
+                >
+                  <EventColumn state={state} />
+                </Accordion>
+              ))
+            : accordionIds.map(i => (
+                <Accordion
+                  key={i}
+                  i={i}
+                  expanded={expanded}
+                  setExpanded={setExpanded}
+                >
+                  <EventColumn state={state} />
+                </Accordion>
+              ))}
         </MainColumn>
         <SideColumn>
           <BetSlipsColumn state={state} />
