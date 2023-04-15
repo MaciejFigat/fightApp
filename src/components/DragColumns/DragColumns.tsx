@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { DragColContainer, MainColumn, SideColumn } from './DragColumns.styled'
 import EventColumn from './EventColumn'
 import BetSlipsColumn from './BetSlipsColumn'
 import { DragDropContext, DropResult } from '@hello-pangea/dnd'
 import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
 import { AppDispatch } from '../../app/store'
+import { v4 } from 'uuid'
 
 import {
   handleReorder,
@@ -28,11 +29,27 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
   const currentEvent: EventAllData | null = useAppSelector(
     state => state.events.currentEvent
   )
-  const { Name: EventName, Fights: CurrentEventFights } = currentEvent ?? {}
+  const { Name: EventName, Fights: currentEventFights } = currentEvent ?? {}
+  // state for accordion component, will have value of FightId if expanded
+  const [expandedFight, setExpandedFight] = useState<null | number>(null)
+
+  const targetFightIndex =
+    currentEventFights?.findIndex(fight => fight.FightId === expandedFight) ?? 0
+  const currentFight =
+    currentEvent &&
+    currentEvent.Fights &&
+    currentEvent.Fights[targetFightIndex] &&
+    currentEvent.Fights[targetFightIndex]
 
   const [state, setState] = useState([
     [
-      { id: 2312, name: 'Bet 1212', FightId: 12387621, activated: false },
+      // { id: v4(), name: 'Bet 1212', FightId: 12387621, activated: false },
+      {
+        id: 12315555,
+        name: `Fight id is ${currentFight?.FightId}`,
+        FightId: currentFight?.FightId ?? 0,
+        activated: false
+      },
       { id: 32332, name: 'BETTT SDSD', FightId: 12387621, activated: false },
       {
         id: 31231,
@@ -45,6 +62,31 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
     ],
     betsUnconfirmed
   ])
+
+  useEffect(() => {
+    setState([
+      [
+        {
+          id: 12315555,
+          name: `Fight id is ${currentFight?.FightId}`,
+          FightId: 12387621,
+          activated: false
+        },
+        { id: 32332, name: 'BETTT SDSD', FightId: 12387621, activated: false },
+        {
+          id: 31231,
+          name: 'I love vetting',
+          FightId: 12387621,
+          activated: false
+        },
+        { id: 3231, name: 'fafbet', FightId: 12387621, activated: false },
+        { id: 123124, name: 'betrbete', FightId: 12387621, activated: false }
+      ],
+      betsUnconfirmed
+    ])
+    // console.log(currentFight)
+    // console.log(expandedFight)
+  }, [currentFight, betsUnconfirmed, expandedFight])
 
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result
@@ -77,21 +119,25 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
       )
     }
   }
-  const [expanded, setExpanded] = useState<false | number>(0)
+
+  // const [openedFightId, setOpenedFightId] = useState<number | undefined>(
+  //   undefined
+  // )
   const accordionIds = [0, 1, 2, 3]
 
   return (
     <DragColContainer>
       <DragDropContext onDragEnd={onDragEnd}>
         <MainColumn as={motion.div} layout>
-          {CurrentEventFights
-            ? CurrentEventFights.map(fight => (
+          <h2>{EventName}</h2>
+          {currentEventFights
+            ? currentEventFights.map(fight => (
                 <Accordion
                   key={fight.FightId}
                   i={fight.FightId}
                   fighters={fight.Fighters}
-                  expanded={expanded}
-                  setExpanded={setExpanded}
+                  expanded={expandedFight}
+                  setExpanded={setExpandedFight}
                 >
                   <EventColumn state={state} />
                 </Accordion>
@@ -100,8 +146,8 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
                 <Accordion
                   key={i}
                   i={i}
-                  expanded={expanded}
-                  setExpanded={setExpanded}
+                  expanded={expandedFight}
+                  setExpanded={setExpandedFight}
                 >
                   <EventColumn state={state} />
                 </Accordion>

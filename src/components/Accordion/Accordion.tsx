@@ -5,8 +5,8 @@ import { FighterProfile } from '../../interfaces'
 interface AccordionProps {
   children: React.ReactNode
   i: number
-  expanded: false | number
-  setExpanded: React.Dispatch<React.SetStateAction<false | number>>
+  expanded: null | number
+  setExpanded: React.Dispatch<React.SetStateAction<null | number>>
   fighters?: FighterProfile[]
 }
 
@@ -19,13 +19,20 @@ const Accordion: React.FC<AccordionProps> = ({
 }) => {
   //   const [isOpen, setIsOpen] = useState(false)
   const isOpen = i === expanded
+
+  const expandHandler = () => {
+    setExpanded(isOpen ? null : i)
+    console.log('i:', i)
+  }
   return (
     <motion.div>
       <AnimatePresence>
         {/* <AccordionSection key='question' onClick={() => setIsOpen(!isOpen)}> */}
         <AccordionSection
           key='question'
-          onClick={() => setExpanded(isOpen ? false : i)}
+          onClick={() => {
+            expandHandler()
+          }}
         >
           <motion.div>
             {fighters
