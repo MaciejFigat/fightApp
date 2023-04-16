@@ -12,7 +12,6 @@ const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
   return (
     <div>
       {' '}
-      <h3>BETS available</h3>
       <Droppable key={'0'} droppableId={`0`}>
         {(provided, snapshot) => (
           <DroppableList

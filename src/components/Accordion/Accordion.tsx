@@ -1,13 +1,13 @@
 import { motion, AnimatePresence } from 'framer-motion'
 import { AccordionContent, AccordionSection } from './Accordion.styled'
-import { FighterProfile } from '../../interfaces'
 
 interface AccordionProps {
   children: React.ReactNode
   i: number
   expanded: null | number
   setExpanded: React.Dispatch<React.SetStateAction<null | number>>
-  fighters?: FighterProfile[]
+
+  headerContent?: string
 }
 
 const Accordion: React.FC<AccordionProps> = ({
@@ -15,29 +15,23 @@ const Accordion: React.FC<AccordionProps> = ({
   setExpanded,
   expanded,
   i,
-  fighters
+  headerContent
 }) => {
-  //   const [isOpen, setIsOpen] = useState(false)
   const isOpen = i === expanded
 
   const expandHandler = () => {
     setExpanded(isOpen ? null : i)
-    console.log('i:', i)
   }
   return (
     <motion.div>
       <AnimatePresence>
-        {/* <AccordionSection key='question' onClick={() => setIsOpen(!isOpen)}> */}
         <AccordionSection
-          key='question'
           onClick={() => {
             expandHandler()
           }}
         >
           <motion.div>
-            {fighters
-              ? `${fighters[0].FirstName} ${fighters[0].LastName} vs ${fighters[1].FirstName} ${fighters[1].LastName}`
-              : 'Fight'}{' '}
+            {headerContent ? headerContent : 'Header with no content'}
           </motion.div>
         </AccordionSection>
 
@@ -52,14 +46,16 @@ const Accordion: React.FC<AccordionProps> = ({
                 opacity: 1,
                 height: 'auto',
                 transition: {
-                  duration: 0.2
+                  duration: 0.2,
+                  ease: 'linear'
                 }
               },
               collapsed: {
                 opacity: 0,
                 height: 0,
                 transition: {
-                  duration: 0.2
+                  duration: 0.3,
+                  ease: 'linear'
                 }
               }
             }}

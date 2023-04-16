@@ -9,12 +9,17 @@ export const AccordionContainer = styled(motion.div)<{ isDragging?: boolean }>`
 
 export const AccordionSection = styled(motion.div)`
   width: 300px;
-  height: 100px;
-  background: var(--background3-main);
+  height: 50px;
+  /* height: 100%; */
+  background: var(--background2-main);
+  /* this padding is for smooth closing */
+  margin-bottom: 1rem;
 `
 
 export const AccordionContent = styled(motion.div)<{ isOpen?: boolean }>`
   width: 200px;
   height: 200px;
   background: var(--background2-main);
+  /* this margin is for smooth closing */
+  margin-top: 1rem;
 `

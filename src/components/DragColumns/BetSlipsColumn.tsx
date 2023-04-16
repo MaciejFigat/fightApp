@@ -1,28 +1,29 @@
 import React from 'react'
 import { Droppable, Draggable } from '@hello-pangea/dnd'
-import { BetData } from '../../interfaces'
+import { BetData, ConfirmedBet } from '../../interfaces'
 import { DraggableDiv, DroppableList } from './DragColumns.styled'
-// import { useAppSelector } from '../../app/reduxHooks'
+import BetConfirmation from '../BetConfirmation/BetConfirmation'
+import { useAppSelector } from '../../app/reduxHooks'
 
 interface BetSlipsColumnProps {
   state: BetData[][]
 }
 
 const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
-  // const betsUnconfirmed: BetData[] = useAppSelector(
-  //   state => state.bets.betsUnconfirmed
-  // )
+  const betsConfirmed: ConfirmedBet[] = useAppSelector(
+    state => state.bets.betsConfirmed
+  )
 
   return (
-    <div>
+    <>
       <h3>unconfirmed fight bets </h3>
       <Droppable key={'1'} droppableId={`1`}>
         {(provided, snapshot) => (
           <DroppableList
             ref={provided.innerRef}
             isDraggingOver={snapshot.isDraggingOver}
+            listEmpty={state[1].length === 0 ? true : false}
           >
-            {/* {betsUnconfirmed.map((event: any, index: number) => ( */}
             {state[1].map((bet: BetData, index: number) => (
               <Draggable
                 key={bet.id}
@@ -38,17 +39,28 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
                       {...provided.dragHandleProps}
                       isDragging={snapshot.isDragging}
                     >
-                      <div key={bet.id}>{bet.name}</div>
+                      {' '}
+                      <BetConfirmation
+                        index={index}
+                        betName={bet.name}
+                        betId={bet.id}
+                      />
                     </DraggableDiv>
                   )
                 }}
               </Draggable>
             ))}
-            {provided.placeholder}
+            {provided.placeholder}{' '}
           </DroppableList>
         )}
       </Droppable>
-    </div>
+      {betsConfirmed.length > 0 && <h3>confirmed fight bets </h3>}
+      {betsConfirmed.map((bet: ConfirmedBet) => (
+        <div key={bet.id}>
+          {bet.name} bet: {bet.amountBet} hoping for: {bet.expectedPayout}
+        </div>
+      ))}
+    </>
   )
 }
 export default BetSlipsColumn

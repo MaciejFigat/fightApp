@@ -28,7 +28,8 @@ export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
   align-items: center;
   border-radius: 4px;
   width: 100%;
-  height: 50px;
+  min-height: 50px;
+  height: 100%;
   margin-bottom: 10px;
   border: 1px solid var(--background4-main);
   opacity: ${({ isDragging }) => isDragging && '0.9'};
@@ -36,7 +37,26 @@ export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
   color: ${({ isDragging }) => isDragging && 'var(--background1-main)'};
 `
 
-export const DroppableList = styled.div<{ isDraggingOver?: boolean }>`
+export const DroppableList = styled.div<{
+  isDraggingOver?: boolean
+  listEmpty?: boolean
+}>`
+  min-height: 150px;
+  ${({ listEmpty }) =>
+    listEmpty &&
+    `
+      &::after {
+        content: 'Drop your bets here';
+        display: block;
+        text-align: center;
+        margin-top: 10px;
+        color: var(--background2-main);
+        font-weight: bold;
+        padding: 1rem;
+        border: 1px dashed var(--background4-main);
+      }
+    `};
+
   background: ${({ isDraggingOver }) =>
     isDraggingOver ? 'var(--background-blur1)' : 'var(--background1-main)'};
 

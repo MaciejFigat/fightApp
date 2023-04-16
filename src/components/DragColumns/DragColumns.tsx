@@ -17,6 +17,8 @@ import { BetData } from '../../interfaces'
 import Accordion from '../Accordion/Accordion'
 import { motion } from 'framer-motion'
 import { EventAllData } from '../../interfaces'
+import { WinMethod } from '../../consts'
+import AnimatedSlider from '../AnimatedSlider/AnimatedSlider'
 
 interface DragColumnsProps {}
 
@@ -41,51 +43,63 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
     currentEvent.Fights[targetFightIndex] &&
     currentEvent.Fights[targetFightIndex]
 
-  const [state, setState] = useState([
-    [
-      // { id: v4(), name: 'Bet 1212', FightId: 12387621, activated: false },
-      {
-        id: 12315555,
-        name: `Fight id is ${currentFight?.FightId}`,
-        FightId: currentFight?.FightId ?? 0,
-        activated: false
-      },
-      { id: 32332, name: 'BETTT SDSD', FightId: 12387621, activated: false },
-      {
-        id: 31231,
-        name: 'I love vetting',
-        FightId: 12387621,
-        activated: false
-      },
-      { id: 3231, name: 'fafbet', FightId: 12387621, activated: false },
-      { id: 123124, name: 'betrbete', FightId: 12387621, activated: false }
-    ],
-    betsUnconfirmed
-  ])
+  const [state, setState] = useState([[], betsUnconfirmed])
 
   useEffect(() => {
     setState([
       [
         {
-          id: 12315555,
-          name: `Fight id is ${currentFight?.FightId}`,
-          FightId: 12387621,
+          id: v4(),
+          FightId: currentFight?.FightId ?? 0,
+          name: `${currentFight?.Fighters[0].FirstName} ${currentFight?.Fighters[0].LastName} WINS`,
+          method: WinMethod.TBD,
           activated: false
         },
-        { id: 32332, name: 'BETTT SDSD', FightId: 12387621, activated: false },
         {
-          id: 31231,
-          name: 'I love vetting',
-          FightId: 12387621,
+          id: v4(),
+          FightId: currentFight?.FightId ?? 0,
+          name: `${currentFight?.Fighters[1].FirstName} ${currentFight?.Fighters[1].LastName} WINS`,
+          method: WinMethod.TBD,
           activated: false
         },
-        { id: 3231, name: 'fafbet', FightId: 12387621, activated: false },
-        { id: 123124, name: 'betrbete', FightId: 12387621, activated: false }
+        {
+          id: v4(),
+          name: 'KO/TKO',
+          method: WinMethod.KO_TKO,
+          FightId: currentFight?.FightId ?? 0,
+          activated: false
+        },
+        {
+          id: v4(),
+          name: 'Decision',
+          method: WinMethod.DECISION,
+          FightId: currentFight?.FightId ?? 0,
+          activated: false
+        },
+        {
+          id: v4(),
+          name: 'Submission',
+          method: WinMethod.SUBMISSION,
+          FightId: currentFight?.FightId ?? 0,
+          activated: false
+        },
+        {
+          id: v4(),
+          name: 'Draw',
+          method: WinMethod.DRAW,
+          FightId: currentFight?.FightId ?? 0,
+          activated: false
+        },
+        {
+          id: v4(),
+          name: 'Disqualified, No Contest',
+          method: WinMethod.DQ,
+          FightId: currentFight?.FightId ?? 0,
+          activated: false
+        }
       ],
       betsUnconfirmed
     ])
-    // console.log(currentFight)
-    // console.log(expandedFight)
   }, [currentFight, betsUnconfirmed, expandedFight])
 
   const onDragEnd = (result: DropResult) => {
@@ -120,9 +134,6 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
     }
   }
 
-  // const [openedFightId, setOpenedFightId] = useState<number | undefined>(
-  //   undefined
-  // )
   const accordionIds = [0, 1, 2, 3]
 
   return (
@@ -131,11 +142,15 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
         <MainColumn as={motion.div} layout>
           <h2>{EventName}</h2>
           {currentEventFights
-            ? currentEventFights.map(fight => (
+            ? currentEventFights.map(({ FightId, Fighters }) => (
                 <Accordion
-                  key={fight.FightId}
-                  i={fight.FightId}
-                  fighters={fight.Fighters}
+                  key={FightId}
+                  i={FightId}
+                  headerContent={
+                    Fighters && Fighters.length > 0
+                      ? `${Fighters[0].FirstName} ${Fighters[0].LastName} vs ${Fighters[1].FirstName} ${Fighters[1].LastName}`
+                      : 'Fighter 1 vs Fighter 2'
+                  }
                   expanded={expandedFight}
                   setExpanded={setExpandedFight}
                 >
@@ -157,6 +172,7 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
           <BetSlipsColumn state={state} />
         </SideColumn>
       </DragDropContext>
+      <AnimatedSlider />
     </DragColContainer>
   )
 }

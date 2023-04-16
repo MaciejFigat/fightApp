@@ -1,4 +1,4 @@
-import { Discipline } from './consts'
+import { Discipline, WinMethod } from './consts'
 
 interface SportChosen {
   name: Discipline
@@ -95,10 +95,16 @@ interface EventAllData {
 }
 
 interface BetData {
-  id: number
+  id: string
   name: string
+  method?: WinMethod
   FightId: number
   activated: boolean
+}
+
+interface ConfirmedBet extends BetData {
+  amountBet: number
+  expectedPayout: number
 }
 
 export {
@@ -111,5 +117,6 @@ export {
   AvailableEventSimpleData,
   ApiRetrivalHttpError,
   EventAllData,
-  BetData
+  BetData,
+  ConfirmedBet
 }
