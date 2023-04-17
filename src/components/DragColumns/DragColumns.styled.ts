@@ -31,10 +31,11 @@ export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
   min-height: 50px;
   height: 100%;
   margin-bottom: 10px;
-  border: 1px solid var(--background4-main);
+  border: 1px solid var(--background1-blur);
   opacity: ${({ isDragging }) => isDragging && '0.9'};
   background: ${({ isDragging }) => isDragging && 'var(--background2-main)'};
-  color: ${({ isDragging }) => isDragging && 'var(--background1-main)'};
+  color: ${({ isDragging }) => isDragging && 'var(--background2-secondary)'};
+  /* background: var(--background1-blur); */
 `
 
 export const DroppableList = styled.div<{
@@ -50,10 +51,10 @@ export const DroppableList = styled.div<{
         display: block;
         text-align: center;
         margin-top: 10px;
-        color: var(--background2-main);
+        color: var(--background1-secondary);
         font-weight: bold;
         padding: 1rem;
-        border: 1px dashed var(--background4-main);
+        border: 1px dashed var(--background2-secondary);
       }
     `};
 

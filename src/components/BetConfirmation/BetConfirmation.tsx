@@ -4,10 +4,14 @@ import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
 import { AppDispatch } from '../../app/store'
 import {
   removeUnconfirmedBet,
-  addConfirmedBet,
-  removeConfirmedBet
+  addConfirmedBet
 } from '../../features/bets/betsSlice'
 import Accordion from '../Accordion/Accordion'
+import NumberInput from '../Inputs/NumberInput'
+import { HorizontalWrapper } from '../../styles/misc.styles'
+import { ButtonSmall } from '../Buttons/Buttons.styled'
+import { ButtonVariants } from '../../consts'
+
 interface BetConfirmationProps {
   betName: string
   betId: string
@@ -24,10 +28,8 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
     state => state.bets.betsUnconfirmed
   )
   const [expandedBet, setExpandedBet] = useState<null | number>(null)
-  const [amountBet, setAmountBet] = useState<number>()
-  const [expectedPayout, setExpectedPayout] = useState<number>()
-  //   amountBet: number
-  //   expectedPayout: number
+  const [amountBet, setAmountBet] = useState<number>(1)
+  const [expectedPayout, setExpectedPayout] = useState<number>(1)
 
   const handleAmountBetChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -67,27 +69,27 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
       expanded={expandedBet}
       setExpanded={setExpandedBet}
     >
-      {/* <h2>Confirm this bet</h2> */}
-      <ul>
-        <div>
-          <label htmlFor='amountBetInput'>Enter amount to bet:</label>
-          <input
-            id='amountBetInput'
-            type='number'
+      <div>
+        <HorizontalWrapper>
+          <NumberInput
+            label={'Wager'}
             value={amountBet}
-            onChange={handleAmountBetChange}
+            changeHandler={handleAmountBetChange}
           />
-          <label htmlFor='amountBetInput'>Expected payout</label>
-          <input
-            id='amountBetInput'
-            type='number'
+          <NumberInput
+            label={'To win'}
             value={expectedPayout}
-            onChange={handleExpectedAmountChange}
+            changeHandler={handleExpectedAmountChange}
           />
+        </HorizontalWrapper>
 
-          <button onClick={() => handleConfirm()}>Confirm</button>
-        </div>
-      </ul>
+        <ButtonSmall
+          variant={ButtonVariants.primaryEmpty}
+          onClick={() => handleConfirm()}
+        >
+          Confirm
+        </ButtonSmall>
+      </div>
     </Accordion>
   )
 }

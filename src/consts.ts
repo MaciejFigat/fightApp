@@ -15,3 +15,14 @@ export enum WinMethod {
   DQ = 'DQ',
   TBD = 'TBD'
 }
+export enum ButtonVariants {
+  primary = 'primary',
+  primaryEmpty = 'primaryEmpty',
+  secondary = 'secondary',
+  secondaryEmpty = 'secondaryEmpty',
+  success = 'success',
+  successEmpty = 'successEmpty',
+  info = 'info',
+  warning = 'warning',
+  default = 'default'
+}

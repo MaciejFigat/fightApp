@@ -4,6 +4,7 @@ import { BetData, ConfirmedBet } from '../../interfaces'
 import { DraggableDiv, DroppableList } from './DragColumns.styled'
 import BetConfirmation from '../BetConfirmation/BetConfirmation'
 import { useAppSelector } from '../../app/reduxHooks'
+import AnimatedSlider from '../AnimatedSlider/AnimatedSlider'
 
 interface BetSlipsColumnProps {
   state: BetData[][]
@@ -58,6 +59,7 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
       {betsConfirmed.map((bet: ConfirmedBet) => (
         <div key={bet.id}>
           {bet.name} bet: {bet.amountBet} hoping for: {bet.expectedPayout}
+          <AnimatedSlider header={['Yes', 'No']} />
         </div>
       ))}
     </>

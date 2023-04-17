@@ -18,7 +18,6 @@ import Accordion from '../Accordion/Accordion'
 import { motion } from 'framer-motion'
 import { EventAllData } from '../../interfaces'
 import { WinMethod } from '../../consts'
-import AnimatedSlider from '../AnimatedSlider/AnimatedSlider'
 
 interface DragColumnsProps {}
 
@@ -172,7 +171,6 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
           <BetSlipsColumn state={state} />
         </SideColumn>
       </DragDropContext>
-      <AnimatedSlider />
     </DragColContainer>
   )
 }
