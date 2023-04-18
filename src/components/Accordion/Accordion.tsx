@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { AccordionContent, AccordionSection } from './Accordion.styled'
+import { AccordionContent, AccordionHeader } from './Accordion.styled'
 
 interface AccordionProps {
   children: React.ReactNode
@@ -25,15 +25,13 @@ const Accordion: React.FC<AccordionProps> = ({
   return (
     <motion.div>
       <AnimatePresence>
-        <AccordionSection
+        <AccordionHeader
           onClick={() => {
             expandHandler()
           }}
         >
-          <motion.div>
-            {headerContent ? headerContent : 'Header with no content'}
-          </motion.div>
-        </AccordionSection>
+          {headerContent ? headerContent : 'Header with no content'}
+        </AccordionHeader>
 
         {isOpen && (
           <AccordionContent

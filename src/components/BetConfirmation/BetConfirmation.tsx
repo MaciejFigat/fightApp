@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BetData, ConfirmedBet, FightAllData } from '../../interfaces'
+import { BetData, ConfirmedBet } from '../../interfaces'
 import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
 import { AppDispatch } from '../../app/store'
 import {
@@ -8,11 +8,18 @@ import {
 } from '../../features/bets/betsSlice'
 import Accordion from '../Accordion/Accordion'
 import NumberInput from '../Inputs/NumberInput'
-import { HorizontalWrapper } from '../../styles/misc.styles'
+import {
+  ColorText,
+  HorizontalWrapper,
+  HorizontalWrapperSpace
+} from '../../styles/misc.styles'
 import { ButtonSmall } from '../Buttons/Buttons.styled'
-import { ButtonVariants } from '../../consts'
+import { ButtonVariants, TextColor } from '../../consts'
 import BetHeader from './BetHeader'
-import { payoutFormatter } from '../helperFunctions/helperFunction'
+import {
+  dateFormatter,
+  payoutFormatter
+} from '../helperFunctions/helperFunction'
 
 interface BetConfirmationProps {
   betName: string
@@ -49,7 +56,7 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
     // calculate the expected payout based on the amount bet
 
     const newExpectedPayout = payoutFormatter(newAmountBet, betMoneyline)
-    console.log(newExpectedPayout)
+
     setExpectedPayout(newExpectedPayout)
   }
   const betToConfirm: BetData | undefined =
@@ -72,21 +79,32 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
       dispatch(addConfirmedBet(confirmedBet))
     }
   }
+  const formattedDate = dateFormatter(dateTime, false)
+
   return (
     <Accordion
       i={index ?? 0}
       headerContent={
-        <BetHeader
-          dateTime={dateTime}
-          betMoneyline={betMoneyline}
-          betName={betName}
-          fightName={fightName}
-        />
+        <BetHeader betMoneyline={betMoneyline} betName={betName} />
       }
       expanded={expandedBet}
       setExpanded={setExpandedBet}
     >
       <>
+        <HorizontalWrapperSpace>
+          {' '}
+          {betMoneyline &&
+            (betMoneyline > 0 ? (
+              <ColorText color={TextColor.WARNING}>underdog</ColorText>
+            ) : (
+              <ColorText color={TextColor.SUCCESS}>favourite</ColorText>
+            ))}{' '}
+          <i>info</i>
+        </HorizontalWrapperSpace>
+        <HorizontalWrapperSpace>
+          {' '}
+          {fightName} {formattedDate}
+        </HorizontalWrapperSpace>
         <HorizontalWrapper>
           <NumberInput
             label={'Wager'}

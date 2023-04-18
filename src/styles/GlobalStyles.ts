@@ -61,9 +61,10 @@ const GlobalStyle = createGlobalStyle`
      inset 5px -5px 10px #957533;
      
      
-     --background-blur0: rgba(60, 59, 61, 0.65);
-     --background-blur1: rgba( 200, 198, 198, 0.25 );
-     --background-blur2: rgba( 200, 198, 198, 0.45 );
+     --background-blur0: rgba(60, 59, 61, 0.10);
+     --background-blur1: rgba(60, 59, 61, 0.65);
+     --background-blur2: rgba( 200, 198, 198, 0.25 );
+     --background-blur3: rgba( 200, 198, 198, 0.45 );
 
     
 
@@ -81,10 +82,10 @@ const GlobalStyle = createGlobalStyle`
     --gap-medium: 8px;
     --gap-big: 12px;
     
-    --font-size-small: 1rem;
-    --font-size-medium: 1.2rem;
-    --font-size-big: 1.4rem;
-    --font-size-bigger: 1.6rem;
+    --font-size-small: 0.8rem;
+    --font-size-medium: 1rem;
+    --font-size-big: 1.2rem;
+    --font-size-bigger: 1.4rem;
 
     --transition-one: 0.1s;
     --transition-two: 0.2s;

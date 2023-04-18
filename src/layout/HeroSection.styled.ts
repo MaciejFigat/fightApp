@@ -5,8 +5,8 @@ import styled from 'styled-components'
 export const HeroGridWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  height:100vh;
-  min-height:100%
+  height: 100vh;
+  min-height: 100%;
 
   margin: 0px;
   overflow: hidden;
@@ -14,7 +14,7 @@ export const HeroGridWrapper = styled.div`
 export const HeroNavigation = styled.div`
   display: flex;
   width: 100%;
-  border-top: 1px solid var(--background-blur2);
+  /* border-top: 1px solid var(--background-blur2); */
 `
 export const HeroNavOne = styled.div`
   display: flex;

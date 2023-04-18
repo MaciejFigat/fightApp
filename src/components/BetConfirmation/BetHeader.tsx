@@ -1,30 +1,19 @@
 import React from 'react'
-import { dateFormatter } from '../helperFunctions/helperFunction'
+import { BoldText, HorizontalWrapperSpace } from '../../styles/misc.styles'
+import { HeaderWrapper } from '../DragColumns/DragColumns.styled'
 
 interface BetHeaderProps {
   betMoneyline: number | undefined
   betName: string
-  dateTime: string
-  fightName: string
 }
 
-const BetHeader: React.FC<BetHeaderProps> = ({
-  betMoneyline,
-  betName,
-  fightName,
-  dateTime
-}) => {
-  const formattedDate = dateFormatter(dateTime, false)
-
+const BetHeader: React.FC<BetHeaderProps> = ({ betMoneyline, betName }) => {
   return (
-    <div>
-      {betName} {fightName}
-      {betMoneyline &&
-        (betMoneyline > 0
-          ? `underdog ${betMoneyline}`
-          : `favourite ${betMoneyline}`)}
-      <div>{formattedDate}</div>
-    </div>
+    <HeaderWrapper>
+      <HorizontalWrapperSpace>
+        <BoldText>{betName}</BoldText> {betMoneyline && `${betMoneyline}`}
+      </HorizontalWrapperSpace>
+    </HeaderWrapper>
   )
 }
 export default BetHeader

@@ -1,18 +1,22 @@
 export const dateFormatter = (date: string, displayYear: boolean) => {
-  const dateFormat = new Date(date)
-  const timeZone = 'Europe/Warsaw'
-  const formattedDate = new Intl.DateTimeFormat('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: displayYear ? 'numeric' : undefined,
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true,
-    timeZone: timeZone,
-    timeZoneName: 'short'
-  }).format(dateFormat)
+  try {
+    const dateFormat = new Date(date)
+    const timeZone = 'Europe/Warsaw'
+    const formattedDate = new Intl.DateTimeFormat('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: displayYear ? 'numeric' : undefined,
+      hour: 'numeric',
+      minute: 'numeric',
+      hour12: true,
+      timeZone: timeZone,
+      timeZoneName: 'short'
+    }).format(dateFormat)
 
-  return formattedDate
+    return formattedDate
+  } catch (error) {
+    console.log('Error in dateFormatter')
+  }
 }
 
 export const payoutFormatter = (
@@ -25,8 +29,6 @@ export const payoutFormatter = (
       : betMoneyline
       ? 100 / Math.abs(betMoneyline)
       : 1
-
-  console.log(payoutMultiplier)
 
   const newExpectedPayout = Number((amountBet * payoutMultiplier).toFixed(2))
 

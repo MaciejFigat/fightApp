@@ -28,3 +28,10 @@ export enum ButtonVariants {
   warningEmpty = 'warningEmpty',
   default = 'default'
 }
+
+export enum TextColor {
+  SUCCESS = 'success',
+  INFO = 'info',
+  WARNING = 'warning',
+  DANGER = 'danger'
+}
