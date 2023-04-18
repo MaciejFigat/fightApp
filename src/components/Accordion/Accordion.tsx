@@ -7,7 +7,7 @@ interface AccordionProps {
   expanded: null | number
   setExpanded: React.Dispatch<React.SetStateAction<null | number>>
 
-  headerContent?: string
+  headerContent?: string | React.ReactNode
 }
 
 const Accordion: React.FC<AccordionProps> = ({

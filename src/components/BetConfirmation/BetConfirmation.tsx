@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { BetData, ConfirmedBet } from '../../interfaces'
+import { BetData, ConfirmedBet, FightAllData } from '../../interfaces'
 import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
 import { AppDispatch } from '../../app/store'
 import {
@@ -11,22 +11,31 @@ import NumberInput from '../Inputs/NumberInput'
 import { HorizontalWrapper } from '../../styles/misc.styles'
 import { ButtonSmall } from '../Buttons/Buttons.styled'
 import { ButtonVariants } from '../../consts'
+import BetHeader from './BetHeader'
+import { payoutFormatter } from '../helperFunctions/helperFunction'
 
 interface BetConfirmationProps {
   betName: string
+  fightName: string
   betId: string
   //   I'm passing index for Accordion component
   index?: number
+  betMoneyline?: number
+  dateTime: string
 }
 const BetConfirmation: React.FC<BetConfirmationProps> = ({
   betName,
+  fightName,
   betId,
+  betMoneyline,
+  dateTime,
   index
 }) => {
   const dispatch: AppDispatch = useAppDispatch()
   const betsUnconfirmed: BetData[] = useAppSelector(
     state => state.bets.betsUnconfirmed
   )
+
   const [expandedBet, setExpandedBet] = useState<null | number>(null)
   const [amountBet, setAmountBet] = useState<number>(1)
   const [expectedPayout, setExpectedPayout] = useState<number>(1)
@@ -38,8 +47,9 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
     setAmountBet(newAmountBet)
 
     // calculate the expected payout based on the amount bet
-    const payoutMultiplier = 2 //todo for simplicity later moneyline
-    const newExpectedPayout = newAmountBet * payoutMultiplier
+
+    const newExpectedPayout = payoutFormatter(newAmountBet, betMoneyline)
+    console.log(newExpectedPayout)
     setExpectedPayout(newExpectedPayout)
   }
   const betToConfirm: BetData | undefined =
@@ -65,11 +75,18 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
   return (
     <Accordion
       i={index ?? 0}
-      headerContent={`${betName}`}
+      headerContent={
+        <BetHeader
+          dateTime={dateTime}
+          betMoneyline={betMoneyline}
+          betName={betName}
+          fightName={fightName}
+        />
+      }
       expanded={expandedBet}
       setExpanded={setExpandedBet}
     >
-      <div>
+      <>
         <HorizontalWrapper>
           <NumberInput
             label={'Wager'}
@@ -89,7 +106,7 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
         >
           Confirm
         </ButtonSmall>
-      </div>
+      </>
     </Accordion>
   )
 }

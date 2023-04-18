@@ -20,8 +20,8 @@ const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
           >
             {Array.isArray(state[0]) &&
               state[0]
-                .filter((bet: BetData) => bet.activated === false)
-                .map((bet: any, index: number) => (
+                // .filter((bet: BetData) => bet.activated === false)
+                .map((bet: BetData, index: number) => (
                   // draggableId expects a string
                   <Draggable
                     key={bet.id}

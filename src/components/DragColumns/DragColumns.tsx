@@ -30,7 +30,11 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
   const currentEvent: EventAllData | null = useAppSelector(
     state => state.events.currentEvent
   )
-  const { Name: EventName, Fights: currentEventFights } = currentEvent ?? {}
+  const {
+    Name: EventName,
+    Fights: currentEventFights,
+    DateTime
+  } = currentEvent ?? {}
   // state for accordion component, will have value of FightId if expanded
   const [expandedFight, setExpandedFight] = useState<null | number>(null)
 
@@ -45,61 +49,85 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
   const [state, setState] = useState([[], betsUnconfirmed])
 
   useEffect(() => {
+    const fighter1 = currentFight?.Fighters?.[0]
+    const fighter2 = currentFight?.Fighters?.[1]
+    const name1 = fighter1?.FirstName ?? 'No data :-('
+    const name2 = fighter2?.FirstName ?? 'No data :-('
+    const lastName1 = fighter1?.LastName ?? ''
+    const lastName2 = fighter2?.LastName ?? ''
+    const fightName = `${name1} ${lastName1} vs ${name2} ${lastName2}`
+
     setState([
       [
         {
           id: v4(),
           FightId: currentFight?.FightId ?? 0,
-          name: `${currentFight?.Fighters[0].FirstName} ${currentFight?.Fighters[0].LastName} WINS`,
+          name: `${name1} ${lastName1}`,
+          fightName: fightName,
           method: WinMethod.TBD,
+          moneyline: currentFight?.Fighters[0]?.Moneyline ?? 0,
+          dateTime: DateTime ?? '',
           activated: false
         },
         {
           id: v4(),
           FightId: currentFight?.FightId ?? 0,
-          name: `${currentFight?.Fighters[1].FirstName} ${currentFight?.Fighters[1].LastName} WINS`,
+          name: `${name2} ${lastName2}`,
+          fightName: fightName,
+          moneyline: currentFight?.Fighters[1]?.Moneyline ?? 0,
           method: WinMethod.TBD,
+          dateTime: DateTime ?? '',
           activated: false
         },
         {
           id: v4(),
           name: 'KO/TKO',
+          fightName: fightName,
           method: WinMethod.KO_TKO,
           FightId: currentFight?.FightId ?? 0,
+          dateTime: DateTime ?? '',
           activated: false
         },
         {
           id: v4(),
           name: 'Decision',
+          fightName: fightName,
           method: WinMethod.DECISION,
           FightId: currentFight?.FightId ?? 0,
+          dateTime: DateTime ?? '',
           activated: false
         },
         {
           id: v4(),
           name: 'Submission',
+          fightName: fightName,
           method: WinMethod.SUBMISSION,
           FightId: currentFight?.FightId ?? 0,
+          dateTime: DateTime ?? '',
           activated: false
         },
         {
           id: v4(),
           name: 'Draw',
+          fightName: fightName,
           method: WinMethod.DRAW,
           FightId: currentFight?.FightId ?? 0,
+          dateTime: DateTime ?? '',
           activated: false
         },
         {
           id: v4(),
-          name: 'Disqualified, No Contest',
+          name: 'No Contest',
+          fightName: fightName,
           method: WinMethod.DQ,
           FightId: currentFight?.FightId ?? 0,
+          dateTime: DateTime ?? '',
           activated: false
         }
       ],
       betsUnconfirmed
     ])
-  }, [currentFight, betsUnconfirmed, expandedFight])
+  }, [currentFight, betsUnconfirmed, expandedFight, DateTime])
 
   const onDragEnd = (result: DropResult) => {
     const { source, destination } = result

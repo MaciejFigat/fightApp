@@ -45,6 +45,9 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
                         index={index}
                         betName={bet.name}
                         betId={bet.id}
+                        betMoneyline={bet.moneyline}
+                        dateTime={bet.dateTime}
+                        fightName={bet.fightName}
                       />
                     </DraggableDiv>
                   )

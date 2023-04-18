@@ -5,24 +5,6 @@ interface SportChosen {
   rules: string
   organization: string
 }
-// type FighterData = {
-//   name: string
-//   nickname?: string
-//   age?: number
-//   height?: number
-//   weight?: string
-//   reach?: number
-//   stance?: string
-//   record?: string
-//   country?: string
-// }
-// interface FightData {
-//   fighterOne: FighterData
-//   fighterTwo: FighterData
-//   rules: string
-// }
-
-// type Discipline = 'MMA' | 'Boxing' | 'BJJ' | 'Submission grappling' | 'None'
 
 interface SportEventData {
   name: string
@@ -97,9 +79,12 @@ interface EventAllData {
 interface BetData {
   id: string
   name: string
+  fightName: string
   method?: WinMethod
   FightId: number
   activated: boolean
+  dateTime: string
+  moneyline?: number
 }
 
 interface ConfirmedBet extends BetData {
@@ -111,8 +96,6 @@ export {
   SportChosen,
   SportEventData,
   FightAllData,
-  //   FightData,
-  //   FighterData,
   FighterProfile,
   AvailableEventSimpleData,
   ApiRetrivalHttpError,
