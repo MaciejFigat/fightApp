@@ -23,7 +23,7 @@ export const InputContainer = styled.div`
   flex-direction: column;
   background: var(--background1-main);
   font-weight: 600;
-  border: 1px solid var(--background-blur1);
+  border: 1px solid var(--background-blur0);
   border-radius: var(--border-radius2);
   padding: var(--padding-medium);
   width: 140px;

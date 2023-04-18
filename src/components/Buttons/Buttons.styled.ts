@@ -8,6 +8,7 @@ export const ButtonBig = styled.button<{
   display: flex;
   align-items: center;
   justify-content: center;
+  cursor: pointer;
   padding: 1.1rem 1.5rem;
   border-radius: var(--border-radius0);
   font-size: 1.25rem;
@@ -24,7 +25,6 @@ export const ButtonBig = styled.button<{
 
   background: ${props => handleButtonColor(props.variant).buttonBackground};
   color: ${props => handleButtonColor(props.variant).buttonColor};
-
   transition: all 0.3s ease-out;
 
   a {
@@ -35,10 +35,9 @@ export const ButtonBig = styled.button<{
   &:hover {
     background: ${props =>
       handleButtonColor(props.variant).buttonBackgroundHover};
-    transition: all 0.2s ease-out;
-
     transition: all 0.3s ease-out;
-
+    border-color: ${props =>
+      handleButtonColor(props.variant).buttonBorderHover};
     color: ${props => handleButtonColor(props.variant).buttonColorHover};
     a {
       color: ${props => handleButtonColor(props.variant).buttonColorHover};
@@ -46,7 +45,8 @@ export const ButtonBig = styled.button<{
   }
   &:active {
     border-color: ${props =>
-      handleButtonColor(props.variant).buttonBorderHover};
+      handleButtonColor(props.variant).buttonBorderActive};
+    color: ${props => handleButtonColor(props.variant).buttonColorActive};
     box-shadow: var(--boxShadowNone);
   }
 `

@@ -84,7 +84,7 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
         </HorizontalWrapper>
 
         <ButtonSmall
-          variant={ButtonVariants.primaryEmpty}
+          variant={ButtonVariants.warningEmpty}
           onClick={() => handleConfirm()}
         >
           Confirm

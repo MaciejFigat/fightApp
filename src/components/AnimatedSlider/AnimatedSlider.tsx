@@ -20,10 +20,10 @@ const AnimatedSlider: React.FC<AnimatedSliderProps> = ({ header }) => {
   //   'linear-gradient(180deg, rgb(230, 255, 0) 0%, rgb(3, 209, 0) 100%)'
   // ])
   const color = useTransform(x, xInput, [
-    // framer-motion problem with css variables
-    'var(--background2-main)',
-    'var(--background2-main)',
-    'rgb(3, 209, 0)'
+    // framer-motion problem with animating css variables
+    'var(--background5-main)',
+    'var(--background5-main)',
+    '#009670'
   ])
   const xRange = [-80, -30, 30, 80]
   const opacityRange = [0, 1, 1, 0]

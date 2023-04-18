@@ -50,10 +50,10 @@ const successEmptyStyle: StyleVariant = {
   buttonBackground: 'transparent;',
   buttonBorder: 'var(--success1);',
   buttonBorderHover: 'var(--success2);',
-  buttonBackgroundHover: 'var(--success1);',
-  buttonColorHover: 'var(--background1-main);',
-  buttonColorActive: 'var(--success2);',
-  buttonBorderActive: 'var(--success2);'
+  buttonBackgroundHover: 'transparent;',
+  buttonColorHover: 'var(--success2);',
+  buttonColorActive: 'var(--success3);',
+  buttonBorderActive: 'var(--success3);'
 }
 
 const successStyle: StyleVariant = {
@@ -76,18 +76,45 @@ const infoStyle: StyleVariant = {
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background3-main)'
 }
+const infoEmptyStyle: StyleVariant = {
+  buttonColor: 'var(--info1);',
+  buttonBackground: 'transparent;',
+  buttonBorder: 'var(--info1);',
+  buttonBorderHover: 'var(--info2);',
+  buttonBackgroundHover: 'transparent;',
+  buttonColorHover: 'var(--info2);',
+  buttonColorActive: 'var(--info3);',
+  buttonBorderActive: 'var(--info3);'
+}
 
 const warningStyle: StyleVariant = {
-  buttonColor: 'var(--background1-main);',
-  buttonBackground: 'var(--warning1);',
-  buttonBackgroundHover: 'var(--danger1);',
-  buttonColorHover: 'var(--background1-main);'
+  buttonColor: 'var(--warning1);',
+  buttonBackground: 'transparent;',
+  buttonBorder: 'var(--warning1);',
+  buttonBorderHover: 'var(--warning2);',
+  buttonBackgroundHover: 'var(--warning1);',
+  buttonColorHover: 'var(--background1-main);',
+  buttonColorActive: 'var(--warning2);',
+  buttonBorderActive: 'var(--warning2);'
 }
+const warningEmptyStyle: StyleVariant = {
+  buttonColor: 'var(--warning1);',
+  buttonBackground: 'transparent;',
+  buttonBorder: 'var(--warning1);',
+  buttonBorderHover: 'var(--warning2);',
+  buttonBackgroundHover: 'transparent;',
+  buttonColorHover: 'var(--warning2);',
+  buttonColorActive: 'var(--warning3);',
+  buttonBorderActive: 'var(--warning3);'
+}
+
 const defaultStyle: StyleVariant = {
-  buttonColor: 'var(--background-tertiary4);',
-  buttonBackground: 'var(--background-tertiary5);',
-  buttonBackgroundHover: 'var(--background-tertiary4);',
-  buttonColorHover: 'var(--background-tertiary1);'
+  buttonColor: 'var(--background4-main)',
+  buttonBackground: 'var(--background-gradient1)',
+  buttonBackgroundHover: 'var(--background-gradient2)',
+  buttonColorHover: 'var(--background5-main)',
+  buttonColorActive: 'var(--background3-main)',
+  buttonBorderActive: 'var(--background4-main)'
 }
 
 export const handleButtonColor: (
@@ -95,36 +122,43 @@ export const handleButtonColor: (
 ) => StyleVariant = props => {
   let style
   switch (props) {
-    case 'primary':
+    case ButtonVariants.primary:
       style = primaryStyle
       break
 
-    case 'primaryEmpty':
+    case ButtonVariants.primaryEmpty:
       style = emptyPrimaryStyle
       break
 
-    case 'secondary':
+    case ButtonVariants.secondary:
       style = secondaryStyle
       break
 
-    case 'secondaryEmpty':
+    case ButtonVariants.secondaryEmpty:
       style = emptySecondaryStyle
       break
 
-    case 'success':
+    case ButtonVariants.success:
       style = successStyle
       break
 
-    case 'successEmpty':
+    case ButtonVariants.successEmpty:
       style = successEmptyStyle
       break
 
-    case 'info':
+    case ButtonVariants.info:
       style = infoStyle
       break
 
-    case 'warning':
+    case ButtonVariants.infoEmpty:
+      style = infoEmptyStyle
+      break
+
+    case ButtonVariants.warning:
       style = warningStyle
+      break
+    case ButtonVariants.warningEmpty:
+      style = warningEmptyStyle
       break
 
     default:
