@@ -1,26 +1,34 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { BetData, ConfirmedBet } from '../../interfaces'
-// import { v4 } from 'uuid'
+
 interface BetsState {
   betsUnconfirmed: BetData[]
   betsConfirmed: ConfirmedBet[]
 }
 
 const initialState: BetsState = {
-  betsUnconfirmed: [
-    // { id: v4(), name: '1st bet', FightId: 1232378321, activated: true },
-    // { id: v4(), name: 'BERT', FightId: 32155656721, activated: true },
-    // { id: v4(), name: 'BAET', FightId: 723415551, activated: true }
-  ],
+  betsUnconfirmed: [],
   betsConfirmed: []
+}
+interface AddUnconfirmedBetPayload {
+  betData: BetData
+  itemIndex: number
 }
 
 const betsSlice = createSlice({
   name: 'bets',
   initialState,
   reducers: {
-    addUnconfirmedBet (state, action: PayloadAction<BetData>) {
-      state.betsUnconfirmed = [...state.betsUnconfirmed, action.payload]
+    // addUnconfirmedBet (state, action: PayloadAction<AddUnconfirmedBetPayload>) {
+    //   state.betsUnconfirmed = [...state.betsUnconfirmed, action.payload.betData]
+    // },
+    addUnconfirmedBet (state, action: PayloadAction<AddUnconfirmedBetPayload>) {
+      const { itemIndex, betData } = action.payload
+      state.betsUnconfirmed = [
+        ...state.betsUnconfirmed.slice(0, itemIndex),
+        betData,
+        ...state.betsUnconfirmed.slice(itemIndex)
+      ]
     },
     removeUnconfirmedBet (state, action: PayloadAction<string>) {
       state.betsUnconfirmed = state.betsUnconfirmed.filter(

@@ -15,34 +15,32 @@ const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
       <Droppable key={'0'} droppableId={`0`}>
         {(provided, snapshot) => (
           <DroppableList
-            ref={provided.innerRef}
             isDraggingOver={snapshot.isDraggingOver}
+            ref={provided.innerRef}
           >
             {Array.isArray(state[0]) &&
               state[0].map((bet: BetData, index: number) => (
                 // draggableId expects a string
-                <Draggable
-                  key={bet.id}
-                  draggableId={bet.id.toString()}
-                  index={index}
-                >
-                  {(provided, snapshot) => {
-                    return (
-                      <DraggableDiv
-                        ref={provided.innerRef}
-                        {...provided.draggableProps}
-                        {...provided.dragHandleProps}
-                        isDragging={snapshot.isDragging}
-                      >
-                        <BetHeader
-                          key={bet.id}
-                          betMoneyline={bet.moneyline}
-                          betName={bet.name}
-                        />
-                      </DraggableDiv>
-                    )
-                  }}
-                </Draggable>
+                <div key={bet.id}>
+                  <Draggable draggableId={bet.id.toString()} index={index}>
+                    {(provided, snapshot) => {
+                      return (
+                        <DraggableDiv
+                          {...provided.draggableProps}
+                          {...provided.dragHandleProps}
+                          isDragging={snapshot.isDragging}
+                          ref={provided.innerRef}
+                        >
+                          <BetHeader
+                            key={bet.id}
+                            betMoneyline={bet.moneyline}
+                            betName={bet.name}
+                          />
+                        </DraggableDiv>
+                      )
+                    }}
+                  </Draggable>
+                </div>
               ))}
             {provided.placeholder}
           </DroppableList>

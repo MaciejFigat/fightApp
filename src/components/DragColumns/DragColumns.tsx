@@ -151,6 +151,7 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
     } else {
       handleMove(
         sourceIndex,
+        destination.index,
         destinationIndex,
         source,
         destination,

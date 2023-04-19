@@ -16,7 +16,6 @@ const reorder = <T>(
   const result = Array.from(list)
   const [removed] = result.splice(startIndex, 1)
   result.splice(endIndex, 0, removed)
-  console.log('reorder')
   return result
 }
 
@@ -94,6 +93,7 @@ export const handleBetDroppedOutside = (
 
 export const handleMove = (
   sourceIndex: number,
+  destinationItemIndex: number,
   destinationIndex: number,
   source: DraggableLocation,
   destination: DraggableLocation,
@@ -112,7 +112,13 @@ export const handleMove = (
   if (sourceIndex === 0 && destinationIndex === 1) {
     const droppedBet = state[sourceIndex][source.index]
     const activatedBet = { ...droppedBet, activated: true }
-    dispatch(addUnconfirmedBet(activatedBet))
+    // dispatch(addUnconfirmedBet({activatedBet, sourceItemIndex}))
+    dispatch(
+      addUnconfirmedBet({
+        itemIndex: destinationItemIndex,
+        betData: activatedBet
+      })
+    )
   }
 
   if (sourceIndex === 1 && destinationIndex === 0) {

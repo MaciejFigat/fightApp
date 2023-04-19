@@ -21,9 +21,9 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
       <Droppable key={'1'} droppableId={`1`}>
         {(provided, snapshot) => (
           <DroppableList
-            ref={provided.innerRef}
             isDraggingOver={snapshot.isDraggingOver}
             listEmpty={state[1].length === 0 ? true : false}
+            ref={provided.innerRef}
           >
             {state[1].map((bet: BetData, index: number) => (
               <Draggable
@@ -35,10 +35,10 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
                 {(provided, snapshot) => {
                   return (
                     <DraggableDiv
-                      ref={provided.innerRef}
                       {...provided.draggableProps}
                       {...provided.dragHandleProps}
                       isDragging={snapshot.isDragging}
+                      ref={provided.innerRef}
                     >
                       {' '}
                       <BetConfirmation
