@@ -43,8 +43,8 @@ const AnimatedSlider: React.FC<AnimatedSliderProps> = ({ header }) => {
   return (
     <SliderContainer
       style={{ x }}
-      //   style={{ x, borderColor: background }}
-      confirmed={confirmed}
+      // transient props
+      $confirmed={confirmed}
       drag='x'
       onDragEnd={onDragEndHandler}
       dragConstraints={{ left: 0, right: 0 }}

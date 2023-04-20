@@ -1,5 +1,8 @@
 import React from 'react'
-import { BoldText, HorizontalWrapperSpace } from '../../styles/misc.styles'
+import {
+  BoldText,
+  HorizontalWrapperSpaceBetween
+} from '../../styles/misc.styles'
 import { HeaderWrapper } from '../DragColumns/DragColumns.styled'
 
 interface BetHeaderProps {
@@ -10,9 +13,9 @@ interface BetHeaderProps {
 const BetHeader: React.FC<BetHeaderProps> = ({ betMoneyline, betName }) => {
   return (
     <HeaderWrapper>
-      <HorizontalWrapperSpace>
+      <HorizontalWrapperSpaceBetween>
         <BoldText>{betName}</BoldText> {betMoneyline && `${betMoneyline}`}
-      </HorizontalWrapperSpace>
+      </HorizontalWrapperSpaceBetween>
     </HeaderWrapper>
   )
 }

@@ -13,9 +13,10 @@ export const HorizontalWrapper = styled.div`
   gap: var(--gap-small);
 `
 
-export const HorizontalWrapperSpace = styled.div`
+export const HorizontalWrapperSpaceBetween = styled.div`
   display: flex;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+  justify-content: space-between;
   align-items: center;
   flex-direction: row;
   width: 100%;
@@ -52,4 +53,6 @@ const getColor = (color: TextColor): string => {
 
 export const ColorText = styled.span<TextProps>`
   color: ${({ color }) => getColor(color)};
+  font-weight: 600;
+  /* opacity: 0.9; */
 `

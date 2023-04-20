@@ -18,11 +18,11 @@ const NumberInput: React.FC<NumberInputProps> = ({
       {/* <label htmlFor='valueInput'>{label}</label> */}
       <span>{label}</span>
       <Input
-        ref={inputRef}
         id='valueInput'
         type='number'
         value={value}
         onChange={changeHandler}
+        ref={inputRef}
         onMouseEnter={() => {
           inputRef.current?.focus()
         }}

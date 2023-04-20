@@ -72,9 +72,10 @@ export const DroppableList = styled.div<{
   /* color: ${({ isDraggingOver }) =>
     isDraggingOver && 'var(--background2-secondary)'}; */
 
-  border-radius: '20px';
+  border-radius: var(--border-radius2);
 `
 export const HeaderWrapper = styled.div`
   width: 100%;
   max-width: 370px;
+  padding: var(--padding-big-sides);
 `

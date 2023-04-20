@@ -67,14 +67,14 @@ const successStyle: StyleVariant = {
   buttonBorderActive: 'var(--success2);'
 }
 const infoStyle: StyleVariant = {
-  buttonColor: 'var(--success1)',
-  buttonBackground: 'var(--background1-main)',
+  buttonColor: 'var(--background1-main)',
+  buttonBackground: 'var(--info1)',
   buttonBackgroundHover: 'transparent',
-  buttonColorHover: 'var(--background-secondary1)',
-  buttonBorder: 'var(--background4-main)',
-  buttonBorderHover: 'var(--background-secondary1)',
-  buttonColorActive: 'var(--background3-main)',
-  buttonBorderActive: 'var(--background3-main)'
+  buttonColorHover: 'var(--info2)',
+  buttonBorder: 'var(--info2)',
+  buttonBorderHover: 'var(--info2)',
+  buttonColorActive: 'var(--info3)',
+  buttonBorderActive: 'var(--info3)'
 }
 const infoEmptyStyle: StyleVariant = {
   buttonColor: 'var(--info1);',

@@ -10,8 +10,7 @@ import Accordion from '../Accordion/Accordion'
 import NumberInput from '../Inputs/NumberInput'
 import {
   ColorText,
-  HorizontalWrapper,
-  HorizontalWrapperSpace
+  HorizontalWrapperSpaceBetween
 } from '../../styles/misc.styles'
 import { ButtonSmall } from '../Buttons/Buttons.styled'
 import { ButtonVariants, TextColor } from '../../consts'
@@ -20,12 +19,17 @@ import {
   dateFormatter,
   payoutFormatter
 } from '../helperFunctions/helperFunction'
+import {
+  BetDetails,
+  BlurredFatText,
+  BlurredSkinnyText
+} from './BetConfirmation.styled'
 
 interface BetConfirmationProps {
   betName: string
   fightName: string
   betId: string
-  //   I'm passing index for Accordion component
+  // index for Accordion component
   index?: number
   betMoneyline?: number
   dateTime: string
@@ -89,9 +93,10 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
       }
       expanded={expandedBet}
       setExpanded={setExpandedBet}
+      noBottomMargin
     >
-      <>
-        <HorizontalWrapperSpace>
+      <BetDetails>
+        <HorizontalWrapperSpaceBetween>
           {' '}
           {betMoneyline &&
             (betMoneyline > 0 ? (
@@ -100,12 +105,13 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
               <ColorText color={TextColor.SUCCESS}>favourite</ColorText>
             ))}{' '}
           <i>info</i>
-        </HorizontalWrapperSpace>
-        <HorizontalWrapperSpace>
+        </HorizontalWrapperSpaceBetween>
+        <HorizontalWrapperSpaceBetween>
           {' '}
-          {fightName} {formattedDate}
-        </HorizontalWrapperSpace>
-        <HorizontalWrapper>
+          <BlurredFatText>{fightName} </BlurredFatText>{' '}
+          <BlurredSkinnyText>{formattedDate}</BlurredSkinnyText>
+        </HorizontalWrapperSpaceBetween>
+        <HorizontalWrapperSpaceBetween>
           <NumberInput
             label={'Wager'}
             value={amountBet}
@@ -116,15 +122,15 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
             value={expectedPayout}
             changeHandler={handleExpectedAmountChange}
           />
-        </HorizontalWrapper>
+        </HorizontalWrapperSpaceBetween>
 
         <ButtonSmall
-          variant={ButtonVariants.warningEmpty}
+          variant={ButtonVariants.info}
           onClick={() => handleConfirm()}
         >
           Confirm
         </ButtonSmall>
-      </>
+      </BetDetails>
     </Accordion>
   )
 }

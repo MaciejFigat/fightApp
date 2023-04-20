@@ -45,7 +45,7 @@ const GlobalStyle = createGlobalStyle`
      --success1: #00bc8c; 
      --success2: #6FCD84; 
      --success3: #AADC81; 
-     --info1: #007686;
+     --info1: #00A8D0;
      --info2: #52AABB;
      --info3: #BFFBFF;
      --error1: #930100;
@@ -76,11 +76,15 @@ const GlobalStyle = createGlobalStyle`
 
     --padding-small: 6px 6px 6px 8px;
     --padding-medium: 8px 8px 8px 12px;
+    
     --padding-big: 12px 12px 12px 20px;
+    --padding-big-sides: 0px 12px 0px 20px;
 
     --gap-small: 6px;
     --gap-medium: 8px;
     --gap-big: 12px;
+    --gap-veryBig: 16px;
+    --gap-huge: 20px;
     
     --font-size-small: 0.8rem;
     --font-size-medium: 1rem;

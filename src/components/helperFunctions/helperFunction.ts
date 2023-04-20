@@ -15,7 +15,7 @@ export const dateFormatter = (date: string, displayYear: boolean) => {
 
     return formattedDate
   } catch (error) {
-    console.log('Error in dateFormatter')
+    // console.log('Error in dateFormatter')
   }
 }
 

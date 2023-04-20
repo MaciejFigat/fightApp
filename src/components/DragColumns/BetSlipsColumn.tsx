@@ -18,7 +18,8 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
   return (
     <>
       <h3>unconfirmed fight bets </h3>
-      <Droppable key={'1'} droppableId={`1`}>
+      {/* <Droppable key={'1'} droppableId={`1`}> */}
+      <Droppable droppableId={`1`}>
         {(provided, snapshot) => (
           <DroppableList
             isDraggingOver={snapshot.isDraggingOver}
@@ -27,9 +28,9 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
           >
             {state[1].map((bet: BetData, index: number) => (
               <Draggable
-                key={bet.id}
                 // expects a string
                 draggableId={bet.id.toString()}
+                key={bet.id}
                 index={index}
               >
                 {(provided, snapshot) => {

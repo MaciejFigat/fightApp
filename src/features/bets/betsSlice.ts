@@ -25,9 +25,9 @@ const betsSlice = createSlice({
     addUnconfirmedBet (state, action: PayloadAction<AddUnconfirmedBetPayload>) {
       const { itemIndex, betData } = action.payload
       state.betsUnconfirmed = [
-        ...state.betsUnconfirmed.slice(0, itemIndex),
+        ...state.betsUnconfirmed.slice(0, itemIndex), // slice from index 0 up to (but not including) itemIndex
         betData,
-        ...state.betsUnconfirmed.slice(itemIndex)
+        ...state.betsUnconfirmed.slice(itemIndex) // slice from itemIndex to the end of the array
       ]
     },
     removeUnconfirmedBet (state, action: PayloadAction<string>) {

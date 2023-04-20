@@ -6,7 +6,7 @@ interface AccordionProps {
   i: number
   expanded: null | number
   setExpanded: React.Dispatch<React.SetStateAction<null | number>>
-
+  noBottomMargin?: boolean
   headerContent?: string | React.ReactNode
 }
 
@@ -15,7 +15,8 @@ const Accordion: React.FC<AccordionProps> = ({
   setExpanded,
   expanded,
   i,
-  headerContent
+  headerContent,
+  noBottomMargin
 }) => {
   const isOpen = i === expanded
 
@@ -26,6 +27,7 @@ const Accordion: React.FC<AccordionProps> = ({
     <motion.div>
       <AnimatePresence>
         <AccordionHeader
+          $noBottomMargin={noBottomMargin}
           onClick={() => {
             expandHandler()
           }}
@@ -43,16 +45,24 @@ const Accordion: React.FC<AccordionProps> = ({
               open: {
                 opacity: 1,
                 height: 'auto',
+
                 transition: {
                   duration: 0.2,
+                  opacity: {
+                    duration: 0.3,
+                    delay: 0.1
+                  },
                   ease: 'linear'
                 }
               },
               collapsed: {
                 opacity: 0,
-                height: 0,
+                height: '0px',
                 transition: {
                   duration: 0.3,
+                  opacity: {
+                    duration: 0.1
+                  },
                   ease: 'linear'
                 }
               }
