@@ -21,6 +21,11 @@ export const HorizontalWrapperSpaceBetween = styled.div`
   flex-direction: row;
   width: 100%;
 `
+export const HorizontalWrapperSpaceAround = styled(
+  HorizontalWrapperSpaceBetween
+)`
+  justify-content: space-around;
+`
 export const HorizontalWrapperCenter = styled.div`
   display: flex;
   justify-content: center;

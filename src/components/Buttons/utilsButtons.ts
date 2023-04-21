@@ -80,11 +80,11 @@ const infoEmptyStyle: StyleVariant = {
   buttonColor: 'var(--info1);',
   buttonBackground: 'transparent;',
   buttonBorder: 'var(--info1);',
-  buttonBorderHover: 'var(--info2);',
+  buttonBorderHover: 'var(--info3);',
   buttonBackgroundHover: 'transparent;',
-  buttonColorHover: 'var(--info2);',
-  buttonColorActive: 'var(--info3);',
-  buttonBorderActive: 'var(--info3);'
+  buttonColorHover: 'var(--info3);',
+  buttonColorActive: 'var(--info2);',
+  buttonBorderActive: 'var(--info2);'
 }
 
 const warningStyle: StyleVariant = {
@@ -97,6 +97,16 @@ const warningStyle: StyleVariant = {
   buttonColorActive: 'var(--warning2);',
   buttonBorderActive: 'var(--warning2);'
 }
+const dangerStyle: StyleVariant = {
+  buttonColor: 'var(--background4-main);',
+  buttonBackground: 'var(--danger1);',
+  buttonBorder: 'var(--danger1);',
+  buttonBorderHover: 'var(--danger2);',
+  buttonBackgroundHover: 'var(--danger2);',
+  buttonColorHover: 'var(--background4-main);',
+  buttonColorActive: 'var(--background2-main);',
+  buttonBorderActive: 'var(--danger3);'
+}
 const warningEmptyStyle: StyleVariant = {
   buttonColor: 'var(--warning1);',
   buttonBackground: 'transparent;',
@@ -106,6 +116,16 @@ const warningEmptyStyle: StyleVariant = {
   buttonColorHover: 'var(--warning2);',
   buttonColorActive: 'var(--warning3);',
   buttonBorderActive: 'var(--warning3);'
+}
+const dangerEmptyStyle: StyleVariant = {
+  buttonColor: 'var(--danger1);',
+  buttonBackground: 'transparent;',
+  buttonBorder: 'var(--danger1);',
+  buttonBorderHover: 'var(--danger2);',
+  buttonBackgroundHover: 'transparent;',
+  buttonColorHover: 'var(--danger2);',
+  buttonColorActive: 'var(--danger3);',
+  buttonBorderActive: 'var(--danger3);'
 }
 
 const defaultStyle: StyleVariant = {
@@ -159,6 +179,12 @@ export const handleButtonColor: (
       break
     case ButtonVariants.warningEmpty:
       style = warningEmptyStyle
+      break
+    case ButtonVariants.danger:
+      style = dangerStyle
+      break
+    case ButtonVariants.dangerEmpty:
+      style = dangerEmptyStyle
       break
 
     default:

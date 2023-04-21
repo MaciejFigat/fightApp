@@ -10,6 +10,7 @@ import Accordion from '../Accordion/Accordion'
 import NumberInput from '../Inputs/NumberInput'
 import {
   ColorText,
+  HorizontalWrapperSpaceAround,
   HorizontalWrapperSpaceBetween
 } from '../../styles/misc.styles'
 import { ButtonSmall } from '../Buttons/Buttons.styled'
@@ -83,6 +84,11 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
       dispatch(addConfirmedBet(confirmedBet))
     }
   }
+  const handleRemove = () => {
+    if (betToConfirm) {
+      dispatch(removeUnconfirmedBet(betToConfirm.id))
+    }
+  }
   const formattedDate = dateFormatter(dateTime, false)
 
   return (
@@ -123,13 +129,20 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
             changeHandler={handleExpectedAmountChange}
           />
         </HorizontalWrapperSpaceBetween>
-
-        <ButtonSmall
-          variant={ButtonVariants.info}
-          onClick={() => handleConfirm()}
-        >
-          Confirm
-        </ButtonSmall>
+        <HorizontalWrapperSpaceAround>
+          <ButtonSmall
+            variant={ButtonVariants.successEmpty}
+            onClick={() => handleConfirm()}
+          >
+            Confirm
+          </ButtonSmall>
+          <ButtonSmall
+            variant={ButtonVariants.dangerEmpty}
+            onClick={() => handleRemove()}
+          >
+            Remove
+          </ButtonSmall>
+        </HorizontalWrapperSpaceAround>
       </BetDetails>
     </Accordion>
   )

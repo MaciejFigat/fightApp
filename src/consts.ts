@@ -26,6 +26,8 @@ export enum ButtonVariants {
   infoEmpty = 'infoEmpty',
   warning = 'warning',
   warningEmpty = 'warningEmpty',
+  dangerEmpty = 'dangerEmpty',
+  danger = 'danger',
   default = 'default'
 }
 
