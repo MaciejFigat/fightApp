@@ -54,5 +54,20 @@ const getColor = (color: TextColor): string => {
 export const ColorText = styled.span<TextProps>`
   color: ${({ color }) => getColor(color)};
   font-weight: 600;
-  /* opacity: 0.9; */
+`
+export const ColorBadge = styled.span<TextProps>`
+  display: grid;
+  place-items: center;
+  width: 55px;
+  letter-spacing: 0.075em;
+  padding: var(--padding-small);
+  font-size: var(--font-size-small);
+  font-weight: 800;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: baseline;
+  border-radius: 0.25rem;
+  background-color: ${({ color }) => getColor(color)};
+  color: var(--background4-main);
 `

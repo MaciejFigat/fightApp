@@ -97,13 +97,13 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
     >
       <BetDetails>
         <HorizontalWrapperSpaceBetween>
-          {' '}
-          {betMoneyline &&
-            (betMoneyline > 0 ? (
-              <ColorText color={TextColor.WARNING}>underdog</ColorText>
-            ) : (
-              <ColorText color={TextColor.SUCCESS}>favourite</ColorText>
-            ))}{' '}
+          {betMoneyline && (
+            <ColorText
+              color={betMoneyline > 0 ? TextColor.WARNING : TextColor.SUCCESS}
+            >
+              {betMoneyline > 0 ? 'underdog' : 'favourite'}
+            </ColorText>
+          )}
           <i>info</i>
         </HorizontalWrapperSpaceBetween>
         <HorizontalWrapperSpaceBetween>
