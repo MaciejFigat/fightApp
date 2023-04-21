@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const BlurredFatText = styled.text`
+export const BlurredFatText = styled.b`
   font-size: var(--font-size-small);
   color: var(--background-blur3);
   font-weight: 600;

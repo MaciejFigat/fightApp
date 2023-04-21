@@ -6,18 +6,17 @@ import { DragDropContext, DropResult } from '@hello-pangea/dnd'
 import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
 import { AppDispatch } from '../../app/store'
 import { v4 } from 'uuid'
-
 import {
   handleReorder,
   handleBetDroppedOutside,
   handleMove
 } from './dragColumnsFunctions'
-
 import { BetData } from '../../interfaces'
 import Accordion from '../Accordion/Accordion'
 import { motion } from 'framer-motion'
 import { EventAllData } from '../../interfaces'
-import { WinMethod } from '../../consts'
+import { WinMethod, WinnerProjection } from '../../consts'
+import { editUnconfirmedBet } from '../../features/bets/betsSlice'
 
 interface DragColumnsProps {}
 
@@ -65,6 +64,7 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
           name: `${name1} ${lastName1}`,
           fightName: fightName,
           method: WinMethod.TBD,
+          projectedWinner: WinnerProjection.FIGHTER1,
           moneyline: currentFight?.Fighters[0]?.Moneyline ?? 0,
           dateTime: DateTime ?? '',
           activated: false
@@ -76,6 +76,7 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
           fightName: fightName,
           moneyline: currentFight?.Fighters[1]?.Moneyline ?? 0,
           method: WinMethod.TBD,
+          projectedWinner: WinnerProjection.FIGHTER2,
           dateTime: DateTime ?? '',
           activated: false
         },
@@ -84,8 +85,10 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
           name: 'KO/TKO',
           fightName: fightName,
           method: WinMethod.KO_TKO,
+          projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
           dateTime: DateTime ?? '',
+          Fighters: currentFight?.Fighters ?? [],
           activated: false
         },
         {
@@ -93,8 +96,10 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
           name: 'Decision',
           fightName: fightName,
           method: WinMethod.DECISION,
+          projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
           dateTime: DateTime ?? '',
+          Fighters: currentFight?.Fighters ?? [],
           activated: false
         },
         {
@@ -102,8 +107,10 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
           name: 'Submission',
           fightName: fightName,
           method: WinMethod.SUBMISSION,
+          projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
           dateTime: DateTime ?? '',
+          Fighters: currentFight?.Fighters ?? [],
           activated: false
         },
         {
@@ -111,8 +118,10 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
           name: 'Draw',
           fightName: fightName,
           method: WinMethod.DRAW,
+          projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
           dateTime: DateTime ?? '',
+          Fighters: currentFight?.Fighters ?? [],
           activated: false
         },
         {
@@ -120,8 +129,10 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
           name: 'No Contest',
           fightName: fightName,
           method: WinMethod.DQ,
+          projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
           dateTime: DateTime ?? '',
+          Fighters: currentFight?.Fighters ?? [],
           activated: false
         }
       ],
@@ -162,6 +173,35 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
     }
   }
 
+  const winnerChange = (id: string, winnerProjection: WinnerProjection) => {
+    const betInArrayOne = state[0].find(bet => bet.id === id)
+
+    const betInArrayTwo = state[1].find(bet => bet.id === id)
+
+    const indexUnconfirmedBet = betsUnconfirmed.findIndex(bet => bet.id === id)
+
+    if (betInArrayOne) {
+      const updatedState = state[0].map(bet =>
+        bet.id === id ? { ...bet, projectedWinner: winnerProjection } : bet
+      )
+
+      setState([updatedState, state[1]])
+    }
+    if (betInArrayTwo) {
+      const updatedState = state[1].map(bet =>
+        bet.id === id ? { ...bet, projectedWinner: winnerProjection } : bet
+      )
+      setState([state[0], updatedState])
+
+      const betUnconfirmedChanged = {
+        itemIndex: indexUnconfirmedBet,
+        betData: { ...betInArrayTwo, projectedWinner: winnerProjection }
+      }
+
+      dispatch(editUnconfirmedBet(betUnconfirmedChanged))
+    }
+  }
+
   const accordionIds = [0, 1, 2, 3]
 
   return (
@@ -182,7 +222,7 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
                   expanded={expandedFight}
                   setExpanded={setExpandedFight}
                 >
-                  <EventColumn state={state} />
+                  <EventColumn winnerChange={winnerChange} state={state} />
                 </Accordion>
               ))
             : accordionIds.map(i => (
@@ -192,12 +232,12 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
                   expanded={expandedFight}
                   setExpanded={setExpandedFight}
                 >
-                  <EventColumn state={state} />
+                  <EventColumn winnerChange={winnerChange} state={state} />
                 </Accordion>
               ))}
         </MainColumn>
         <SideColumn>
-          <BetSlipsColumn state={state} />
+          <BetSlipsColumn winnerChange={winnerChange} state={state} />
         </SideColumn>
       </DragDropContext>
     </DragColContainer>

@@ -14,7 +14,7 @@ import {
   HorizontalWrapperSpaceBetween
 } from '../../styles/misc.styles'
 import { ButtonSmall } from '../Buttons/Buttons.styled'
-import { ButtonVariants, TextColor } from '../../consts'
+import { ButtonVariants, TextColor, WinnerProjection } from '../../consts'
 import BetHeader from './BetHeader'
 import {
   dateFormatter,
@@ -27,21 +27,23 @@ import {
 } from './BetConfirmation.styled'
 
 interface BetConfirmationProps {
-  betName: string
-  fightName: string
-  betId: string
   // index for Accordion component
   index?: number
-  betMoneyline?: number
-  dateTime: string
+  betData: BetData
+  winnerChange: (id: string, winnerProjection: WinnerProjection) => void
 }
 const BetConfirmation: React.FC<BetConfirmationProps> = ({
-  betName,
-  fightName,
-  betId,
-  betMoneyline,
-  dateTime,
-  index
+  index,
+  winnerChange,
+  betData: {
+    moneyline: betMoneyline,
+    id: betId,
+    name: betName,
+    fightName,
+    dateTime,
+    Fighters,
+    projectedWinner
+  }
 }) => {
   const dispatch: AppDispatch = useAppDispatch()
   const betsUnconfirmed: BetData[] = useAppSelector(
@@ -95,7 +97,14 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
     <Accordion
       i={index ?? 0}
       headerContent={
-        <BetHeader betMoneyline={betMoneyline} betName={betName} />
+        <BetHeader
+          winnerChange={winnerChange}
+          Fighters={Fighters}
+          projectedWinner={projectedWinner}
+          betMoneyline={betMoneyline}
+          betName={betName}
+          betId={betId}
+        />
       }
       expanded={expandedBet}
       setExpanded={setExpandedBet}

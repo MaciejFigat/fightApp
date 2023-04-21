@@ -3,12 +3,14 @@ import { Draggable, Droppable } from '@hello-pangea/dnd'
 import { BetData } from '../../interfaces'
 import { DraggableDiv, DroppableList } from './DragColumns.styled'
 import BetHeader from '../BetConfirmation/BetHeader'
+import { WinnerProjection } from '../../consts'
 
 interface EventColumnProps {
   state: BetData[][]
+  winnerChange: (id: string, winnerProjection: WinnerProjection) => void
 }
 
-const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
+const EventColumn: React.FC<EventColumnProps> = ({ state, winnerChange }) => {
   return (
     <div>
       <Droppable droppableId={`0`}>
@@ -36,8 +38,10 @@ const EventColumn: React.FC<EventColumnProps> = ({ state }) => {
                       >
                         <BetHeader
                           key={bet.id}
+                          betId={bet.id}
                           betMoneyline={bet.moneyline}
                           betName={bet.name}
+                          winnerChange={winnerChange}
                         />
                       </DraggableDiv>
                     )

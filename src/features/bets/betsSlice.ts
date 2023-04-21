@@ -19,9 +19,14 @@ const betsSlice = createSlice({
   name: 'bets',
   initialState,
   reducers: {
-    // addUnconfirmedBet (state, action: PayloadAction<AddUnconfirmedBetPayload>) {
-    //   state.betsUnconfirmed = [...state.betsUnconfirmed, action.payload.betData]
-    // },
+    editUnconfirmedBet (state, action: PayloadAction<AddUnconfirmedBetPayload>) {
+      const { itemIndex, betData } = action.payload
+      state.betsUnconfirmed = [
+        ...state.betsUnconfirmed.slice(0, itemIndex),
+        betData,
+        ...state.betsUnconfirmed.slice(itemIndex + 1) // I omit itemIndex
+      ]
+    },
     addUnconfirmedBet (state, action: PayloadAction<AddUnconfirmedBetPayload>) {
       const { itemIndex, betData } = action.payload
       state.betsUnconfirmed = [
@@ -50,7 +55,8 @@ export const {
   addUnconfirmedBet,
   removeUnconfirmedBet,
   addConfirmedBet,
-  removeConfirmedBet
+  removeConfirmedBet,
+  editUnconfirmedBet
 } = betsSlice.actions
 
 export default betsSlice.reducer

@@ -5,12 +5,17 @@ import { DraggableDiv, DroppableList } from './DragColumns.styled'
 import BetConfirmation from '../BetConfirmation/BetConfirmation'
 import { useAppSelector } from '../../app/reduxHooks'
 import AnimatedSlider from '../AnimatedSlider/AnimatedSlider'
+import { WinnerProjection } from '../../consts'
 
 interface BetSlipsColumnProps {
   state: BetData[][]
+  winnerChange: (id: string, winnerProjection: WinnerProjection) => void
 }
 
-const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
+const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({
+  state,
+  winnerChange
+}) => {
   const betsConfirmed: ConfirmedBet[] = useAppSelector(
     state => state.bets.betsConfirmed
   )
@@ -18,7 +23,6 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
   return (
     <>
       <h3>unconfirmed fight bets </h3>
-      {/* <Droppable key={'1'} droppableId={`1`}> */}
       <Droppable droppableId={`1`}>
         {(provided, snapshot) => (
           <DroppableList
@@ -43,12 +47,9 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({ state }) => {
                     >
                       {' '}
                       <BetConfirmation
+                        winnerChange={winnerChange}
                         index={index}
-                        betName={bet.name}
-                        betId={bet.id}
-                        betMoneyline={bet.moneyline}
-                        dateTime={bet.dateTime}
-                        fightName={bet.fightName}
+                        betData={bet}
                       />
                     </DraggableDiv>
                   )

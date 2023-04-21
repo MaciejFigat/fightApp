@@ -46,17 +46,17 @@ const GlobalStyle = createGlobalStyle`
      --success2: #6FCD84; 
      --success3: #AADC81; 
      --info1: #00A8D0;
-     --info2: #52AABB;
-     --info3: #BFFBFF;
+     /* --info2: #52AABB; */
+     --info2: #00C5D5;
+     /* --info3: #BFFBFF; */
+     --info3: #3AE1CD;
      --danger1: #930100;
      --danger2: #D14648;
      --danger3: #e76f51;
      --warning1: #ca6702;
      --warning2: #ee9b00; 
      --warning3: #9F7800;
-     /* --danger1:
-     --danger2:
-     --danger3: */
+    
 
      --boxShadowColor: black;
      

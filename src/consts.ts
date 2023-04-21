@@ -37,3 +37,9 @@ export enum TextColor {
   WARNING = 'warning',
   DANGER = 'danger'
 }
+
+export enum WinnerProjection {
+  FIGHTER1 = 0,
+  FIGHTER2 = 1,
+  ANY = 'any'
+}

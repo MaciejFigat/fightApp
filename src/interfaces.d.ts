@@ -1,4 +1,4 @@
-import { Discipline, WinMethod } from './consts'
+import { Discipline, WinMethod, WinnerProjection } from './consts'
 
 interface SportChosen {
   name: Discipline
@@ -85,6 +85,8 @@ interface BetData {
   activated: boolean
   dateTime: string
   moneyline?: number
+  Fighters?: FighterProfile[]
+  projectedWinner: WinnerProjection
 }
 
 interface ConfirmedBet extends BetData {

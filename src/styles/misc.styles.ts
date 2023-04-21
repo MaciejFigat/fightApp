@@ -31,6 +31,12 @@ export const HorizontalWrapperCenter = styled.div`
   justify-content: center;
   flex-direction: row;
 `
+export const HorizontalWrapperEnd = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  flex-direction: row;
+  gap: var(--gap-small);
+`
 export const BoldText = styled.b`
   color: var(--background-secondary1);
   font-weight: 700;
@@ -55,6 +61,20 @@ const getColor = (color: TextColor): string => {
       return 'inherit'
   }
 }
+const getAccentColor = (color: TextColor): string => {
+  switch (color) {
+    case TextColor.SUCCESS:
+      return 'var(--success2)'
+    case TextColor.INFO:
+      return 'var(--info2)'
+    case TextColor.WARNING:
+      return 'var(--warning2)'
+    case TextColor.DANGER:
+      return 'var(--danger2)'
+    default:
+      return 'inherit'
+  }
+}
 
 export const ColorText = styled.span<TextProps>`
   color: ${({ color }) => getColor(color)};
@@ -75,4 +95,13 @@ export const ColorBadge = styled.span<TextProps>`
   border-radius: 0.25rem;
   background-color: ${({ color }) => getColor(color)};
   color: var(--background4-main);
+`
+export const ColorBadgeEmpty = styled(ColorBadge)<TextProps>`
+  background-color: var(--background1-main);
+  border: 1px solid ${({ color }) => getColor(color)};
+  color: ${({ color }) => getColor(color)};
+  &:hover {
+    border-color: ${({ color }) => getAccentColor(color)};
+    color: ${({ color }) => getAccentColor(color)};
+  }
 `
