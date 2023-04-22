@@ -1,17 +1,16 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   BoldText,
-  ColorBadge,
-  ColorBadgeEmpty,
-  HorizontalWrapperEnd,
   HorizontalWrapperSpaceBetween
 } from '../../styles/misc.styles'
 import { HeaderWrapper } from '../DragColumns/DragColumns.styled'
-import { TextColor, WinnerProjection } from '../../consts'
+import { WinnerProjection } from '../../consts'
 import { FighterProfile } from '../../interfaces'
+import BetBadges from './BetBadges'
 
 interface BetHeaderProps {
   betMoneyline: number | undefined
+  noBadgesInHeader?: boolean
   betName: string
   betId: string
   Fighters?: FighterProfile[]
@@ -25,68 +24,22 @@ const BetHeader: React.FC<BetHeaderProps> = ({
   betId,
   Fighters,
   projectedWinner,
-  winnerChange
+  winnerChange,
+  noBadgesInHeader
 }) => {
-  const [winnerProjection, setWinnerProjection] = useState<WinnerProjection>(
-    projectedWinner ?? WinnerProjection.ANY
-  )
-
-  const handleWinner = (e: WinnerProjection) => {
-    setWinnerProjection(e)
-    winnerChange(betId, e)
-  }
-
   return (
     <HeaderWrapper>
       <HorizontalWrapperSpaceBetween>
         <BoldText>{betName}</BoldText>
 
-        {betMoneyline && (
-          <ColorBadge
-            color={betMoneyline > 0 ? TextColor.WARNING : TextColor.SUCCESS}
-          >
-            {betMoneyline > 0 ? `+${betMoneyline}` : betMoneyline}
-          </ColorBadge>
-        )}
-        {!betMoneyline && (
-          <HorizontalWrapperEnd>
-            {[
-              {
-                winner: WinnerProjection.FIGHTER1,
-                color: TextColor.SUCCESS,
-                text: 'F1'
-              },
-              {
-                winner: WinnerProjection.FIGHTER2,
-                color: TextColor.WARNING,
-                text: 'F2'
-              },
-              {
-                winner: WinnerProjection.ANY,
-                color: TextColor.INFO,
-                text: 'Any'
-              }
-            ].map(item => (
-              <React.Fragment key={item.winner}>
-                {winnerProjection === item.winner ? (
-                  <ColorBadge
-                    onClick={() => handleWinner(item.winner)}
-                    color={item.color}
-                  >
-                    {item.text}
-                  </ColorBadge>
-                ) : (
-                  <ColorBadgeEmpty
-                    onClick={() => handleWinner(item.winner)}
-                    color={item.color}
-                  >
-                    {item.text}
-                  </ColorBadgeEmpty>
-                )}
-              </React.Fragment>
-            ))}
-          </HorizontalWrapperEnd>
-        )}
+        <BetBadges
+          betMoneyline={betMoneyline}
+          betId={betId}
+          Fighters={Fighters}
+          projectedWinner={projectedWinner}
+          winnerChange={winnerChange}
+          noBadgesInHeader={noBadgesInHeader}
+        />
       </HorizontalWrapperSpaceBetween>
     </HeaderWrapper>
   )

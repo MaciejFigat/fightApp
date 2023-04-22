@@ -105,3 +105,6 @@ export const ColorBadgeEmpty = styled(ColorBadge)<TextProps>`
     color: ${({ color }) => getAccentColor(color)};
   }
 `
+export const ColorBadgeLong = styled(ColorBadge)<TextProps>`
+  width: fit-content;
+`

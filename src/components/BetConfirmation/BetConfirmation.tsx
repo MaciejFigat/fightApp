@@ -104,6 +104,7 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
           betMoneyline={betMoneyline}
           betName={betName}
           betId={betId}
+          noBadgesInHeader
         />
       }
       expanded={expandedBet}

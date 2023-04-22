@@ -39,6 +39,7 @@ const EventColumn: React.FC<EventColumnProps> = ({ state, winnerChange }) => {
                         <BetHeader
                           key={bet.id}
                           betId={bet.id}
+                          Fighters={bet.Fighters}
                           betMoneyline={bet.moneyline}
                           betName={bet.name}
                           winnerChange={winnerChange}
