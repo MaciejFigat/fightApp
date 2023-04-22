@@ -1,11 +1,16 @@
 import React from 'react'
 import { Droppable, Draggable } from '@hello-pangea/dnd'
 import { BetData, ConfirmedBet } from '../../interfaces'
-import { DraggableDiv, DroppableList } from './DragColumns.styled'
+import {
+  BetListHeader,
+  DraggableDiv,
+  DroppableList
+} from './DragColumns.styled'
 import BetConfirmation from '../BetConfirmation/BetConfirmation'
 import { useAppSelector } from '../../app/reduxHooks'
 import AnimatedSlider from '../AnimatedSlider/AnimatedSlider'
 import { WinnerProjection } from '../../consts'
+import { HighlightText, HorizontalWrapper } from '../../styles/misc.styles'
 
 interface BetSlipsColumnProps {
   state: BetData[][]
@@ -19,10 +24,19 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({
   const betsConfirmed: ConfirmedBet[] = useAppSelector(
     state => state.bets.betsConfirmed
   )
+  const betsUnconfirmed: BetData[] = useAppSelector(
+    state => state.bets.betsUnconfirmed
+  )
 
   return (
     <>
-      <h3>unconfirmed fight bets </h3>
+      <BetListHeader>
+        <HorizontalWrapper>
+          <HighlightText>
+            {betsUnconfirmed.length} bets to confirm
+          </HighlightText>
+        </HorizontalWrapper>
+      </BetListHeader>
       <Droppable droppableId={`1`}>
         {(provided, snapshot) => (
           <DroppableList

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { TextColor } from '../consts'
 
 export const HighlightText = styled.b`
-  color: var(--background-secondary1);
+  color: var(--background1-secondary);
 `
 export const HorizontalWrapper = styled.div`
   display: flex;

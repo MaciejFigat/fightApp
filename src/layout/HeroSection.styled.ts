@@ -79,7 +79,6 @@ export const HeroArticleSideSection = styled(HeroArticleSection)`
 `
 export const HeroArticleMainSection = styled(HeroArticleSection)`
   overflow-y: scroll;
-
   ::-webkit-scrollbar {
     width: 0.2em;
   }
