@@ -3,48 +3,73 @@ import styled, { css, keyframes } from 'styled-components'
 
 const animate = keyframes`
   0% {
-    opacity: 0;
+    opacity: 0.5;
     transform: rotate(45deg) translate(-3px, -3px);
   }
   50% {
     opacity: 1;
   }
   100% {
-    opacity: 0;
+    opacity: 0.5;
     transform: rotate(45deg) translate(3px, 3px);
   }
 `
-
+const bounceAlpha = keyframes`
+  0% {opacity: 1; transform: translateY(0px) scale(1) rotate(45deg) ;}
+  25%{opacity: 0; transform: translateY(5px) scale(0.9) rotate(45deg);}
+  26%{opacity: 0; transform: translateY(-5px) scale(0.9) rotate(45deg);}
+  55% {opacity: 1; transform: translateY(0px) scale(1) rotate(45deg);}
+`
 // EQUIVALENT TO: css`${animate} 2s infinite;`
 
 const animationCSS = css(
-  ['', ' 2s linear;'] as any as TemplateStringsArray,
+  ['', ' 1s linear;'] as any as TemplateStringsArray,
   animate
 )
+const animationCSSBounce = css(
+  ['', ' 2.4s linear;'] as any as TemplateStringsArray,
+  bounceAlpha
+)
+
 export const ArrowSpan = styled.span<{ $animateOn: boolean }>`
   display: block;
-  width: 1vw;
-  height: 1vw;
-  border-bottom: 1.5px solid white;
-  border-right: 1.5px solid white;
-  transform: rotate(45deg);
-  margin: -6px;
+  width: 0.5rem;
+  height: 0.5rem;
 
-  animation: ${({ $animateOn }) => ($animateOn ? animationCSS : 'none')};
+  border-bottom: 1.5px solid var(--background4-main);
+  border-right: 1.5px solid var(--background4-main);
+  transform: rotate(45deg);
+  margin: -3px;
+  animation: ${({ $animateOn }) => ($animateOn ? animationCSSBounce : 'none')};
+
+  /* animation-timing-function: linear; */
 `
 export const ArrowDiv = styled.div`
-  transform: translate(-50%, -50%);
-  /* transform: rotate(180deg); */
+  display: grid;
+  place-items: center;
   cursor: pointer;
-
-  &:nth-child(2) {
-    animation-delay: -0.2s;
+  background: var(--background-blur1);
+  padding: var(--gap-small);
+  border-radius: 50%;
+  height: 1.75rem;
+  width: 1.75rem;
+  overflow: hidden; //todo for now
+  &:hover ${ArrowSpan} {
+    /* animation: ${animationCSSBounce};
+    animation-iteration-count: infinite;
+    animation-delay: 0.5s; */
+    transition: border-color 0.3s ease;
+    border-color: var(--background1-secondary);
   }
-  &:nth-child(3) {
-    animation-delay: -0.4s;
+  span:nth-of-type(1) {
+    border-top: 0.5px solid var(--background-blur3);
+    border-left: 0.5px solid var(--background-blur3);
+    animation-delay: 0.2s;
+  }
+  span:nth-of-type(3) {
+    animation-delay: 0.4s;
   }
 `
-
 export const AccordionHeader = styled(motion.div)<{
   $noBottomMargin?: boolean
 }>`
