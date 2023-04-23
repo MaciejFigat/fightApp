@@ -2,33 +2,15 @@ import { motion } from 'framer-motion'
 import styled, { css, keyframes } from 'styled-components'
 
 const animate = keyframes`
-  0% {
-    opacity: 0.5;
-    transform: rotate(45deg) translate(-3px, -3px);
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0.5;
-    transform: rotate(45deg) translate(3px, 3px);
-  }
-`
-const bounceAlpha = keyframes`
   0% {opacity: 1; transform: translateY(0px) scale(1) rotate(45deg) ;}
   25%{opacity: 0; transform: translateY(5px) scale(0.9) rotate(45deg);}
   26%{opacity: 0; transform: translateY(-5px) scale(0.9) rotate(45deg);}
   55% {opacity: 1; transform: translateY(0px) scale(1) rotate(45deg);}
 `
-// EQUIVALENT TO: css`${animate} 2s infinite;`
-
+// EQUIVALENT TO: css`${animate} 2.4s linear;`
 const animationCSS = css(
-  ['', ' 1s linear;'] as any as TemplateStringsArray,
-  animate
-)
-const animationCSSBounce = css(
   ['', ' 2.4s linear;'] as any as TemplateStringsArray,
-  bounceAlpha
+  animate
 )
 
 export const ArrowSpan = styled.span<{ $animateOn: boolean }>`
@@ -40,9 +22,7 @@ export const ArrowSpan = styled.span<{ $animateOn: boolean }>`
   border-right: 1.5px solid var(--background4-main);
   transform: rotate(45deg);
   margin: -3px;
-  animation: ${({ $animateOn }) => ($animateOn ? animationCSSBounce : 'none')};
-
-  /* animation-timing-function: linear; */
+  animation: ${({ $animateOn }) => ($animateOn ? animationCSS : 'none')};
 `
 export const ArrowDiv = styled.div`
   display: grid;
@@ -55,9 +35,6 @@ export const ArrowDiv = styled.div`
   width: 1.75rem;
   overflow: hidden; //todo for now
   &:hover ${ArrowSpan} {
-    /* animation: ${animationCSSBounce};
-    animation-iteration-count: infinite;
-    animation-delay: 0.5s; */
     transition: border-color 0.3s ease;
     border-color: var(--background1-secondary);
   }
