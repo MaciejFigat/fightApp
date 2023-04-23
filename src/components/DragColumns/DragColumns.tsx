@@ -214,7 +214,7 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
     <DragColContainer>
       <DragDropContext onDragEnd={onDragEnd}>
         <MainColumn as={motion.div} layout>
-          <MainListHeader>{EventName} </MainListHeader>
+          <MainListHeader>{EventName}</MainListHeader>
           {currentEventFights
             ? currentEventFights.map(({ FightId, Fighters }) => (
                 <Accordion

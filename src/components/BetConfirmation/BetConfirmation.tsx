@@ -11,7 +11,8 @@ import NumberInput from '../Inputs/NumberInput'
 import {
   ColorText,
   HorizontalWrapperSpaceAround,
-  HorizontalWrapperSpaceBetween
+  HorizontalWrapperSpaceBetween,
+  MarginRightBig
 } from '../../styles/misc.styles'
 import { ButtonSmall } from '../Buttons/Buttons.styled'
 import { ButtonVariants, TextColor, WinnerProjection } from '../../consts'
@@ -25,6 +26,8 @@ import {
   BlurredFatText,
   BlurredSkinnyText
 } from './BetConfirmation.styled'
+import AccordionArrow from '../Accordion/AccordionArrow'
+import BetBadges from './BetBadges'
 
 interface BetConfirmationProps {
   // index for Accordion component
@@ -97,15 +100,20 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
     <Accordion
       i={index ?? 0}
       headerContent={
-        <BetHeader
-          winnerChange={winnerChange}
-          Fighters={Fighters}
-          projectedWinner={projectedWinner}
-          betMoneyline={betMoneyline}
-          betName={betName}
-          betId={betId}
-          noBadgesInHeader
-        />
+        <HorizontalWrapperSpaceBetween>
+          <BetHeader
+            winnerChange={winnerChange}
+            Fighters={Fighters}
+            projectedWinner={projectedWinner}
+            betMoneyline={betMoneyline}
+            betName={betName}
+            betId={betId}
+            noBadgesInHeader
+          />{' '}
+          <MarginRightBig>
+            <AccordionArrow animateOn={expandedBet === index ? true : false} />
+          </MarginRightBig>
+        </HorizontalWrapperSpaceBetween>
       }
       expanded={expandedBet}
       setExpanded={setExpandedBet}
@@ -113,12 +121,20 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
     >
       <BetDetails>
         <HorizontalWrapperSpaceBetween>
-          {betMoneyline && (
+          {betMoneyline ? (
             <ColorText
               color={betMoneyline > 0 ? TextColor.WARNING : TextColor.SUCCESS}
             >
               {betMoneyline > 0 ? 'underdog' : 'favourite'}
             </ColorText>
+          ) : (
+            <BetBadges
+              betMoneyline={betMoneyline}
+              betId={betId}
+              Fighters={Fighters}
+              projectedWinner={projectedWinner}
+              winnerChange={winnerChange}
+            />
           )}
           <i>info</i>
         </HorizontalWrapperSpaceBetween>

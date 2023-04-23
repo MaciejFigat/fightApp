@@ -48,6 +48,9 @@ export const BoldText = styled.b`
   font-weight: 700;
   font-size: var(--font-size-medium);
 `
+export const MarginRightBig = styled.div`
+  margin-right: var(--gap-big);
+`
 
 interface TextProps {
   color: TextColor
