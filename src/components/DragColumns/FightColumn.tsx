@@ -5,12 +5,12 @@ import { DraggableDiv, DroppableList } from './DragColumns.styled'
 import BetHeader from '../BetConfirmation/BetHeader'
 import { WinnerProjection } from '../../consts'
 
-interface EventColumnProps {
+interface FightColumnProps {
   state: BetData[][]
   winnerChange: (id: string, winnerProjection: WinnerProjection) => void
 }
 
-const EventColumn: React.FC<EventColumnProps> = ({ state, winnerChange }) => {
+const FightColumn: React.FC<FightColumnProps> = ({ state, winnerChange }) => {
   return (
     <div>
       <Droppable droppableId={`0`}>
@@ -18,6 +18,7 @@ const EventColumn: React.FC<EventColumnProps> = ({ state, winnerChange }) => {
           <DroppableList
             isDraggingOver={snapshot.isDraggingOver}
             ref={provided.innerRef}
+            width={'600px'}
           >
             {Array.isArray(state[0]) &&
               state[0].map((bet: BetData, index: number) => (
@@ -56,4 +57,4 @@ const EventColumn: React.FC<EventColumnProps> = ({ state, winnerChange }) => {
     </div>
   )
 }
-export default EventColumn
+export default FightColumn

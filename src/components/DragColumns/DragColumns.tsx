@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { DragColContainer, MainColumn, SideColumn } from './DragColumns.styled'
-import EventColumn from './EventColumn'
+import {
+  DragColContainer,
+  MainColumn,
+  MainListHeader,
+  SideColumn
+} from './DragColumns.styled'
 import BetSlipsColumn from './BetSlipsColumn'
 import { DragDropContext, DropResult } from '@hello-pangea/dnd'
 import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
@@ -17,6 +21,8 @@ import { motion } from 'framer-motion'
 import { EventAllData } from '../../interfaces'
 import { WinMethod, WinnerProjection } from '../../consts'
 import { editUnconfirmedBet } from '../../features/bets/betsSlice'
+import FightsColumn from './FightColumn'
+import FightHeader from './FightHeader'
 
 interface DragColumnsProps {}
 
@@ -208,21 +214,22 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
     <DragColContainer>
       <DragDropContext onDragEnd={onDragEnd}>
         <MainColumn as={motion.div} layout>
-          <h2>{EventName}</h2>
+          <MainListHeader>{EventName} </MainListHeader>
           {currentEventFights
             ? currentEventFights.map(({ FightId, Fighters }) => (
                 <Accordion
                   key={FightId}
                   i={FightId}
                   headerContent={
-                    Fighters && Fighters.length > 0
-                      ? `${Fighters[0].FirstName} ${Fighters[0].LastName} vs ${Fighters[1].FirstName} ${Fighters[1].LastName}`
-                      : 'Fighter 1 vs Fighter 2'
+                    <FightHeader
+                      open={expandedFight === FightId ? true : false}
+                      Fighters={Fighters}
+                    />
                   }
                   expanded={expandedFight}
                   setExpanded={setExpandedFight}
                 >
-                  <EventColumn winnerChange={winnerChange} state={state} />
+                  <FightsColumn winnerChange={winnerChange} state={state} />
                 </Accordion>
               ))
             : accordionIds.map(i => (
@@ -232,7 +239,7 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
                   expanded={expandedFight}
                   setExpanded={setExpandedFight}
                 >
-                  <EventColumn winnerChange={winnerChange} state={state} />
+                  <FightsColumn winnerChange={winnerChange} state={state} />
                 </Accordion>
               ))}
         </MainColumn>

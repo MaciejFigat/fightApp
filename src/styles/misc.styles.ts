@@ -1,6 +1,13 @@
 import styled from 'styled-components'
 import { TextColor } from '../consts'
 
+export const RoundAccent = styled.b`
+  display: grid;
+  place-items: center;
+  padding: var(--gap-medium);
+  background-color: var(--background-blur2);
+  border-radius: 50%;
+`
 export const HighlightText = styled.b`
   color: var(--background1-secondary);
 `
@@ -15,7 +22,6 @@ export const HorizontalWrapper = styled.div`
 
 export const HorizontalWrapperSpaceBetween = styled.div`
   display: flex;
-  /* justify-content: space-around; */
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
