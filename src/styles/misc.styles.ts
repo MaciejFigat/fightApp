@@ -1,8 +1,28 @@
 import styled from 'styled-components'
 import { TextColor } from '../consts'
 
+export const DraggingIcon = styled.span`
+  width: 20px;
+  height: 20px;
+  &:before {
+    content: '.';
+    position: relative;
+    left: 10px;
+    top: -11px;
+    font-size: 20px;
+    line-height: 20px;
+    color: var(--background-blur3);
+    text-shadow: 0 5px var(--background-blur3), 0 10px var(--background-blur3),
+      5px 0 var(--background-blur3), 5px 5px var(--background-blur3),
+      5px 10px var(--background-blur3), 10px 0 var(--background-blur3),
+      10px 5px var(--background-blur3), 10px 10px var(--background-blur3);
+  }
+`
+
 export const RoundAccent = styled.b`
   display: grid;
+  width: 38px;
+  height: 38px;
   place-items: center;
   padding: var(--gap-medium);
   background-color: var(--background-blur2);

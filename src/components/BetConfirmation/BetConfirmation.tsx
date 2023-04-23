@@ -10,6 +10,7 @@ import Accordion from '../Accordion/Accordion'
 import NumberInput from '../Inputs/NumberInput'
 import {
   ColorText,
+  DraggingIcon,
   HorizontalWrapperSpaceAround,
   HorizontalWrapperSpaceBetween,
   MarginRightBig
@@ -101,6 +102,7 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
       i={index ?? 0}
       headerContent={
         <HorizontalWrapperSpaceBetween>
+          <DraggingIcon />
           <BetHeader
             winnerChange={winnerChange}
             Fighters={Fighters}

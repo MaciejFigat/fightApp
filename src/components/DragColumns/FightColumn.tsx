@@ -4,6 +4,7 @@ import { BetData } from '../../interfaces'
 import { DraggableDiv, DroppableList } from './DragColumns.styled'
 import BetHeader from '../BetConfirmation/BetHeader'
 import { WinnerProjection } from '../../consts'
+import { DraggingIcon } from '../../styles/misc.styles'
 
 interface FightColumnProps {
   state: BetData[][]
@@ -37,14 +38,17 @@ const FightColumn: React.FC<FightColumnProps> = ({ state, winnerChange }) => {
                         isDragging={snapshot.isDragging}
                         ref={provided.innerRef}
                       >
-                        <BetHeader
-                          key={bet.id}
-                          betId={bet.id}
-                          Fighters={bet.Fighters}
-                          betMoneyline={bet.moneyline}
-                          betName={bet.name}
-                          winnerChange={winnerChange}
-                        />
+                        <>
+                          <DraggingIcon />
+                          <BetHeader
+                            key={bet.id}
+                            betId={bet.id}
+                            Fighters={bet.Fighters}
+                            betMoneyline={bet.moneyline}
+                            betName={bet.name}
+                            winnerChange={winnerChange}
+                          />
+                        </>
                       </DraggableDiv>
                     )
                   }}
