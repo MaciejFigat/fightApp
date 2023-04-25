@@ -40,7 +40,7 @@ const emptySecondaryStyle: StyleVariant = {
   buttonColor: 'var(--background4-main)',
   buttonBackground: 'var(--background-blur1)',
   buttonBackgroundHover: 'var(--background1-main)',
-  buttonColorHover: 'var(--background-secondary1)',
+  buttonColorHover: 'var(--background3-secondary)',
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background3-main)'
 }
@@ -57,24 +57,24 @@ const successEmptyStyle: StyleVariant = {
 }
 
 const successStyle: StyleVariant = {
-  buttonColor: 'var(--background1-main);',
+  buttonColor: 'var(--background4-main);',
   buttonBackground: 'var(--success1);',
   buttonBorder: 'var(--success1);',
   buttonBorderHover: 'var(--success2);',
   buttonBackgroundHover: 'var(--success2);',
-  buttonColorHover: 'var(--background1-main);',
-  buttonColorActive: 'var(--background-secondary3);',
-  buttonBorderActive: 'var(--success2);'
+  buttonColorHover: 'var(--background4-main);',
+  buttonColorActive: 'var(--background4-secondary);',
+  buttonBorderActive: 'var(--success3);'
 }
 const infoStyle: StyleVariant = {
-  buttonColor: 'var(--background1-main)',
+  buttonColor: 'var(--background4-main);',
   buttonBackground: 'var(--info1)',
-  buttonBackgroundHover: 'transparent',
-  buttonColorHover: 'var(--info2)',
-  buttonBorder: 'var(--info2)',
-  buttonBorderHover: 'var(--info2)',
-  buttonColorActive: 'var(--info3)',
-  buttonBorderActive: 'var(--info3)'
+  buttonBackgroundHover: 'var(--info2);',
+  buttonColorHover: 'var(--background4-main);',
+  buttonBorder: 'var(--info2);',
+  buttonBorderHover: 'var(--info2);',
+  buttonColorActive: 'var(--background4-main);',
+  buttonBorderActive: 'var(--info3);'
 }
 const infoEmptyStyle: StyleVariant = {
   buttonColor: 'var(--info1);',

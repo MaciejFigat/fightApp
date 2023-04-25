@@ -1,6 +1,6 @@
 import React from 'react'
 import { Droppable, Draggable } from '@hello-pangea/dnd'
-import { BetData, ConfirmedBet } from '../../interfaces'
+import { BetData } from '../../interfaces'
 import {
   BetListHeader,
   DraggableDiv,
@@ -8,13 +8,13 @@ import {
 } from './DragColumns.styled'
 import BetConfirmation from '../BetConfirmation/BetConfirmation'
 import { useAppSelector } from '../../app/reduxHooks'
-import AnimatedSlider from '../AnimatedSlider/AnimatedSlider'
 import { WinnerProjection } from '../../consts'
 import {
   HighlightText,
   HorizontalWrapper,
   RoundAccent
 } from '../../styles/misc.styles'
+import BetRegistration from '../BetConfirmation/BetRegistration'
 
 interface BetSlipsColumnProps {
   state: BetData[][]
@@ -25,9 +25,6 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({
   state,
   winnerChange
 }) => {
-  const betsConfirmed: ConfirmedBet[] = useAppSelector(
-    state => state.bets.betsConfirmed
-  )
   const betsUnconfirmed: BetData[] = useAppSelector(
     state => state.bets.betsUnconfirmed
   )
@@ -77,13 +74,7 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({
           </DroppableList>
         )}
       </Droppable>
-      {betsConfirmed.length > 0 && <h3>confirmed fight bets </h3>}
-      {betsConfirmed.map((bet: ConfirmedBet) => (
-        <div key={bet.id}>
-          {bet.name} bet: {bet.amountBet} hoping for: {bet.expectedPayout}
-          <AnimatedSlider header={['Yes', 'No']} />
-        </div>
-      ))}
+      <BetRegistration />
     </>
   )
 }

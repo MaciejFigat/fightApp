@@ -14,6 +14,9 @@ import {
 import EventsScreen from '../screens/EventsScreen'
 import DragColumns from '../components/DragColumns/DragColumns'
 import DisciplineDropdown from '../components/Dropdowns/DisciplineDropdown'
+import { Link } from 'react-router-dom'
+import { ButtonSmall } from '../components/Buttons/Buttons.styled'
+import { ButtonVariants } from '../consts'
 
 interface HeroGridProps {}
 
@@ -26,7 +29,14 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
         </HeroNavOne>
 
         <HeroNavTwo>{/* 3 */}</HeroNavTwo>
-        <HeroNavTwo>4 </HeroNavTwo>
+        <HeroNavTwo>
+          <ButtonSmall variant={ButtonVariants.info}>
+            <Link to='/login'>Login</Link>
+          </ButtonSmall>{' '}
+          <ButtonSmall variant={ButtonVariants.success}>
+            <Link to='/register'>Register</Link>
+          </ButtonSmall>{' '}
+        </HeroNavTwo>
       </HeroNavigation>
 
       <HeroMainContainer>

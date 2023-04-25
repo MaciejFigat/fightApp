@@ -107,7 +107,6 @@ export const activateUser = createAsyncThunk(
   }
 )
 
-//
 interface NewUserInfo {
   name: string
   email: string
