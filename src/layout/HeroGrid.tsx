@@ -25,8 +25,8 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
           <DisciplineDropdown />
         </HeroNavOne>
 
-        <HeroNavTwo> 3</HeroNavTwo>
-        {/* <HeroNavTwo>4 </HeroNavTwo> */}
+        <HeroNavTwo>{/* 3 */}</HeroNavTwo>
+        <HeroNavTwo>4 </HeroNavTwo>
       </HeroNavigation>
 
       <HeroMainContainer>
@@ -41,11 +41,11 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
 
           <HeroArticleBottomBigSection>
             {' '}
-            HeroArticleBottomBigSection 1
+            {/* HeroArticleBottomBigSection 1 */}
           </HeroArticleBottomBigSection>
           <HeroArticleBottomSmallSection>
             {' '}
-            HeroArticleBottomSmallSection 2
+            {/* HeroArticleBottomSmallSection 2 */}
           </HeroArticleBottomSmallSection>
         </HeroMainArticle>
       </HeroMainContainer>

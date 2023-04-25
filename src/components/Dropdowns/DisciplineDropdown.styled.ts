@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
 export const DropDownContainer = styled.div`
+  position: relative; // todo
   min-width: min-content;
   margin: 0 auto;
 `
@@ -9,12 +10,14 @@ export const ProjectDropDownWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
   border: 1px solid var(--background-blur2);
   height: 34px;
   padding: 0.2rem 0.4rem 0.2rem 0.5rem;
-
+  font-weight: 800;
+  transition: all 0.3s ease-out;
   &:hover {
-    color: var(--background4-main);
+    color: var(--background5-main);
   }
 
   width: 130px;
@@ -24,11 +27,9 @@ export const ProjectDropDownWrapper = styled.div`
 export const DropDownHeader = styled.div`
   display: grid;
   place-items: center;
-
   font-weight: 500;
   font-size: 1rem;
   color: var(--background4-main);
-
   text-align: center;
 `
 export const DropDownListContainer = styled.div`
@@ -41,10 +42,8 @@ export const DropDownListContainer = styled.div`
   width: 166px;
   min-width: fit-content;
   border-radius: 12px;
-  top: 60px;
-  /* top: 60px;
-  right: 0%; */
-  /* right: 140px; */
+  top: 50px;
+  left: -33%;
 
   transition: all 0.3s ease-out;
   text-align: center;

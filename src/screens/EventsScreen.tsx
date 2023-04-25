@@ -15,6 +15,10 @@ import { eventsMMA } from '../mockData/mockMMAEvents'
 import { eventsBoxing } from '../mockData/mockBoxingEvents'
 import { eventsSubmission } from '../mockData/mockSubmissionEvents'
 import EventCard from '../components/EventsDisplay/EventCard'
+import {
+  EventCardContainer,
+  EventCardStyled
+} from '../components/EventsDisplay/EventCard.styled'
 
 interface EventsScreenProps {}
 
@@ -47,33 +51,30 @@ const EventsScreen: React.FC<EventsScreenProps> = () => {
         break
       case 'MMA':
         console.log('fetch MMA events and set them as availableEvents')
-        // I will fetch MMA events from different API then the other sports
+        // MMA events from different API than the other sports - saving calls
         if (availableEvents.length === 0) dispatch(fetchMMAData())
         break
     }
   }, [disciplineChosen, dispatch, availableEvents.length])
 
   return (
-    <div>
+    <EventCardContainer>
       {' '}
       {disciplineChosen.name !== 'MMA' ? (
-        <h4>
-          Events:
-          {sportEventData.length > 0 ? (
-            sportEventData.map((event: SportEventData, index: number) => (
-              <div key={index}>{event.name}</div>
-            ))
-          ) : (
-            <>No events</>
-          )}
-        </h4>
+        sportEventData.length > 0 ? (
+          sportEventData.map((event: SportEventData, index: number) => (
+            <EventCardStyled key={index}>{event.name}</EventCardStyled>
+          ))
+        ) : (
+          <>No events</>
+        )
       ) : (
         availableEvents.length > 0 &&
         availableEvents.map(chosenEvent => (
           <EventCard key={chosenEvent.EventId} chosenEvent={chosenEvent} />
         ))
       )}
-    </div>
+    </EventCardContainer>
   )
 }
 export default EventsScreen

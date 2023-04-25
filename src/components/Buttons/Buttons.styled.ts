@@ -28,6 +28,7 @@ export const ButtonBig = styled.button<{
   transition: all 0.3s ease-out;
 
   a {
+    text-decoration: none;
     transition: all 0.3s ease-out;
     color: ${props => handleButtonColor(props.variant).buttonColor};
   }

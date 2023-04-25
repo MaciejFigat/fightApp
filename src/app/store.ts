@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-
+import userReducer from '../features/users/userSlice'
 import sportsReducer from '../features/sports/sportsSlice'
 import eventsReducer from '../features/sportEvents/eventsSlice'
 import betsReducer from '../features/bets/betsSlice'
@@ -7,6 +7,7 @@ import { setupListeners } from '@reduxjs/toolkit/query'
 
 export const store = configureStore({
   reducer: {
+    user: userReducer,
     sports: sportsReducer,
     events: eventsReducer,
     bets: betsReducer

@@ -78,7 +78,6 @@ const GlobalStyle = createGlobalStyle`
 
     --padding-small: 6px 6px 6px 8px;
     --padding-medium: 8px 8px 8px 12px;
-    
     --padding-big: 12px 12px 12px 20px;
     --padding-big-sides: 0px 12px 0px 20px;
 

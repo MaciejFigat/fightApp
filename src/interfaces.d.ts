@@ -94,6 +94,16 @@ interface ConfirmedBet extends BetData {
   expectedPayout: number
 }
 
+interface UserInfo {
+  _id?: string
+  name?: string
+  email?: string
+  password?: string
+  isAdmin?: boolean
+  status?: 'Active' | 'Pending'
+  coinsAvailable?: number
+}
+
 export {
   SportChosen,
   SportEventData,
@@ -103,5 +113,6 @@ export {
   ApiRetrivalHttpError,
   EventAllData,
   BetData,
-  ConfirmedBet
+  ConfirmedBet,
+  UserInfo
 }

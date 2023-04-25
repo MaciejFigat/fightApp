@@ -6,6 +6,7 @@ import {
 } from '../../features/sportEvents/eventsSlice'
 import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
 import { AppDispatch } from '../../app/store'
+import { EventCardStyled } from './EventCard.styled'
 
 interface EventCardProps {
   chosenEvent: AvailableEventSimpleData
@@ -29,9 +30,9 @@ const EventCard: React.FC<EventCardProps> = ({ chosenEvent }) => {
   }
 
   return (
-    <div onClick={() => chosenEventHandler(chosenEvent.EventId)}>
+    <EventCardStyled onClick={() => chosenEventHandler(chosenEvent.EventId)}>
       {chosenEvent.Name}
-    </div>
+    </EventCardStyled>
   )
 }
 export default EventCard
