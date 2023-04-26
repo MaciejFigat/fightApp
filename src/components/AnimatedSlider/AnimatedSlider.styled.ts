@@ -27,7 +27,7 @@ export const DragConstraints = styled(motion.div)<{
       $confirmed ? 'var(--success1)' : 'var(--background-blur2)'};
   display: grid;
   place-items: center center;
-  height: 54.5px;
+  height: 53.5px;
   width: calc(125px + 2 * var(--gap-small));
   /* padding: var(--gap-small); */
 

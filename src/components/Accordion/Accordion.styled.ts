@@ -17,7 +17,6 @@ export const ArrowSpan = styled.span<{ $animateOn: boolean }>`
   display: block;
   width: 0.5rem;
   height: 0.5rem;
-
   border-bottom: 1.5px solid var(--background4-main);
   border-right: 1.5px solid var(--background4-main);
   transform: rotate(45deg);
