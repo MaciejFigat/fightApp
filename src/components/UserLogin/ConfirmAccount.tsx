@@ -69,7 +69,7 @@ const ConfirmAccount: React.FC<ConfirmAccountProps> = () => {
             <h4>Trwa autoryzacja twojego emaila</h4>{' '}
             <HorizontalWrapperCenter>
               <RotatingLines
-                strokeColor='var(--background-secondary2)'
+                strokeColor='var(--background2-secondary)'
                 strokeWidth='3'
                 animationDuration='1.25'
                 ariaLabel='progress-bar-loading'

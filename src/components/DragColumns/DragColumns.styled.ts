@@ -85,6 +85,7 @@ export const DroppableList = styled.div<{
 export const HeaderWrapper = styled.div`
   width: 100%;
   max-width: 370px;
+
   padding: var(--padding-big-sides);
 `
 

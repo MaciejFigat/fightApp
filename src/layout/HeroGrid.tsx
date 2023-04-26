@@ -17,6 +17,7 @@ import DisciplineDropdown from '../components/Dropdowns/DisciplineDropdown'
 import { Link } from 'react-router-dom'
 import { ButtonSmall } from '../components/Buttons/Buttons.styled'
 import { ButtonVariants } from '../consts'
+import CoinDisplay from '../components/CoinDisplay/CoinDisplay'
 
 interface HeroGridProps {}
 
@@ -28,7 +29,9 @@ const HeroGrid: React.FC<HeroGridProps> = () => {
           <DisciplineDropdown />
         </HeroNavOne>
 
-        <HeroNavTwo>{/* 3 */}</HeroNavTwo>
+        <HeroNavTwo>
+          <CoinDisplay />
+        </HeroNavTwo>
         <HeroNavTwo>
           <ButtonSmall variant={ButtonVariants.info}>
             <Link to='/login'>Login</Link>

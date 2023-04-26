@@ -2,10 +2,11 @@ import React from 'react'
 import AnimatedSlider from '../AnimatedSlider/AnimatedSlider'
 import { useAppSelector } from '../../app/reduxHooks'
 import { ConfirmedBet } from '../../interfaces'
-import { BetListHeader } from '../DragColumns/DragColumns.styled'
+import { BetListHeader, HeaderWrapper } from '../DragColumns/DragColumns.styled'
 import {
   HighlightText,
   HorizontalWrapper,
+  HorizontalWrapperSpaceBetween,
   RoundAccent
 } from '../../styles/misc.styles'
 import { TextColor } from '../../consts'
@@ -27,10 +28,13 @@ const BetRegistration: React.FC<BetRegistrationProps> = () => {
       </BetListHeader>
       {/* {betsConfirmed.length > 0 && <h3>confirmed fight bets </h3>} */}
       {betsConfirmed.map((bet: ConfirmedBet) => (
-        <div key={bet.id}>
-          {bet.name} bet: {bet.amountBet} hoping for: {bet.expectedPayout}
+        <HeaderWrapper key={bet.id}>
+          <HorizontalWrapperSpaceBetween>
+            {' '}
+            {bet.name} bet: {bet.amountBet} hoping for: {bet.expectedPayout}
+          </HorizontalWrapperSpaceBetween>
           <AnimatedSlider header={['Yes', 'No']} />
-        </div>
+        </HeaderWrapper>
       ))}
     </>
   )

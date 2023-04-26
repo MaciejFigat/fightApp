@@ -13,13 +13,24 @@ export const SliderContainer = styled(motion.div)<{
   cursor: pointer;
   height: 50px;
   border-radius: var(--border-radius1);
-  border: 1px solid
+  border: 2px solid
     ${({ $confirmed }) => ($confirmed ? 'var(--success1)' : 'var(--warning1)')};
   width: 50px;
-  margin-left: 6rem;
   padding-top: 0.25rem;
 `
-// const Comp = styled.div`
-//   color: ${props =>
-//     props.$draggable || 'black'};
-// `;
+
+export const DragConstraints = styled(motion.div)<{
+  $confirmed: boolean
+}>`
+  border: 2px solid
+    ${({ $confirmed }) =>
+      $confirmed ? 'var(--success1)' : 'var(--background-blur2)'};
+  display: grid;
+  place-items: center center;
+  height: 54.5px;
+  width: calc(125px + 2 * var(--gap-small));
+  /* padding: var(--gap-small); */
+
+  /* background: var(--background-blur2); */
+  border-radius: var(--border-radius1);
+`
