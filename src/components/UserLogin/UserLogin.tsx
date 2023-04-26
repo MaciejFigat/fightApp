@@ -13,7 +13,8 @@ import {
   Title,
   LoginContainer,
   LoginTextWrapper,
-  LoginWrapper
+  LoginWrapper,
+  FormLabel
 } from './UserLogin.styled'
 import useRedirectLoggedListener from '../../hooks/useRedirectListenerLogged'
 import { UserInfo } from '../../interfaces'
@@ -57,6 +58,7 @@ const UserLogin: React.FC<UserLoginProps> = () => {
         <LoginWrapper>
           <h3>Welcome</h3>
           <Form onSubmit={submitHandler}>
+            <FormLabel htmlFor='email'>Email</FormLabel>
             <Input
               type='email'
               name='email'
@@ -67,7 +69,7 @@ const UserLogin: React.FC<UserLoginProps> = () => {
                 setEmail(e.target.value)
               }
             />
-
+            <FormLabel htmlFor='password'>Password</FormLabel>
             <Input
               type='password'
               autoComplete='current-password'
@@ -83,7 +85,7 @@ const UserLogin: React.FC<UserLoginProps> = () => {
               variant={ButtonVariants.successEmpty}
               data-testid='login-account-button'
             >
-              Sign in
+              Log in
             </ButtonBig>
           </Form>
           {Object.keys(userInfoRedux).length > 0 && (
@@ -91,7 +93,7 @@ const UserLogin: React.FC<UserLoginProps> = () => {
               variant={ButtonVariants.warningEmpty}
               onClick={logoutHandler}
             >
-              Sign out
+              Log out
             </ButtonMedium>
           )}
           <LoginTextWrapper>

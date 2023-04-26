@@ -8,7 +8,7 @@ import {
 } from './DragColumns.styled'
 import BetConfirmation from '../BetConfirmation/BetConfirmation'
 import { useAppSelector } from '../../app/reduxHooks'
-import { WinnerProjection } from '../../consts'
+import { TextColor, WinnerProjection } from '../../consts'
 import {
   HighlightText,
   HorizontalWrapper,
@@ -34,7 +34,9 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({
       <BetListHeader>
         <HorizontalWrapper>
           <RoundAccent>{betsUnconfirmed.length} </RoundAccent>
-          <HighlightText>bets to confirm</HighlightText>
+          <HighlightText color={TextColor.PRIMARY}>
+            bets to confirm
+          </HighlightText>
         </HorizontalWrapper>
       </BetListHeader>
       <Droppable droppableId={`1`}>

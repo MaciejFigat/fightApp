@@ -1,14 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
+import { UserInfo } from '../../interfaces'
 
-interface UserInfo {
-  _id?: string
-  name?: string
-  email?: string
-  password?: string
-  status?: 'Active' | 'Pending'
-  isAdmin?: boolean
-}
 interface UserLogin {
   email: string
   password: string
@@ -313,7 +306,8 @@ const userSlice = createSlice({
         email: action.payload.email,
         isAdmin: action.payload.isAdmin,
         status: action.payload.status,
-        token: action.payload.token
+        token: action.payload.token,
+        coinsAvailable: action.payload.coinsAvailable
       }
       state.error = action.payload.message
     })

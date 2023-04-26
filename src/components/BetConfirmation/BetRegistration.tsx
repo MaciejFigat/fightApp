@@ -8,6 +8,7 @@ import {
   HorizontalWrapper,
   RoundAccent
 } from '../../styles/misc.styles'
+import { TextColor } from '../../consts'
 interface BetRegistrationProps {}
 
 const BetRegistration: React.FC<BetRegistrationProps> = () => {
@@ -19,7 +20,9 @@ const BetRegistration: React.FC<BetRegistrationProps> = () => {
       <BetListHeader>
         <HorizontalWrapper>
           <RoundAccent>{betsConfirmed.length} </RoundAccent>
-          <HighlightText>bets to register</HighlightText>
+          <HighlightText color={TextColor.SUCCESS}>
+            bets to register
+          </HighlightText>
         </HorizontalWrapper>
       </BetListHeader>
       {/* {betsConfirmed.length > 0 && <h3>confirmed fight bets </h3>} */}

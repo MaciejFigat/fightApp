@@ -28,9 +28,7 @@ export const RoundAccent = styled.b`
   background-color: var(--background-blur2);
   border-radius: 50%;
 `
-export const HighlightText = styled.b`
-  color: var(--background1-secondary);
-`
+
 export const HorizontalWrapper = styled.div`
   display: flex;
   width: 100%;
@@ -86,6 +84,10 @@ const getColor = (color: TextColor): string => {
       return 'var(--warning1)'
     case TextColor.DANGER:
       return 'var(--danger1)'
+    case TextColor.PRIMARY:
+      return 'var(--background1-secondary)'
+    case TextColor.SECONDARY:
+      return 'var(--background5-secondary)'
     default:
       return 'inherit'
   }
@@ -100,6 +102,7 @@ const getAccentColor = (color: TextColor): string => {
       return 'var(--warning2)'
     case TextColor.DANGER:
       return 'var(--danger2)'
+
     default:
       return 'inherit'
   }
@@ -136,4 +139,8 @@ export const ColorBadgeEmpty = styled(ColorBadge)<TextProps>`
 `
 export const ColorBadgeLong = styled(ColorBadge)<TextProps>`
   width: fit-content;
+`
+export const HighlightText = styled.b<TextProps>`
+  /* color: var(--background1-secondary); */
+  color: ${({ color }) => getColor(color)};
 `
