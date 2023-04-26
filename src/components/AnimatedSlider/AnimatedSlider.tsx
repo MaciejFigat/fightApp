@@ -1,15 +1,17 @@
-import React, { useRef, useState } from 'react'
+import React, { Dispatch, SetStateAction, useRef } from 'react'
 import { motion, useMotionValue, useTransform } from 'framer-motion'
 import { DragConstraints, SliderContainer } from './AnimatedSlider.styled'
 import { ArrowsSVG_D, NoSVG_D, YesSVG_D } from './svgAssets'
 
 interface AnimatedSliderProps {
-  header: [string, string]
+  setAccepted: Dispatch<SetStateAction<boolean>>
+  accepted: boolean
 }
 
-const AnimatedSlider: React.FC<AnimatedSliderProps> = ({ header }) => {
-  const [confirmed, setConfirmed] = useState<boolean>(false)
-
+const AnimatedSlider: React.FC<AnimatedSliderProps> = ({
+  setAccepted,
+  accepted
+}) => {
   const x = useMotionValue(0)
 
   const xInput = [-30, 0, 30]
@@ -23,7 +25,7 @@ const AnimatedSlider: React.FC<AnimatedSliderProps> = ({ header }) => {
     // framer-motion problem with animating css variables
     'var(--background5-main)',
     'var(--background5-main)',
-    '#009670'
+    '#00bc8c'
   ])
   const xRange = [-20, -5, 5, 20]
   const opacityRange = [0, 1, 1, 0]
@@ -34,31 +36,30 @@ const AnimatedSlider: React.FC<AnimatedSliderProps> = ({ header }) => {
 
   const onDragEndHandler = () => {
     if (x.get() > 0) {
-      setConfirmed(true)
+      setAccepted(true)
     } else {
-      setConfirmed(false)
+      setAccepted(false)
     }
   }
   const constraintsRef = useRef(null)
   return (
-    <DragConstraints $confirmed={confirmed} ref={constraintsRef}>
+    <DragConstraints $confirmed={accepted} ref={constraintsRef}>
       <SliderContainer
         style={{ x, background }}
         // transient props
         dragTransition={{ bounceStiffness: 1200, bounceDamping: 123 }}
-        $confirmed={confirmed}
+        $confirmed={accepted}
         drag='x'
         onDragEnd={onDragEndHandler}
         dragConstraints={constraintsRef}
       >
-        {confirmed ? header[0] : header[1]}
         <svg viewBox='0 0 50 50'>
           <motion.path
             fill='none'
-            strokeWidth='1'
+            strokeWidth='1.5'
             stroke={color}
             d={ArrowsSVG_D}
-            style={{ translateX: 15, translateY: 10, opacity }}
+            style={{ translateX: 15, translateY: 14, opacity }}
           />
           <motion.path
             fill='none'
@@ -66,7 +67,7 @@ const AnimatedSlider: React.FC<AnimatedSliderProps> = ({ header }) => {
             stroke={color}
             d={YesSVG_D}
             strokeDasharray='0 1'
-            style={{ translateX: 10, translateY: 5, pathLength: tickPath }}
+            style={{ translateX: 10, translateY: 9, pathLength: tickPath }}
           />
           <motion.path
             fill='none'
@@ -74,7 +75,7 @@ const AnimatedSlider: React.FC<AnimatedSliderProps> = ({ header }) => {
             stroke={color}
             d={NoSVG_D}
             strokeDasharray='0 1'
-            style={{ translateX: 10, translateY: 5, pathLength: crossPathA }}
+            style={{ translateX: 10, translateY: 9, pathLength: crossPathA }}
           />
         </svg>
       </SliderContainer>

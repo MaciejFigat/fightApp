@@ -11,10 +11,10 @@ export const SliderContainer = styled(motion.div)<{
   place-items: flex-start center;
   user-select: none;
   cursor: pointer;
-  height: 50px;
+  height: 40px;
   border-radius: var(--border-radius1);
   border: 2px solid
-    ${({ $confirmed }) => ($confirmed ? 'var(--success1)' : 'var(--warning1)')};
+    ${({ $confirmed }) => ($confirmed ? 'var(--success1)' : 'var(--info1)')};
   width: 50px;
   padding-top: 0.25rem;
 `
@@ -24,13 +24,12 @@ export const DragConstraints = styled(motion.div)<{
 }>`
   border: 2px solid
     ${({ $confirmed }) =>
-      $confirmed ? 'var(--success1)' : 'var(--background-blur2)'};
+      $confirmed ? 'var(--success4)' : 'var(--background-blur2)'};
   display: grid;
   place-items: center center;
-  height: 53.5px;
-  width: calc(125px + 2 * var(--gap-small));
-  /* padding: var(--gap-small); */
 
-  /* background: var(--background-blur2); */
+  width: calc(125px + 2 * var(--gap-small));
+
+  background: var(--background-blur0);
   border-radius: var(--border-radius1);
 `

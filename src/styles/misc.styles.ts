@@ -38,6 +38,12 @@ export const HorizontalWrapper = styled.div`
   gap: var(--gap-small);
 `
 
+export const HorizontalLineBottom = styled.div`
+  width: 100%;
+  height: 1px;
+  padding-bottom: var(--gap-medium);
+  border-bottom: 1px solid var(--background-blur1);
+`
 export const HorizontalWrapperSpaceBetween = styled.div`
   display: flex;
   justify-content: space-between;
@@ -87,7 +93,9 @@ const getColor = (color: TextColor): string => {
     case TextColor.PRIMARY:
       return 'var(--background1-secondary)'
     case TextColor.SECONDARY:
-      return 'var(--background5-secondary)'
+      return 'var(--background4-main)'
+    case TextColor.GOLD:
+      return 'var(--gold2)'
     default:
       return 'inherit'
   }
@@ -102,7 +110,8 @@ const getAccentColor = (color: TextColor): string => {
       return 'var(--warning2)'
     case TextColor.DANGER:
       return 'var(--danger2)'
-
+    case TextColor.GOLD:
+      return 'var(--gold1)'
     default:
       return 'inherit'
   }
@@ -141,6 +150,5 @@ export const ColorBadgeLong = styled(ColorBadge)<TextProps>`
   width: fit-content;
 `
 export const HighlightText = styled.b<TextProps>`
-  /* color: var(--background1-secondary); */
   color: ${({ color }) => getColor(color)};
 `

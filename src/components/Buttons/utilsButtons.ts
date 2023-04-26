@@ -4,6 +4,7 @@ interface StyleVariant {
   buttonColor: string
   buttonBackground: string
   buttonBackgroundHover: string
+  buttonBackgroundActive: string
   buttonColorHover: string
   buttonBorder?: string
   buttonBorderHover?: string
@@ -15,7 +16,8 @@ const primaryStyle: StyleVariant = {
   buttonColor: 'var(--background1-main)',
   buttonBackground: 'var(--background4-main)',
   buttonBackgroundHover: 'var(--background-blur2)',
-  buttonColorHover: 'var(--background-secondary2)',
+  buttonBackgroundActive: 'var(--background-blur2)',
+  buttonColorHover: 'var(--background1-secondary)',
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background3-main)'
 }
@@ -23,6 +25,7 @@ const emptyPrimaryStyle: StyleVariant = {
   buttonColor: 'var(--background4-main)',
   buttonBackground: 'var(--background-gradient1)',
   buttonBackgroundHover: 'var(--background-gradient2)',
+  buttonBackgroundActive: 'var(--background-gradient2)',
   buttonColorHover: 'var(--background5-main)',
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background4-main)'
@@ -32,7 +35,8 @@ const secondaryStyle: StyleVariant = {
   buttonColor: 'var(--background4-main)',
   buttonBackground: 'var(--background-blur1)',
   buttonBackgroundHover: 'var(--background1-main)',
-  buttonColorHover: 'var(--background-secondary1)',
+  buttonBackgroundActive: 'var(--background1-main)',
+  buttonColorHover: 'var(--background1-secondary)',
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background3-main)'
 }
@@ -40,6 +44,7 @@ const emptySecondaryStyle: StyleVariant = {
   buttonColor: 'var(--background4-main)',
   buttonBackground: 'var(--background-blur1)',
   buttonBackgroundHover: 'var(--background1-main)',
+  buttonBackgroundActive: 'var(--background1-main)',
   buttonColorHover: 'var(--background3-secondary)',
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background3-main)'
@@ -51,6 +56,7 @@ const successEmptyStyle: StyleVariant = {
   buttonBorder: 'var(--success1);',
   buttonBorderHover: 'var(--success2);',
   buttonBackgroundHover: 'transparent;',
+  buttonBackgroundActive: 'transparent;',
   buttonColorHover: 'var(--success2);',
   buttonColorActive: 'var(--success3);',
   buttonBorderActive: 'var(--success3);'
@@ -62,6 +68,7 @@ const successStyle: StyleVariant = {
   buttonBorder: 'var(--success1);',
   buttonBorderHover: 'var(--success2);',
   buttonBackgroundHover: 'var(--success2);',
+  buttonBackgroundActive: 'var(--success2);',
   buttonColorHover: 'var(--background4-main);',
   buttonColorActive: 'var(--background4-secondary);',
   buttonBorderActive: 'var(--success3);'
@@ -70,6 +77,7 @@ const infoStyle: StyleVariant = {
   buttonColor: 'var(--background4-main);',
   buttonBackground: 'var(--info1)',
   buttonBackgroundHover: 'var(--info2);',
+  buttonBackgroundActive: 'var(--info2);',
   buttonColorHover: 'var(--background4-main);',
   buttonBorder: 'var(--info2);',
   buttonBorderHover: 'var(--info2);',
@@ -82,6 +90,7 @@ const infoEmptyStyle: StyleVariant = {
   buttonBorder: 'var(--info1);',
   buttonBorderHover: 'var(--info3);',
   buttonBackgroundHover: 'transparent;',
+  buttonBackgroundActive: 'transparent;',
   buttonColorHover: 'var(--info3);',
   buttonColorActive: 'var(--info2);',
   buttonBorderActive: 'var(--info2);'
@@ -93,6 +102,7 @@ const warningStyle: StyleVariant = {
   buttonBorder: 'var(--warning1);',
   buttonBorderHover: 'var(--warning2);',
   buttonBackgroundHover: 'var(--warning1);',
+  buttonBackgroundActive: 'var(--warning1);',
   buttonColorHover: 'var(--background1-main);',
   buttonColorActive: 'var(--warning2);',
   buttonBorderActive: 'var(--warning2);'
@@ -103,6 +113,7 @@ const dangerStyle: StyleVariant = {
   buttonBorder: 'var(--danger1);',
   buttonBorderHover: 'var(--danger2);',
   buttonBackgroundHover: 'var(--danger2);',
+  buttonBackgroundActive: 'var(--danger2);',
   buttonColorHover: 'var(--background4-main);',
   buttonColorActive: 'var(--background2-main);',
   buttonBorderActive: 'var(--danger3);'
@@ -113,8 +124,9 @@ const warningEmptyStyle: StyleVariant = {
   buttonBorder: 'var(--warning1);',
   buttonBorderHover: 'var(--warning2);',
   buttonBackgroundHover: 'transparent;',
+  buttonBackgroundActive: 'transparent;',
   buttonColorHover: 'var(--warning2);',
-  buttonColorActive: 'var(--warning3);',
+  buttonColorActive: 'var(--warning1);',
   buttonBorderActive: 'var(--warning3);'
 }
 const dangerEmptyStyle: StyleVariant = {
@@ -123,6 +135,7 @@ const dangerEmptyStyle: StyleVariant = {
   buttonBorder: 'var(--danger1);',
   buttonBorderHover: 'var(--danger2);',
   buttonBackgroundHover: 'transparent;',
+  buttonBackgroundActive: 'transparent;',
   buttonColorHover: 'var(--danger2);',
   buttonColorActive: 'var(--danger3);',
   buttonBorderActive: 'var(--danger3);'
@@ -132,6 +145,7 @@ const defaultStyle: StyleVariant = {
   buttonColor: 'var(--background4-main)',
   buttonBackground: 'var(--background-gradient1)',
   buttonBackgroundHover: 'var(--background-gradient2)',
+  buttonBackgroundActive: 'var(--background-gradient2)',
   buttonColorHover: 'var(--background5-main)',
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background4-main)'
@@ -199,6 +213,7 @@ export const handleButtonColor: (
     buttonBorder: `${style.buttonBorder}`,
     buttonBorderHover: `${style.buttonBorderHover}`,
     buttonColorActive: `${style.buttonColorActive}`,
-    buttonBorderActive: `${style.buttonBorderActive}`
+    buttonBorderActive: `${style.buttonBorderActive}`,
+    buttonBackgroundActive: `${style.buttonBackgroundActive}`
   }
 }

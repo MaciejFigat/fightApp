@@ -37,7 +37,8 @@ export enum TextColor {
   WARNING = 'warning',
   DANGER = 'danger',
   PRIMARY = 'primary',
-  SECONDARY = 'secondary'
+  SECONDARY = 'secondary',
+  GOLD = 'gold'
 }
 
 export enum WinnerProjection {

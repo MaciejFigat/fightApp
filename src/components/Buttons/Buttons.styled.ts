@@ -47,7 +47,8 @@ export const ButtonBig = styled.button<{
   &:active {
     border-color: ${props =>
       handleButtonColor(props.variant).buttonBorderActive};
-    background: ${props => handleButtonColor(props.variant).buttonBorderActive};
+    background: ${props =>
+      handleButtonColor(props.variant).buttonBackgroundActive};
     color: ${props => handleButtonColor(props.variant).buttonColorActive};
     a {
       color: ${props => handleButtonColor(props.variant).buttonColorActive};

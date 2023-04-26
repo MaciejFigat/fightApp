@@ -45,6 +45,8 @@ const GlobalStyle = createGlobalStyle`
      --success1: #00bc8c; 
      --success2: #6FCD84; 
      --success3: #AADC81; 
+     --success4: #104002;
+
      --info1: #00A8D0;
      --info2: #00C5D5;
      --info3: #3AE1CD;
@@ -54,8 +56,12 @@ const GlobalStyle = createGlobalStyle`
      --danger3: #e76f51;
      --warning1: #ca6702;
      --warning2: #ee9b00; 
-     --warning3: #9F7800;
-    
+     --warning3: #FFE73B;
+     
+     
+     --gold1: #8E793E;
+     --gold2: #AD974F;
+
 
      --boxShadowColor: black;
      
@@ -95,6 +101,9 @@ const GlobalStyle = createGlobalStyle`
     --transition-one: 0.1s;
     --transition-two: 0.2s;
     --transition-three: 0.3s;
+
+           
+ 
 
    }
 `
