@@ -7,8 +7,8 @@ import {
 } from './DragColumns.styled'
 import BetSlipsColumn from './BetsColumn'
 import { DragDropContext, DropResult } from '@hello-pangea/dnd'
-import { useAppDispatch, useAppSelector } from '../../../app/reduxHooks'
-import { AppDispatch } from '../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
+import { AppDispatch } from '../../../reduxState/store'
 import { v4 } from 'uuid'
 import {
   handleReorder,
@@ -20,7 +20,7 @@ import Accordion from '../../../components/Accordion/Accordion'
 import { motion } from 'framer-motion'
 import { EventAllData } from '../../../interfaces'
 import { WinMethod, WinnerProjection } from '../../../consts'
-import { editUnconfirmedBet } from '../../../features/bets/betsSlice'
+import { editUnconfirmedBet } from '../../../reduxState/stateSlices/bets/betsSlice'
 
 import FightHeader from '../components/FightHeader'
 import AvailableBetsColumn from './AvailableBetsColumn'

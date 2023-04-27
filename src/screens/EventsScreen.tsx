@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react'
-import { useAppDispatch, useAppSelector } from '../app/reduxHooks'
+import { useAppDispatch, useAppSelector } from '../reduxState/reduxHooks'
 import {
   SportEventData,
   SportChosen,
   AvailableEventSimpleData
 } from '../interfaces'
-import { AppDispatch } from '../app/store'
+import { AppDispatch } from '../reduxState/store'
 import {
   editSportEvents,
   fetchMMAData
-} from '../features/sportEvents/eventsSlice'
+} from '../reduxState/stateSlices/sportEvents/eventsSlice'
 import { eventsBJJ } from '../mockData/mockBJJEvents'
 import { eventsMMA } from '../mockData/mockMMAEvents'
 import { eventsBoxing } from '../mockData/mockBoxingEvents'

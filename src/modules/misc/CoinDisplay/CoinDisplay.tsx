@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAppSelector } from '../../../app/reduxHooks'
+import { useAppSelector } from '../../../reduxState/reduxHooks'
 import { UserInfo } from '../../../interfaces'
 import { HighlightText } from '../../../styles/misc.styles'
 import { TextColor } from '../../../consts'

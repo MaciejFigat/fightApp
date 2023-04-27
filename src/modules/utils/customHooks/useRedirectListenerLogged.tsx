@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
-import { useAppSelector } from '../app/reduxHooks'
-import { UserInfo } from '../interfaces'
+import { useAppSelector } from '../../../reduxState/reduxHooks'
+import { UserInfo } from '../../../interfaces'
 import { useNavigate } from 'react-router-dom'
 
 // this is for redirecting  away from login or register when user is logged in

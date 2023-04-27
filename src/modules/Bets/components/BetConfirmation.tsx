@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import { BetData, ConfirmedBet } from '../../../interfaces'
-import { useAppDispatch, useAppSelector } from '../../../app/reduxHooks'
-import { AppDispatch } from '../../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
+import { AppDispatch } from '../../../reduxState/store'
 import {
   removeUnconfirmedBet,
   addConfirmedBet
-} from '../../../features/bets/betsSlice'
+} from '../../../reduxState/stateSlices/bets/betsSlice'
 import Accordion from '../../../components/Accordion/Accordion'
 import NumberInput from '../../../components/Inputs/NumberInput'
 import {

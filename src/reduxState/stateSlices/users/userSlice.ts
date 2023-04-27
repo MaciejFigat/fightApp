@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
-import { UserInfo } from '../../interfaces'
+import { UserInfo } from '../../../interfaces'
 
 interface UserLogin {
   email: string

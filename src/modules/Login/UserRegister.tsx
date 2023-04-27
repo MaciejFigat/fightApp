@@ -9,14 +9,13 @@ import {
   LoginWrapper,
   FormLabel
 } from './UserLogin.styled'
-import { useAppDispatch } from '../../app/reduxHooks'
-import { createUser } from '../../features/users/userSlice'
-
-import useRedirectLoggedListener from '../../hooks/useRedirectListenerLogged'
+import { useAppDispatch } from '../../reduxState/reduxHooks'
+import { createUser } from '../../reduxState/stateSlices/users/userSlice'
+import useRedirectLoggedListener from '../utils/customHooks/useRedirectListenerLogged'
 import { Link } from 'react-router-dom'
 import { ButtonBig, ButtonSmall } from '../../components/Buttons/Buttons.styled'
 import { ButtonVariants } from '../../consts'
-import { AppDispatch } from '../../app/store'
+import { AppDispatch } from '../../reduxState/store'
 interface UserRegisterProps {}
 
 const UserRegister: React.FC<UserRegisterProps> = () => {

@@ -5,7 +5,7 @@ import {
   BetListHeader,
   DraggableDiv,
   DroppableList
-} from './DragColumns.styled'
+} from '../main/DragColumns.styled'
 import BetConfirmation from '../components/BetConfirmation'
 import { useAppSelector } from '../../../reduxState/reduxHooks'
 import { TextColor, WinnerProjection } from '../../../consts'
@@ -16,12 +16,15 @@ import {
 } from '../../../styles/misc.styles'
 import BetRegistration from '../components/BetRegistration'
 
-interface BetsColumnProps {
+interface BetSlipsColumnProps {
   state: BetData[][]
   winnerChange: (id: string, winnerProjection: WinnerProjection) => void
 }
 
-const BetsColumn: React.FC<BetsColumnProps> = ({ state, winnerChange }) => {
+const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({
+  state,
+  winnerChange
+}) => {
   const betsUnconfirmed: BetData[] = useAppSelector(
     state => state.bets.betsUnconfirmed
   )
@@ -77,4 +80,4 @@ const BetsColumn: React.FC<BetsColumnProps> = ({ state, winnerChange }) => {
     </>
   )
 }
-export default BetsColumn
+export default BetSlipsColumn

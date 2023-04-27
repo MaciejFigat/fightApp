@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { BetData, ConfirmedBet } from '../../interfaces'
+import { BetData, ConfirmedBet } from '../../../interfaces'
 
 interface BetsState {
   betsUnconfirmed: BetData[]

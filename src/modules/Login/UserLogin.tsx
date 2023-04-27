@@ -1,11 +1,11 @@
 import React, { useState, ChangeEvent, MouseEvent, FormEvent } from 'react'
 import { Link } from 'react-router-dom'
-import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
+import { useAppDispatch, useAppSelector } from '../../reduxState/reduxHooks'
 import {
   logout,
   sendUserId,
   sendEmailToResetPassword
-} from '../../features/users/userSlice'
+} from '../../reduxState/stateSlices/users/userSlice'
 import {
   Wrapper,
   Form,
@@ -16,7 +16,7 @@ import {
   LoginWrapper,
   FormLabel
 } from './UserLogin.styled'
-import useRedirectLoggedListener from '../../hooks/useRedirectListenerLogged'
+import useRedirectLoggedListener from '../utils/customHooks/useRedirectListenerLogged'
 import { UserInfo } from '../../interfaces'
 import {
   ButtonBig,
@@ -24,7 +24,7 @@ import {
   ButtonSmall
 } from '../../components/Buttons/Buttons.styled'
 import { ButtonVariants } from '../../consts'
-import { AppDispatch } from '../../app/store'
+import { AppDispatch } from '../../reduxState/store'
 
 interface UserLoginProps {}
 

@@ -3,9 +3,9 @@ import { AvailableEventSimpleData, EventAllData } from '../../../interfaces'
 import {
   editCurrentEvent,
   fetchEvent
-} from '../../../features/sportEvents/eventsSlice'
-import { useAppDispatch, useAppSelector } from '../../../app/reduxHooks'
-import { AppDispatch } from '../../../app/store'
+} from '../../../reduxState/stateSlices/sportEvents/eventsSlice'
+import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
+import { AppDispatch } from '../../../reduxState/store'
 import { EventCardStyled } from './EventCard.styled'
 
 interface EventCardProps {

@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit'
-import userReducer from '../features/users/userSlice'
-import sportsReducer from '../features/sports/sportsSlice'
-import eventsReducer from '../features/sportEvents/eventsSlice'
-import betsReducer from '../features/bets/betsSlice'
+import userReducer from '../reduxState/stateSlices/users/userSlice'
+import sportsReducer from '../reduxState/stateSlices/sports/sportsSlice'
+import eventsReducer from '../reduxState/stateSlices/sportEvents/eventsSlice'
+import betsReducer from '../reduxState/stateSlices/bets/betsSlice'
 import { setupListeners } from '@reduxjs/toolkit/query'
 
 export const store = configureStore({

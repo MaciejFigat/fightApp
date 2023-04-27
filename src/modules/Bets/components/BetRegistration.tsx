@@ -1,5 +1,5 @@
 import React from 'react'
-import { useAppDispatch, useAppSelector } from '../../../app/reduxHooks'
+import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { ConfirmedBet } from '../../../interfaces'
 import { BetListHeader } from '../main/DragColumns.styled'
 import {
@@ -12,8 +12,8 @@ import {
 import { ButtonVariants, TextColor } from '../../../consts'
 import { ButtonSmall } from '../../../components/Buttons/Buttons.styled'
 import { BetDetails } from './BetConfirmation.styled'
-import { AppDispatch } from '../../../app/store'
-import { removeConfirmedBet } from '../../../features/bets/betsSlice'
+import { AppDispatch } from '../../../reduxState/store'
+import { removeConfirmedBet } from '../../../reduxState/stateSlices/bets/betsSlice'
 import BetRegisterConfirm from './BetRegisterConfirm'
 import BetFightDate from './BetFightDate'
 import BetVisualisation from './BetVisualisation'

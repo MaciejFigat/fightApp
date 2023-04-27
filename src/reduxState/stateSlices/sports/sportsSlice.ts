@@ -1,6 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { SportChosen } from '../../interfaces'
-import { Discipline } from '../../consts'
+import { SportChosen } from '../../../interfaces'
+import { Discipline } from '../../../consts'
 
 const mockSportsData: SportChosen[] = [
   {

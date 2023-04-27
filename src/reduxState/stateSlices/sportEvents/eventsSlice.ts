@@ -3,7 +3,7 @@ import {
   AvailableEventSimpleData,
   EventAllData,
   SportEventData
-} from '../../interfaces'
+} from '../../../interfaces'
 
 interface EventsState {
   sportEvents: SportEventData[]
