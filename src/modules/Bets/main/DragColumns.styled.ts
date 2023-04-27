@@ -37,7 +37,7 @@ export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
   height: 100%;
   margin-bottom: var(--gap-big);
   &:first-of-type {
-    margin-top: var(--gap-big);
+    /* margin-top: var(--gap-big); */
   }
   border: 1px solid var(--background-blur1);
   transition: 0.2s ease;
@@ -58,6 +58,7 @@ export const DroppableList = styled.div<{
   align-items: center;
   width: ${({ width }) => (width ? width : null)};
   min-height: 150px;
+
   padding-top: var(--padding-small);
   ${({ listEmpty }) =>
     listEmpty &&
@@ -81,18 +82,18 @@ export const DroppableList = styled.div<{
   /* border-radius: var(--border-radius1); */
   border-bottom-left-radius: var(--border-radius1);
   border-bottom-right-radius: var(--border-radius1);
+  /* background: red; */
+  padding-top: var(--gap-big);
 `
 export const HeaderWrapper = styled.div`
   width: 100%;
   max-width: 370px;
-
   padding: var(--padding-big-sides);
 `
 
 export const BetListHeader = styled.div`
   border-bottom: 1px solid var(--background-blur2);
   margin-top: var(--gap-big);
-  margin-bottom: var(--gap-big);
   padding: var(--padding-big);
   font-size: var(--font-size-big);
   border-top-left-radius: var(--border-radius1);
