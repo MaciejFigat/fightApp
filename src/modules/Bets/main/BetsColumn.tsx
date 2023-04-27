@@ -1,30 +1,27 @@
 import React from 'react'
 import { Droppable, Draggable } from '@hello-pangea/dnd'
-import { BetData } from '../../interfaces'
+import { BetData } from '../../../interfaces'
 import {
   BetListHeader,
   DraggableDiv,
   DroppableList
 } from './DragColumns.styled'
-import BetConfirmation from '../BetConfirmation/BetConfirmation'
-import { useAppSelector } from '../../app/reduxHooks'
-import { TextColor, WinnerProjection } from '../../consts'
+import BetConfirmation from '../components/BetConfirmation'
+import { useAppSelector } from '../../../app/reduxHooks'
+import { TextColor, WinnerProjection } from '../../../consts'
 import {
   HighlightText,
   HorizontalWrapper,
   RoundAccent
-} from '../../styles/misc.styles'
-import BetRegistration from '../BetConfirmation/BetRegistration'
+} from '../../../styles/misc.styles'
+import BetRegistration from '../components/BetRegistration'
 
-interface BetSlipsColumnProps {
+interface BetsColumnProps {
   state: BetData[][]
   winnerChange: (id: string, winnerProjection: WinnerProjection) => void
 }
 
-const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({
-  state,
-  winnerChange
-}) => {
+const BetsColumn: React.FC<BetsColumnProps> = ({ state, winnerChange }) => {
   const betsUnconfirmed: BetData[] = useAppSelector(
     state => state.bets.betsUnconfirmed
   )
@@ -80,4 +77,4 @@ const BetSlipsColumn: React.FC<BetSlipsColumnProps> = ({
     </>
   )
 }
-export default BetSlipsColumn
+export default BetsColumn

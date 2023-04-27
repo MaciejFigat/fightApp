@@ -2,9 +2,9 @@ import React from 'react'
 import {
   HighlightText,
   HorizontalWrapperSpaceBetween
-} from '../../styles/misc.styles'
-import { TextColor, WinMethod } from '../../consts'
-import { ConfirmedBet } from '../../interfaces'
+} from '../../../styles/misc.styles'
+import { TextColor, WinMethod } from '../../../consts'
+import { ConfirmedBet } from '../../../interfaces'
 
 interface BetProjectedWinnerProps {
   bet: ConfirmedBet

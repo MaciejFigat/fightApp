@@ -1,5 +1,5 @@
 import React from 'react'
-import UserLogin from '../components/UserLogin/UserLogin'
+import UserLogin from '../modules/Login/UserLogin'
 interface LoginScreenProps {}
 
 const LoginScreen: React.FC<LoginScreenProps> = () => {

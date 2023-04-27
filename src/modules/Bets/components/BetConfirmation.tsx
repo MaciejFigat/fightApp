@@ -1,34 +1,34 @@
 import React, { useState } from 'react'
-import { BetData, ConfirmedBet } from '../../interfaces'
-import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
-import { AppDispatch } from '../../app/store'
+import { BetData, ConfirmedBet } from '../../../interfaces'
+import { useAppDispatch, useAppSelector } from '../../../app/reduxHooks'
+import { AppDispatch } from '../../../app/store'
 import {
   removeUnconfirmedBet,
   addConfirmedBet
-} from '../../features/bets/betsSlice'
-import Accordion from '../Accordion/Accordion'
-import NumberInput from '../Inputs/NumberInput'
+} from '../../../features/bets/betsSlice'
+import Accordion from '../../../components/Accordion/Accordion'
+import NumberInput from '../../../components/Inputs/NumberInput'
 import {
   ColorText,
   DraggingIcon,
   HorizontalWrapperSpaceAround,
   HorizontalWrapperSpaceBetween,
   MarginRightBig
-} from '../../styles/misc.styles'
-import { ButtonSmall } from '../Buttons/Buttons.styled'
-import { ButtonVariants, TextColor, WinnerProjection } from '../../consts'
+} from '../../../styles/misc.styles'
+import { ButtonSmall } from '../../../components/Buttons/Buttons.styled'
+import { ButtonVariants, TextColor, WinnerProjection } from '../../../consts'
 import BetHeader from './BetHeader'
 import {
   dateFormatter,
   payoutFormatter
-} from '../helperFunctions/helperFunction'
+} from '../../../components/helperFunctions/helperFunction'
 import {
   BetDetails,
   BlurredFatText,
   BlurredSkinnyText
 } from './BetConfirmation.styled'
-import AccordionArrow from '../Accordion/AccordionArrow'
-import BetBadges from './BetBadges'
+import AccordionArrow from '../../../components/Accordion/AccordionArrow'
+import BetBadges from '../../BetConfirmation/BetBadges'
 
 interface BetConfirmationProps {
   // index for Accordion component

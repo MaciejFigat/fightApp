@@ -3,13 +3,13 @@ import {
   ColorText,
   HighlightText,
   HorizontalWrapperSpaceBetween
-} from '../../styles/misc.styles'
+} from '../../../styles/misc.styles'
 import {
   BetVisualisationLeft,
   BetVisualisationMiddle,
   BetVisualisationRight
 } from './BetConfirmation.styled'
-import { TextColor } from '../../consts'
+import { TextColor } from '../../../consts'
 
 interface BetVisualisationProps {
   amountBet: number

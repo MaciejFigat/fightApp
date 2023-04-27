@@ -1,10 +1,10 @@
 import { DraggableLocation } from '@hello-pangea/dnd'
-import { BetData } from '../../interfaces'
-import { AppDispatch } from '../../app/store'
+import { BetData } from '../../../interfaces'
+import { AppDispatch } from '../../../app/store'
 import {
   addUnconfirmedBet,
   removeUnconfirmedBet
-} from '../../features/bets/betsSlice'
+} from '../../../features/bets/betsSlice'
 
 type ListType<T> = T[] | readonly T[]
 

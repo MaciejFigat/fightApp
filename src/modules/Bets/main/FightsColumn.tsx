@@ -5,28 +5,29 @@ import {
   MainListHeader,
   SideColumn
 } from './DragColumns.styled'
-import BetSlipsColumn from './BetSlipsColumn'
+import BetSlipsColumn from './BetsColumn'
 import { DragDropContext, DropResult } from '@hello-pangea/dnd'
-import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
-import { AppDispatch } from '../../app/store'
+import { useAppDispatch, useAppSelector } from '../../../app/reduxHooks'
+import { AppDispatch } from '../../../app/store'
 import { v4 } from 'uuid'
 import {
   handleReorder,
   handleBetDroppedOutside,
   handleMove
-} from './dragColumnsFunctions'
-import { BetData } from '../../interfaces'
-import Accordion from '../Accordion/Accordion'
+} from '../functions/dragColumnsFunctions'
+import { BetData } from '../../../interfaces'
+import Accordion from '../../../components/Accordion/Accordion'
 import { motion } from 'framer-motion'
-import { EventAllData } from '../../interfaces'
-import { WinMethod, WinnerProjection } from '../../consts'
-import { editUnconfirmedBet } from '../../features/bets/betsSlice'
-import FightsColumn from './FightColumn'
-import FightHeader from './FightHeader'
+import { EventAllData } from '../../../interfaces'
+import { WinMethod, WinnerProjection } from '../../../consts'
+import { editUnconfirmedBet } from '../../../features/bets/betsSlice'
 
-interface DragColumnsProps {}
+import FightHeader from '../components/FightHeader'
+import AvailableBetsColumn from './AvailableBetsColumn'
 
-const DragColumns: React.FC<DragColumnsProps> = () => {
+interface FightsColumnProps {}
+
+const FightsColumn: React.FC<FightsColumnProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
 
   const betsUnconfirmed: BetData[] = useAppSelector(
@@ -229,7 +230,10 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
                   expanded={expandedFight}
                   setExpanded={setExpandedFight}
                 >
-                  <FightsColumn winnerChange={winnerChange} state={state} />
+                  <AvailableBetsColumn
+                    winnerChange={winnerChange}
+                    state={state}
+                  />
                 </Accordion>
               ))
             : accordionIds.map(i => (
@@ -239,7 +243,10 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
                   expanded={expandedFight}
                   setExpanded={setExpandedFight}
                 >
-                  <FightsColumn winnerChange={winnerChange} state={state} />
+                  <AvailableBetsColumn
+                    winnerChange={winnerChange}
+                    state={state}
+                  />
                 </Accordion>
               ))}
         </MainColumn>
@@ -250,4 +257,4 @@ const DragColumns: React.FC<DragColumnsProps> = () => {
     </DragColContainer>
   )
 }
-export default DragColumns
+export default FightsColumn

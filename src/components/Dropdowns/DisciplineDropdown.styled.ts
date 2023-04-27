@@ -1,25 +1,26 @@
 import styled from 'styled-components'
 
 export const DropDownContainer = styled.div`
-  position: relative; // todo
+  position: relative;
   min-width: min-content;
   margin: 0 auto;
 `
 
-export const ProjectDropDownWrapper = styled.div`
+export const ProjectDropDownWrapper = styled.button`
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border: 1px solid var(--background-blur2);
   height: 34px;
-  padding: 0.2rem 0.4rem 0.2rem 0.5rem;
+  padding: var(--gap-medium);
   font-weight: 800;
   transition: all 0.3s ease-out;
+  background: var(--background1-main);
+  color: var(--background4-main);
   &:hover {
     color: var(--background5-main);
   }
-
   width: 130px;
   gap: 0.5rem;
   font-size: 0.75rem;

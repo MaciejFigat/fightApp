@@ -2,11 +2,11 @@ import React from 'react'
 import {
   BoldText,
   HorizontalWrapperSpaceBetween
-} from '../../styles/misc.styles'
-import { HeaderWrapper } from '../DragColumns/DragColumns.styled'
-import { WinnerProjection } from '../../consts'
-import { FighterProfile } from '../../interfaces'
-import BetBadges from './BetBadges'
+} from '../../../styles/misc.styles'
+import { HeaderWrapper } from '../main/DragColumns.styled'
+import { WinnerProjection } from '../../../consts'
+import { FighterProfile } from '../../../interfaces'
+import BetBadges from '../../BetConfirmation/BetBadges'
 
 interface BetHeaderProps {
   betMoneyline: number | undefined

@@ -1,5 +1,5 @@
 import React from 'react'
-import UserRegister from '../components/UserLogin/UserRegister'
+import UserRegister from '../modules/Login/UserRegister'
 
 interface RegisterScreenProps {}
 

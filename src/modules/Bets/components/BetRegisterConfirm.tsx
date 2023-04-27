@@ -2,12 +2,12 @@ import React, { useState } from 'react'
 import {
   HighlightText,
   HorizontalWrapperSpaceBetween
-} from '../../styles/misc.styles'
-import StaggerChildrenWrapper from '../utils/AnimationWrappers/StaggerChildrenWrapper'
+} from '../../../styles/misc.styles'
+import StaggerChildrenWrapper from '../../../components/utils/AnimationWrappers/StaggerChildrenWrapper'
 import { motion } from 'framer-motion'
-import { ButtonSmall } from '../Buttons/Buttons.styled'
-import { ButtonVariants, TextColor } from '../../consts'
-import AnimatedSlider from '../AnimatedSlider/AnimatedSlider'
+import { ButtonSmall } from '../../../components/Buttons/Buttons.styled'
+import { ButtonVariants, TextColor } from '../../../consts'
+import AnimatedSlider from '../../../components/AnimatedSlider/AnimatedSlider'
 
 interface BetRegisterConfirmProps {}
 

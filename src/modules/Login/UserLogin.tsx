@@ -18,7 +18,11 @@ import {
 } from './UserLogin.styled'
 import useRedirectLoggedListener from '../../hooks/useRedirectListenerLogged'
 import { UserInfo } from '../../interfaces'
-import { ButtonBig, ButtonMedium, ButtonSmall } from '../Buttons/Buttons.styled'
+import {
+  ButtonBig,
+  ButtonMedium,
+  ButtonSmall
+} from '../../components/Buttons/Buttons.styled'
 import { ButtonVariants } from '../../consts'
 import { AppDispatch } from '../../app/store'
 

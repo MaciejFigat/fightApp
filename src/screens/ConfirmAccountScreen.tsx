@@ -1,5 +1,5 @@
 import React from 'react'
-import ConfirmAccount from '../components/UserLogin/ConfirmAccount'
+import ConfirmAccount from '../modules/Login/ConfirmAccount'
 
 interface ConfirmAccountScreenProps {}
 

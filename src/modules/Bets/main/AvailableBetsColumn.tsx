@@ -1,17 +1,20 @@
 import React from 'react'
 import { Draggable, Droppable } from '@hello-pangea/dnd'
-import { BetData } from '../../interfaces'
+import { BetData } from '../../../interfaces'
 import { DraggableDiv, DroppableList } from './DragColumns.styled'
-import BetHeader from '../BetConfirmation/BetHeader'
-import { WinnerProjection } from '../../consts'
-import { DraggingIcon } from '../../styles/misc.styles'
+import BetHeader from '../components/BetHeader'
+import { WinnerProjection } from '../../../consts'
+import { DraggingIcon } from '../../../styles/misc.styles'
 
-interface FightColumnProps {
+interface AvailableBetsColumnProps {
   state: BetData[][]
   winnerChange: (id: string, winnerProjection: WinnerProjection) => void
 }
 
-const FightColumn: React.FC<FightColumnProps> = ({ state, winnerChange }) => {
+const AvailableBetsColumn: React.FC<AvailableBetsColumnProps> = ({
+  state,
+  winnerChange
+}) => {
   return (
     <div>
       <Droppable droppableId={`0`}>
@@ -61,4 +64,4 @@ const FightColumn: React.FC<FightColumnProps> = ({ state, winnerChange }) => {
     </div>
   )
 }
-export default FightColumn
+export default AvailableBetsColumn

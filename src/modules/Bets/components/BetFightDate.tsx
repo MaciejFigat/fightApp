@@ -1,7 +1,7 @@
 import React from 'react'
-import { HorizontalWrapperSpaceBetween } from '../../styles/misc.styles'
+import { HorizontalWrapperSpaceBetween } from '../../../styles/misc.styles'
 import { BlurredFatText, BlurredSkinnyText } from './BetConfirmation.styled'
-import { dateFormatter } from '../helperFunctions/helperFunction'
+import { dateFormatter } from '../../../components/helperFunctions/helperFunction'
 
 interface BetFightDateProps {
   fightName: string

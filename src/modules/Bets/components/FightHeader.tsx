@@ -1,8 +1,8 @@
 import React from 'react'
-import { FighterProfile } from '../../interfaces'
-import { FightListHeader } from './DragColumns.styled'
-import { HorizontalWrapperSpaceBetween } from '../../styles/misc.styles'
-import AccordionArrow from '../Accordion/AccordionArrow'
+import { FighterProfile } from '../../../interfaces'
+import { FightListHeader } from '../main/DragColumns.styled'
+import { HorizontalWrapperSpaceBetween } from '../../../styles/misc.styles'
+import AccordionArrow from '../../../components/Accordion/AccordionArrow'
 
 interface FightHeaderProps {
   Fighters?: FighterProfile[]

@@ -14,7 +14,7 @@ import { createUser } from '../../features/users/userSlice'
 
 import useRedirectLoggedListener from '../../hooks/useRedirectListenerLogged'
 import { Link } from 'react-router-dom'
-import { ButtonBig, ButtonSmall } from '../Buttons/Buttons.styled'
+import { ButtonBig, ButtonSmall } from '../../components/Buttons/Buttons.styled'
 import { ButtonVariants } from '../../consts'
 import { AppDispatch } from '../../app/store'
 interface UserRegisterProps {}
