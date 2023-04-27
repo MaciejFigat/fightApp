@@ -3,7 +3,7 @@ import LoginNavigationLinks from '../modules/Login/LoginNavigationLinks/LoginNav
 import CoinDisplay from '../modules/misc/CoinDisplay/CoinDisplay'
 import DisciplineDropdown from '../modules/misc/Dropdowns/DisciplineDropdown'
 import EventsScreen from './EventsScreen'
-import DragColumns from '../modules/Bets/main/FightsColumn'
+import FightsAndBets from '../modules/Bets/main/FightsAndBets'
 import HomePageLayout from '../layout/HomePageLayout'
 
 interface HomePageScreenProps {}
@@ -15,7 +15,7 @@ const HomePageScreen: React.FC<HomePageScreenProps> = () => {
       navigationMiddle={<CoinDisplay />}
       navigationLeft={<DisciplineDropdown />}
       leftColumn={<EventsScreen />}
-      rightColumn={<DragColumns />}
+      rightColumn={<FightsAndBets />}
     />
   )
 }
