@@ -11,6 +11,7 @@ export const ProjectDropDownWrapper = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
   border: 1px solid var(--background-blur2);
   height: 34px;
   padding: var(--gap-medium);
@@ -38,7 +39,7 @@ export const DropDownListContainer = styled.div`
   display: grid;
   place-items: center;
   z-index: 10;
-  border: 1px solid var(--background-blur1);
+  border: 1px solid var(--background-blur2);
   padding: 0.75rem;
   width: 166px;
   min-width: fit-content;

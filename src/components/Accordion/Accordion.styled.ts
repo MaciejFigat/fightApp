@@ -23,7 +23,8 @@ export const ArrowSpan = styled.span<{ $animateOn: boolean }>`
   margin: -3px;
   animation: ${({ $animateOn }) => ($animateOn ? animationCSS : 'none')};
 `
-export const ArrowDiv = styled.div`
+export const ArrowButton = styled.button`
+  border: none;
   display: grid;
   place-items: center;
   cursor: pointer;

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ArrowDiv, ArrowSpan } from './Accordion.styled'
+import { ArrowButton, ArrowSpan } from './Accordion.styled'
 
 interface AccordionArrowProps {
   animateOn: boolean
@@ -7,11 +7,11 @@ interface AccordionArrowProps {
 
 const AccordionArrow: React.FC<AccordionArrowProps> = ({ animateOn }) => {
   return (
-    <ArrowDiv>
+    <ArrowButton>
       <ArrowSpan $animateOn={animateOn}></ArrowSpan>
       <ArrowSpan $animateOn={animateOn}></ArrowSpan>
       <ArrowSpan $animateOn={animateOn}></ArrowSpan>
-    </ArrowDiv>
+    </ArrowButton>
   )
 }
 export default AccordionArrow
