@@ -14,11 +14,11 @@ import { eventsBJJ } from '../mockData/mockBJJEvents'
 import { eventsMMA } from '../mockData/mockMMAEvents'
 import { eventsBoxing } from '../mockData/mockBoxingEvents'
 import { eventsSubmission } from '../mockData/mockSubmissionEvents'
-import EventCard from '../components/EventsDisplay/EventCard'
+import EventCard from '../modules/misc/EventsDisplay/EventCard'
 import {
   EventCardContainer,
   EventCardStyled
-} from '../components/EventsDisplay/EventCard.styled'
+} from '../modules/misc/EventsDisplay/EventCard.styled'
 
 interface EventsScreenProps {}
 

@@ -10,8 +10,6 @@ const SportCard: React.FC<SportCardProps> = ({ data }) => {
   return (
     <SportCardWrapper>
       <b>{data.name}</b>
-      {/* <p>{data.organization}</p> */}
-      {/* <p>{data.rules}</p> */}
     </SportCardWrapper>
   )
 }

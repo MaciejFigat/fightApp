@@ -21,14 +21,14 @@ import BetHeader from './BetHeader'
 import {
   dateFormatter,
   payoutFormatter
-} from '../../../components/helperFunctions/helperFunction'
+} from '../../utils/helperFunctions/helperFunction'
 import {
   BetDetails,
   BlurredFatText,
   BlurredSkinnyText
 } from './BetConfirmation.styled'
 import AccordionArrow from '../../../components/Accordion/AccordionArrow'
-import BetBadges from '../../BetConfirmation/BetBadges'
+import BetBadges from './BetBadges'
 
 interface BetConfirmationProps {
   // index for Accordion component

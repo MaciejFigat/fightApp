@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
-import { TextColor, WinnerProjection } from '../../consts'
-import { FighterProfile } from '../../interfaces'
+import { TextColor, WinnerProjection } from '../../../consts'
+import { FighterProfile } from '../../../interfaces'
 import {
   ColorBadge,
   ColorBadgeEmpty,
   ColorBadgeLong,
   HorizontalWrapperEnd
-} from '../../styles/misc.styles'
+} from '../../../styles/misc.styles'
 
 interface BetBadgesProps {
   betMoneyline: number | undefined

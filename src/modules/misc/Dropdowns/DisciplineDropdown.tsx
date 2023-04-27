@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
-import { AppDispatch } from '../../app/store'
-import { SportChosen } from '../../interfaces'
+import { useAppDispatch, useAppSelector } from '../../../app/reduxHooks'
+import { AppDispatch } from '../../../app/store'
+import { SportChosen } from '../../../interfaces'
 import {
   DropDownContainer,
   DropDownListContainer,
   ProjectDropDownWrapper
 } from './DisciplineDropdown.styled'
-import { editDisciplineChosen } from '../../features/sports/sportsSlice'
-import SportCard from '../SportCard/SportCard'
+import { editDisciplineChosen } from '../../../features/sports/sportsSlice'
+import SportCard from '../../../components/SportCard/SportCard'
 
 interface DisciplineDropdownProps {}
 

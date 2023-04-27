@@ -3,7 +3,7 @@ import {
   HighlightText,
   HorizontalWrapperSpaceBetween
 } from '../../../styles/misc.styles'
-import StaggerChildrenWrapper from '../../../components/utils/AnimationWrappers/StaggerChildrenWrapper'
+import StaggerChildrenWrapper from '../../misc/AnimationWrappers/StaggerChildrenWrapper'
 import { motion } from 'framer-motion'
 import { ButtonSmall } from '../../../components/Buttons/Buttons.styled'
 import { ButtonVariants, TextColor } from '../../../consts'

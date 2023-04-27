@@ -1,11 +1,11 @@
 import React from 'react'
-import { AvailableEventSimpleData, EventAllData } from '../../interfaces'
+import { AvailableEventSimpleData, EventAllData } from '../../../interfaces'
 import {
   editCurrentEvent,
   fetchEvent
-} from '../../features/sportEvents/eventsSlice'
-import { useAppDispatch, useAppSelector } from '../../app/reduxHooks'
-import { AppDispatch } from '../../app/store'
+} from '../../../features/sportEvents/eventsSlice'
+import { useAppDispatch, useAppSelector } from '../../../app/reduxHooks'
+import { AppDispatch } from '../../../app/store'
 import { EventCardStyled } from './EventCard.styled'
 
 interface EventCardProps {

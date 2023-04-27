@@ -6,7 +6,7 @@ import {
 import { HeaderWrapper } from '../main/DragColumns.styled'
 import { WinnerProjection } from '../../../consts'
 import { FighterProfile } from '../../../interfaces'
-import BetBadges from '../../BetConfirmation/BetBadges'
+import BetBadges from './BetBadges'
 
 interface BetHeaderProps {
   betMoneyline: number | undefined
