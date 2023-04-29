@@ -98,7 +98,7 @@ export const ButtonSmallGradient = styled.button<{
     );
   /* background-position: 0% 50%, 100% 50%; */
   background-position: 0 100%, 100% 100%;
-  background-size: 50% 10%;
+  background-size: 62% 10%;
   background-repeat: no-repeat;
 
   transition: background-size 0.4s, background-position 0.4s;
@@ -110,7 +110,7 @@ export const ButtonSmallGradient = styled.button<{
     }
   }
   &:active {
-    background-size: calc(50% + 0.6em) 100%;
+    background-size: calc(50% + 1.1em) 100%;
     --p: 100%;
   }
   a {
