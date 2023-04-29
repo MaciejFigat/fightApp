@@ -26,7 +26,7 @@ const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = () => {
               exit={{ opacity: 0 }}
             >
               <ButtonSmall
-                variant={ButtonVariants.successEmpty}
+                variant={ButtonVariants.SUCCESS_EMPTY}
                 // onClick={() => handleRegisterBet()}
               >
                 Register bet

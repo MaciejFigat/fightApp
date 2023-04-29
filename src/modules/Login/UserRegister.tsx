@@ -74,7 +74,7 @@ const UserRegister: React.FC<UserRegisterProps> = () => {
             />
             <ButtonBig
               type='submit'
-              variant={ButtonVariants.successEmpty}
+              variant={ButtonVariants.SECONDARY_EMPTY}
               data-testid='create-account-button'
             >
               Create account
@@ -82,7 +82,7 @@ const UserRegister: React.FC<UserRegisterProps> = () => {
           </Form>
           <LoginTextWrapper>
             <Title>
-              <ButtonSmall variant={ButtonVariants.infoEmpty}>
+              <ButtonSmall variant={ButtonVariants.INFO_EMPTY}>
                 <Link to='/login'>Back to login screen</Link>{' '}
               </ButtonSmall>
             </Title>

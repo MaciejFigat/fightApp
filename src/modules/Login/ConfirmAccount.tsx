@@ -57,7 +57,7 @@ const ConfirmAccount: React.FC<ConfirmAccountProps> = () => {
               {timeoutSeconds !== 1 && 'seconds'}{' '}
               {timeoutSeconds === 1 && 'second'}
             </h4>
-            <ButtonBig variant={ButtonVariants.successEmpty}>
+            <ButtonBig variant={ButtonVariants.SUCCESS_EMPTY}>
               Log in now or wait for redirect
             </ButtonBig>
           </>

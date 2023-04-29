@@ -13,38 +13,38 @@ interface StyleVariant {
 }
 
 const primaryStyle: StyleVariant = {
-  buttonColor: 'var(--background1-main)',
+  buttonColor: 'var(--background4-main)',
   buttonBackground: 'var(--background4-main)',
-  buttonBackgroundHover: 'var(--background-blur2)',
-  buttonBackgroundActive: 'var(--background-blur2)',
+  buttonBackgroundHover: 'var(--background1-secondary)',
+  buttonBackgroundActive: 'var(--background2-secondary)',
   buttonColorHover: 'var(--background1-secondary)',
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background3-main)'
 }
 const emptyPrimaryStyle: StyleVariant = {
   buttonColor: 'var(--background4-main)',
-  buttonBackground: 'var(--background-gradient1)',
-  buttonBackgroundHover: 'var(--background-gradient2)',
-  buttonBackgroundActive: 'var(--background-gradient2)',
+  buttonBackground: 'var(--background-gradient2)',
+  buttonBackgroundHover: 'var(--background3-secondary)',
+  buttonBackgroundActive: 'var(--background4-secondary)',
   buttonColorHover: 'var(--background5-main)',
-  buttonColorActive: 'var(--background3-main)',
-  buttonBorderActive: 'var(--background4-main)'
+  buttonColorActive: 'var(--background2-secondary)',
+  buttonBorderActive: 'var(--background2-secondary)'
 }
 
 const secondaryStyle: StyleVariant = {
   buttonColor: 'var(--background4-main)',
   buttonBackground: 'var(--background-blur1)',
-  buttonBackgroundHover: 'var(--background1-main)',
-  buttonBackgroundActive: 'var(--background1-main)',
+  buttonBackgroundHover: 'var(--success1)',
+  buttonBackgroundActive: 'var(--success2)',
   buttonColorHover: 'var(--background1-secondary)',
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background3-main)'
 }
 const emptySecondaryStyle: StyleVariant = {
   buttonColor: 'var(--background4-main)',
-  buttonBackground: 'var(--background-blur1)',
-  buttonBackgroundHover: 'var(--background1-main)',
-  buttonBackgroundActive: 'var(--background1-main)',
+  buttonBackground: 'var(--background-gradient2)',
+  buttonBackgroundHover: 'var(--gold1)',
+  buttonBackgroundActive: 'var(--gold2)',
   buttonColorHover: 'var(--background3-secondary)',
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background3-main)'
@@ -143,9 +143,9 @@ const dangerEmptyStyle: StyleVariant = {
 
 const defaultStyle: StyleVariant = {
   buttonColor: 'var(--background4-main)',
-  buttonBackground: 'var(--background-gradient1)',
-  buttonBackgroundHover: 'var(--background-gradient2)',
-  buttonBackgroundActive: 'var(--background-gradient2)',
+  buttonBackground: 'transparent',
+  buttonBackgroundHover: 'transparent',
+  buttonBackgroundActive: 'transparent',
   buttonColorHover: 'var(--background5-main)',
   buttonColorActive: 'var(--background3-main)',
   buttonBorderActive: 'var(--background4-main)'
@@ -156,48 +156,48 @@ export const handleButtonColor: (
 ) => StyleVariant = props => {
   let style
   switch (props) {
-    case ButtonVariants.primary:
+    case ButtonVariants.PRIMARY:
       style = primaryStyle
       break
 
-    case ButtonVariants.primaryEmpty:
+    case ButtonVariants.PRIMARY_EMPTY:
       style = emptyPrimaryStyle
       break
 
-    case ButtonVariants.secondary:
+    case ButtonVariants.SECONDARY:
       style = secondaryStyle
       break
 
-    case ButtonVariants.secondaryEmpty:
+    case ButtonVariants.SECONDARY_EMPTY:
       style = emptySecondaryStyle
       break
 
-    case ButtonVariants.success:
+    case ButtonVariants.SUCCESS:
       style = successStyle
       break
 
-    case ButtonVariants.successEmpty:
+    case ButtonVariants.SUCCESS_EMPTY:
       style = successEmptyStyle
       break
 
-    case ButtonVariants.info:
+    case ButtonVariants.INFO:
       style = infoStyle
       break
 
-    case ButtonVariants.infoEmpty:
+    case ButtonVariants.INFO_EMPTY:
       style = infoEmptyStyle
       break
 
-    case ButtonVariants.warning:
+    case ButtonVariants.WARNING:
       style = warningStyle
       break
-    case ButtonVariants.warningEmpty:
+    case ButtonVariants.WARNING_EMPTY:
       style = warningEmptyStyle
       break
-    case ButtonVariants.danger:
+    case ButtonVariants.DANGER:
       style = dangerStyle
       break
-    case ButtonVariants.dangerEmpty:
+    case ButtonVariants.DANGER_EMPTY:
       style = dangerEmptyStyle
       break
 

@@ -159,13 +159,13 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
         </HorizontalWrapperSpaceBetween>
         <HorizontalWrapperSpaceAround>
           <ButtonSmall
-            variant={ButtonVariants.successEmpty}
+            variant={ButtonVariants.SUCCESS_EMPTY}
             onClick={() => handleConfirm()}
           >
             Confirm
           </ButtonSmall>
           <ButtonSmall
-            variant={ButtonVariants.dangerEmpty}
+            variant={ButtonVariants.DANGER_EMPTY}
             onClick={() => handleRemove()}
           >
             Remove

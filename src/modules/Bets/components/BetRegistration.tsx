@@ -56,7 +56,7 @@ const BetRegistration: React.FC<BetRegistrationProps> = () => {
 
               <HorizontalWrapperSpaceBetween>
                 <ButtonSmall
-                  variant={ButtonVariants.dangerEmpty}
+                  variant={ButtonVariants.DANGER_EMPTY}
                   onClick={() => handleRemove(bet.id)}
                 >
                   Remove

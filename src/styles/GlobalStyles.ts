@@ -102,8 +102,41 @@ const GlobalStyle = createGlobalStyle`
     --transition-two: 0.2s;
     --transition-three: 0.3s;
 
-           
- 
+    --background-gradient1: linear-gradient(
+      120deg,
+      var(--background-blur3) 0%,
+      transparent 30%,
+      transparent 70%,
+      var(--background-blur2)
+    );
+  --background-gradient3: linear-gradient(
+      120deg,
+      var(--background-blur1) 0%,
+      var(--background1-main) 50%,
+      var(--background1-main) 80%,
+      var(--background-blur1)
+    );
+  --background-gradient4: linear-gradient(
+      120deg,
+      var(--background-blur1) 0%,
+      transparent 50%,
+      transparent 80%,
+      var(--background-blur1)
+    );
+
+    
+    --background-gradient2: linear-gradient(to bottom, #50abdf, #1f78aa);
+
+
+    @media (max-width: 1220px) {
+   
+  } 
+    @media (max-width: 1040px) {
+    /* display: none; */
+  }       
+  @media (max-width: 1020px) {
+    /* display: none; */
+  }
 
    }
 `

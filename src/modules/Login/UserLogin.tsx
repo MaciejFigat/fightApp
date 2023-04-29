@@ -86,7 +86,7 @@ const UserLogin: React.FC<UserLoginProps> = () => {
 
             <ButtonBig
               type='submit'
-              variant={ButtonVariants.successEmpty}
+              variant={ButtonVariants.SUCCESS_EMPTY}
               data-testid='login-account-button'
             >
               Log in
@@ -94,19 +94,19 @@ const UserLogin: React.FC<UserLoginProps> = () => {
           </Form>
           {Object.keys(userInfoRedux).length > 0 && (
             <ButtonMedium
-              variant={ButtonVariants.warningEmpty}
+              variant={ButtonVariants.WARNING_EMPTY}
               onClick={logoutHandler}
             >
               Log out
             </ButtonMedium>
           )}
           <LoginTextWrapper>
-            <ButtonBig variant={ButtonVariants.infoEmpty}>
+            <ButtonBig variant={ButtonVariants.INFO_EMPTY}>
               <Link to='/register'>Register</Link>
             </ButtonBig>
 
             <Title>Enter email and click to reset password</Title>
-            <ButtonSmall variant={ButtonVariants.warningEmpty}>
+            <ButtonSmall variant={ButtonVariants.WARNING_EMPTY}>
               <div onClick={resetPasswordHandler}>&nbsp;reset password</div>
             </ButtonSmall>
           </LoginTextWrapper>

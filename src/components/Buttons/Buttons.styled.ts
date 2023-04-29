@@ -29,14 +29,14 @@ export const ButtonBig = styled.button<{
 
   a {
     text-decoration: none;
-    transition: all 0.3s ease-out;
+
     color: ${props => handleButtonColor(props.variant).buttonColor};
   }
 
   &:hover {
     background: ${props =>
       handleButtonColor(props.variant).buttonBackgroundHover};
-    transition: all 0.3s ease-out;
+
     border-color: ${props =>
       handleButtonColor(props.variant).buttonBorderHover};
     color: ${props => handleButtonColor(props.variant).buttonColorHover};
@@ -67,4 +67,55 @@ export const ButtonSmall = styled(ButtonBig)`
 export const ButtonVerySmall = styled(ButtonBig)`
   padding: 0.275rem 0.55rem;
   font-size: 0.85rem;
+`
+export const ButtonSmallGradient = styled.button<{
+  variant: ButtonVariants
+}>`
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-medium);
+  justify-content: center;
+  cursor: pointer;
+  padding: 0.65rem 1.25rem 0.6rem;
+  color: ${props => handleButtonColor(props.variant).buttonColor};
+  border: 1px solid var(--background-blur1);
+  border-radius: var(--border-radius0);
+  --p: 10%;
+  background: linear-gradient(
+      ${props => handleButtonColor(props.variant).buttonBackgroundHover} 0 0
+    )
+    left / var(--p, 0%) no-repeat;
+
+  background-image: conic-gradient(
+      from -135deg at 100% 50%,
+      ${props => handleButtonColor(props.variant).buttonBackgroundHover} 90deg,
+      ${props => handleButtonColor(props.variant).buttonBackgroundActive} 0
+    ),
+    conic-gradient(
+      from -135deg at 1.2em 50%,
+      ${props => handleButtonColor(props.variant).buttonBackgroundHover} 90deg,
+      ${props => handleButtonColor(props.variant).buttonBackgroundActive} 0
+    );
+  /* background-position: 0% 50%, 100% 50%; */
+  background-position: 0 100%, 100% 100%;
+  background-size: 50% 10%;
+  background-repeat: no-repeat;
+
+  transition: background-size 0.4s, background-position 0.4s;
+
+  &:hover {
+    background-position: 0% 50%, 100% 50%;
+    a {
+      color: ${props => handleButtonColor(props.variant).buttonColorHover};
+    }
+  }
+  &:active {
+    background-size: calc(50% + 0.6em) 100%;
+    --p: 100%;
+  }
+  a {
+    text-decoration: none;
+
+    color: ${props => handleButtonColor(props.variant).buttonColor};
+  }
 `

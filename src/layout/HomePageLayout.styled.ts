@@ -10,6 +10,9 @@ export const HeroGridWrapper = styled.div`
 
   margin: 0px;
   overflow: hidden;
+  @media (max-width: 1040px) {
+    overflow: visible;
+  }
 `
 export const HeroNavigation = styled.div`
   display: flex;
@@ -51,6 +54,11 @@ export const HeroMainArticle = styled.div`
   grid-template-rows: auto 70px;
 
   max-height: 70vh;
+
+  @media (max-width: 1040px) {
+    grid-template-columns: 1fr;
+    /* grid-template-rows: auto; */
+  }
 `
 
 export const HeroArticleSection = styled.div`
@@ -93,4 +101,16 @@ export const HeroArticleBottomBigSection = styled(HeroArticleSection)`
 export const HeroArticleBottomSmallSection = styled(HeroArticleSection)`
   border-left: 1px solid var(--background-blur2);
   border-bottom: 1px solid var(--background-blur2);
+`
+export const FooterMobile = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: var(--gap-small);
+  /* border-top: 1px solid var(--background-blur2); */
+  /* background: var(--background-gradient2); */
+
+  position: sticky;
+  bottom: 0;
+  height: 62px;
+  padding: 0 var(--gap-small);
 `

@@ -11,7 +11,7 @@ export const ProjectDropDownWrapper = styled.button`
   flex-direction: row;
   justify-content: center;
   align-items: center;
-
+  cursor: pointer;
   border: 1px solid var(--background-blur2);
   height: 34px;
   padding: var(--gap-medium);

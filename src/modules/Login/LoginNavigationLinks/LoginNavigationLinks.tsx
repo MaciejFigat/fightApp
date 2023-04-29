@@ -8,10 +8,10 @@ interface LoginNavigationLinksProps {}
 const LoginNavigationLinks: React.FC<LoginNavigationLinksProps> = () => {
   return (
     <>
-      <ButtonSmall variant={ButtonVariants.info}>
+      <ButtonSmall variant={ButtonVariants.INFO}>
         <Link to='/login'>Login</Link>
       </ButtonSmall>
-      <ButtonSmall variant={ButtonVariants.success}>
+      <ButtonSmall variant={ButtonVariants.SUCCESS}>
         <Link to='/register'>Register</Link>
       </ButtonSmall>
     </>

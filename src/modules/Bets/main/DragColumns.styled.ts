@@ -57,6 +57,9 @@ export const DroppableList = styled.div<{
   flex-direction: column;
   align-items: center;
   width: ${({ width }) => (width ? width : null)};
+  @media (max-width: 1220px) {
+    width: ${({ width }) => (width ? '100%' : null)};
+  }
   min-height: 150px;
 
   padding-top: var(--padding-small);
@@ -99,6 +102,9 @@ export const BetListHeader = styled.div`
   border-top-left-radius: var(--border-radius1);
   border-top-right-radius: var(--border-radius1);
   background: var(--background3-main);
+  @media (max-width: 1040px) {
+    font-size: var(--font-size-medium);
+  }
 `
 export const FightListHeader = styled(BetListHeader)`
   border-top-left-radius: var(--border-radius0);
