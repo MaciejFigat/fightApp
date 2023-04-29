@@ -114,3 +114,21 @@ export const FooterMobile = styled.div`
   height: 62px;
   padding: 0 var(--gap-small);
 `
+export const HomeContainer = styled.div`
+  display: grid;
+  place-items: center;
+  background: var(--background-gradient1);
+  min-height: calc(100vh - 124px - 62.5px);
+`
+export const FooterMobileSecondary = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: var(--gap-small);
+  /* border-top: 1px solid var(--background-blur2); */
+  background: var(--background-gradient1);
+
+  position: sticky;
+  bottom: 62px;
+  height: 62px;
+  padding: 0 var(--gap-small);
+`

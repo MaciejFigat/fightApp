@@ -10,7 +10,9 @@ import {
   HeroNavigation,
   HeroNavOne,
   HeroNavTwo,
-  FooterMobile
+  FooterMobile,
+  FooterMobileSecondary,
+  HomeContainer
 } from './HomePageLayout.styled'
 import {
   ButtonSmall,
@@ -23,26 +25,26 @@ interface HomePageMobileLayoutProps {
   navigationRight?: React.ReactNode
   navigationLeft?: React.ReactNode
   navigationMiddle?: React.ReactNode
-  leftColumn?: React.ReactNode
-  rightColumn?: React.ReactNode
-  bottomLeft?: React.ReactNode
-  bottomRight?: React.ReactNode
 }
 
 const HomePageMobileLayout: React.FC<HomePageMobileLayoutProps> = ({
-  navigationRight,
-  navigationMiddle,
   navigationLeft,
-  leftColumn,
-  rightColumn,
-  bottomLeft,
-  bottomRight
+  navigationMiddle,
+  navigationRight
 }) => {
-  const [open, setOpen] = useState(false)
+  enum OptionsOpen {
+    HOME,
+    EVENTS,
+    SEARCH,
+    MY_BETS
+  }
+
+  const [open, setOpen] = useState<OptionsOpen>(OptionsOpen.HOME)
   return (
     <HeroGridWrapper>
       <HeroNavigation>
         <HeroNavTwo>
+          {' '}
           {navigationLeft ? navigationLeft : null}
           {navigationMiddle ? navigationMiddle : null}{' '}
           {navigationRight ? navigationRight : null}
@@ -50,48 +52,65 @@ const HomePageMobileLayout: React.FC<HomePageMobileLayoutProps> = ({
       </HeroNavigation>
       <HeroMainContainer>
         <HeroMainArticle>
-          {open && rightColumn ? rightColumn : null}
-          {!open && leftColumn ? leftColumn : null}
-
+          {open === OptionsOpen.SEARCH && 'search'}
+          {open === OptionsOpen.HOME && <HomeContainer>'Home'</HomeContainer>}
+          {open === OptionsOpen.MY_BETS && 'My bets'}
+          {open === OptionsOpen.EVENTS && 'Events'}
+          {open === OptionsOpen.HOME && (
+            <FooterMobileSecondary>
+              <ButtonSmall variant={ButtonVariants.INFO}>fights</ButtonSmall>{' '}
+              <ButtonSmall variant={ButtonVariants.WARNING}>
+                Bets to confirm{' '}
+              </ButtonSmall>{' '}
+              <ButtonSmall variant={ButtonVariants.INFO}>
+                Bets to register{' '}
+              </ButtonSmall>
+            </FooterMobileSecondary>
+          )}
           <FooterMobile>
             <ButtonSmallGradient
               variant={ButtonVariants.PRIMARY_EMPTY}
-              onClick={() => setOpen(!open)}
+              onClick={() => setOpen(OptionsOpen.HOME)}
             >
-              <SvgIcon variant={SvgIconVariants.HOME} />
-
-              {/* {open ? 'O.O' : 'T.T'} */}
+              <SvgIcon
+                variant={SvgIconVariants.HOME}
+                contentAfter='Home'
+                showContent
+              />
             </ButtonSmallGradient>
             <ButtonSmallGradient
               variant={ButtonVariants.SECONDARY_EMPTY}
-              onClick={() => setOpen(!open)}
+              onClick={() => setOpen(OptionsOpen.EVENTS)}
             >
-              <SvgIcon variant={SvgIconVariants.STORE} />
-              {/* {open ? 'O.O' : 'T.T'} */}
+              <SvgIcon
+                variant={SvgIconVariants.STORE}
+                contentAfter='Events'
+                showContent
+              />
             </ButtonSmallGradient>
             <ButtonSmallGradient
               variant={ButtonVariants.PRIMARY}
-              onClick={() => setOpen(!open)}
+              onClick={() => setOpen(OptionsOpen.SEARCH)}
             >
-              <SvgIcon variant={SvgIconVariants.SEARCH} />
+              <SvgIcon
+                variant={SvgIconVariants.SEARCH}
+                contentAfter='Search'
+                showContent
+              />
             </ButtonSmallGradient>
             <ButtonSmallGradient
               variant={ButtonVariants.SECONDARY}
-              onClick={() => setOpen(!open)}
+              onClick={() => setOpen(OptionsOpen.MY_BETS)}
             >
               <SvgIcon
                 variant={SvgIconVariants.COINS}
-                contentAfter='Hello'
+                contentAfter='My Bets'
                 showContent
               />
-              {/* {open ? 'O.O' : 'T.T'} */}
             </ButtonSmallGradient>
           </FooterMobile>
         </HeroMainArticle>
       </HeroMainContainer>
-
-      {bottomLeft ? bottomLeft : null}
-      {bottomRight ? bottomRight : null}
     </HeroGridWrapper>
   )
 }

@@ -10,12 +10,10 @@ export const IconsItem = styled.div<{
 }>`
   padding: 0;
   font-size: 1em;
-  display: flex;
-
-  justify-content: center;
-  align-items: center;
+  display: grid;
+  place-items: center center;
   flex-direction: column;
-  max-width: 20px;
+  max-width: ${props => (props.showContent ? '100%' : '20px')};
   margin-right: 0;
   @media (max-width: 500px) {
     max-width: 30px;
@@ -26,18 +24,15 @@ export const IconsItem = styled.div<{
     }
   }
   &:after {
-    content: ${contentAfter => (contentAfter ? `${contentAfter}` : null)};
-    position: relative !important;
+    content: '${props => props.contentAfter}';
+    position: relative;
     line-height: 1.2;
     padding: var(--gap-small);
-    border-radius: 5px;
     transition: all 0.2s ease-in;
-    opacity: 0;
+    opacity: ${props => (props.showContent ? '1' : '0')};
     padding-right: var(--gap-medium);
-    font-size: min(max(1rem, 4vw), 12px);
-    font-size: var(--font-size-small);
-    line-height: 1.2;
-    left: 20px;
-    top: 0px;
+    font-size: var(--font-size-medium);
+    font-weight: 600;
+    color: var(--background4-main);
   }
 `
