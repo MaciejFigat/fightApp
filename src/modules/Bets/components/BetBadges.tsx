@@ -43,13 +43,13 @@ const BetBadges: React.FC<BetBadgesProps> = ({
   return (
     <>
       {/* shows betMoneyline - only present in bets with fighter name in bet name */}
-      {betMoneyline && (
+      {betMoneyline ? (
         <ColorBadge
           color={betMoneyline > 0 ? TextColor.WARNING : TextColor.SUCCESS}
         >
-          {betMoneyline > 0 ? `+${betMoneyline}` : betMoneyline}
+          {betMoneyline > 0 ? `+${betMoneyline}` : `${betMoneyline}`}
         </ColorBadge>
-      )}
+      ) : null}
       {/* this option is for bets that are in the accordion header */}
       {noBadgesInHeader ? (
         <>
@@ -71,7 +71,7 @@ const BetBadges: React.FC<BetBadgesProps> = ({
       ) : (
         <>
           {/* betMoneyline is absent in specialized bets since they contain data of both fighters and their respective moneylines */}
-          {!betMoneyline && (
+          {!betMoneyline && betMoneyline !== 0 && (
             <HorizontalWrapperEnd>
               {[
                 {
