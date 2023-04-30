@@ -1,12 +1,12 @@
 import React from 'react'
-import { BetData } from '../../../interfaces'
-import { DraggableDiv, DroppableList } from './DragColumns.styled'
-import BetHeader from '../components/BetHeader'
-import { ButtonVariants, WinnerProjection } from '../../../consts'
-import { ButtonVerySmall } from '../../../components/Buttons/Buttons.styled'
-import { addUnconfirmedBetNoIndex } from '../../../reduxState/stateSlices/bets/betsSlice'
-import { AppDispatch } from '../../../reduxState/store'
-import { useAppDispatch } from '../../../reduxState/reduxHooks'
+import { BetData } from '../../../../interfaces'
+import { DraggableDiv, DroppableList } from '../DragColumns.styled'
+import BetHeader from '../../components/BetHeader'
+import { ButtonVariants, WinnerProjection } from '../../../../consts'
+import { ButtonVerySmall } from '../../../../components/Buttons/Buttons.styled'
+import { addUnconfirmedBetNoIndex } from '../../../../reduxState/stateSlices/bets/betsSlice'
+import { AppDispatch } from '../../../../reduxState/store'
+import { useAppDispatch } from '../../../../reduxState/reduxHooks'
 
 interface AvailableBetsMobileProps {
   state: BetData[][]

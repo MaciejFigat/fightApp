@@ -4,16 +4,15 @@ import {
   HeroMainContainer,
   HeroNavigation,
   HeroNavTwo,
-  FooterMobile,
   HeroGridWrapperMobile
 } from './HomePageLayout.styled'
-import { ButtonSmallGradient } from '../components/Buttons/Buttons.styled'
-import { ButtonVariants, OptionsOpen, SvgIconVariants } from '../consts'
-import SvgIcon from '../modules/misc/SvgIcon/SvgIcon'
+
+import { OptionsHomeMenu, OptionsOpen } from '../consts'
 
 import FightsAndBetsMobile from '../modules/Bets/main/FightsAndBetsMobile'
-import { ScrollYWrapper } from '../styles/misc.styles'
 import EventsColumnMobile from '../modules/misc/EventsDisplay/EventsColumnMobile'
+
+import MobileFooter from './MobileFooter'
 
 interface HomePageMobileLayoutProps {
   navigationRight?: React.ReactNode
@@ -27,6 +26,9 @@ const HomePageMobileLayout: React.FC<HomePageMobileLayoutProps> = ({
   navigationRight
 }) => {
   const [open, setOpen] = useState<OptionsOpen>(OptionsOpen.HOME)
+  const [openHome, setOpenHome] = useState<OptionsHomeMenu>(
+    OptionsHomeMenu.FIGHTS
+  )
   return (
     <HeroGridWrapperMobile>
       <HeroNavigation>
@@ -40,60 +42,16 @@ const HomePageMobileLayout: React.FC<HomePageMobileLayoutProps> = ({
       <HeroMainContainer>
         <HeroMainArticle>
           {open === OptionsOpen.SEARCH && 'search'}
-          {open === OptionsOpen.HOME && (
-            <ScrollYWrapper>
-              <FightsAndBetsMobile />
-            </ScrollYWrapper>
-          )}
+          {open === OptionsOpen.HOME && <FightsAndBetsMobile open={openHome} />}
           {open === OptionsOpen.MY_BETS && 'My bets'}
           {open === OptionsOpen.EVENTS && (
-            <ScrollYWrapper>
-              <EventsColumnMobile setOpen={setOpen} />
-            </ScrollYWrapper>
+            <EventsColumnMobile setOpen={setOpen} />
           )}
-
-          <FooterMobile>
-            <ButtonSmallGradient
-              variant={ButtonVariants.PRIMARY_EMPTY}
-              onClick={() => setOpen(OptionsOpen.HOME)}
-            >
-              <SvgIcon
-                variant={SvgIconVariants.HOME}
-                contentAfter='Home'
-                showContent
-              />
-            </ButtonSmallGradient>
-            <ButtonSmallGradient
-              variant={ButtonVariants.SECONDARY_EMPTY}
-              onClick={() => setOpen(OptionsOpen.EVENTS)}
-            >
-              <SvgIcon
-                variant={SvgIconVariants.STORE}
-                contentAfter='Events'
-                showContent
-              />
-            </ButtonSmallGradient>
-            <ButtonSmallGradient
-              variant={ButtonVariants.PRIMARY}
-              onClick={() => setOpen(OptionsOpen.SEARCH)}
-            >
-              <SvgIcon
-                variant={SvgIconVariants.SEARCH}
-                contentAfter='Search'
-                showContent
-              />
-            </ButtonSmallGradient>
-            <ButtonSmallGradient
-              variant={ButtonVariants.SECONDARY}
-              onClick={() => setOpen(OptionsOpen.MY_BETS)}
-            >
-              <SvgIcon
-                variant={SvgIconVariants.COINS}
-                contentAfter='My Bets'
-                showContent
-              />
-            </ButtonSmallGradient>
-          </FooterMobile>
+          <MobileFooter
+            setOpen={setOpen}
+            open={open}
+            setOpenHome={setOpenHome}
+          />
         </HeroMainArticle>
       </HeroMainContainer>
     </HeroGridWrapperMobile>

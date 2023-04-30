@@ -4,7 +4,7 @@ import Accordion from '../../../components/Accordion/Accordion'
 import FightHeader from '../components/FightHeader'
 import { WinnerProjection } from '../../../consts'
 import { BetData, FightAllData } from '../../../interfaces'
-import AvailableBetsMobile from './AvailableBetsMobile'
+import AvailableBetsMobile from './mobile/AvailableBetsMobile'
 import { ScrollYWrapper } from '../../../styles/misc.styles'
 import { motion } from 'framer-motion'
 

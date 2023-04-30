@@ -1,27 +1,22 @@
 import React, { useState } from 'react'
-import {
-  FooterMobileSecondary,
-  MobileHomeContainer
-} from '../../../layout/HomePageLayout.styled'
-import { ButtonSmall } from '../../../components/Buttons/Buttons.styled'
-import { ButtonVariants, WinnerProjection } from '../../../consts'
+import { MobileHomeContainer } from '../../../layout/HomePageLayout.styled'
+
+import { OptionsHomeMenu, WinnerProjection } from '../../../consts'
 import { winnerChange } from '../functions/winnerChange'
 import { BetData, EventAllData } from '../../../interfaces'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { useInitialFighterBets } from './useInitialBets'
 import { AppDispatch } from '../../../reduxState/store'
 import FightsColumnMobile from './FightsColumnMobile'
-import BetsColumnMobile from './BetsColumnMobile'
+import BetsColumnMobile from './mobile/BetsColumnMobile'
 import BetRegistration from '../components/BetRegistration'
+import { ScrollYWrapper } from '../../../styles/misc.styles'
 
-interface FightsAndBetsMobileProps {}
-enum OptionsMenu {
-  FIGHTS,
-  BETS_TO_CONFIRM,
-  BETS_TO_REGISTER
+interface FightsAndBetsMobileProps {
+  open: OptionsHomeMenu
 }
 
-const FightsAndBetsMobile: React.FC<FightsAndBetsMobileProps> = () => {
+const FightsAndBetsMobile: React.FC<FightsAndBetsMobileProps> = ({ open }) => {
   const dispatch: AppDispatch = useAppDispatch()
 
   const currentEvent: EventAllData | null = useAppSelector(
@@ -37,7 +32,6 @@ const FightsAndBetsMobile: React.FC<FightsAndBetsMobileProps> = () => {
   } = currentEvent ?? {}
   // state for accordion comp
   const [expandedFight, setExpandedFight] = useState<null | number>(null)
-  const [open, setOpen] = useState<OptionsMenu>(OptionsMenu.FIGHTS)
 
   const winnerChangeHandler = (
     id: string,
@@ -67,9 +61,9 @@ const FightsAndBetsMobile: React.FC<FightsAndBetsMobileProps> = () => {
     DateTime
   )
   return (
-    <>
+    <ScrollYWrapper>
       <MobileHomeContainer>
-        {open === OptionsMenu.FIGHTS && (
+        {open === OptionsHomeMenu.FIGHTS ? (
           <FightsColumnMobile
             state={state}
             winnerChange={winnerChangeHandler}
@@ -78,37 +72,17 @@ const FightsAndBetsMobile: React.FC<FightsAndBetsMobileProps> = () => {
             setExpandedFight={setExpandedFight}
             expandedFight={expandedFight}
           />
-        )}
-        {open === OptionsMenu.BETS_TO_CONFIRM && (
+        ) : null}
+        {open === OptionsHomeMenu.BETS_TO_CONFIRM ? (
           <BetsColumnMobile state={state} winnerChange={winnerChangeHandler} />
-        )}
-        {open === OptionsMenu.BETS_TO_REGISTER && (
+        ) : null}
+        {open === OptionsHomeMenu.BETS_TO_REGISTER ? (
           <>
             <BetRegistration />
           </>
-        )}
+        ) : null}
       </MobileHomeContainer>
-      <FooterMobileSecondary>
-        <ButtonSmall
-          variant={ButtonVariants.INFO}
-          onClick={() => setOpen(OptionsMenu.FIGHTS)}
-        >
-          fights
-        </ButtonSmall>{' '}
-        <ButtonSmall
-          variant={ButtonVariants.INFO}
-          onClick={() => setOpen(OptionsMenu.BETS_TO_CONFIRM)}
-        >
-          Bets to confirm{' '}
-        </ButtonSmall>{' '}
-        <ButtonSmall
-          variant={ButtonVariants.INFO}
-          onClick={() => setOpen(OptionsMenu.BETS_TO_REGISTER)}
-        >
-          Bets to register{' '}
-        </ButtonSmall>
-      </FooterMobileSecondary>
-    </>
+    </ScrollYWrapper>
   )
 }
 export default FightsAndBetsMobile

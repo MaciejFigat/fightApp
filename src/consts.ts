@@ -53,6 +53,11 @@ export enum OptionsOpen {
   SEARCH,
   MY_BETS
 }
+export enum OptionsHomeMenu {
+  FIGHTS,
+  BETS_TO_CONFIRM,
+  BETS_TO_REGISTER
+}
 export enum SvgIconVariants {
   LOGIN = 'login',
   LOGOUT = 'logout',

@@ -16,6 +16,7 @@ import { eventsBoxing } from '../../../mockData/mockBoxingEvents'
 import { eventsSubmission } from '../../../mockData/mockSubmissionEvents'
 import EventCard from './EventCard'
 import { EventCardContainerMobile, EventCardStyled } from './EventCard.styled'
+import { ScrollYWrapper } from '../../../styles/misc.styles'
 
 enum OptionsOpen {
   HOME,
@@ -61,26 +62,28 @@ const EventsColumnMobile: React.FC<EventsColumnMobileProps> = ({ setOpen }) => {
   }, [disciplineChosen, dispatch, availableEvents.length])
 
   return (
-    <EventCardContainerMobile>
-      {disciplineChosen.name !== 'MMA' ? (
-        sportEventData.length > 0 ? (
-          sportEventData.map((event: SportEventData, index: number) => (
-            <EventCardStyled key={index}>{event.name}</EventCardStyled>
-          ))
+    <ScrollYWrapper>
+      <EventCardContainerMobile>
+        {disciplineChosen.name !== 'MMA' ? (
+          sportEventData.length > 0 ? (
+            sportEventData.map((event: SportEventData, index: number) => (
+              <EventCardStyled key={index}>{event.name}</EventCardStyled>
+            ))
+          ) : (
+            <>No events</>
+          )
         ) : (
-          <>No events</>
-        )
-      ) : (
-        availableEvents.length > 0 &&
-        availableEvents.map(chosenEvent => (
-          <EventCard
-            key={chosenEvent.EventId}
-            chosenEvent={chosenEvent}
-            setOpen={setOpen}
-          />
-        ))
-      )}
-    </EventCardContainerMobile>
+          availableEvents.length > 0 &&
+          availableEvents.map(chosenEvent => (
+            <EventCard
+              key={chosenEvent.EventId}
+              chosenEvent={chosenEvent}
+              setOpen={setOpen}
+            />
+          ))
+        )}
+      </EventCardContainerMobile>
+    </ScrollYWrapper>
   )
 }
 export default EventsColumnMobile

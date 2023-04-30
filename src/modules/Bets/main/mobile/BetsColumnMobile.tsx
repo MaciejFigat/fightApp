@@ -1,20 +1,20 @@
 import React from 'react'
-import { BetData } from '../../../interfaces'
+import { BetData } from '../../../../interfaces'
 import {
   BetContainerMobile,
   BetListHeader,
   DraggableDiv
-} from './DragColumns.styled'
-import BetConfirmation from '../components/BetConfirmation'
-import { useAppSelector } from '../../../reduxState/reduxHooks'
-import { TextColor, WinnerProjection } from '../../../consts'
+} from '../DragColumns.styled'
+import BetConfirmation from '../../components/BetConfirmation'
+import { useAppSelector } from '../../../../reduxState/reduxHooks'
+import { TextColor, WinnerProjection } from '../../../../consts'
 import {
   HighlightText,
   HorizontalWrapper,
   RoundAccent,
   ScrollYWrapper
-} from '../../../styles/misc.styles'
-import { MobileHomeContainer } from '../../../layout/HomePageLayout.styled'
+} from '../../../../styles/misc.styles'
+import { MobileHomeContainer } from '../../../../layout/HomePageLayout.styled'
 
 interface BetsColumnMobileProps {
   state: BetData[][]

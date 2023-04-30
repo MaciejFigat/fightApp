@@ -1,13 +1,10 @@
 import styled from 'styled-components'
 
-// ? new Hero section - the grid
-
 export const HeroGridWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
   min-height: 100%;
-
   margin: 0px;
   overflow: hidden;
   @media (max-width: 1040px) {
@@ -30,7 +27,6 @@ export const HeroNavigation = styled.div`
   display: flex;
   width: 100%;
   max-height: 70px;
-  /* border-top: 1px solid var(--background-blur2); */
 `
 export const HeroNavOne = styled.div`
   display: flex;
@@ -59,18 +55,17 @@ export const HeroMainContainer = styled.div`
 `
 export const HeroMainArticle = styled.div`
   display: grid;
-  /* min-height: 100%; */
+
   height: 100%;
   min-height: 100%;
   grid-template-columns: 1fr 4fr;
-  /* grid-template-rows: 9fr 1fr; */
+
   grid-template-rows: auto 70px;
 
   max-height: 70vh;
 
   @media (max-width: 1040px) {
     grid-template-columns: 1fr;
-    /* grid-template-rows: auto; */
   }
 `
 
@@ -81,22 +76,12 @@ export const HeroArticleSection = styled.div`
   padding: 0;
   margin: 0;
   border-top: 1px solid var(--background-blur2);
-  /* border-bottom: 1px solid var(--background-blur2); */
-  &:first-of-type {
-    /* border-bottom: none; */
-  }
-  &:last-of-type {
-    /* border-bottom: 1px solid var(--background-blur2); */
-  }
 `
 export const HeroArticleSideSection = styled(HeroArticleSection)`
   overflow-y: scroll;
-  /* max-height: 100%; */
-
   ::-webkit-scrollbar {
     width: 0.2em;
   }
-  /* border-top: 1px solid var(--background-blur2); */
 `
 export const HeroArticleMainSection = styled(HeroArticleSection)`
   overflow-y: scroll;
@@ -107,9 +92,7 @@ export const HeroArticleMainSection = styled(HeroArticleSection)`
 `
 
 export const HeroArticleBottomBigSection = styled(HeroArticleSection)`
-  /* border-top: 1px solid var(--background-blur2); */
   border-bottom: 1px solid var(--background-blur2);
-  /* border-right: 1px solid var(--background-blur2); */
 `
 export const HeroArticleBottomSmallSection = styled(HeroArticleSection)`
   border-left: 1px solid var(--background-blur2);
@@ -119,12 +102,11 @@ export const FooterMobile = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: var(--gap-small);
-  /* border-top: 1px solid var(--background-blur2); */
-  background: var(--background1-main);
 
+  background: var(--background1-main);
   position: sticky;
   bottom: 0;
-  height: 62px;
+  height: 70px;
   padding: 0 var(--gap-small);
 `
 export const MobileHomeContainer = styled.div`
@@ -132,17 +114,16 @@ export const MobileHomeContainer = styled.div`
   place-items: flex-start center;
   width: 100%;
   height: 100%;
-  /* background: var(--background-gradient1); */
-  /* min-height: calc(95vh - 124px); */
+  background: var(--background-gradient1);
+  min-height: 82vh;
 `
 export const FooterMobileSecondary = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: var(--gap-small);
-  /* background: var(--background-gradient1); */
   position: sticky;
-  /* bottom: 62px; */
   bottom: 0px;
   height: 62px;
+  margin: 0;
   padding: 0 var(--gap-small);
 `
