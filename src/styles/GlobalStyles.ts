@@ -137,7 +137,13 @@ const GlobalStyle = createGlobalStyle`
   @media (max-width: 1020px) {
     /* display: none; */
   }
+  @media (max-width: 760px) {
+    /* display: none; */
+  }
 
+  @media (max-width: 610px) {
+ 
+  }
    }
 `
 

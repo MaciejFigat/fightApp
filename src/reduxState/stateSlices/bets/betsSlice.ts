@@ -35,6 +35,10 @@ const betsSlice = createSlice({
         ...state.betsUnconfirmed.slice(itemIndex) // slice from itemIndex to the end of the array
       ]
     },
+    addUnconfirmedBetNoIndex (state, action: PayloadAction<BetData>) {
+      state.betsUnconfirmed = [...state.betsUnconfirmed, action.payload]
+    },
+
     removeUnconfirmedBet (state, action: PayloadAction<string>) {
       state.betsUnconfirmed = state.betsUnconfirmed.filter(
         bet => bet.id !== action.payload
@@ -56,7 +60,8 @@ export const {
   removeUnconfirmedBet,
   addConfirmedBet,
   removeConfirmedBet,
-  editUnconfirmedBet
+  editUnconfirmedBet,
+  addUnconfirmedBetNoIndex
 } = betsSlice.actions
 
 export default betsSlice.reducer

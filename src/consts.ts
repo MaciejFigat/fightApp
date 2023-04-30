@@ -47,7 +47,12 @@ export enum WinnerProjection {
   FIGHTER2 = 1,
   ANY = 'any'
 }
-
+export enum OptionsOpen {
+  HOME,
+  EVENTS,
+  SEARCH,
+  MY_BETS
+}
 export enum SvgIconVariants {
   LOGIN = 'login',
   LOGOUT = 'logout',

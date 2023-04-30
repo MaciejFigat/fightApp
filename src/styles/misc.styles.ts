@@ -29,6 +29,19 @@ export const RoundAccent = styled.b`
   border-radius: 50%;
 `
 
+// export const Mobile = styled.div``
+export const ScrollYWrapper = styled.div`
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  margin: 0;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 0.2em;
+  }
+`
 export const HorizontalWrapper = styled.div`
   display: flex;
   width: 100%;

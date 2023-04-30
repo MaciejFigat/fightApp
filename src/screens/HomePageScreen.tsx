@@ -12,19 +12,17 @@ interface HomePageScreenProps {}
 const HomePageScreen: React.FC<HomePageScreenProps> = () => {
   return (
     <>
-      {/* <HomePageLayout
-      navigationRight={<LoginNavigationLinks />}
-      navigationMiddle={<CoinDisplay />}
-      navigationLeft={<DisciplineDropdown />}
-      leftColumn={<EventsScreen />}
-      rightColumn={<FightsAndBets />}
-    /> */}
+      <HomePageLayout
+        navigationRight={<LoginNavigationLinks />}
+        navigationMiddle={<CoinDisplay />}
+        navigationLeft={<DisciplineDropdown />}
+        leftColumn={<EventsScreen />}
+        rightColumn={<FightsAndBets />}
+      />
       <HomePageMobileLayout
         navigationRight={<LoginNavigationLinks />}
         navigationMiddle={<CoinDisplay />}
         navigationLeft={<DisciplineDropdown />}
-        // leftColumn={<EventsScreen />}
-        // rightColumn={<FightsAndBets />}
       />
     </>
   )

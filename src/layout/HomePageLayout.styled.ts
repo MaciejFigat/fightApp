@@ -11,12 +11,25 @@ export const HeroGridWrapper = styled.div`
   margin: 0px;
   overflow: hidden;
   @media (max-width: 1040px) {
-    overflow: visible;
+    display: none;
+  }
+`
+export const HeroGridWrapperMobile = styled(HeroGridWrapper)`
+  overflow: hidden;
+  ::-webkit-scrollbar {
+    width: 0;
+  }
+  @media (max-width: 1040px) {
+    display: flex;
+  }
+  @media (min-width: 1040px) {
+    display: none;
   }
 `
 export const HeroNavigation = styled.div`
   display: flex;
   width: 100%;
+  max-height: 70px;
   /* border-top: 1px solid var(--background-blur2); */
 `
 export const HeroNavOne = styled.div`
@@ -107,28 +120,29 @@ export const FooterMobile = styled.div`
   grid-template-columns: 1fr 1fr 1fr 1fr;
   gap: var(--gap-small);
   /* border-top: 1px solid var(--background-blur2); */
-  /* background: var(--background-gradient2); */
+  background: var(--background1-main);
 
   position: sticky;
   bottom: 0;
   height: 62px;
   padding: 0 var(--gap-small);
 `
-export const HomeContainer = styled.div`
+export const MobileHomeContainer = styled.div`
   display: grid;
-  place-items: center;
-  background: var(--background-gradient1);
-  min-height: calc(100vh - 124px - 62.5px);
+  place-items: flex-start center;
+  width: 100%;
+  height: 100%;
+  /* background: var(--background-gradient1); */
+  /* min-height: calc(95vh - 124px); */
 `
 export const FooterMobileSecondary = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: var(--gap-small);
-  /* border-top: 1px solid var(--background-blur2); */
-  background: var(--background-gradient1);
-
+  /* background: var(--background-gradient1); */
   position: sticky;
-  bottom: 62px;
+  /* bottom: 62px; */
+  bottom: 0px;
   height: 62px;
   padding: 0 var(--gap-small);
 `

@@ -46,6 +46,16 @@ export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
   opacity: ${({ isDragging }) => isDragging && '0.9'};
   background: ${({ isDragging }) => isDragging && 'var(--background2-main)'};
   color: ${({ isDragging }) => isDragging && 'var(--background1-secondary)'};
+  @media (max-width: 1040px) {
+    max-width: 600px;
+    justify-content: space-around;
+    width: 600px;
+    /* background: brown; */
+  }
+  @media (max-width: 610px) {
+    max-width: 90%;
+    padding: var(--gap-medium) 0;
+  }
 `
 
 export const DroppableList = styled.div<{
@@ -104,6 +114,7 @@ export const BetListHeader = styled.div`
   background: var(--background3-main);
   @media (max-width: 1040px) {
     font-size: var(--font-size-medium);
+    width: 600px;
   }
 `
 export const FightListHeader = styled(BetListHeader)`
@@ -118,4 +129,14 @@ export const MainListHeader = styled(FightListHeader)`
   margin-bottom: var(--gap-small);
 
   font-weight: 700;
+`
+export const BetContainerMobile = styled.div`
+  /* display: grid; */
+
+  gap: var(--gap-medium);
+  @media (max-width: 760px) {
+    width: 100%;
+    /* max-width: 420px; */
+    /* padding: var(--gap-small); */
+  }
 `

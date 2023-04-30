@@ -8,6 +8,8 @@ interface AccordionProps {
   setExpanded: React.Dispatch<React.SetStateAction<null | number>>
   noBottomMargin?: boolean
   headerContent?: string | React.ReactNode
+  opacityTransitionIn?: number
+  opacityTransitionOut?: number
 }
 
 const Accordion: React.FC<AccordionProps> = ({
@@ -16,7 +18,9 @@ const Accordion: React.FC<AccordionProps> = ({
   expanded,
   i,
   headerContent,
-  noBottomMargin
+  noBottomMargin,
+  opacityTransitionIn,
+  opacityTransitionOut
 }) => {
   const isOpen = i === expanded
 
@@ -49,7 +53,7 @@ const Accordion: React.FC<AccordionProps> = ({
                 transition: {
                   duration: 0.2,
                   opacity: {
-                    duration: 0.3,
+                    duration: opacityTransitionIn ? opacityTransitionIn : 0.3,
                     delay: 0.1
                   },
                   ease: 'linear'
@@ -61,7 +65,7 @@ const Accordion: React.FC<AccordionProps> = ({
                 transition: {
                   duration: 0.3,
                   opacity: {
-                    duration: 0.1
+                    duration: opacityTransitionOut ? opacityTransitionOut : 0.1
                   },
                   ease: 'linear'
                 }

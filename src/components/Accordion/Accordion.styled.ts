@@ -56,6 +56,12 @@ export const AccordionHeader = styled(motion.div)<{
   width: 100%;
   height: 50px;
   margin-bottom: ${({ $noBottomMargin }) => ($noBottomMargin ? '0' : '1rem')};
+  @media (max-width: 1040px) {
+    width: 600px;
+  }
+  @media (max-width: 610px) {
+    /* max-width: 70%; */
+  }
 `
 
 export const AccordionContent = styled(motion.div)<{ isOpen?: boolean }>`
