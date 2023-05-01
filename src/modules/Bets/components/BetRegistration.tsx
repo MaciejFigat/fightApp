@@ -13,7 +13,10 @@ import { ButtonVariants, TextColor } from '../../../consts'
 import { ButtonSmall } from '../../../components/Buttons/Buttons.styled'
 import { BetDetails } from './BetConfirmation.styled'
 import { AppDispatch } from '../../../reduxState/store'
-import { removeConfirmedBet } from '../../../reduxState/stateSlices/bets/betsSlice'
+import {
+  createBet,
+  removeConfirmedBet
+} from '../../../reduxState/stateSlices/bets/betsSlice'
 import BetRegisterConfirm from './BetRegisterConfirm'
 import BetFightDate from './BetFightDate'
 import BetVisualisation from './BetVisualisation'
@@ -29,6 +32,9 @@ const BetRegistration: React.FC<BetRegistrationProps> = () => {
 
   const handleRemove = (betId: string) => {
     dispatch(removeConfirmedBet(betId))
+  }
+  const handleRegisterBet = (bet: ConfirmedBet) => {
+    dispatch(createBet(bet))
   }
 
   return (
@@ -52,7 +58,10 @@ const BetRegistration: React.FC<BetRegistrationProps> = () => {
                 amountBet={bet.amountBet}
                 expectedPayout={bet.expectedPayout}
               />
-              <BetRegisterConfirm />
+              <BetRegisterConfirm
+                handleRegisterBet={handleRegisterBet}
+                bet={bet}
+              />
 
               <HorizontalWrapperSpaceBetween>
                 <ButtonSmall

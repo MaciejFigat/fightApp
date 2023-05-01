@@ -1,19 +1,87 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { BetData, ConfirmedBet } from '../../../interfaces'
+import axios from 'axios'
 
 interface BetsState {
   betsUnconfirmed: BetData[]
   betsConfirmed: ConfirmedBet[]
+  betsRegistered: ConfirmedBet[]
+  userBets: ConfirmedBet[]
+  loading: boolean
+  success: boolean
 }
 
 const initialState: BetsState = {
   betsUnconfirmed: [],
-  betsConfirmed: []
+  betsConfirmed: [],
+  betsRegistered: [],
+  userBets: [],
+  loading: false,
+  success: true
 }
 interface AddUnconfirmedBetPayload {
   betData: BetData
   itemIndex: number
 }
+
+export const createBet = createAsyncThunk(
+  'bet/createBet',
+  async (newBetInfo: ConfirmedBet, thunkAPI) => {
+    try {
+      const state: any = thunkAPI.getState()
+      const userInfo = state.user.userInfo
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInfo.token}`
+        }
+      }
+
+      const { data } = await axios.post(
+        '/api/bets/',
+        {
+          ...newBetInfo
+        },
+        config
+      )
+      return data
+    } catch (error: any) {
+      if (error.response && error.response.data.message) {
+        // Request was made and server responded with a status code
+        return thunkAPI.rejectWithValue(error.response.data.message)
+      } else if (error.request) {
+        // no response was received
+        return thunkAPI.rejectWithValue('Server is not responding')
+      } else {
+        return thunkAPI.rejectWithValue(
+          'An error occurred while creating a new fragment'
+        )
+      }
+    }
+  }
+)
+
+export const getUserBets = createAsyncThunk(
+  'bet/getUserBets',
+  // x- serves one pupose only, so thunkAPI is recognized as a parameter
+  async (x: any, thunkAPI) => {
+    const state: any = thunkAPI.getState()
+    const userInfo = state.user.userInfo
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    }
+
+    try {
+      const { data } = await axios.get(`/api/bets/mybets`, config)
+      return data
+    } catch (error: any) {
+      return error
+    }
+  }
+)
 
 const betsSlice = createSlice({
   name: 'bets',
@@ -52,6 +120,31 @@ const betsSlice = createSlice({
         bet => bet.id !== action.payload
       )
     }
+  },
+  extraReducers: builder => {
+    builder.addCase(createBet.pending, (state, action) => {
+      state.loading = true
+      state.success = false
+    })
+    builder.addCase(createBet.fulfilled, (state, action) => {
+      state.loading = false
+      state.betsRegistered = [...state.betsRegistered, action.payload]
+      state.success = true
+    })
+    builder.addCase(createBet.rejected, (state, action) => {
+      state.loading = false
+    })
+    builder.addCase(getUserBets.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(getUserBets.fulfilled, (state, action) => {
+      state.loading = false
+      state.userBets = action.payload
+      state.success = true
+    })
+    builder.addCase(getUserBets.rejected, (state, action) => {
+      state.loading = false
+    })
   }
 })
 

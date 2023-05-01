@@ -9,7 +9,7 @@ import {
 
 import { OptionsHomeMenu, OptionsOpen } from '../consts'
 
-import FightsAndBetsMobile from '../modules/Bets/main/FightsAndBetsMobile'
+import FightsAndBetsMobile from '../modules/Bets/main/mobile/FightsAndBetsMobile'
 import EventsColumnMobile from '../modules/misc/EventsDisplay/EventsColumnMobile'
 
 import MobileFooter from './MobileFooter'

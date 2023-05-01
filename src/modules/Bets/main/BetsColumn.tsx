@@ -15,6 +15,7 @@ import {
   RoundAccent
 } from '../../../styles/misc.styles'
 import BetRegistration from '../components/BetRegistration'
+import UserBetDisplay from './UserBetDisplay'
 
 interface BetsColumnProps {
   state: BetData[][]
@@ -74,6 +75,8 @@ const BetsColumn: React.FC<BetsColumnProps> = ({ state, winnerChange }) => {
         )}
       </Droppable>
       <BetRegistration />
+      {/* //todo just to check */}
+      <UserBetDisplay />
     </>
   )
 }

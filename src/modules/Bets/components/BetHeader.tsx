@@ -1,8 +1,5 @@
 import React from 'react'
-import {
-  BoldText,
-  HorizontalWrapperSpaceBetween
-} from '../../../styles/misc.styles'
+import { BoldText, HorizontalWrapperHeader } from '../../../styles/misc.styles'
 import { HeaderWrapper } from '../main/DragColumns.styled'
 import { WinnerProjection } from '../../../consts'
 import { FighterProfile } from '../../../interfaces'
@@ -29,7 +26,7 @@ const BetHeader: React.FC<BetHeaderProps> = ({
 }) => {
   return (
     <HeaderWrapper>
-      <HorizontalWrapperSpaceBetween>
+      <HorizontalWrapperHeader>
         <BoldText>{betName}</BoldText>
 
         <BetBadges
@@ -40,7 +37,7 @@ const BetHeader: React.FC<BetHeaderProps> = ({
           winnerChange={winnerChange}
           noBadgesInHeader={noBadgesInHeader}
         />
-      </HorizontalWrapperSpaceBetween>
+      </HorizontalWrapperHeader>
     </HeaderWrapper>
   )
 }

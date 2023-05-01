@@ -17,6 +17,9 @@ export const DraggingIcon = styled.span`
       5px 10px var(--background-blur3), 10px 0 var(--background-blur3),
       10px 5px var(--background-blur3), 10px 10px var(--background-blur3);
   }
+  @media (max-width: 1040px) {
+    display: none;
+  }
 `
 
 export const RoundAccent = styled.b`
@@ -63,6 +66,12 @@ export const HorizontalWrapperSpaceBetween = styled.div`
   align-items: center;
   flex-direction: row;
   width: 100%;
+`
+export const HorizontalWrapperHeader = styled(HorizontalWrapperSpaceBetween)`
+  @media (max-width: 1040px) {
+    justify-content: flex-start;
+    gap: var(--gap-veryBig);
+  }
 `
 export const HorizontalWrapperSpaceAround = styled(
   HorizontalWrapperSpaceBetween

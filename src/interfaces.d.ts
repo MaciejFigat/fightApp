@@ -93,6 +93,15 @@ interface ConfirmedBet extends BetData {
   amountBet: number
   expectedPayout: number
 }
+interface RegisteredBet extends ConfirmedBet {
+  // method: {
+  //   type: WinMethod
+  // }
+  // projectedWinner: {
+  //   type: WinnerProjection
+  // }
+  // todo I'm not sure if to change this or schemas in BE
+}
 
 interface UserInfo {
   _id?: string
@@ -114,5 +123,6 @@ export {
   EventAllData,
   BetData,
   ConfirmedBet,
-  UserInfo
+  UserInfo,
+  RegisteredBet
 }

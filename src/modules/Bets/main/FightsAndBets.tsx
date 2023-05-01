@@ -14,7 +14,7 @@ import { EventAllData } from '../../../interfaces'
 import { WinnerProjection } from '../../../consts'
 import BetsColumn from './BetsColumn'
 import FightsColumn from './FightsColumn'
-import { useInitialFighterBets } from './useInitialBets'
+import { useInitialFighterBets } from '../functions/useInitialBets'
 import { winnerChange } from '../functions/winnerChange'
 
 interface FightsAndBetsProps {}

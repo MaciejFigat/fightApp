@@ -1,19 +1,41 @@
 import React from 'react'
-import { ButtonSmall } from '../../../components/Buttons/Buttons.styled'
+import { ButtonVerySmall } from '../../../components/Buttons/Buttons.styled'
 import { ButtonVariants } from '../../../consts'
 import { Link } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
+import { UserInfo } from '../../../interfaces'
+import { AppDispatch } from '../../../reduxState/store'
+import { logout } from '../../../reduxState/stateSlices/users/userSlice'
 
 interface LoginNavigationLinksProps {}
 
 const LoginNavigationLinks: React.FC<LoginNavigationLinksProps> = () => {
+  const dispatch: AppDispatch = useAppDispatch()
+  const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
+  const logoutHandler = (e: any) => {
+    e.preventDefault()
+    dispatch(logout())
+  }
   return (
     <>
-      <ButtonSmall variant={ButtonVariants.INFO}>
-        <Link to='/login'>Login</Link>
-      </ButtonSmall>
-      <ButtonSmall variant={ButtonVariants.SUCCESS}>
-        <Link to='/register'>Register</Link>
-      </ButtonSmall>
+      {Object.keys(userInfo).length > 0 ? (
+        <ButtonVerySmall
+          variant={ButtonVariants.INFO_EMPTY}
+          onClick={logoutHandler}
+        >
+          Logout
+        </ButtonVerySmall>
+      ) : (
+        <>
+          {' '}
+          <ButtonVerySmall variant={ButtonVariants.INFO_EMPTY}>
+            <Link to='/login'>Login</Link>
+          </ButtonVerySmall>
+          <ButtonVerySmall variant={ButtonVariants.SUCCESS_EMPTY}>
+            <Link to='/register'>Register</Link>
+          </ButtonVerySmall>
+        </>
+      )}
     </>
   )
 }

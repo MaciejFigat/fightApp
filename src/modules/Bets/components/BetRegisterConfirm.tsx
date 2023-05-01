@@ -8,11 +8,19 @@ import { motion } from 'framer-motion'
 import { ButtonSmall } from '../../../components/Buttons/Buttons.styled'
 import { ButtonVariants, TextColor } from '../../../consts'
 import AnimatedSlider from '../../../components/AnimatedSlider/AnimatedSlider'
+import { ConfirmedBet } from '../../../interfaces'
 
-interface BetRegisterConfirmProps {}
+interface BetRegisterConfirmProps {
+  bet: ConfirmedBet
+  handleRegisterBet: (bet: ConfirmedBet) => void
+}
 
-const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = () => {
+const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = ({
+  handleRegisterBet,
+  bet
+}) => {
   const [accepted, setAccepted] = useState<boolean>(false)
+
   return (
     <>
       <HorizontalWrapperSpaceBetween>
@@ -27,7 +35,7 @@ const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = () => {
             >
               <ButtonSmall
                 variant={ButtonVariants.SUCCESS_EMPTY}
-                // onClick={() => handleRegisterBet()}
+                onClick={() => handleRegisterBet(bet)}
               >
                 Register bet
               </ButtonSmall>

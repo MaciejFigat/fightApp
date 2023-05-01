@@ -111,10 +111,9 @@ export const FooterMobile = styled.div`
 `
 export const MobileHomeContainer = styled.div`
   display: grid;
-  place-items: flex-start center;
+  place-items: center;
   width: 100%;
   height: 100%;
-  background: var(--background-gradient1);
   min-height: 82vh;
 `
 export const FooterMobileSecondary = styled.div`
@@ -126,4 +125,22 @@ export const FooterMobileSecondary = styled.div`
   height: 62px;
   margin: 0;
   padding: 0 var(--gap-small);
+`
+export const FooterButtonSecondary = styled.button`
+  display: grid;
+  place-items: center center;
+  cursor: pointer;
+  font-size: var(--font-size-medium);
+  border: none;
+  border-radius: var(--border-radius0);
+  color: var(--background4-main);
+  /* background: var(--background-gradient1); */
+  background: var(--background-blur0);
+  transition: all 0.3s ease-in-out;
+  &:hover {
+    background: var(--background-blur1);
+  }
+  &:active {
+    background: var(--background-blur2);
+  }
 `

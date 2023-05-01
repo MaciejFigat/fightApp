@@ -91,12 +91,13 @@ export const DroppableList = styled.div<{
   transition: background 0.3s ease;
   background: ${({ isDraggingOver }) =>
     isDraggingOver ? 'var(--background-blur0)' : 'var(--background2-main)'};
-
-  /* border-radius: var(--border-radius1); */
   border-bottom-left-radius: var(--border-radius1);
   border-bottom-right-radius: var(--border-radius1);
-  /* background: red; */
+
   padding-top: var(--gap-big);
+  @media (max-width: 1040px) {
+    min-height: 150px;
+  }
 `
 export const HeaderWrapper = styled.div`
   width: 100%;
@@ -116,6 +117,10 @@ export const BetListHeader = styled.div`
     font-size: var(--font-size-medium);
     width: 600px;
   }
+  @media (max-width: 610px) {
+    width: 100vw;
+    /* max-width: 90%; */
+  }
 `
 export const FightListHeader = styled(BetListHeader)`
   border-top-left-radius: var(--border-radius0);
@@ -131,8 +136,6 @@ export const MainListHeader = styled(FightListHeader)`
   font-weight: 700;
 `
 export const BetContainerMobile = styled.div`
-  /* display: grid; */
-
   gap: var(--gap-medium);
   @media (max-width: 760px) {
     width: 100%;
