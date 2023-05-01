@@ -13,7 +13,6 @@ import {
 } from './HomePageLayout.styled'
 import { ButtonSmallGradient } from '../components/Buttons/Buttons.styled'
 import { useAppSelector } from '../reduxState/reduxHooks'
-import { BlurredSkinnyText } from '../modules/Bets/components/BetConfirmation.styled'
 import SvgIcon from '../modules/misc/SvgIcon/SvgIcon'
 import { BetData, ConfirmedBet, EventAllData } from '../interfaces'
 import {

@@ -58,6 +58,11 @@ export enum OptionsHomeMenu {
   BETS_TO_CONFIRM,
   BETS_TO_REGISTER
 }
+export enum OptionsDesktopMenu {
+  OPTION_ONE,
+  OPTION_TWO,
+  OPTION_THREE
+}
 export enum SvgIconVariants {
   LOGIN = 'login',
   LOGOUT = 'logout',

@@ -7,6 +7,7 @@ interface BetsState {
   betsConfirmed: ConfirmedBet[]
   betsRegistered: ConfirmedBet[]
   userBets: ConfirmedBet[]
+  allBets: ConfirmedBet[]
   loading: boolean
   success: boolean
 }
@@ -16,6 +17,7 @@ const initialState: BetsState = {
   betsConfirmed: [],
   betsRegistered: [],
   userBets: [],
+  allBets: [],
   loading: false,
   success: true
 }
@@ -76,6 +78,26 @@ export const getUserBets = createAsyncThunk(
 
     try {
       const { data } = await axios.get(`/api/bets/mybets`, config)
+      return data
+    } catch (error: any) {
+      return error
+    }
+  }
+)
+export const getAllBets = createAsyncThunk(
+  'bet/getAllBets',
+  // x- a dummy parameter
+  async (x: any, thunkAPI) => {
+    try {
+      const state: any = thunkAPI.getState()
+      const userInfo = state.user.userInfo
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`
+        }
+      }
+
+      const { data } = await axios.get(`/api/bets/`, config)
       return data
     } catch (error: any) {
       return error
@@ -143,6 +165,17 @@ const betsSlice = createSlice({
       state.success = true
     })
     builder.addCase(getUserBets.rejected, (state, action) => {
+      state.loading = false
+    })
+    builder.addCase(getAllBets.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(getAllBets.fulfilled, (state, action) => {
+      state.loading = false
+      state.allBets = action.payload
+      state.success = true
+    })
+    builder.addCase(getAllBets.rejected, (state, action) => {
       state.loading = false
     })
   }

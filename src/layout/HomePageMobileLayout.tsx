@@ -13,6 +13,8 @@ import FightsAndBetsMobile from '../modules/Bets/main/mobile/FightsAndBetsMobile
 import EventsColumnMobile from '../modules/misc/EventsDisplay/EventsColumnMobile'
 
 import MobileFooter from './MobileFooter'
+import AllBetsDisplay from '../modules/Bets/main/AllBetsDisplay'
+import UserBetDisplay from '../modules/Bets/main/UserBetDisplay'
 
 interface HomePageMobileLayoutProps {
   navigationRight?: React.ReactNode
@@ -41,9 +43,9 @@ const HomePageMobileLayout: React.FC<HomePageMobileLayoutProps> = ({
       </HeroNavigation>
       <HeroMainContainer>
         <HeroMainArticle>
-          {open === OptionsOpen.SEARCH && 'search'}
+          {open === OptionsOpen.SEARCH && <AllBetsDisplay />}
           {open === OptionsOpen.HOME && <FightsAndBetsMobile open={openHome} />}
-          {open === OptionsOpen.MY_BETS && 'My bets'}
+          {open === OptionsOpen.MY_BETS && <UserBetDisplay />}
           {open === OptionsOpen.EVENTS && (
             <EventsColumnMobile setOpen={setOpen} />
           )}

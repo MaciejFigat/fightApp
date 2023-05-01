@@ -6,7 +6,7 @@ import { BetData, FightAllData } from '../../../interfaces'
 export const useInitialFighterBets = (
   currentFight: FightAllData | null,
   betsUnconfirmed: BetData[],
-  expandedFight: null | number,
+  expandedFight: null | number | string,
   DateTime: string | undefined
 ) => {
   const [state, setState] = useState([[], betsUnconfirmed])

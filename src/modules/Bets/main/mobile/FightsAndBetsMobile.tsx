@@ -34,7 +34,9 @@ const FightsAndBetsMobile: React.FC<FightsAndBetsMobileProps> = ({ open }) => {
     DateTime
   } = currentEvent ?? {}
   // state for accordion comp
-  const [expandedFight, setExpandedFight] = useState<null | number>(null)
+  const [expandedFight, setExpandedFight] = useState<null | number | string>(
+    null
+  )
 
   const winnerChangeHandler = (
     id: string,

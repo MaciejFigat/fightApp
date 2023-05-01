@@ -6,7 +6,6 @@ import BetConfirmation from '../components/BetConfirmation'
 import { useAppSelector } from '../../../reduxState/reduxHooks'
 import { WinnerProjection } from '../../../consts'
 import BetRegistration from '../components/BetRegistration'
-import UserBetDisplay from './UserBetDisplay'
 import ConditionalHeader from '../components/ConditionalHeader'
 
 interface BetsColumnProps {
@@ -65,8 +64,6 @@ const BetsColumn: React.FC<BetsColumnProps> = ({ state, winnerChange }) => {
         )}
       </Droppable>
       <BetRegistration />
-      {/* //todo just to check */}
-      <UserBetDisplay />
     </>
   )
 }

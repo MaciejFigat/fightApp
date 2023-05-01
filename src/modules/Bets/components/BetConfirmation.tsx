@@ -54,7 +54,7 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
     state => state.bets.betsUnconfirmed
   )
 
-  const [expandedBet, setExpandedBet] = useState<null | number>(null)
+  const [expandedBet, setExpandedBet] = useState<null | number | string>(null)
   const [amountBet, setAmountBet] = useState<number>(1)
   const [expectedPayout, setExpectedPayout] = useState<number>(1)
 

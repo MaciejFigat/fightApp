@@ -3,9 +3,9 @@ import { AccordionContent, AccordionHeader } from './Accordion.styled'
 
 interface AccordionProps {
   children: React.ReactNode
-  i: number
-  expanded: null | number
-  setExpanded: React.Dispatch<React.SetStateAction<null | number>>
+  i: number | string
+  expanded: null | number | string
+  setExpanded: React.Dispatch<React.SetStateAction<null | number | string>>
   noBottomMargin?: boolean
   headerContent?: string | React.ReactNode
   opacityTransitionIn?: number

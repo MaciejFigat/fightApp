@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   HeroArticleSideSection,
   HeroArticleBottomBigSection,
@@ -11,6 +11,10 @@ import {
   HeroNavOne,
   HeroNavTwo
 } from './HomePageLayout.styled'
+import { ButtonVariants, OptionsDesktopMenu, SvgIconVariants } from '../consts'
+import { HorizontalWrapper } from '../styles/misc.styles'
+import { ButtonSmallGradient } from '../components/Buttons/Buttons.styled'
+import SvgIcon from '../modules/misc/SvgIcon/SvgIcon'
 
 interface HomePageLayoutProps {
   navigationRight?: React.ReactNode
@@ -18,8 +22,14 @@ interface HomePageLayoutProps {
   navigationMiddle?: React.ReactNode
   leftColumn?: React.ReactNode
   rightColumn?: React.ReactNode
+  rightColumnOptionOne?: React.ReactNode
+  rightColumnOptionTwo?: React.ReactNode
+  rightColumnOptionThree?: React.ReactNode
   bottomLeft?: React.ReactNode
   bottomRight?: React.ReactNode
+  optionOneName?: string
+  optionTwoName?: string
+  optionThreeName?: string
 }
 
 const HomePageLayout: React.FC<HomePageLayoutProps> = ({
@@ -29,8 +39,17 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
   leftColumn,
   rightColumn,
   bottomLeft,
-  bottomRight
+  bottomRight,
+  rightColumnOptionOne,
+  rightColumnOptionTwo,
+  rightColumnOptionThree,
+  optionOneName,
+  optionTwoName,
+  optionThreeName
 }) => {
+  const [open, setOpen] = useState<OptionsDesktopMenu>(
+    OptionsDesktopMenu.OPTION_ONE
+  )
   return (
     <HeroGridWrapper>
       <HeroNavigation>
@@ -46,13 +65,59 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
           </HeroArticleSideSection>
           <HeroArticleMainSection>
             {rightColumn ? rightColumn : null}
+            {rightColumnOptionOne && open === OptionsDesktopMenu.OPTION_ONE
+              ? rightColumnOptionOne
+              : null}
+            {rightColumnOptionTwo && open === OptionsDesktopMenu.OPTION_TWO
+              ? rightColumnOptionTwo
+              : null}
+            {rightColumnOptionThree && open === OptionsDesktopMenu.OPTION_THREE
+              ? rightColumnOptionThree
+              : null}
           </HeroArticleMainSection>
 
           <HeroArticleBottomBigSection>
             {bottomLeft ? bottomLeft : null}
           </HeroArticleBottomBigSection>
           <HeroArticleBottomSmallSection>
-            {bottomRight ? bottomRight : null}
+            {bottomRight ? (
+              bottomRight
+            ) : (
+              <HorizontalWrapper>
+                <ButtonSmallGradient
+                  variant={ButtonVariants.PRIMARY_EMPTY}
+                  onClick={() => setOpen(OptionsDesktopMenu.OPTION_ONE)}
+                >
+                  <SvgIcon
+                    variant={SvgIconVariants.HOME}
+                    contentAfter={optionOneName ? optionOneName : 'Option 1'}
+                    showContent
+                  />{' '}
+                </ButtonSmallGradient>
+                <ButtonSmallGradient
+                  variant={ButtonVariants.PRIMARY}
+                  onClick={() => setOpen(OptionsDesktopMenu.OPTION_TWO)}
+                >
+                  <SvgIcon
+                    variant={SvgIconVariants.SEARCH}
+                    contentAfter={optionTwoName ? optionTwoName : 'Option 2'}
+                    showContent
+                  />{' '}
+                </ButtonSmallGradient>
+                <ButtonSmallGradient
+                  variant={ButtonVariants.SECONDARY_EMPTY}
+                  onClick={() => setOpen(OptionsDesktopMenu.OPTION_THREE)}
+                >
+                  <SvgIcon
+                    variant={SvgIconVariants.COINS}
+                    contentAfter={
+                      optionThreeName ? optionThreeName : 'Option 3'
+                    }
+                    showContent
+                  />{' '}
+                </ButtonSmallGradient>
+              </HorizontalWrapper>
+            )}
           </HeroArticleBottomSmallSection>
         </HeroMainArticle>
       </HeroMainContainer>

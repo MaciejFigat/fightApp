@@ -11,9 +11,9 @@ import { motion } from 'framer-motion'
 interface FightsColumnMobileProps {
   winnerChange: (id: string, winnerProjection: WinnerProjection) => void
   EventName?: string
-  setExpandedFight: React.Dispatch<React.SetStateAction<number | null>>
+  setExpandedFight: React.Dispatch<React.SetStateAction<number | null | string>>
   currentEventFights?: FightAllData[]
-  expandedFight: number | null
+  expandedFight: number | null | string
   state: BetData[][]
 }
 

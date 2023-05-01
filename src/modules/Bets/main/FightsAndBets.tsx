@@ -34,7 +34,9 @@ const FightsAndBets: React.FC<FightsAndBetsProps> = () => {
     DateTime
   } = currentEvent ?? {}
   // state for accordion component, will have value of FightId if expanded
-  const [expandedFight, setExpandedFight] = useState<null | number>(null)
+  const [expandedFight, setExpandedFight] = useState<null | number | string>(
+    null
+  )
 
   const targetFightIndex =
     currentEventFights?.findIndex(fight => fight.FightId === expandedFight) ?? 0

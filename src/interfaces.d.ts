@@ -100,6 +100,8 @@ interface RegisteredBet extends ConfirmedBet {
   // projectedWinner: {
   //   type: WinnerProjection
   // }
+  // isAccepted: boolean
+  // isResolved: boolean
   // todo I'm not sure if to change this or schemas in BE
 }
 
