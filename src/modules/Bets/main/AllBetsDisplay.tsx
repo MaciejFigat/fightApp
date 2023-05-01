@@ -6,6 +6,9 @@ import { AppDispatch } from '../../../reduxState/store'
 import { getAllBets } from '../../../reduxState/stateSlices/bets/betsSlice'
 import Accordion from '../../../components/Accordion/Accordion'
 import { motion } from 'framer-motion'
+import { FightListHeader, MainListHeader } from './DragColumns.styled'
+import { HorizontalWrapperSpaceBetween } from '../../../styles/misc.styles'
+import AccordionArrow from '../../../components/Accordion/AccordionArrow'
 
 interface AllBetsDisplayProps {}
 
@@ -16,19 +19,27 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
   const [expandedBet, setExpandedBet] = useState<null | string | number>(null)
 
   const fetchBetsHandler = () => {
-    console.log('fetching bets')
     dispatch(getAllBets(1))
   }
 
   return (
     <motion.div layout>
+      <MainListHeader>All bets</MainListHeader>
       {allBets.map(bet => (
         <Accordion
           key={bet.id}
           i={bet.id}
           headerContent={
             <>
-              {bet.name} {bet.fightName}
+              <FightListHeader>
+                <HorizontalWrapperSpaceBetween>
+                  {' '}
+                  {bet.name} {bet.fightName}{' '}
+                  <AccordionArrow
+                    animateOn={expandedBet === bet.id ? true : false}
+                  />
+                </HorizontalWrapperSpaceBetween>
+              </FightListHeader>
             </>
           }
           expanded={expandedBet}
@@ -36,7 +47,7 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
         >
           <>
             {' '}
-            {bet.dateTime} To win:{bet.amountBet} Expected: {bet.expectedPayout}{' '}
+            {bet.dateTime} To win:{bet.amountBet} Expected: {bet.expectedPayout}
           </>
         </Accordion>
       ))}

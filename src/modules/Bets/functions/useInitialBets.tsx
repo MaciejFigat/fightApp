@@ -7,7 +7,8 @@ export const useInitialFighterBets = (
   currentFight: FightAllData | null,
   betsUnconfirmed: BetData[],
   expandedFight: null | number | string,
-  DateTime: string | undefined
+  DateTime: string | undefined,
+  currentEventId: number | undefined
 ) => {
   const [state, setState] = useState([[], betsUnconfirmed])
 
@@ -19,12 +20,13 @@ export const useInitialFighterBets = (
     const lastName1 = fighter1?.LastName ?? ''
     const lastName2 = fighter2?.LastName ?? ''
     const fightName = `${name1} ${lastName1} vs ${name2} ${lastName2}`
-
+    const EventId = currentEventId ?? 0
     setState([
       [
         {
           id: v4(),
           FightId: currentFight?.FightId ?? 0,
+          EventId: EventId,
           name: `${name1} ${lastName1}`,
           fightName: fightName,
           method: WinMethod.TBD,
@@ -36,6 +38,7 @@ export const useInitialFighterBets = (
         {
           id: v4(),
           FightId: currentFight?.FightId ?? 0,
+          EventId: EventId,
           name: `${name2} ${lastName2}`,
           fightName: fightName,
           moneyline: currentFight?.Fighters[1]?.Moneyline ?? 0,
@@ -51,6 +54,7 @@ export const useInitialFighterBets = (
           method: WinMethod.KO_TKO,
           projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
+          EventId: EventId,
           dateTime: DateTime ?? '',
           Fighters: currentFight?.Fighters ?? [],
           activated: false
@@ -62,6 +66,7 @@ export const useInitialFighterBets = (
           method: WinMethod.DECISION,
           projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
+          EventId: EventId,
           dateTime: DateTime ?? '',
           Fighters: currentFight?.Fighters ?? [],
           activated: false
@@ -73,6 +78,7 @@ export const useInitialFighterBets = (
           method: WinMethod.SUBMISSION,
           projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
+          EventId: EventId,
           dateTime: DateTime ?? '',
           Fighters: currentFight?.Fighters ?? [],
           activated: false
@@ -84,6 +90,7 @@ export const useInitialFighterBets = (
           method: WinMethod.DRAW,
           projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
+          EventId: EventId,
           dateTime: DateTime ?? '',
           Fighters: currentFight?.Fighters ?? [],
           activated: false
@@ -95,6 +102,7 @@ export const useInitialFighterBets = (
           method: WinMethod.DQ,
           projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
+          EventId: EventId,
           dateTime: DateTime ?? '',
           Fighters: currentFight?.Fighters ?? [],
           activated: false
@@ -102,7 +110,7 @@ export const useInitialFighterBets = (
       ],
       betsUnconfirmed
     ])
-  }, [currentFight, DateTime, betsUnconfirmed, expandedFight])
+  }, [currentFight, DateTime, betsUnconfirmed, expandedFight, currentEventId])
 
   return [state, setState] as const
 }

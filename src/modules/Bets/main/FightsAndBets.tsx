@@ -31,7 +31,8 @@ const FightsAndBets: React.FC<FightsAndBetsProps> = () => {
   const {
     Name: EventName,
     Fights: currentEventFights,
-    DateTime
+    DateTime,
+    EventId
   } = currentEvent ?? {}
   // state for accordion component, will have value of FightId if expanded
   const [expandedFight, setExpandedFight] = useState<null | number | string>(
@@ -50,7 +51,8 @@ const FightsAndBets: React.FC<FightsAndBetsProps> = () => {
     currentFight,
     betsUnconfirmed,
     expandedFight,
-    DateTime
+    DateTime,
+    EventId
   )
 
   const onDragEnd = (result: DropResult) => {

@@ -82,6 +82,7 @@ interface BetData {
   fightName: string
   method?: WinMethod
   FightId: number
+  EventId: number
   activated: boolean
   dateTime: string
   moneyline?: number

@@ -31,7 +31,8 @@ const FightsAndBetsMobile: React.FC<FightsAndBetsMobileProps> = ({ open }) => {
   const {
     Name: EventName,
     Fights: currentEventFights,
-    DateTime
+    DateTime,
+    EventId
   } = currentEvent ?? {}
   // state for accordion comp
   const [expandedFight, setExpandedFight] = useState<null | number | string>(
@@ -63,7 +64,8 @@ const FightsAndBetsMobile: React.FC<FightsAndBetsMobileProps> = ({ open }) => {
     currentFight,
     betsUnconfirmed,
     expandedFight,
-    DateTime
+    DateTime,
+    EventId
   )
   return (
     <ScrollYWrapper>
