@@ -105,7 +105,7 @@ export const HeaderWrapper = styled.div`
   padding: var(--padding-big-sides);
 `
 
-export const BetListHeader = styled.div`
+export const BetListHeader = styled.div<{ minHeight?: string }>`
   border-bottom: 1px solid var(--background-blur2);
   margin-top: var(--gap-big);
   padding: var(--padding-big);
@@ -113,6 +113,8 @@ export const BetListHeader = styled.div`
   border-top-left-radius: var(--border-radius1);
   border-top-right-radius: var(--border-radius1);
   background: var(--background3-main);
+  min-height: ${({ minHeight }) => (minHeight ? minHeight : 'fit-content')};
+
   @media (max-width: 1040px) {
     font-size: var(--font-size-medium);
     width: 600px;

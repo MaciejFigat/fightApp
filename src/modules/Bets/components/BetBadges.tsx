@@ -39,6 +39,13 @@ const BetBadges: React.FC<BetBadgesProps> = ({
       return `${FirstName.substring(0, 1)}. ${LastName.substring(0, 1)}.`
     }
   }
+  const isFavouriteHelper = (index: 0 | 1) => {
+    if (Fighters && Fighters.length > 0) {
+      const { Moneyline } = Fighters[index]
+      //* < 0  = favourite
+      return Moneyline < 0
+    }
+  }
 
   return (
     <>
@@ -76,12 +83,16 @@ const BetBadges: React.FC<BetBadgesProps> = ({
               {[
                 {
                   winner: WinnerProjection.FIGHTER1,
-                  color: TextColor.SUCCESS,
+                  color: isFavouriteHelper(0)
+                    ? TextColor.SUCCESS
+                    : TextColor.WARNING,
                   text: initialsHelper(0) ?? 'J.C.'
                 },
                 {
                   winner: WinnerProjection.FIGHTER2,
-                  color: TextColor.WARNING,
+                  color: isFavouriteHelper(1)
+                    ? TextColor.SUCCESS
+                    : TextColor.WARNING,
                   text: initialsHelper(1) ?? 'J.D.'
                 },
                 {

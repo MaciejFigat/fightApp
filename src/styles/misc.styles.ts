@@ -73,6 +73,12 @@ export const HorizontalWrapperHeader = styled(HorizontalWrapperSpaceBetween)`
     gap: var(--gap-veryBig);
   }
 `
+export const RelativeWrapper = styled.div<{ top?: string; left?: string }>`
+  top: ${({ top }) => (top ? `${top}` : '0')};
+  left: ${({ left }) => (left ? `${left}` : '0')};
+  position: relative;
+`
+
 export const HorizontalWrapperSpaceAround = styled(
   HorizontalWrapperSpaceBetween
 )`
@@ -172,5 +178,7 @@ export const ColorBadgeLong = styled(ColorBadge)<TextProps>`
   width: fit-content;
 `
 export const HighlightText = styled.b<TextProps>`
+  display: flex;
+  align-items: center;
   color: ${({ color }) => getColor(color)};
 `

@@ -1,21 +1,13 @@
 import React from 'react'
 import { Droppable, Draggable } from '@hello-pangea/dnd'
 import { BetData } from '../../../interfaces'
-import {
-  BetListHeader,
-  DraggableDiv,
-  DroppableList
-} from './DragColumns.styled'
+import { DraggableDiv, DroppableList } from './DragColumns.styled'
 import BetConfirmation from '../components/BetConfirmation'
 import { useAppSelector } from '../../../reduxState/reduxHooks'
-import { TextColor, WinnerProjection } from '../../../consts'
-import {
-  HighlightText,
-  HorizontalWrapper,
-  RoundAccent
-} from '../../../styles/misc.styles'
+import { WinnerProjection } from '../../../consts'
 import BetRegistration from '../components/BetRegistration'
 import UserBetDisplay from './UserBetDisplay'
+import ConditionalHeader from '../components/ConditionalHeader'
 
 interface BetsColumnProps {
   state: BetData[][]
@@ -29,14 +21,12 @@ const BetsColumn: React.FC<BetsColumnProps> = ({ state, winnerChange }) => {
 
   return (
     <>
-      <BetListHeader>
-        <HorizontalWrapper>
-          <RoundAccent>{betsUnconfirmed.length} </RoundAccent>
-          <HighlightText color={TextColor.PRIMARY}>
-            bets to confirm
-          </HighlightText>
-        </HorizontalWrapper>
-      </BetListHeader>
+      <ConditionalHeader
+        passedArrayLength={betsUnconfirmed.length}
+        optionEmpty='Click on the fight and drag'
+        optionHaveContent='Bets to confirm'
+      />
+
       <Droppable droppableId={`1`}>
         {(provided, snapshot) => (
           <DroppableList
