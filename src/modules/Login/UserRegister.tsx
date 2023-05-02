@@ -85,6 +85,9 @@ const UserRegister: React.FC<UserRegisterProps> = () => {
               <ButtonSmall variant={ButtonVariants.INFO_EMPTY}>
                 <Link to='/login'>Back to login screen</Link>{' '}
               </ButtonSmall>
+              <ButtonSmall variant={ButtonVariants.WARNING_EMPTY}>
+                <Link to='/'>Home</Link>{' '}
+              </ButtonSmall>
             </Title>
             <Title>
               After filling out the above form, an email with instructions on

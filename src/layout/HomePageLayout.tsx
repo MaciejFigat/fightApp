@@ -14,10 +14,7 @@ import {
 } from './HomePageLayout.styled'
 import { ButtonVariants, OptionsDesktopMenu, SvgIconVariants } from '../consts'
 import { GridCenterWrapper, HorizontalWrapper } from '../styles/misc.styles'
-import {
-  ButtonMedium,
-  ButtonSmallGradient
-} from '../components/Buttons/Buttons.styled'
+import { ButtonSmallGradient } from '../components/Buttons/Buttons.styled'
 import SvgIcon from '../modules/misc/SvgIcon/SvgIcon'
 
 interface HomePageLayoutProps {
@@ -132,9 +129,6 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
                         showContent
                       />{' '}
                     </ButtonSmallGradient>
-                    <ButtonMedium variant={ButtonVariants.SECONDARY}>
-                      hello
-                    </ButtonMedium>
                   </HorizontalWrapper>
                 </>
               )}

@@ -104,7 +104,9 @@ const UserLogin: React.FC<UserLoginProps> = () => {
             <ButtonBig variant={ButtonVariants.INFO}>
               <Link to='/register'>Register</Link>
             </ButtonBig>
-
+            <ButtonSmall variant={ButtonVariants.WARNING_EMPTY}>
+              <Link to='/'>Home</Link>{' '}
+            </ButtonSmall>
             <Title>Enter email and click to reset password</Title>
             <ButtonSmall variant={ButtonVariants.WARNING}>
               <div onClick={resetPasswordHandler}>&nbsp;reset password</div>
