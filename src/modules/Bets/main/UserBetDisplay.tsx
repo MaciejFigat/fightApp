@@ -22,7 +22,7 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
   const userBets = useAppSelector(state => state.bets.userBets)
 
   useEffect(() => {
-    if (userBets.length < 0) dispatch(getUserBets(1))
+    if (userBets.length === 0) dispatch(getUserBets(1))
   }, [dispatch, userBets.length])
 
   return (
@@ -30,7 +30,7 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
       <FlexStartWrapper>
         <MainListHeaderGrey>My Bets</MainListHeaderGrey>
         {userBets.map(bet => (
-          <FightListHeader>
+          <FightListHeader key={bet.id}>
             {' '}
             <HorizontalWrapperSpaceBetween>
               {' '}

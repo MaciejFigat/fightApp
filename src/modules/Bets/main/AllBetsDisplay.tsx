@@ -102,7 +102,7 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
         {betsToDisplay &&
           betsToDisplay.length > 0 &&
           betsToDisplay.map(bet => (
-            <FightListHeader>
+            <FightListHeader key={bet.id}>
               <HorizontalWrapperSpaceBetween>
                 {' '}
                 {bet.name}{' '}
