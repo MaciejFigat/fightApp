@@ -3,7 +3,7 @@
 
 <div align="center">
  
-  <h3 align="center">Fight Bet - Smile. Cry. Bet again!</h3>
+  <h3 align="center">FightBet - Smile. Cry. Bet again!</h3>
 
   <p align="center">
     (please don't it's just proof of concept)
@@ -17,22 +17,20 @@
 
 ## About the Project
 
+This is a proof of concept of a betting application, made for educational purposes during my time at the [Evolution Typescript Bootcamp](https://typescript-bootcamp.evolution.com/).
 
 ### Built With
-### `axios`
-
-Axios is a popular promise-based HTTP client for making API requests in JavaScript. It simplifies the process of sending HTTP requests and handling responses. In this project, Axios is used to make API calls to a backend server.
 
 ### `framer-motion`
 
-Framer Motion is a popular animation library for React. It provides an easy-to-use API for creating complex animations with minimal code. In this project, Framer Motion is used to create animations for various UI components. 
+Framer Motion is a popular animation library for React. It provides an easy-to-use API for creating complex animations with minimal code. In this project, [Framer Motion](https://www.framer.com/motion/) is used to create animations for various UI components. 
 
 ### `@reduxjs/toolkit`
 
-Redux Toolkit is a set of utilities and tools that make it easier to use Redux in your applications. In this project, Redux Toolkit is used to manage application state.
+[Redux Toolkit](https://redux-toolkit.js.org/) is a set of utilities and tools that make it easier to use Redux in your applications. In this project, Redux Toolkit is used to manage application state.
 
 ### `@hello-pangea/dnd`
-Successor of react-beautiful-dnd. Provides complete typing and is maintained by trustworthy people. In this project, is used to create drag and drop functionality for the application.
+Successor of react-beautiful-dnd. Provides complete typing and is maintained by dependable people. In this project, is used to create drag and drop functionality for the application.
 [Link to docs](https://github.com/hello-pangea/dnd)
 
 ## Usage

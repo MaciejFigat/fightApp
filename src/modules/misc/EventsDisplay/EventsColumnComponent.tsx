@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useMemo } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import {
   SportEventData,
@@ -8,14 +8,16 @@ import {
 import { AppDispatch } from '../../../reduxState/store'
 import {
   editSportEvents,
+  fetchEvent,
   fetchMMAData
 } from '../../../reduxState/stateSlices/sportEvents/eventsSlice'
-import { eventsBJJ } from '../../../mockData/mockBJJEvents'
+// import { eventsBJJ } from '../../../mockData/mockBJJEvents'
 import { eventsMMA } from '../../../mockData/mockMMAEvents'
-import { eventsBoxing } from '../../../mockData/mockBoxingEvents'
-import { eventsSubmission } from '../../../mockData/mockSubmissionEvents'
+// import { eventsBoxing } from '../../../mockData/mockBoxingEvents'
+// import { eventsSubmission } from '../../../mockData/mockSubmissionEvents'
 import EventCard from './EventCard'
 import { EventCardContainer, EventCardStyled } from './EventCard.styled'
+import { filterFutureEvents } from '../../Bets/functions/filterBets'
 
 interface EventsColumnComponentProps {}
 
@@ -32,27 +34,39 @@ const EventsColumnComponent: React.FC<EventsColumnComponentProps> = () => {
     state => state.events.availableEvents
   )
 
+  const filteredEvents = useMemo(() => {
+    return filterFutureEvents(availableEvents)
+  }, [availableEvents])
+
   useEffect(() => {
     switch (disciplineChosen.name) {
       case 'Boxing':
-        dispatch(editSportEvents(eventsBoxing))
+        //dispatch(editSportEvents(eventsBoxing))
+        console.log('disabled')
         break
       case 'BJJ':
-        dispatch(editSportEvents(eventsBJJ))
+        //dispatch(editSportEvents(eventsBJJ))
+        console.log('disabled')
         break
       case 'Submission grappling':
-        dispatch(editSportEvents(eventsSubmission))
+        //dispatch(editSportEvents(eventsSubmission))
+        console.log('disabled')
         break
       case 'Muay Thai':
         dispatch(editSportEvents(eventsMMA))
         break
       case 'MMA':
-        console.log('fetch MMA events and set them as availableEvents')
         // MMA events from different API than the other sports - saving calls
         if (availableEvents.length === 0) dispatch(fetchMMAData())
         break
     }
   }, [disciplineChosen, dispatch, availableEvents.length])
+
+  // todo for presentation purposes
+  useEffect(() => {
+    if (availableEvents.length > 0)
+      dispatch(fetchEvent(availableEvents[0].EventId))
+  }, [availableEvents.length, dispatch, availableEvents])
 
   return (
     <EventCardContainer>
@@ -65,8 +79,8 @@ const EventsColumnComponent: React.FC<EventsColumnComponentProps> = () => {
           <>No events</>
         )
       ) : (
-        availableEvents.length > 0 &&
-        availableEvents.map(chosenEvent => (
+        filteredEvents.length > 0 &&
+        filteredEvents.map(chosenEvent => (
           <EventCard key={chosenEvent.EventId} chosenEvent={chosenEvent} />
         ))
       )}

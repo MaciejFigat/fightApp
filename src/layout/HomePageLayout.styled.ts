@@ -26,7 +26,8 @@ export const HeroGridWrapperMobile = styled(HeroGridWrapper)`
 export const HeroNavigation = styled.div`
   display: flex;
   width: 100%;
-  max-height: 70px;
+  max-height: 50px;
+  min-height: 50px;
 `
 export const HeroNavOne = styled.div`
   display: flex;
@@ -98,6 +99,7 @@ export const HeroArticleBottomSmallSection = styled(HeroArticleSection)`
   border-left: 1px solid var(--background-blur2);
   border-bottom: 1px solid var(--background-blur2);
 `
+
 export const FooterMobile = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;

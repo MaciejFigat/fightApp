@@ -83,43 +83,45 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
             {bottomRight ? (
               bottomRight
             ) : (
-              <HorizontalWrapper>
-                <ButtonSmallGradient
-                  variant={ButtonVariants.PRIMARY_EMPTY}
-                  onClick={() => setOpen(OptionsDesktopMenu.OPTION_ONE)}
-                  $active={open === OptionsDesktopMenu.OPTION_ONE}
-                >
-                  <SvgIcon
-                    variant={SvgIconVariants.HOME}
-                    contentAfter={optionOneName ? optionOneName : 'Option 1'}
-                    showContent
-                  />{' '}
-                </ButtonSmallGradient>
-                <ButtonSmallGradient
-                  variant={ButtonVariants.PRIMARY}
-                  onClick={() => setOpen(OptionsDesktopMenu.OPTION_TWO)}
-                  $active={open === OptionsDesktopMenu.OPTION_TWO}
-                >
-                  <SvgIcon
-                    variant={SvgIconVariants.SEARCH}
-                    contentAfter={optionTwoName ? optionTwoName : 'Option 2'}
-                    showContent
-                  />{' '}
-                </ButtonSmallGradient>
-                <ButtonSmallGradient
-                  variant={ButtonVariants.SECONDARY_EMPTY}
-                  onClick={() => setOpen(OptionsDesktopMenu.OPTION_THREE)}
-                  $active={open === OptionsDesktopMenu.OPTION_THREE}
-                >
-                  <SvgIcon
-                    variant={SvgIconVariants.COINS}
-                    contentAfter={
-                      optionThreeName ? optionThreeName : 'Option 3'
-                    }
-                    showContent
-                  />{' '}
-                </ButtonSmallGradient>
-              </HorizontalWrapper>
+              <>
+                <HorizontalWrapper>
+                  <ButtonSmallGradient
+                    variant={ButtonVariants.PRIMARY_EMPTY}
+                    onClick={() => setOpen(OptionsDesktopMenu.OPTION_ONE)}
+                    $active={open === OptionsDesktopMenu.OPTION_ONE}
+                  >
+                    <SvgIcon
+                      variant={SvgIconVariants.HOME}
+                      contentAfter={optionOneName ? optionOneName : 'Option 1'}
+                      showContent
+                    />{' '}
+                  </ButtonSmallGradient>
+                  <ButtonSmallGradient
+                    variant={ButtonVariants.PRIMARY}
+                    onClick={() => setOpen(OptionsDesktopMenu.OPTION_TWO)}
+                    $active={open === OptionsDesktopMenu.OPTION_TWO}
+                  >
+                    <SvgIcon
+                      variant={SvgIconVariants.SEARCH}
+                      contentAfter={optionTwoName ? optionTwoName : 'Option 2'}
+                      showContent
+                    />{' '}
+                  </ButtonSmallGradient>
+                  <ButtonSmallGradient
+                    variant={ButtonVariants.SECONDARY_EMPTY}
+                    onClick={() => setOpen(OptionsDesktopMenu.OPTION_THREE)}
+                    $active={open === OptionsDesktopMenu.OPTION_THREE}
+                  >
+                    <SvgIcon
+                      variant={SvgIconVariants.COINS}
+                      contentAfter={
+                        optionThreeName ? optionThreeName : 'Option 3'
+                      }
+                      showContent
+                    />{' '}
+                  </ButtonSmallGradient>
+                </HorizontalWrapper>
+              </>
             )}
           </HeroArticleBottomSmallSection>
         </HeroMainArticle>

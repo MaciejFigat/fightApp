@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
 import { SportChosen } from '../../../interfaces'
@@ -31,6 +31,12 @@ const DisciplineDropdown: React.FC<DisciplineDropdownProps> = () => {
   const chooseSportHelper = (item: SportChosen) => {
     dispatch(editDisciplineChosen(item))
   }
+
+  // todo for presentation purposes
+  useEffect(() => {
+    if (disciplineChosen !== availableDisciplines[3])
+      dispatch(editDisciplineChosen(availableDisciplines[3]))
+  }, [disciplineChosen, dispatch, availableDisciplines])
 
   return (
     <DropDownContainer onClick={toggling}>

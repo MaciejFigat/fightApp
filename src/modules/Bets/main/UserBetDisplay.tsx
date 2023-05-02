@@ -1,49 +1,53 @@
-import React, { useState } from 'react'
-import { ButtonMedium } from '../../../components/Buttons/Buttons.styled'
-import { ButtonVariants } from '../../../consts'
+import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
 import { getUserBets } from '../../../reduxState/stateSlices/bets/betsSlice'
-import Accordion from '../../../components/Accordion/Accordion'
+
+import {
+  FlexStartWrapper,
+  GeneralWrapper,
+  HorizontalWrapperSpaceBetween
+} from '../../../styles/misc.styles'
+import { FightListHeader, MainListHeaderGrey } from './DragColumns.styled'
+import {
+  BlurredFatText,
+  BlurredSkinnyText
+} from '../components/BetConfirmation.styled'
+import { dateFormatter } from '../../utils/helperFunctions/helperFunction'
 
 interface UserBetDisplayProps {}
 
 const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
   const userBets = useAppSelector(state => state.bets.userBets)
-  const [expandedBet, setExpandedBet] = useState<null | string | number>(null)
 
-  const fetchBetsHandler = () => {
-    dispatch(getUserBets(1))
-  }
+  useEffect(() => {
+    if (userBets.length < 0) dispatch(getUserBets(1))
+  }, [dispatch, userBets.length])
 
   return (
-    <div>
-      {userBets.map(bet => (
-        <Accordion
-          key={bet.id}
-          i={bet.id}
-          headerContent={
-            <>
-              {bet.name} {bet.fightName}
-            </>
-          }
-          expanded={expandedBet}
-          setExpanded={setExpandedBet}
-        >
-          <>
+    <GeneralWrapper>
+      <FlexStartWrapper>
+        <MainListHeaderGrey>My Bets</MainListHeaderGrey>
+        {userBets.map(bet => (
+          <FightListHeader>
             {' '}
-            {bet.dateTime} To win:{bet.amountBet} Expected: {bet.expectedPayout}
-          </>
-        </Accordion>
-      ))}
-      <ButtonMedium
-        variant={ButtonVariants.INFO_EMPTY}
-        onClick={fetchBetsHandler}
-      >
-        Get me my bets please
-      </ButtonMedium>
-    </div>
+            <HorizontalWrapperSpaceBetween>
+              {' '}
+              {bet.name}
+              <BlurredSkinnyText>{bet.fightName}</BlurredSkinnyText>
+            </HorizontalWrapperSpaceBetween>
+            <HorizontalWrapperSpaceBetween>
+              {' '}
+              <BlurredFatText>
+                {dateFormatter(bet.dateTime, false)}
+              </BlurredFatText>{' '}
+            </HorizontalWrapperSpaceBetween>
+            To win:{bet.amountBet} Expected: {bet.expectedPayout}
+          </FightListHeader>
+        ))}
+      </FlexStartWrapper>
+    </GeneralWrapper>
   )
 }
 export default UserBetDisplay
