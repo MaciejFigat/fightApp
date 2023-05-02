@@ -9,7 +9,8 @@ import {
   HeroMainContainer,
   HeroNavigation,
   HeroNavOne,
-  HeroNavTwo
+  HeroNavTwo,
+  HeroGridCenterWrapper
 } from './HomePageLayout.styled'
 import { ButtonVariants, OptionsDesktopMenu, SvgIconVariants } from '../consts'
 import { HorizontalWrapper } from '../styles/misc.styles'
@@ -51,82 +52,89 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
     OptionsDesktopMenu.OPTION_ONE
   )
   return (
-    <HeroGridWrapper>
-      <HeroNavigation>
-        <HeroNavOne>{navigationLeft ? navigationLeft : null}</HeroNavOne>
-        <HeroNavTwo>{navigationMiddle ? navigationMiddle : null}</HeroNavTwo>
-        <HeroNavTwo>{navigationRight ? navigationRight : null}</HeroNavTwo>
-      </HeroNavigation>
+    <HeroGridCenterWrapper>
+      <HeroGridWrapper>
+        <HeroNavigation>
+          <HeroNavOne>{navigationLeft ? navigationLeft : null}</HeroNavOne>
+          <HeroNavTwo>{navigationMiddle ? navigationMiddle : null}</HeroNavTwo>
+          <HeroNavTwo>{navigationRight ? navigationRight : null}</HeroNavTwo>
+        </HeroNavigation>
 
-      <HeroMainContainer>
-        <HeroMainArticle>
-          <HeroArticleSideSection>
-            {leftColumn ? leftColumn : null}
-          </HeroArticleSideSection>
-          <HeroArticleMainSection>
-            {rightColumn ? rightColumn : null}
-            {rightColumnOptionOne && open === OptionsDesktopMenu.OPTION_ONE
-              ? rightColumnOptionOne
-              : null}
-            {rightColumnOptionTwo && open === OptionsDesktopMenu.OPTION_TWO
-              ? rightColumnOptionTwo
-              : null}
-            {rightColumnOptionThree && open === OptionsDesktopMenu.OPTION_THREE
-              ? rightColumnOptionThree
-              : null}
-          </HeroArticleMainSection>
+        <HeroMainContainer>
+          <HeroMainArticle>
+            <HeroArticleSideSection>
+              {leftColumn ? leftColumn : null}
+            </HeroArticleSideSection>
+            <HeroArticleMainSection>
+              {rightColumn ? rightColumn : null}
+              {rightColumnOptionOne && open === OptionsDesktopMenu.OPTION_ONE
+                ? rightColumnOptionOne
+                : null}
+              {rightColumnOptionTwo && open === OptionsDesktopMenu.OPTION_TWO
+                ? rightColumnOptionTwo
+                : null}
+              {rightColumnOptionThree &&
+              open === OptionsDesktopMenu.OPTION_THREE
+                ? rightColumnOptionThree
+                : null}
+            </HeroArticleMainSection>
 
-          <HeroArticleBottomBigSection>
-            {bottomLeft ? bottomLeft : null}
-          </HeroArticleBottomBigSection>
-          <HeroArticleBottomSmallSection>
-            {bottomRight ? (
-              bottomRight
-            ) : (
-              <>
-                <HorizontalWrapper>
-                  <ButtonSmallGradient
-                    variant={ButtonVariants.PRIMARY_EMPTY}
-                    onClick={() => setOpen(OptionsDesktopMenu.OPTION_ONE)}
-                    $active={open === OptionsDesktopMenu.OPTION_ONE}
-                  >
-                    <SvgIcon
-                      variant={SvgIconVariants.HOME}
-                      contentAfter={optionOneName ? optionOneName : 'Option 1'}
-                      showContent
-                    />{' '}
-                  </ButtonSmallGradient>
-                  <ButtonSmallGradient
-                    variant={ButtonVariants.PRIMARY}
-                    onClick={() => setOpen(OptionsDesktopMenu.OPTION_TWO)}
-                    $active={open === OptionsDesktopMenu.OPTION_TWO}
-                  >
-                    <SvgIcon
-                      variant={SvgIconVariants.SEARCH}
-                      contentAfter={optionTwoName ? optionTwoName : 'Option 2'}
-                      showContent
-                    />{' '}
-                  </ButtonSmallGradient>
-                  <ButtonSmallGradient
-                    variant={ButtonVariants.SECONDARY_EMPTY}
-                    onClick={() => setOpen(OptionsDesktopMenu.OPTION_THREE)}
-                    $active={open === OptionsDesktopMenu.OPTION_THREE}
-                  >
-                    <SvgIcon
-                      variant={SvgIconVariants.COINS}
-                      contentAfter={
-                        optionThreeName ? optionThreeName : 'Option 3'
-                      }
-                      showContent
-                    />{' '}
-                  </ButtonSmallGradient>
-                </HorizontalWrapper>
-              </>
-            )}
-          </HeroArticleBottomSmallSection>
-        </HeroMainArticle>
-      </HeroMainContainer>
-    </HeroGridWrapper>
+            <HeroArticleBottomBigSection>
+              {bottomLeft ? bottomLeft : null}
+            </HeroArticleBottomBigSection>
+            <HeroArticleBottomSmallSection>
+              {bottomRight ? (
+                bottomRight
+              ) : (
+                <>
+                  <HorizontalWrapper>
+                    <ButtonSmallGradient
+                      variant={ButtonVariants.PRIMARY_EMPTY}
+                      onClick={() => setOpen(OptionsDesktopMenu.OPTION_ONE)}
+                      $active={open === OptionsDesktopMenu.OPTION_ONE}
+                    >
+                      <SvgIcon
+                        variant={SvgIconVariants.HOME}
+                        contentAfter={
+                          optionOneName ? optionOneName : 'Option 1'
+                        }
+                        showContent
+                      />{' '}
+                    </ButtonSmallGradient>
+                    <ButtonSmallGradient
+                      variant={ButtonVariants.PRIMARY}
+                      onClick={() => setOpen(OptionsDesktopMenu.OPTION_TWO)}
+                      $active={open === OptionsDesktopMenu.OPTION_TWO}
+                    >
+                      <SvgIcon
+                        variant={SvgIconVariants.SEARCH}
+                        contentAfter={
+                          optionTwoName ? optionTwoName : 'Option 2'
+                        }
+                        showContent
+                      />{' '}
+                    </ButtonSmallGradient>
+                    <ButtonSmallGradient
+                      variant={ButtonVariants.SECONDARY_EMPTY}
+                      onClick={() => setOpen(OptionsDesktopMenu.OPTION_THREE)}
+                      $active={open === OptionsDesktopMenu.OPTION_THREE}
+                    >
+                      <SvgIcon
+                        variant={SvgIconVariants.COINS}
+                        contentAfter={
+                          optionThreeName ? optionThreeName : 'Option 3'
+                        }
+                        showContent
+                      />{' '}
+                    </ButtonSmallGradient>
+                  </HorizontalWrapper>
+                </>
+              )}
+            </HeroArticleBottomSmallSection>
+          </HeroMainArticle>
+        </HeroMainContainer>
+      </HeroGridWrapper>
+    </HeroGridCenterWrapper>
   )
 }
 export default HomePageLayout

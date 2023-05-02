@@ -1,11 +1,16 @@
 import styled from 'styled-components'
 
+export const HeroGridCenterWrapper = styled.div`
+  display: grid;
+  place-items: center;
+`
 export const HeroGridWrapper = styled.div`
   display: flex;
   flex-direction: column;
   height: 100vh;
   min-height: 100%;
   margin: 0px;
+  max-width: 1400px;
   overflow: hidden;
   @media (max-width: 1040px) {
     display: none;
@@ -13,6 +18,7 @@ export const HeroGridWrapper = styled.div`
 `
 export const HeroGridWrapperMobile = styled(HeroGridWrapper)`
   overflow: hidden;
+
   ::-webkit-scrollbar {
     width: 0;
   }
@@ -26,6 +32,8 @@ export const HeroGridWrapperMobile = styled(HeroGridWrapper)`
 export const HeroNavigation = styled.div`
   display: flex;
   width: 100%;
+  border-left: 1px solid var(--background-blur2);
+  border-right: 1px solid var(--background-blur2);
   max-height: 50px;
   min-height: 50px;
 `
@@ -56,7 +64,8 @@ export const HeroMainContainer = styled.div`
 `
 export const HeroMainArticle = styled.div`
   display: grid;
-
+  border-left: 1px solid var(--background-blur2);
+  border-right: 1px solid var(--background-blur2);
   height: 100%;
   min-height: 100%;
   grid-template-columns: 1fr 4fr;
