@@ -1,6 +1,11 @@
 import styled from 'styled-components'
 import { TextColor } from '../consts'
 
+export const GridCenterWrapper = styled.div`
+  display: grid;
+  place-items: center;
+`
+
 export const DraggingIcon = styled.span`
   width: 20px;
   height: 20px;

@@ -1,9 +1,5 @@
 import styled from 'styled-components'
 
-export const HeroGridCenterWrapper = styled.div`
-  display: grid;
-  place-items: center;
-`
 export const HeroGridWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -43,7 +39,8 @@ export const HeroNavOne = styled.div`
   justify-content: center;
   gap: 1rem;
   border-left: none;
-  flex-basis: calc(100% / 5);
+  /* flex-basis: calc(100% / 5); */
+  flex-basis: calc(100% / 4);
   &:first-of-type {
     justify-content: flex-start;
   }
@@ -51,6 +48,16 @@ export const HeroNavOne = styled.div`
 export const HeroNavTwo = styled(HeroNavOne)`
   flex-basis: 0;
   flex-grow: 1;
+  /* border-left: 1px solid var(--background-blur2); */
+`
+export const HeroNavThree = styled(HeroNavOne)`
+  flex-basis: 0;
+  flex-grow: 1;
+  @media (min-width: 1020px) {
+    /* background-color: red; */
+    /* min-width: 600px; */
+  }
+  /* border-right: 1px solid var(--background-blur2); */
   border-left: 1px solid var(--background-blur2);
 `
 export const HeroNavOneBig = styled(HeroNavOne)`
@@ -68,7 +75,7 @@ export const HeroMainArticle = styled.div`
   border-right: 1px solid var(--background-blur2);
   height: 100%;
   min-height: 100%;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 3fr;
 
   grid-template-rows: auto 70px;
 

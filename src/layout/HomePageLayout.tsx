@@ -10,11 +10,14 @@ import {
   HeroNavigation,
   HeroNavOne,
   HeroNavTwo,
-  HeroGridCenterWrapper
+  HeroNavThree
 } from './HomePageLayout.styled'
 import { ButtonVariants, OptionsDesktopMenu, SvgIconVariants } from '../consts'
-import { HorizontalWrapper } from '../styles/misc.styles'
-import { ButtonSmallGradient } from '../components/Buttons/Buttons.styled'
+import { GridCenterWrapper, HorizontalWrapper } from '../styles/misc.styles'
+import {
+  ButtonMedium,
+  ButtonSmallGradient
+} from '../components/Buttons/Buttons.styled'
 import SvgIcon from '../modules/misc/SvgIcon/SvgIcon'
 
 interface HomePageLayoutProps {
@@ -52,11 +55,13 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
     OptionsDesktopMenu.OPTION_ONE
   )
   return (
-    <HeroGridCenterWrapper>
+    <GridCenterWrapper>
       <HeroGridWrapper>
         <HeroNavigation>
           <HeroNavOne>{navigationLeft ? navigationLeft : null}</HeroNavOne>
-          <HeroNavTwo>{navigationMiddle ? navigationMiddle : null}</HeroNavTwo>
+          <HeroNavThree>
+            {navigationMiddle ? navigationMiddle : null}
+          </HeroNavThree>
           <HeroNavTwo>{navigationRight ? navigationRight : null}</HeroNavTwo>
         </HeroNavigation>
 
@@ -127,6 +132,9 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
                         showContent
                       />{' '}
                     </ButtonSmallGradient>
+                    <ButtonMedium variant={ButtonVariants.SECONDARY}>
+                      hello
+                    </ButtonMedium>
                   </HorizontalWrapper>
                 </>
               )}
@@ -134,7 +142,7 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
           </HeroMainArticle>
         </HeroMainContainer>
       </HeroGridWrapper>
-    </HeroGridCenterWrapper>
+    </GridCenterWrapper>
   )
 }
 export default HomePageLayout

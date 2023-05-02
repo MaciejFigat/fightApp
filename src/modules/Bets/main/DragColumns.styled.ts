@@ -5,8 +5,11 @@ export const DragColContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
+  /* background: brown; */
   max-width: 1280px;
   gap: var(--gap-big);
+  /* gap: 100px; */
+  padding: var(--padding-big);
   grid-template-columns: minmax(380px, 600px) 400px;
 `
 export const MainColumn = styled.div`
