@@ -39,7 +39,6 @@ export const HeroNavOne = styled.div`
   justify-content: center;
   gap: 1rem;
   border-left: none;
-  /* flex-basis: calc(100% / 5); */
   flex-basis: calc(100% / 4);
   &:first-of-type {
     justify-content: flex-start;
@@ -48,16 +47,11 @@ export const HeroNavOne = styled.div`
 export const HeroNavTwo = styled(HeroNavOne)`
   flex-basis: 0;
   flex-grow: 1;
-  /* border-left: 1px solid var(--background-blur2); */
 `
 export const HeroNavThree = styled(HeroNavOne)`
   flex-basis: 0;
   flex-grow: 1;
-  @media (min-width: 1020px) {
-    /* background-color: red; */
-    /* min-width: 600px; */
-  }
-  /* border-right: 1px solid var(--background-blur2); */
+
   border-left: 1px solid var(--background-blur2);
 `
 export const HeroNavOneBig = styled(HeroNavOne)`
@@ -152,7 +146,6 @@ export const FooterButtonSecondary = styled.button`
   border: none;
   border-radius: var(--border-radius0);
   color: var(--background4-main);
-  /* background: var(--background-gradient1); */
   background: var(--background-blur0);
   transition: all 0.3s ease-in-out;
   &:hover {
