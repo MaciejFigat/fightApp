@@ -1,11 +1,11 @@
 
 
 
-<div>
+<div align="center">
  
-  <h3>Fight Bet - Smile. Cry. Bet again!</h3>
+  <h3 align="center">Fight Bet - Smile. Cry. Bet again!</h3>
 
-  <p>
+  <p align="center">
     (please don't it's just proof of concept)
     <br />
     <br />
