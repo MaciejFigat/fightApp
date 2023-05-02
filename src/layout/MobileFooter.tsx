@@ -35,7 +35,8 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
   const currentEvent: EventAllData | null = useAppSelector(
     state => state.events.currentEvent
   )
-  const { Fights } = currentEvent ?? {}
+  const { Fights } = currentEvent || ({} as EventAllData)
+
   const betsUnconfirmed: BetData[] = useAppSelector(
     state => state.bets.betsUnconfirmed
   )
@@ -54,9 +55,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
               <HorizontalWrapper>
                 <RoundAccent>
                   {' '}
-                  {Fights && betsUnconfirmed.length > 0
-                    ? `${Fights.length}`
-                    : null}{' '}
+                  {Fights && Fights.length > 0 ? `${Fights.length}` : null}{' '}
                 </RoundAccent>
                 {Fights && Fights.length > 0
                   ? `Fights in the event`
