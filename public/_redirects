@@ -1,8 +1,4 @@
-/lexapi/doc/nr  http://pthome.onrender.com/lexapi/doc/nr  200 
-/lexapi/doc/*  http://pthome.onrender.com/lexapi/doc/:splat  200 
-/lexapi/search/*  http://pthome.onrender.com/lexapi/search/:splat  200 
-/lexapi/*  http://pthome.onrender.com/lexapi/:splat  200 
-/api/*  http://pthome.onrender.com/api/:splat  200
+/api/*  https://fightappbe.onrender.com/api/:splat  200
 
 
 

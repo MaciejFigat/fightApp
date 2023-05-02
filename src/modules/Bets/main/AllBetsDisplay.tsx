@@ -7,7 +7,7 @@ import { BetFilter, ButtonVariants } from '../../../consts'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
 import { getAllBets } from '../../../reduxState/stateSlices/bets/betsSlice'
-import Accordion from '../../../components/Accordion/Accordion'
+// import Accordion from '../../../components/Accordion/Accordion'
 import { FightListHeader, MainListHeaderGrey } from './DragColumns.styled'
 import {
   FlexStartWrapper,
@@ -15,7 +15,7 @@ import {
   HorizontalWrapperSpaceAround,
   HorizontalWrapperSpaceBetween
 } from '../../../styles/misc.styles'
-import AccordionArrow from '../../../components/Accordion/AccordionArrow'
+// import AccordionArrow from '../../../components/Accordion/AccordionArrow'
 import {
   filterAllBetsByEarliestDate,
   filterBetsByEventId
@@ -35,7 +35,7 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
   const currentEvent = useAppSelector(state => state.events.currentEvent)
   const { EventId } = currentEvent || { EventId: 0 }
   const [betFilter, setBetFilter] = useState<BetFilter>(BetFilter.ALL_BETS)
-  const [expandedBet, setExpandedBet] = useState<null | string | number>(null)
+  // const [expandedBet, setExpandedBet] = useState<null | string | number>(null)
 
   const fetchBetsHandler = () => {
     dispatch(getAllBets(1))
