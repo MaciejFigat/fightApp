@@ -42,7 +42,8 @@ REACT_APP_MMA_API_KEY = [your free trail key](https://sportsdata.io/cart/free-tr
  In order to set up live version with Render.com server and Netlify client, 
  You will need _redirects file in public folder with the following content:
  
-``` /api/*  https://yourcoolapp.onrender.com/api/:splat  200
+``` 
+    /api/*  https://yourcoolapp.onrender.com/api/:splat  200
     /*    /index.html    200
 ```
  

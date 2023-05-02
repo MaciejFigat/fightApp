@@ -21,7 +21,8 @@ export function filterAllBetsByEarliestDate (allBets: ConfirmedBet[]) {
 }
 
 export function filterBetsByEventId (allBets: ConfirmedBet[], eventId: number) {
-  const filteredBets = allBets.filter(bet => bet.EventId === eventId)
+  const filteredBets =
+    Array.isArray(allBets) && allBets.filter(bet => bet.EventId === eventId)
   return filteredBets
 }
 
