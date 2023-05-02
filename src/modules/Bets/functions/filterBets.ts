@@ -3,10 +3,13 @@ import { AvailableEventSimpleData, ConfirmedBet } from '../../../interfaces'
 export function filterAllBetsByEarliestDate (allBets: ConfirmedBet[]) {
   const today = new Date().toISOString().substring(0, 10)
 
-  const filteredBets = allBets.filter(
-    obj => obj.dateTime.substring(0, 10) >= today
-  )
+  const filteredBets =
+    Array.isArray(allBets) &&
+    allBets.filter(obj => obj.dateTime.substring(0, 10) >= today)
 
+  if (!Array.isArray(filteredBets)) {
+    return []
+  }
   // get the earliest date - dateTime property of obj to the current min value
   const earliestDate = filteredBets.reduce((min, obj) => {
     return obj.dateTime < min ? obj.dateTime : min
@@ -22,7 +25,17 @@ export function filterAllBetsByEarliestDate (allBets: ConfirmedBet[]) {
 
 export function filterBetsByEventId (allBets: ConfirmedBet[], eventId: number) {
   const filteredBets =
-    Array.isArray(allBets) && allBets.filter(bet => bet.EventId === eventId)
+    Array.isArray(allBets) &&
+    allBets &&
+    allBets.filter(bet => bet.EventId === eventId)
+  return filteredBets
+}
+export function filterAcceptedBets (allBets: ConfirmedBet[] | undefined) {
+  // const filteredBets =
+  //   Array.isArray(allBets) && allBets.filter(bet => bet.isAccepted === true)
+  const filteredBets = Array.isArray(allBets)
+    ? allBets.filter(bet => bet.isAccepted === false)
+    : []
   return filteredBets
 }
 

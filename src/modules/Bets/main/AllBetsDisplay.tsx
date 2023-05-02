@@ -1,7 +1,7 @@
-import React, { useState, useMemo } from 'react'
+import React, { useState, useMemo, useEffect } from 'react'
 import {
-  ButtonMedium,
-  ButtonSmallGradient
+  ButtonSmallGradient,
+  ButtonVerySmall
 } from '../../../components/Buttons/Buttons.styled'
 import { BetFilter, ButtonVariants } from '../../../consts'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
@@ -15,6 +15,7 @@ import {
   HorizontalWrapperSpaceBetween
 } from '../../../styles/misc.styles'
 import {
+  filterAcceptedBets,
   filterAllBetsByEarliestDate,
   filterBetsByEventId
 } from '../functions/filterBets'
@@ -34,12 +35,19 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
   const { EventId } = currentEvent || { EventId: 0 }
   const [betFilter, setBetFilter] = useState<BetFilter>(BetFilter.ALL_BETS)
 
-  const fetchBetsHandler = () => {
-    dispatch(getAllBets(1))
-  }
+  // const fetchBetsHandler = () => {
+  //   dispatch(getAllBets(1))
+  // }
+  const notAcceptedBets = useMemo(() => {
+    if (!allBets) {
+      return []
+    }
+    return filterAcceptedBets(allBets)
+  }, [allBets])
+
   const currentEventBets = useMemo(() => {
-    return filterBetsByEventId(allBets, EventId)
-  }, [allBets, EventId])
+    return filterBetsByEventId(notAcceptedBets, EventId)
+  }, [notAcceptedBets, EventId])
 
   const filteredEarliestBets = useMemo(() => {
     return filterAllBetsByEarliestDate(allBets)
@@ -57,6 +65,10 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
         return allBets
     }
   })() // () to invoke immediately
+
+  useEffect(() => {
+    dispatch(getAllBets(1))
+  }, [dispatch, allBets.length])
 
   return (
     <GeneralWrapper>
@@ -87,7 +99,8 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
             </ButtonSmallGradient>{' '}
           </HorizontalWrapperSpaceAround>
         </MainListHeaderGrey>
-        {allBets.length > 0 &&
+        {betsToDisplay &&
+          betsToDisplay.length > 0 &&
           betsToDisplay.map(bet => (
             <FightListHeader>
               <HorizontalWrapperSpaceBetween>
@@ -110,16 +123,22 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
                       : bet.amountBet
                   }
                   amountBet={bet.amountBet}
-                />
+                />{' '}
+                <ButtonVerySmall
+                  variant={ButtonVariants.SUCCESS_EMPTY}
+                  // onClick={fetchBetsHandler}
+                >
+                  Accept the bet
+                </ButtonVerySmall>
               </HorizontalWrapperSpaceBetween>
             </FightListHeader>
           ))}
-        <ButtonMedium
+        {/* <ButtonMedium
           variant={ButtonVariants.INFO_EMPTY}
           onClick={fetchBetsHandler}
         >
           Get me all the bets please
-        </ButtonMedium>
+        </ButtonMedium> */}
       </FlexStartWrapper>
     </GeneralWrapper>
   )

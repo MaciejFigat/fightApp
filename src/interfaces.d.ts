@@ -88,6 +88,7 @@ interface BetData {
   moneyline?: number
   Fighters?: FighterProfile[]
   projectedWinner: WinnerProjection
+  isAccepted?: boolean
 }
 
 interface ConfirmedBet extends BetData {

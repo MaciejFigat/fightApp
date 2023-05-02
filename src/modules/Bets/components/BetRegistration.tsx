@@ -1,6 +1,6 @@
 import React from 'react'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
-import { ConfirmedBet } from '../../../interfaces'
+import { ConfirmedBet, UserInfo } from '../../../interfaces'
 import { BetListHeader } from '../main/DragColumns.styled'
 import {
   HighlightText,
@@ -21,6 +21,7 @@ import BetRegisterConfirm from './BetRegisterConfirm'
 import BetFightDate from './BetFightDate'
 import BetVisualisation from './BetVisualisation'
 import BetProjectedWinner from './BetProjectedWinner'
+import { updateUser } from '../../../reduxState/stateSlices/users/userSlice'
 interface BetRegistrationProps {}
 
 const BetRegistration: React.FC<BetRegistrationProps> = () => {
@@ -29,14 +30,25 @@ const BetRegistration: React.FC<BetRegistrationProps> = () => {
   const betsConfirmed: ConfirmedBet[] = useAppSelector(
     state => state.bets.betsConfirmed
   )
+  const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
+  const { _id, coinsAvailable } = userInfo
 
   const handleRemove = (betId: string) => {
     dispatch(removeConfirmedBet(betId))
   }
   const handleRegisterBet = (bet: ConfirmedBet) => {
     dispatch(createBet(bet))
-  }
 
+    const updatedUser: UserInfo = {
+      _id: _id,
+      coinsAvailable: coinsAvailable
+    }
+    if (coinsAvailable && coinsAvailable > bet.amountBet)
+      dispatch(updateUser(updatedUser))
+  }
+  // coinsAvailable !== undefined
+  // ? coinsAvailable - bet.amountBet
+  // : undefined
   return (
     <>
       {betsConfirmed.length > 0 ? (
