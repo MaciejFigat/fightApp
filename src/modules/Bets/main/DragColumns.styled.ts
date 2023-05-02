@@ -53,7 +53,7 @@ export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
     /* background: brown; */
   }
   @media (max-width: 610px) {
-    max-width: 90%;
+    max-width: 100%;
     padding: var(--gap-medium) 0;
   }
 `
@@ -109,24 +109,27 @@ export const BetListHeader = styled.div<{ minHeight?: string }>`
   border-bottom: 1px solid var(--background-blur2);
   margin-top: var(--gap-big);
   padding: var(--padding-big);
-  font-size: var(--font-size-big);
+  font-size: var(--font-size-medium);
   border-top-left-radius: var(--border-radius1);
   border-top-right-radius: var(--border-radius1);
   background: var(--background3-main);
   min-height: ${({ minHeight }) => (minHeight ? minHeight : 'fit-content')};
 
-  @media (max-width: 1040px) {
-    font-size: var(--font-size-medium);
-    width: 600px;
-  }
   @media (max-width: 610px) {
     width: 100vw;
-    /* max-width: 90%; */
+    font-size: var(--font-size-small);
+    padding-left: var(--gap-small);
+    padding-right: var(--gap-small);
+    gap: var(--gap-small);
   }
 `
 export const FightListHeader = styled(BetListHeader)`
+  display: grid;
+  place-items: center;
+  gap: var(--gap-big);
   border-top-left-radius: var(--border-radius0);
   border-top-right-radius: var(--border-radius0);
+
   width: 100%;
   max-width: 600px;
   font-weight: 500;
@@ -134,14 +137,18 @@ export const FightListHeader = styled(BetListHeader)`
 export const MainListHeader = styled(FightListHeader)`
   background: var(--background5-main);
   margin-bottom: var(--gap-small);
-
   font-weight: 700;
+`
+export const MainListHeaderGrey = styled(MainListHeader)`
+  background: var(--background2-main);
+
+  @media (min-width: 1040px) {
+    min-width: 600px;
+  }
 `
 export const BetContainerMobile = styled.div`
   gap: var(--gap-medium);
   @media (max-width: 760px) {
     width: 100%;
-    /* max-width: 420px; */
-    /* padding: var(--gap-small); */
   }
 `

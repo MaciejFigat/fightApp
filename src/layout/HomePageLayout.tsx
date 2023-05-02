@@ -87,6 +87,7 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
                 <ButtonSmallGradient
                   variant={ButtonVariants.PRIMARY_EMPTY}
                   onClick={() => setOpen(OptionsDesktopMenu.OPTION_ONE)}
+                  $active={open === OptionsDesktopMenu.OPTION_ONE}
                 >
                   <SvgIcon
                     variant={SvgIconVariants.HOME}
@@ -97,6 +98,7 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
                 <ButtonSmallGradient
                   variant={ButtonVariants.PRIMARY}
                   onClick={() => setOpen(OptionsDesktopMenu.OPTION_TWO)}
+                  $active={open === OptionsDesktopMenu.OPTION_TWO}
                 >
                   <SvgIcon
                     variant={SvgIconVariants.SEARCH}
@@ -107,6 +109,7 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
                 <ButtonSmallGradient
                   variant={ButtonVariants.SECONDARY_EMPTY}
                   onClick={() => setOpen(OptionsDesktopMenu.OPTION_THREE)}
+                  $active={open === OptionsDesktopMenu.OPTION_THREE}
                 >
                   <SvgIcon
                     variant={SvgIconVariants.COINS}

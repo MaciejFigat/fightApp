@@ -24,6 +24,12 @@ export const BetDetails = styled.div`
     padding: var(--gap-medium) 0;
   }
 `
+export const BetVisualisationLimiter = styled.div`
+  max-width: 370px;
+  @media (max-width: 1040px) {
+    max-width: 300px;
+  }
+`
 export const BetVisualisationLeft = styled.div`
   display: grid;
   place-items: center;
@@ -46,6 +52,15 @@ export const BetVisualisationLeft = styled.div`
       var(--background-blur0) 0%,
       var(--background3-main) 100%
     );
+  @media (max-width: 1040px) {
+    font-size: var(--font-size-small);
+    width: 70px;
+    min-height: 40px;
+  }
+  @media (max-width: 760px) {
+    width: 50px;
+    min-height: 30px;
+  }
 `
 export const BetVisualisationMiddle = styled(BetVisualisationLeft)`
   /* width: 120px; */
@@ -98,4 +113,10 @@ export const BetVisualisationRight = styled(BetVisualisationLeft)`
       var(--background-blur1) 100%
     ),
     linear-gradient(90deg, var(--background3-main) 0%, var(--success1) 100%);
+  @media (max-width: 1040px) {
+    padding: var(--padding-medium);
+  }
+  @media (max-width: 760px) {
+    padding: var(--padding-small);
+  }
 `

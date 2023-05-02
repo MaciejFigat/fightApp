@@ -52,11 +52,11 @@ const emptySecondaryStyle: StyleVariant = {
 
 const successEmptyStyle: StyleVariant = {
   buttonColor: 'var(--success1);',
-  buttonBackground: 'transparent;',
+  buttonBackground: 'var(--background-gradient4);',
   buttonBorder: 'var(--success1);',
   buttonBorderHover: 'var(--success2);',
-  buttonBackgroundHover: 'transparent;',
-  buttonBackgroundActive: 'transparent;',
+  buttonBackgroundHover: 'var(--background-gradient4);',
+  buttonBackgroundActive: 'var(--background-gradient4);',
   buttonColorHover: 'var(--success2);',
   buttonColorActive: 'var(--success3);',
   buttonBorderActive: 'var(--success3);'
@@ -86,11 +86,11 @@ const infoStyle: StyleVariant = {
 }
 const infoEmptyStyle: StyleVariant = {
   buttonColor: 'var(--info1);',
-  buttonBackground: 'transparent;',
+  buttonBackground: 'var(--background-gradient4);',
   buttonBorder: 'var(--info1);',
   buttonBorderHover: 'var(--info3);',
-  buttonBackgroundHover: 'transparent;',
-  buttonBackgroundActive: 'transparent;',
+  buttonBackgroundHover: 'var(--background-gradient4);',
+  buttonBackgroundActive: 'var(--background-gradient4);',
   buttonColorHover: 'var(--info3);',
   buttonColorActive: 'var(--info2);',
   buttonBorderActive: 'var(--info2);'
@@ -120,22 +120,22 @@ const dangerStyle: StyleVariant = {
 }
 const warningEmptyStyle: StyleVariant = {
   buttonColor: 'var(--warning1);',
-  buttonBackground: 'transparent;',
+  buttonBackground: 'var(--background-gradient4);',
   buttonBorder: 'var(--warning1);',
   buttonBorderHover: 'var(--warning2);',
-  buttonBackgroundHover: 'transparent;',
-  buttonBackgroundActive: 'transparent;',
+  buttonBackgroundHover: 'var(--background-gradient4);',
+  buttonBackgroundActive: 'var(--background-gradient4);',
   buttonColorHover: 'var(--warning2);',
   buttonColorActive: 'var(--warning1);',
   buttonBorderActive: 'var(--warning3);'
 }
 const dangerEmptyStyle: StyleVariant = {
   buttonColor: 'var(--danger1);',
-  buttonBackground: 'transparent;',
+  buttonBackground: 'var(--background-gradient4);',
   buttonBorder: 'var(--danger1);',
   buttonBorderHover: 'var(--danger2);',
-  buttonBackgroundHover: 'transparent;',
-  buttonBackgroundActive: 'transparent;',
+  buttonBackgroundHover: 'var(--background-gradient4);',
+  buttonBackgroundActive: 'var(--background-gradient4);',
   buttonColorHover: 'var(--danger2);',
   buttonColorActive: 'var(--danger3);',
   buttonBorderActive: 'var(--danger3);'

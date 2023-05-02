@@ -119,7 +119,7 @@ const GlobalStyle = createGlobalStyle`
   --background-gradient4: linear-gradient(
       120deg,
       var(--background-blur1) 0%,
-      transparent 50%,
+      transparent 20%,
       transparent 80%,
       var(--background-blur1)
     );

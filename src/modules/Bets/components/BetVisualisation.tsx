@@ -6,6 +6,7 @@ import {
 } from '../../../styles/misc.styles'
 import {
   BetVisualisationLeft,
+  BetVisualisationLimiter,
   BetVisualisationMiddle,
   BetVisualisationRight
 } from './BetConfirmation.styled'
@@ -21,14 +22,14 @@ const BetVisualisation: React.FC<BetVisualisationProps> = ({
   amountBet
 }) => {
   return (
-    <>
+    <BetVisualisationLimiter>
       <HorizontalWrapperSpaceBetween>
         {' '}
         <BetVisualisationLeft>
           <HighlightText color={TextColor.GOLD}>Bet {amountBet}</HighlightText>
         </BetVisualisationLeft>
         <BetVisualisationMiddle>
-          <ColorText color={TextColor.INFO}>To Win</ColorText>
+          <ColorText color={TextColor.INFO}>Win</ColorText>
         </BetVisualisationMiddle>
         <BetVisualisationRight>
           <HighlightText color={TextColor.SUCCESS}>
@@ -36,7 +37,7 @@ const BetVisualisation: React.FC<BetVisualisationProps> = ({
           </HighlightText>
         </BetVisualisationRight>
       </HorizontalWrapperSpaceBetween>
-    </>
+    </BetVisualisationLimiter>
   )
 }
 export default BetVisualisation

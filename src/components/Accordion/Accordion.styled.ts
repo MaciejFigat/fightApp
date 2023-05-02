@@ -58,9 +58,11 @@ export const AccordionHeader = styled(motion.div)<{
   margin-bottom: ${({ $noBottomMargin }) => ($noBottomMargin ? '0' : '1rem')};
   @media (max-width: 1040px) {
     width: 600px;
+    min-width: 270px;
   }
   @media (max-width: 610px) {
-    /* max-width: 70%; */
+    max-width: 100%;
+    width: 100%;
   }
 `
 

@@ -70,6 +70,7 @@ export const ButtonVerySmall = styled(ButtonBig)`
 `
 export const ButtonSmallGradient = styled.button<{
   variant: ButtonVariants
+  $active?: boolean
 }>`
   display: flex;
   align-items: center;
@@ -96,9 +97,12 @@ export const ButtonSmallGradient = styled.button<{
       ${props => handleButtonColor(props.variant).buttonBackgroundHover} 90deg,
       ${props => handleButtonColor(props.variant).buttonBackgroundActive} 0
     );
-  /* background-position: 0% 50%, 100% 50%; */
-  background-position: 0 100%, 100% 100%;
-  background-size: 62% 10%;
+
+  background-position: ${({ $active }) =>
+    $active ? '0% 50%, 100% 50%' : '0 100%, 100% 100%'};
+  background-size: ${({ $active }) =>
+    $active ? 'calc(50% + 1.1em) 100%' : '62% 10%'};
+
   background-repeat: no-repeat;
 
   transition: background-size 0.4s, background-position 0.4s;

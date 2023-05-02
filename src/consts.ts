@@ -47,6 +47,11 @@ export enum WinnerProjection {
   FIGHTER2 = 1,
   ANY = 'any'
 }
+export enum BetFilter {
+  ALL_BETS = 'ALL_BETS',
+  CURRENT_EVENT = 'CURRENT_EVENT',
+  NEXT_EVENT = 'NEXT_EVENT'
+}
 export enum OptionsOpen {
   HOME,
   EVENTS,

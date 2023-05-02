@@ -150,7 +150,11 @@ const betsSlice = createSlice({
     })
     builder.addCase(createBet.fulfilled, (state, action) => {
       state.loading = false
+      // const {id} = action.payload
       state.betsRegistered = [...state.betsRegistered, action.payload]
+      state.betsConfirmed = state.betsConfirmed.filter(
+        bet => bet.id !== action.payload.id
+      )
       state.success = true
     })
     builder.addCase(createBet.rejected, (state, action) => {

@@ -78,7 +78,25 @@ export const RelativeWrapper = styled.div<{ top?: string; left?: string }>`
   left: ${({ left }) => (left ? `${left}` : '0')};
   position: relative;
 `
-
+export const GeneralWrapper = styled.div`
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+  overflow-y: scroll;
+  ::-webkit-scrollbar {
+    width: 0.2em;
+  }
+`
+export const FlexStartWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center
+  width: 100%;
+  height: 100%;
+  min-height: 82vh;
+`
 export const HorizontalWrapperSpaceAround = styled(
   HorizontalWrapperSpaceBetween
 )`

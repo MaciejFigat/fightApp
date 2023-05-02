@@ -104,6 +104,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
         <ButtonSmallGradient
           variant={ButtonVariants.PRIMARY_EMPTY}
           onClick={() => setOpen(OptionsOpen.HOME)}
+          $active={open === OptionsOpen.HOME}
         >
           <SvgIcon
             variant={SvgIconVariants.HOME}
@@ -114,6 +115,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
         <ButtonSmallGradient
           variant={ButtonVariants.SECONDARY_EMPTY}
           onClick={() => setOpen(OptionsOpen.EVENTS)}
+          $active={open === OptionsOpen.EVENTS}
         >
           <SvgIcon
             variant={SvgIconVariants.STORE}
@@ -124,6 +126,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
         <ButtonSmallGradient
           variant={ButtonVariants.PRIMARY}
           onClick={() => setOpen(OptionsOpen.SEARCH)}
+          $active={open === OptionsOpen.SEARCH}
         >
           <SvgIcon
             variant={SvgIconVariants.SEARCH}
@@ -134,6 +137,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
         <ButtonSmallGradient
           variant={ButtonVariants.SECONDARY}
           onClick={() => setOpen(OptionsOpen.MY_BETS)}
+          $active={open === OptionsOpen.MY_BETS}
         >
           <SvgIcon
             variant={SvgIconVariants.COINS}
