@@ -22,30 +22,34 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
   const userBets = useAppSelector(state => state.bets.userBets)
 
   useEffect(() => {
-    if (userBets.length === 0) dispatch(getUserBets(1))
+    // if (userBets.length === 0) dispatch(getUserBets(1))
+    dispatch(getUserBets(1))
+    console.log('getUserBets')
   }, [dispatch, userBets.length])
 
   return (
     <GeneralWrapper>
       <FlexStartWrapper>
         <MainListHeaderGrey>My Bets</MainListHeaderGrey>
-        {userBets.map(bet => (
-          <FightListHeader key={bet.id}>
-            {' '}
-            <HorizontalWrapperSpaceBetween>
+        {userBets &&
+          userBets.length > 0 &&
+          userBets.map(bet => (
+            <FightListHeader key={bet.id}>
               {' '}
-              {bet.name}
-              <BlurredSkinnyText>{bet.fightName}</BlurredSkinnyText>
-            </HorizontalWrapperSpaceBetween>
-            <HorizontalWrapperSpaceBetween>
-              {' '}
-              <BlurredFatText>
-                {dateFormatter(bet.dateTime, false)}
-              </BlurredFatText>{' '}
-            </HorizontalWrapperSpaceBetween>
-            To win:{bet.amountBet} Expected: {bet.expectedPayout}
-          </FightListHeader>
-        ))}
+              <HorizontalWrapperSpaceBetween>
+                {' '}
+                {bet.name}
+                <BlurredSkinnyText>{bet.fightName}</BlurredSkinnyText>
+              </HorizontalWrapperSpaceBetween>
+              <HorizontalWrapperSpaceBetween>
+                {' '}
+                <BlurredFatText>
+                  {dateFormatter(bet.dateTime, false)}
+                </BlurredFatText>{' '}
+              </HorizontalWrapperSpaceBetween>
+              To win:{bet.amountBet} Expected: {bet.expectedPayout}
+            </FightListHeader>
+          ))}
       </FlexStartWrapper>
     </GeneralWrapper>
   )
