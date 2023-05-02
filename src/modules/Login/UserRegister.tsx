@@ -74,7 +74,7 @@ const UserRegister: React.FC<UserRegisterProps> = () => {
             />
             <ButtonBig
               type='submit'
-              variant={ButtonVariants.SECONDARY_EMPTY}
+              variant={ButtonVariants.SUCCESS_EMPTY}
               data-testid='create-account-button'
             >
               Create account

@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { UserInfo } from '../../../interfaces'
 
@@ -278,7 +278,8 @@ const userSlice = createSlice({
     error: {},
     allUsers: [],
     selectedUserInfo: {},
-    success: false
+    success: false,
+    coinsAvailable: 0
   },
   reducers: {
     logout: state => {
@@ -292,6 +293,9 @@ const userSlice = createSlice({
     setUserInfoFromLocalStorage (state, action) {
       state.userInfo = action.payload
     }
+    // editCoinsAvailable (state, action: PayloadAction<number>) {
+    //   state.userInfo.coinsAvailable = action.payload
+    // }
   },
 
   extraReducers: builder => {
