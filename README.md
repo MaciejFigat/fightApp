@@ -1,21 +1,18 @@
 
-<div id="top"></div>
 
-<div align="center">
+
+<div>
  
-  <h3 align="center">Fight Bet - Smile. Cry. Bet again!</h3>
+  <h3>Fight Bet - Smile. Cry. Bet again!</h3>
 
-  <p align="center">
+  <p>
     (please don't it's just proof of concept)
+    <br />
     <br />
     <a href="https://fightbet.netlify.app/">Live version</a> 
     &#9898;
-    <a href="https://github.com/MaciejFigat/fightApp">FE repository</a>
-    &#9898;
     <a href="https://github.com/MaciejFigat/fightAppBE">BE repository</a>
-    <a href="https://render.com/">BE repository</a>
-   
-  </p>
+   </p>
 </div>
 
 ## About the Project
