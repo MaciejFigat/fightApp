@@ -3,34 +3,24 @@ import styled from 'styled-components'
 export const LoginWrapper = styled.div`
   display: grid;
   place-items: center;
-  border-top: 1px solid var(--background-blur1);
-  border-right: 1px solid var(--background-blur1);
-  border-left: 1px solid var(--background-blur2);
-  border-bottom: 1px solid var(--background-blur2);
-  width: 600px;
+  width: 420px;
+  height: 560px;
   padding: var(--gap-huge);
   border-radius: var(--border-radius1);
-  background: linear-gradient(
-    120deg,
-    var(--background-blur1) 0%,
-    transparent 30%,
-    transparent 70%,
-    var(--background-blur1)
-  );
-  @media screen and (max-width: 960px) {
-    max-width: 80vw;
+  background: var(--background-gradient3);
+  color: var(--background3-main);
+  background: var(--background4-main);
+  @media screen and (max-width: 760px) {
+    max-width: 100%;
+    width: 100%;
+    margin: 0;
+    padding: var(--gap-medium);
   }
 `
 export const LoginContainer = styled.div`
   display: grid;
   place-items: center center;
   height: 89vh;
-  background: var(--background1-main);
-
-  color: var(--background4-main);
-  @media screen and (max-width: 760px) {
-    /* max-width: 90%; */
-  }
 `
 
 export const Wrapper = styled.section`
@@ -40,50 +30,42 @@ export const Wrapper = styled.section`
   align-items: center;
   height: 100%;
   width: 100%;
-  margin-top: 1rem;
+  margin-top: var(--gap-huge);
   @media screen and (max-width: 760px) {
     max-width: 90%;
+    padding: var(--gap-medium);
   }
 `
 
 export const Input = styled.input`
   max-width: 100%;
-  padding: var(--padding-medium);
-
-  /* color: var(--background1-main); */
-  margin-bottom: var(--gap-veryBig);
-  border-radius: var(--border-radius0);
+  padding: var(--padding-medium-large);
+  width: 100%;
   outline: 0;
   font-size: var(--font-size-medium);
-  border-top: 1px solid var(--background-blur2);
-  border-right: 1px solid var(--background-blur2);
-  border-bottom: 1px solid var(--background-blur1);
-  border-left: 1px solid var(--background-blur1);
+  border: none;
+  background: none;
+  border-radius: var(--border-radius1);
   transition: all 0.3s ease-out;
-  &:focus,
-  &:hover {
-    border-bottom: 1px solid var(--background-blur1);
-    border-left: 1px solid var(--background-blur1);
-    border-top: 1px solid transparent;
-    border-right: 1px solid transparent;
-  }
-
-  &::placeholder {
-    color: var(--background3-main);
-  }
 `
 export const Form = styled.form`
   margin: 0 auto;
   width: 100%;
   z-index: 1;
   max-width: 414px;
-  padding: 1.3rem;
   display: flex;
   flex-direction: column;
   position: relative;
+  /* &:has(:invalid) {
+    color: var(--danger1);
+    color: red;
+  }
 
+  &:has(:valid) {
+    color: var(--success1);
+  } */
   @media screen and (max-width: 760px) {
-    max-width: 90%;
+    max-width: 90vw;
   }
 `
 
@@ -92,21 +74,20 @@ export const InputAndLabelWrapper = styled.div`
   flex-direction: column-reverse;
 `
 
-export const Title = styled.div`
-  font-weight: normal;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
-  margin-top: var(--gap-veryBig);
-  margin-bottom: var(--gap-veryBig);
-  width: 50%;
-`
-
-export const FormLabel = styled.label`
-  color: var(--background4-main);
+export const FormLabel = styled.label<{ $hasError?: boolean }>`
   margin-bottom: var(--gap-small);
+  width: 100%;
+  text-transform: uppercase;
+  color: ${({ $hasError }) =>
+    $hasError ? 'var(--danger2)' : 'var(--background3-main)'};
+  font-size: var(--font-size-verySmall);
+  padding: 16px 16px 0;
+`
+export const LoginTextLink = styled.div`
+  text-align: center;
+  cursor: pointer;
+  padding: 12px 16px 0;
+  font-size: var(--font-size-small);
 `
 export const LoginTextWrapper = styled.div`
   display: flex;
@@ -115,5 +96,30 @@ export const LoginTextWrapper = styled.div`
   justify-content: center;
   min-width: fit-content;
   width: 100%;
-  margin-bottom: var(--gap-huge);
+  gap: var(--gap-medium);
+`
+export const LoginInputsWrapper = styled.div`
+  display: grid;
+  place-items: center;
+  background: var(--background4-main);
+  border: 1px solid var(--background1-secondary);
+  border-radius: 0 0 var(--border-radius1) var(--border-radius1);
+  &:first-of-type {
+    border-radius: var(--border-radius1) var(--border-radius1) 0 0;
+    border-bottom: none;
+  }
+  &:nth-of-type(2) {
+    border-radius: 0;
+    border-bottom: none;
+  }
+  &:last-of-type {
+    margin-bottom: var(--gap-medium);
+    border-radius: 0 0 var(--border-radius1) var(--border-radius1);
+    border-bottom: 1px solid var(--background1-secondary);
+  }
+`
+
+export const LoginTitleHeader = styled.h3`
+  font-size: var(--font-size-bigger);
+  font-weight: 400;
 `

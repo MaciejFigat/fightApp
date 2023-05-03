@@ -1,4 +1,10 @@
-import React, { useState, ChangeEvent, MouseEvent, FormEvent } from 'react'
+import React, {
+  useState,
+  ChangeEvent,
+  MouseEvent,
+  FormEvent,
+  useEffect
+} from 'react'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../reduxState/reduxHooks'
 import {
@@ -10,21 +16,25 @@ import {
   Wrapper,
   Form,
   Input,
-  Title,
   LoginContainer,
   LoginTextWrapper,
   LoginWrapper,
-  FormLabel
+  FormLabel,
+  LoginTitleHeader,
+  LoginInputsWrapper,
+  LoginTextLink
 } from './UserLogin.styled'
 import useRedirectLoggedListener from '../utils/customHooks/useRedirectListenerLogged'
 import { UserInfo } from '../../interfaces'
-import {
-  ButtonBig,
-  ButtonMedium,
-  ButtonSmall
-} from '../../components/Buttons/Buttons.styled'
-import { ButtonVariants } from '../../consts'
+import { ButtonBig } from '../../components/Buttons/Buttons.styled'
+import { ButtonVariants, TextColor } from '../../consts'
 import { AppDispatch } from '../../reduxState/store'
+import {
+  HighlightText,
+  HorizontalLineBottomLight,
+  HorizontalWrapper
+} from '../../styles/misc.styles'
+import { validateEmail, validatePassword } from './functions/validateForm'
 
 interface UserLoginProps {}
 
@@ -40,9 +50,17 @@ const UserLogin: React.FC<UserLoginProps> = () => {
 
   const userInfo = { email, password }
 
+  const [emailError, setEmailError] = useState('')
+  const [passwordError, setPasswordError] = useState('')
+
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    dispatch(sendUserId(userInfo))
+
+    if (emailError === '' && passwordError === '') {
+      dispatch(sendUserId(userInfo))
+      setEmail('')
+      setPassword('')
+    }
   }
 
   const logoutHandler = (e: MouseEvent<HTMLButtonElement>) => {
@@ -55,35 +73,55 @@ const UserLogin: React.FC<UserLoginProps> = () => {
     e.preventDefault()
     dispatch(sendEmailToResetPassword(userEmail))
   }
+  useEffect(() => {
+    setEmailError(validateEmail(email))
+  }, [email])
+
+  useEffect(() => {
+    setPasswordError(validatePassword(password))
+  }, [password])
 
   return (
     <LoginContainer>
       <Wrapper>
         <LoginWrapper>
-          <h3>Welcome</h3>
+          <LoginTitleHeader>Log in to FightBet</LoginTitleHeader>
           <Form onSubmit={submitHandler}>
-            <FormLabel htmlFor='email'>Email</FormLabel>
-            <Input
-              type='email'
-              name='email'
-              placeholder='Enter your email'
-              autoComplete='email'
-              value={email}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setEmail(e.target.value)
-              }
-            />
-            <FormLabel htmlFor='password'>Password</FormLabel>
-            <Input
-              type='password'
-              autoComplete='current-password'
-              placeholder='Enter your password'
-              value={password}
-              onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                setPassword(e.target.value)
-              }
-            />
-
+            <LoginInputsWrapper>
+              {' '}
+              <FormLabel htmlFor='email' $hasError={emailError ? true : false}>
+                {emailError === '' ? 'Email address' : emailError}
+              </FormLabel>
+              <Input
+                type='email'
+                name='email'
+                required
+                pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
+                autoComplete='email'
+                value={email}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setEmail(e.target.value)
+                }
+              />
+            </LoginInputsWrapper>
+            <LoginInputsWrapper>
+              <FormLabel
+                htmlFor='password'
+                $hasError={passwordError ? true : false}
+              >
+                {' '}
+                {passwordError === '' ? 'Password' : passwordError}
+              </FormLabel>
+              <Input
+                type='password'
+                autoComplete='current-password'
+                placeholder=''
+                value={password}
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setPassword(e.target.value)
+                }
+              />
+            </LoginInputsWrapper>
             <ButtonBig
               type='submit'
               variant={ButtonVariants.SUCCESS}
@@ -92,25 +130,57 @@ const UserLogin: React.FC<UserLoginProps> = () => {
               Log in
             </ButtonBig>
           </Form>
-          {Object.keys(userInfoRedux).length > 0 && (
-            <ButtonMedium
-              variant={ButtonVariants.WARNING}
-              onClick={logoutHandler}
-            >
-              Log out
-            </ButtonMedium>
-          )}
+
           <LoginTextWrapper>
-            <ButtonBig variant={ButtonVariants.INFO}>
-              <Link to='/register'>Register</Link>
-            </ButtonBig>
-            <ButtonSmall variant={ButtonVariants.WARNING_EMPTY}>
-              <Link to='/'>Home</Link>{' '}
-            </ButtonSmall>
-            <Title>Enter email and click to reset password</Title>
-            <ButtonSmall variant={ButtonVariants.WARNING}>
-              <div onClick={resetPasswordHandler}>&nbsp;reset password</div>
-            </ButtonSmall>
+            <HorizontalLineBottomLight />
+            <LoginTextLink>
+              <HorizontalWrapper>
+                <Link to='/'>
+                  {' '}
+                  <HighlightText color={TextColor.INFO}>
+                    Back to home page
+                  </HighlightText>
+                </Link>
+              </HorizontalWrapper>
+            </LoginTextLink>
+
+            <HorizontalLineBottomLight />
+            <LoginTextLink>
+              <HorizontalWrapper>
+                {' '}
+                Enter email to
+                <HighlightText
+                  color={TextColor.INFO}
+                  onClick={resetPasswordHandler}
+                >
+                  reset password{' '}
+                </HighlightText>
+              </HorizontalWrapper>
+            </LoginTextLink>
+            <HorizontalLineBottomLight />
+            <LoginTextLink>
+              <HorizontalWrapper>
+                {Object.keys(userInfoRedux).length > 0 ? (
+                  <>
+                    <HighlightText
+                      color={TextColor.WARNING}
+                      onClick={logoutHandler}
+                    >
+                      Log out
+                    </HighlightText>
+                  </>
+                ) : (
+                  <>
+                    Don't have an account?
+                    <Link to='/register'>
+                      <HighlightText color={TextColor.INFO}>
+                        Sign up here
+                      </HighlightText>
+                    </Link>
+                  </>
+                )}
+              </HorizontalWrapper>
+            </LoginTextLink>
           </LoginTextWrapper>
         </LoginWrapper>
       </Wrapper>

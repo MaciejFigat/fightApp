@@ -1,20 +1,28 @@
 import React from 'react'
 import { useAppSelector } from '../../../reduxState/reduxHooks'
-import { BlurredFatText } from '../../Bets/components/BetConfirmation.styled'
 import { EventAllData } from '../../../interfaces'
+import { HighlightText, HorizontalWrapper } from '../../../styles/misc.styles'
+import { TextColor } from '../../../consts'
 interface CurrentEventProps {}
 
 const CurrentEvent: React.FC<CurrentEventProps> = () => {
   const currentEvent: EventAllData | null = useAppSelector(
-    state => state.events.currentEvent
+    state => state.events?.currentEvent
   )
 
   return (
     <>
       {currentEvent ? (
-        <BlurredFatText>Event: {currentEvent.ShortName}</BlurredFatText>
+        <>
+          <HorizontalWrapper>
+            Event:{' '}
+            <HighlightText color={TextColor.GOLD}>
+              {currentEvent.ShortName}
+            </HighlightText>
+          </HorizontalWrapper>
+        </>
       ) : (
-        'Events'
+        <HighlightText color={TextColor.INFO}>No event selected</HighlightText>
       )}
     </>
   )

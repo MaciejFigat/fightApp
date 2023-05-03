@@ -65,6 +65,9 @@ export const HorizontalLineBottom = styled.div`
   padding-bottom: var(--gap-medium);
   border-bottom: 1px solid var(--background-blur1);
 `
+export const HorizontalLineBottomLight = styled(HorizontalLineBottom)`
+  border-bottom: 1px solid var(--background-blur0);
+`
 export const HorizontalWrapperSpaceBetween = styled.div`
   display: flex;
   justify-content: space-between;
@@ -202,6 +205,7 @@ export const ColorBadgeLong = styled(ColorBadge)<TextProps>`
 `
 export const HighlightText = styled.b<TextProps>`
   display: flex;
+
   align-items: center;
   color: ${({ color }) => getColor(color)};
 `

@@ -23,7 +23,10 @@ const GlobalStyle = createGlobalStyle`
       overflow-wrap: break-word;
       background: var(--background1-main);
       font-family: 'Open Sans', sans-serif;
-      
+    
+    a {
+        text-decoration: none;
+      }
   }
    :root{
      margin: 0 auto;
@@ -84,8 +87,11 @@ const GlobalStyle = createGlobalStyle`
 
     --padding-small: 6px 6px 6px 8px;
     --padding-medium: 8px 8px 8px 12px;
+    --padding-medium-large: 12px 16px;
     --padding-big: 12px 12px 12px 20px;
     --padding-big-sides: 0px 12px 0px 20px;
+    --padding-top-sides: 16px 16px 0px;
+
 
     --gap-small: 6px;
     --gap-medium: 8px;
@@ -93,6 +99,7 @@ const GlobalStyle = createGlobalStyle`
     --gap-veryBig: 16px;
     --gap-huge: 20px;
     
+    --font-size-verySmall: 0.7rem;
     --font-size-small: 0.8rem;
     --font-size-medium: 1rem;
     --font-size-big: 1.2rem;
@@ -102,6 +109,14 @@ const GlobalStyle = createGlobalStyle`
     --transition-two: 0.2s;
     --transition-three: 0.3s;
 
+    --background-gradient0: linear-gradient(
+    120deg,
+    var(--background-blur1) 0%,
+    transparent 30%,
+    transparent 70%,
+    var(--background-blur1)
+  );
+
     --background-gradient1: linear-gradient(
       120deg,
       var(--background-blur3) 0%,
@@ -110,11 +125,11 @@ const GlobalStyle = createGlobalStyle`
       var(--background-blur2)
     );
   --background-gradient3: linear-gradient(
-      120deg,
-      var(--background-blur1) 0%,
-      var(--background1-main) 50%,
-      var(--background1-main) 80%,
-      var(--background-blur1)
+      110deg,
+      var(--background-blur0) 0%,
+      var(--background3-main) 30%,
+      var(--background3-main) 90%,
+      var(--background-blur0)
     );
   --background-gradient4: linear-gradient(
       120deg,
