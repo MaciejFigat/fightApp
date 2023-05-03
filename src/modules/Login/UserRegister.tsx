@@ -40,9 +40,9 @@ const UserRegister: React.FC<UserRegisterProps> = () => {
     email: '',
     password: ''
   })
-  const [emailError, setEmailError] = useState('')
-  const [passwordError, setPasswordError] = useState('')
-  const [usernameError, setUsernameError] = useState('')
+  const [emailError, setEmailError] = useState<string | null>(null)
+  const [passwordError, setPasswordError] = useState<string | null>(null)
+  const [usernameError, setUsernameError] = useState<string | null>(null)
 
   const handleInputChange = (event: ChangeEvent<HTMLInputElement>): void => {
     const { name, value } = event.target
@@ -54,15 +54,22 @@ const UserRegister: React.FC<UserRegisterProps> = () => {
     dispatch(createUser(user))
   }
   useEffect(() => {
-    setUsernameError(validateUsername(user.name))
+    if (user.name !== '') {
+      setUsernameError(validateUsername(user.name))
+    }
   }, [user.name])
   useEffect(() => {
-    setEmailError(validateEmail(user.email))
+    if (user.email !== '') {
+      setEmailError(validateEmail(user.email))
+    }
   }, [user.email])
 
   useEffect(() => {
-    setPasswordError(validatePassword(user.password))
+    if (user.password !== '') {
+      setPasswordError(validatePassword(user.password))
+    }
   }, [user.password])
+
   return (
     <LoginContainer>
       <Wrapper>
@@ -73,8 +80,10 @@ const UserRegister: React.FC<UserRegisterProps> = () => {
               <FormLabel
                 htmlFor='name'
                 $hasError={usernameError ? true : false}
+                $isApproved={usernameError === '' ? true : false}
               >
-                {usernameError === '' ? 'Username' : usernameError}
+                {usernameError === '' ? 'Username is valid' : usernameError}
+                {usernameError === null ? 'Username' : null}
               </FormLabel>
               <Input
                 type='name'
@@ -85,14 +94,20 @@ const UserRegister: React.FC<UserRegisterProps> = () => {
               />
             </LoginInputsWrapper>
             <LoginInputsWrapper>
-              <FormLabel htmlFor='email' $hasError={emailError ? true : false}>
+              <FormLabel
+                htmlFor='email'
+                $hasError={emailError ? true : false}
+                $isApproved={emailError === '' ? true : false}
+              >
                 {' '}
-                {emailError === '' ? 'Email address' : emailError}
+                {emailError === null ? 'Email address' : null}
+                {emailError === '' ? 'Email address is valid' : emailError}
               </FormLabel>
               <Input
                 type='email'
                 name='email'
                 id='email'
+                pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$'
                 value={user.email}
                 onChange={handleInputChange}
               />
@@ -101,8 +116,10 @@ const UserRegister: React.FC<UserRegisterProps> = () => {
               <FormLabel
                 htmlFor='password'
                 $hasError={passwordError ? true : false}
+                $isApproved={passwordError === '' ? true : false}
               >
-                {passwordError === '' ? 'Password' : passwordError}
+                {passwordError === '' ? 'Password is valid' : passwordError}
+                {passwordError === null ? 'Password' : null}
               </FormLabel>
               <Input
                 type='password'

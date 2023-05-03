@@ -2,7 +2,6 @@ import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
 import { getUserBets } from '../../../reduxState/stateSlices/bets/betsSlice'
-
 import {
   FlexStartWrapper,
   GeneralWrapper,
@@ -24,7 +23,6 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
   useEffect(() => {
     // if (userBets.length === 0) dispatch(getUserBets(1))
     dispatch(getUserBets(1))
-    console.log('getUserBets')
   }, [dispatch, userBets.length])
 
   return (

@@ -50,8 +50,8 @@ const UserLogin: React.FC<UserLoginProps> = () => {
 
   const userInfo = { email, password }
 
-  const [emailError, setEmailError] = useState('')
-  const [passwordError, setPasswordError] = useState('')
+  const [emailError, setEmailError] = useState<string | null>(null)
+  const [passwordError, setPasswordError] = useState<string | null>(null)
 
   const submitHandler = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
@@ -74,11 +74,15 @@ const UserLogin: React.FC<UserLoginProps> = () => {
     dispatch(sendEmailToResetPassword(userEmail))
   }
   useEffect(() => {
-    setEmailError(validateEmail(email))
+    if (email !== '') {
+      setEmailError(validateEmail(email))
+    }
   }, [email])
 
   useEffect(() => {
-    setPasswordError(validatePassword(password))
+    if (password !== '') {
+      setPasswordError(validatePassword(password))
+    }
   }, [password])
 
   return (
@@ -89,8 +93,13 @@ const UserLogin: React.FC<UserLoginProps> = () => {
           <Form onSubmit={submitHandler}>
             <LoginInputsWrapper>
               {' '}
-              <FormLabel htmlFor='email' $hasError={emailError ? true : false}>
-                {emailError === '' ? 'Email address' : emailError}
+              <FormLabel
+                htmlFor='email'
+                $hasError={emailError ? true : false}
+                $isApproved={emailError === '' ? true : false}
+              >
+                {emailError === '' ? 'Email address is valid' : emailError}
+                {emailError === null ? 'Email address' : null}
               </FormLabel>
               <Input
                 type='email'
@@ -108,9 +117,11 @@ const UserLogin: React.FC<UserLoginProps> = () => {
               <FormLabel
                 htmlFor='password'
                 $hasError={passwordError ? true : false}
+                $isApproved={passwordError === '' ? true : false}
               >
                 {' '}
-                {passwordError === '' ? 'Password' : passwordError}
+                {passwordError === '' ? 'Password is valid' : passwordError}
+                {passwordError === null ? 'Password' : null}
               </FormLabel>
               <Input
                 type='password'

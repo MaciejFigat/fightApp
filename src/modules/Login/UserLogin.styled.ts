@@ -56,14 +56,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   position: relative;
-  /* &:has(:invalid) {
-    color: var(--danger1);
-    color: red;
-  }
 
-  &:has(:valid) {
-    color: var(--success1);
-  } */
   @media screen and (max-width: 760px) {
     max-width: 90vw;
   }
@@ -74,12 +67,20 @@ export const InputAndLabelWrapper = styled.div`
   flex-direction: column-reverse;
 `
 
-export const FormLabel = styled.label<{ $hasError?: boolean }>`
+export const FormLabel = styled.label<{
+  $hasError?: boolean
+  $isApproved?: boolean
+}>`
   margin-bottom: var(--gap-small);
   width: 100%;
   text-transform: uppercase;
-  color: ${({ $hasError }) =>
-    $hasError ? 'var(--danger2)' : 'var(--background3-main)'};
+
+  color: ${({ $hasError, $isApproved }) =>
+    $hasError
+      ? 'var(--danger2)'
+      : $isApproved
+      ? 'var(--success2)'
+      : 'var(--background3-main)'};
   font-size: var(--font-size-verySmall);
   padding: 16px 16px 0;
 `
