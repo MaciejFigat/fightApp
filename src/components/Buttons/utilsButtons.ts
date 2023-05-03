@@ -140,6 +140,17 @@ const dangerEmptyStyle: StyleVariant = {
   buttonColorActive: 'var(--danger3);',
   buttonBorderActive: 'var(--danger3);'
 }
+const disabledLightStyle: StyleVariant = {
+  buttonColor: 'var(--background-blur1);',
+  buttonBackground: 'transparent;',
+  buttonBorder: 'var(--background-blur0);',
+  buttonBorderHover: 'var(--background-blur1);',
+  buttonBackgroundHover: 'transparent',
+  buttonBackgroundActive: 'transparent;',
+  buttonColorHover: 'var(--background-blur1);',
+  buttonColorActive: 'var(--background-blur3);',
+  buttonBorderActive: 'var(--background-blur2);'
+}
 
 const defaultStyle: StyleVariant = {
   buttonColor: 'var(--background4-main)',
@@ -199,6 +210,9 @@ export const handleButtonColor: (
       break
     case ButtonVariants.DANGER_EMPTY:
       style = dangerEmptyStyle
+      break
+    case ButtonVariants.DISABLED:
+      style = disabledLightStyle
       break
 
     default:

@@ -86,7 +86,6 @@ export const FormLabel = styled.label<{
 `
 export const LoginTextLink = styled.div`
   text-align: center;
-  cursor: pointer;
   padding: 12px 16px 0;
   font-size: var(--font-size-small);
 `

@@ -131,7 +131,20 @@ const UserRegister: React.FC<UserRegisterProps> = () => {
             </LoginInputsWrapper>
             <ButtonBig
               type='submit'
-              variant={ButtonVariants.SUCCESS}
+              disabled={
+                passwordError === '' &&
+                emailError === '' &&
+                usernameError === ''
+                  ? false
+                  : true
+              }
+              variant={
+                passwordError === '' &&
+                emailError === '' &&
+                usernameError === ''
+                  ? ButtonVariants.SUCCESS
+                  : ButtonVariants.DISABLED
+              }
               data-testid='create-account-button'
             >
               Create account

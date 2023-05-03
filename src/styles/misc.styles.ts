@@ -145,9 +145,9 @@ const getColor = (color: TextColor): string => {
     case TextColor.DANGER:
       return 'var(--danger1)'
     case TextColor.PRIMARY:
-      return 'var(--background1-secondary)'
-    case TextColor.SECONDARY:
       return 'var(--background4-main)'
+    case TextColor.SECONDARY:
+      return 'var(--background2-main)'
     case TextColor.GOLD:
       return 'var(--gold2)'
     default:

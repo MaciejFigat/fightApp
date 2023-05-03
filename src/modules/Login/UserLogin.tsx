@@ -71,7 +71,9 @@ const UserLogin: React.FC<UserLoginProps> = () => {
 
   const resetPasswordHandler = (e: MouseEvent<HTMLDivElement>) => {
     e.preventDefault()
-    dispatch(sendEmailToResetPassword(userEmail))
+    if (email !== '' && emailError === '') {
+      dispatch(sendEmailToResetPassword(userEmail))
+    }
   }
   useEffect(() => {
     if (email !== '') {
@@ -135,7 +137,14 @@ const UserLogin: React.FC<UserLoginProps> = () => {
             </LoginInputsWrapper>
             <ButtonBig
               type='submit'
-              variant={ButtonVariants.SUCCESS}
+              disabled={
+                passwordError === '' && emailError === '' ? false : true
+              }
+              variant={
+                passwordError === '' && emailError === ''
+                  ? ButtonVariants.SUCCESS
+                  : ButtonVariants.DISABLED
+              }
               data-testid='login-account-button'
             >
               Log in
@@ -158,13 +167,18 @@ const UserLogin: React.FC<UserLoginProps> = () => {
             <HorizontalLineBottomLight />
             <LoginTextLink>
               <HorizontalWrapper>
-                {' '}
                 Enter email to
                 <HighlightText
-                  color={TextColor.INFO}
+                  color={
+                    emailError === '' || emailError === null
+                      ? TextColor.INFO
+                      : TextColor.WARNING
+                  }
                   onClick={resetPasswordHandler}
                 >
-                  reset password{' '}
+                  <a href='/' id='reset-password'>
+                    reset password{' '}
+                  </a>
                 </HighlightText>
               </HorizontalWrapper>
             </LoginTextLink>
