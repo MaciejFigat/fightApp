@@ -77,6 +77,7 @@ interface EventAllData {
 }
 
 interface BetData {
+  _id?: string
   id: string
   name: string
   fightName: string
@@ -95,26 +96,22 @@ interface ConfirmedBet extends BetData {
   amountBet: number
   expectedPayout: number
 }
-interface RegisteredBet extends ConfirmedBet {
-  // method: {
-  //   type: WinMethod
-  // }
-  // projectedWinner: {
-  //   type: WinnerProjection
-  // }
-  // isAccepted: boolean
-  // isResolved: boolean
-  // todo I'm not sure if to change this or schemas in BE
+interface AcceptedBet extends ConfirmedBet {
+  isResolved?: boolean
+  acceptedBy: string | null
+  acceptDateTime: Date
+  // userId?: string
 }
 
 interface UserInfo {
-  _id?: string
+  id?: string
   name?: string
   email?: string
   password?: string
   isAdmin?: boolean
   status?: 'Active' | 'Pending'
   coinsAvailable?: number
+  token?: string
 }
 
 export {
@@ -128,5 +125,5 @@ export {
   BetData,
   ConfirmedBet,
   UserInfo,
-  RegisteredBet
+  AcceptedBet
 }

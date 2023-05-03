@@ -1,11 +1,12 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { BetData, ConfirmedBet } from '../../../interfaces'
+import { AcceptedBet, BetData, ConfirmedBet } from '../../../interfaces'
 import axios from 'axios'
 
 interface BetsState {
   betsUnconfirmed: BetData[]
   betsConfirmed: ConfirmedBet[]
   betsRegistered: ConfirmedBet[]
+  betsAccepted: AcceptedBet[]
   userBets: ConfirmedBet[]
   allBets: ConfirmedBet[]
   loading: boolean
@@ -16,6 +17,7 @@ const initialState: BetsState = {
   betsUnconfirmed: [],
   betsConfirmed: [],
   betsRegistered: [],
+  betsAccepted: [],
   userBets: [],
   allBets: [],
   loading: false,
@@ -104,7 +106,34 @@ export const getAllBets = createAsyncThunk(
     }
   }
 )
+// /api/bets/:id - route to update a bet
+// private route
 
+//  mandatory: isAccepted, acceptDateTime, acceptedBy
+export const editRegisteredBet = createAsyncThunk(
+  'bet/editRegisteredBet',
+
+  async (bet: AcceptedBet, thunkAPI) => {
+    try {
+      const state: any = thunkAPI.getState()
+      const userInfo = state.user.userInfo
+
+      const config = {
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${userInfo.token}`
+        }
+      }
+
+      const { data } = await axios.put(`/api/bets/${bet._id}`, bet, config)
+
+      return data
+    } catch (error: any) {
+      console.log(bet._id, 'bet._id')
+      return error
+    }
+  }
+)
 const betsSlice = createSlice({
   name: 'bets',
   initialState,
@@ -169,6 +198,17 @@ const betsSlice = createSlice({
       state.success = true
     })
     builder.addCase(getUserBets.rejected, (state, action) => {
+      state.loading = false
+    })
+    builder.addCase(editRegisteredBet.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(editRegisteredBet.fulfilled, (state, action) => {
+      state.loading = false
+      state.betsAccepted = [...state.betsRegistered, action.payload]
+      state.success = true
+    })
+    builder.addCase(editRegisteredBet.rejected, (state, action) => {
       state.loading = false
     })
     builder.addCase(getAllBets.pending, (state, action) => {

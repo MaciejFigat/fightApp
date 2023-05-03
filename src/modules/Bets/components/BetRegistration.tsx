@@ -21,7 +21,7 @@ import BetRegisterConfirm from './BetRegisterConfirm'
 import BetFightDate from './BetFightDate'
 import BetVisualisation from './BetVisualisation'
 import BetProjectedWinner from './BetProjectedWinner'
-import { updateUser } from '../../../reduxState/stateSlices/users/userSlice'
+import { updateUserProfile } from '../../../reduxState/stateSlices/users/userSlice'
 interface BetRegistrationProps {}
 
 const BetRegistration: React.FC<BetRegistrationProps> = () => {
@@ -31,24 +31,21 @@ const BetRegistration: React.FC<BetRegistrationProps> = () => {
     state => state.bets.betsConfirmed
   )
   const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
-  const { _id, coinsAvailable } = userInfo
+  const { id: userId, coinsAvailable } = userInfo
 
   const handleRemove = (betId: string) => {
     dispatch(removeConfirmedBet(betId))
   }
   const handleRegisterBet = (bet: ConfirmedBet) => {
-    dispatch(createBet(bet))
-
     const updatedUser: UserInfo = {
-      _id: _id,
-      coinsAvailable: coinsAvailable
+      id: userId,
+      coinsAvailable: (coinsAvailable || 0) - bet.amountBet
     }
     if (coinsAvailable && coinsAvailable > bet.amountBet)
-      dispatch(updateUser(updatedUser))
+      dispatch(createBet(bet))
+    dispatch(updateUserProfile(updatedUser))
   }
-  // coinsAvailable !== undefined
-  // ? coinsAvailable - bet.amountBet
-  // : undefined
+
   return (
     <>
       {betsConfirmed.length > 0 ? (

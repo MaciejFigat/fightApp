@@ -6,7 +6,10 @@ import {
 import { BetFilter, ButtonVariants } from '../../../consts'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
-import { getAllBets } from '../../../reduxState/stateSlices/bets/betsSlice'
+import {
+  editRegisteredBet,
+  getAllBets
+} from '../../../reduxState/stateSlices/bets/betsSlice'
 import { FightListHeader, MainListHeaderGrey } from './DragColumns.styled'
 import {
   FlexStartWrapper,
@@ -25,19 +28,44 @@ import {
   BlurredSkinnyText
 } from '../components/BetConfirmation.styled'
 import BetVisualisation from '../components/BetVisualisation'
+import { AcceptedBet, ConfirmedBet, UserInfo } from '../../../interfaces'
+import { updateUserProfile } from '../../../reduxState/stateSlices/users/userSlice'
 
 interface AllBetsDisplayProps {}
 
 const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
   const allBets = useAppSelector(state => state.bets.allBets)
+  const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
+
+  const { id: userId, coinsAvailable } = userInfo
   const currentEvent = useAppSelector(state => state.events.currentEvent)
   const { EventId } = currentEvent || { EventId: 0 }
   const [betFilter, setBetFilter] = useState<BetFilter>(BetFilter.ALL_BETS)
 
-  // const fetchBetsHandler = () => {
-  //   dispatch(getAllBets(1))
-  // }
+  const handleAcceptBet = (bet: ConfirmedBet) => {
+    // todo accept the bet - => isAccepted: true
+    const betToAccept: AcceptedBet = {
+      ...bet,
+      isAccepted: true,
+      acceptDateTime: new Date(),
+      acceptedBy: userId ?? null,
+      isResolved: false,
+      expectedPayout: bet.expectedPayout
+    }
+    const updatedUser: UserInfo = {
+      id: userId,
+      coinsAvailable: (coinsAvailable || 0) - bet.amountBet
+    }
+    if (coinsAvailable && coinsAvailable > bet.amountBet) {
+      dispatch(editRegisteredBet(betToAccept))
+      dispatch(updateUserProfile(updatedUser))
+      console.log(userId)
+      // console.log(userInfo.id)
+      // console.log(userInfo)
+    }
+  }
+
   const notAcceptedBets = useMemo(() => {
     if (!allBets) {
       return []
@@ -126,19 +154,13 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
                 />{' '}
                 <ButtonVerySmall
                   variant={ButtonVariants.SUCCESS_EMPTY}
-                  // onClick={fetchBetsHandler}
+                  onClick={() => handleAcceptBet(bet)}
                 >
                   Accept the bet
                 </ButtonVerySmall>
               </HorizontalWrapperSpaceBetween>
             </FightListHeader>
           ))}
-        {/* <ButtonMedium
-          variant={ButtonVariants.INFO_EMPTY}
-          onClick={fetchBetsHandler}
-        >
-          Get me all the bets please
-        </ButtonMedium> */}
       </FlexStartWrapper>
     </GeneralWrapper>
   )

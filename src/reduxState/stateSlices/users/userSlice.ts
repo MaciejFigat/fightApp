@@ -162,7 +162,7 @@ export const updateUserProfile = createAsyncThunk(
 export const updateUser = createAsyncThunk(
   'user/updateUser',
   async (updatedUserInfo: UserInfo, thunkAPI) => {
-    const { name, email, isAdmin, _id, status } = updatedUserInfo
+    const { name, email, isAdmin, id, status } = updatedUserInfo
 
     try {
       const state: any = thunkAPI.getState()
@@ -175,7 +175,7 @@ export const updateUser = createAsyncThunk(
       }
 
       const { data } = await axios.put(
-        `/api/users/${_id}`,
+        `/api/users/${id}`,
         { name, email, isAdmin, status },
         config
       )
