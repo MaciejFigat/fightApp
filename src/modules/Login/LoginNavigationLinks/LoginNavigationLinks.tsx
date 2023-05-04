@@ -21,7 +21,9 @@ const LoginNavigationLinks: React.FC<LoginNavigationLinksProps> = () => {
     <>
       {Object.keys(userInfo).length > 0 ? (
         <ButtonInconspicuous onClick={logoutHandler}>
-          Logout
+          <HighlightText color={TextColor.INFO} hoverEffect>
+            Logout
+          </HighlightText>
         </ButtonInconspicuous>
       ) : (
         <>

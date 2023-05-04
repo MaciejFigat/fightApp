@@ -41,9 +41,10 @@ const BetRegistration: React.FC<BetRegistrationProps> = () => {
       id: userId,
       coinsAvailable: (coinsAvailable || 0) - bet.amountBet
     }
-    if (coinsAvailable && coinsAvailable > bet.amountBet)
+    if (coinsAvailable && coinsAvailable > bet.amountBet && userId) {
       dispatch(createBet(bet))
-    dispatch(updateUserProfile(updatedUser))
+      dispatch(updateUserProfile(updatedUser))
+    }
   }
 
   return (
