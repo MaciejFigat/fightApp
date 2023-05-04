@@ -12,10 +12,10 @@ import {
   HeroNavTwo,
   HeroNavThree
 } from './HomePageLayout.styled'
-import { ButtonVariants, OptionsDesktopMenu, SvgIconVariants } from '../consts'
-import { GridCenterWrapper, HorizontalWrapper } from '../styles/misc.styles'
-import { ButtonSmallGradient } from '../components/Buttons/Buttons.styled'
-import SvgIcon from '../modules/misc/SvgIcon/SvgIcon'
+import { OptionsDesktopMenu } from '../consts'
+import { GridCenterWrapper } from '../styles/misc.styles'
+
+import HomePageNavButtons from './HomePageNavButtons'
 
 interface HomePageLayoutProps {
   navigationRight?: React.ReactNode
@@ -57,6 +57,15 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
         <HeroNavigation>
           <HeroNavOne>{navigationLeft ? navigationLeft : null}</HeroNavOne>
           <HeroNavThree>
+            <HomePageNavButtons
+              open={open}
+              setOpen={setOpen}
+              optionOneName={optionOneName}
+              optionTwoName={optionTwoName}
+              optionThreeName={optionThreeName}
+            />
+          </HeroNavThree>
+          <HeroNavThree>
             {navigationMiddle ? navigationMiddle : null}
           </HeroNavThree>
           <HeroNavTwo>{navigationRight ? navigationRight : null}</HeroNavTwo>
@@ -85,53 +94,7 @@ const HomePageLayout: React.FC<HomePageLayoutProps> = ({
               {bottomLeft ? bottomLeft : null}
             </HeroArticleBottomBigSection>
             <HeroArticleBottomSmallSection>
-              {bottomRight ? (
-                bottomRight
-              ) : (
-                <>
-                  <HorizontalWrapper>
-                    <ButtonSmallGradient
-                      variant={ButtonVariants.PRIMARY_EMPTY}
-                      onClick={() => setOpen(OptionsDesktopMenu.OPTION_ONE)}
-                      $active={open === OptionsDesktopMenu.OPTION_ONE}
-                    >
-                      <SvgIcon
-                        variant={SvgIconVariants.HOME}
-                        contentAfter={
-                          optionOneName ? optionOneName : 'Option 1'
-                        }
-                        showContent
-                      />{' '}
-                    </ButtonSmallGradient>
-                    <ButtonSmallGradient
-                      variant={ButtonVariants.PRIMARY}
-                      onClick={() => setOpen(OptionsDesktopMenu.OPTION_TWO)}
-                      $active={open === OptionsDesktopMenu.OPTION_TWO}
-                    >
-                      <SvgIcon
-                        variant={SvgIconVariants.SEARCH}
-                        contentAfter={
-                          optionTwoName ? optionTwoName : 'Option 2'
-                        }
-                        showContent
-                      />{' '}
-                    </ButtonSmallGradient>
-                    <ButtonSmallGradient
-                      variant={ButtonVariants.SECONDARY_EMPTY}
-                      onClick={() => setOpen(OptionsDesktopMenu.OPTION_THREE)}
-                      $active={open === OptionsDesktopMenu.OPTION_THREE}
-                    >
-                      <SvgIcon
-                        variant={SvgIconVariants.COINS}
-                        contentAfter={
-                          optionThreeName ? optionThreeName : 'Option 3'
-                        }
-                        showContent
-                      />{' '}
-                    </ButtonSmallGradient>
-                  </HorizontalWrapper>
-                </>
-              )}
+              {bottomRight ? bottomRight : ''}
             </HeroArticleBottomSmallSection>
           </HeroMainArticle>
         </HeroMainContainer>

@@ -1,8 +1,5 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import {
-  ButtonSmallGradient,
-  ButtonVerySmall
-} from '../../../components/Buttons/Buttons.styled'
+import { ButtonSmallGradient } from '../../../components/Buttons/Buttons.styled'
 import { BetFilter, ButtonVariants } from '../../../consts'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
@@ -30,6 +27,9 @@ import {
 import BetVisualisation from '../components/BetVisualisation'
 import { AcceptedBet, ConfirmedBet, UserInfo } from '../../../interfaces'
 import { updateUserProfile } from '../../../reduxState/stateSlices/users/userSlice'
+import BetRegisterConfirm from '../components/BetRegisterConfirm'
+
+import OddsNotification from '../components/OddsNotification'
 
 interface AllBetsDisplayProps {}
 
@@ -150,13 +150,15 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
                   }
                   amountBet={bet.amountBet}
                 />{' '}
-                <ButtonVerySmall
-                  variant={ButtonVariants.SUCCESS_EMPTY}
-                  onClick={() => handleAcceptBet(bet)}
-                >
-                  Accept the bet
-                </ButtonVerySmall>
+                <OddsNotification />
               </HorizontalWrapperSpaceBetween>
+
+              <BetRegisterConfirm
+                handleBet={handleAcceptBet}
+                bet={bet}
+                buttonLabel='Accept the bet'
+                customMessage='Are you sure?'
+              />
             </FightListHeader>
           ))}
       </FlexStartWrapper>

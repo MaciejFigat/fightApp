@@ -12,12 +12,16 @@ import { ConfirmedBet } from '../../../interfaces'
 
 interface BetRegisterConfirmProps {
   bet: ConfirmedBet
-  handleRegisterBet: (bet: ConfirmedBet) => void
+  handleBet: (bet: ConfirmedBet) => void
+  buttonLabel?: string
+  customMessage?: string
 }
 
 const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = ({
-  handleRegisterBet,
-  bet
+  handleBet,
+  bet,
+  buttonLabel,
+  customMessage
 }) => {
   const [accepted, setAccepted] = useState<boolean>(false)
 
@@ -35,9 +39,9 @@ const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = ({
             >
               <ButtonSmall
                 variant={ButtonVariants.SUCCESS_EMPTY}
-                onClick={() => handleRegisterBet(bet)}
+                onClick={() => handleBet(bet)}
               >
-                Register bet
+                {buttonLabel ? buttonLabel : 'I accept'}
               </ButtonSmall>
             </motion.div>
           ) : (
@@ -47,8 +51,8 @@ const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <HighlightText color={TextColor.SECONDARY}>
-                Do you accept?
+              <HighlightText color={TextColor.INFO}>
+                {customMessage ? customMessage : 'Do you accept?'}
               </HighlightText>{' '}
             </motion.div>
           )}

@@ -9,7 +9,7 @@ export const IconsItem = styled.div<{
   showContent?: boolean
 }>`
   padding: 0;
-  font-size: 1em;
+  font-size: var(--font-size-medium);
   display: grid;
   place-items: center center;
   flex-direction: column;
@@ -33,6 +33,5 @@ export const IconsItem = styled.div<{
     padding-right: var(--gap-medium);
     font-size: var(--font-size-medium);
     font-weight: 600;
-    color: var(--background4-main);
   }
 `

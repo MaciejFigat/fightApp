@@ -1,11 +1,12 @@
 import React from 'react'
-import { ButtonVerySmall } from '../../../components/Buttons/Buttons.styled'
-import { ButtonVariants } from '../../../consts'
+import { ButtonInconspicuous } from '../../../components/Buttons/Buttons.styled'
+import { TextColor } from '../../../consts'
 import { Link } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { UserInfo } from '../../../interfaces'
 import { AppDispatch } from '../../../reduxState/store'
 import { logout } from '../../../reduxState/stateSlices/users/userSlice'
+import { HighlightText } from '../../../styles/misc.styles'
 
 interface LoginNavigationLinksProps {}
 
@@ -19,21 +20,26 @@ const LoginNavigationLinks: React.FC<LoginNavigationLinksProps> = () => {
   return (
     <>
       {Object.keys(userInfo).length > 0 ? (
-        <ButtonVerySmall
-          variant={ButtonVariants.INFO_EMPTY}
-          onClick={logoutHandler}
-        >
+        <ButtonInconspicuous onClick={logoutHandler}>
           Logout
-        </ButtonVerySmall>
+        </ButtonInconspicuous>
       ) : (
         <>
           {' '}
-          <ButtonVerySmall variant={ButtonVariants.INFO_EMPTY}>
-            <Link to='/login'>Login</Link>
-          </ButtonVerySmall>
-          <ButtonVerySmall variant={ButtonVariants.SUCCESS_EMPTY}>
-            <Link to='/register'>Register</Link>
-          </ButtonVerySmall>
+          <ButtonInconspicuous>
+            <Link to='/login'>
+              <HighlightText color={TextColor.INFO} hoverEffect>
+                Login
+              </HighlightText>
+            </Link>
+          </ButtonInconspicuous>
+          <ButtonInconspicuous>
+            <Link to='/register'>
+              <HighlightText color={TextColor.SUCCESS} hoverEffect>
+                Register
+              </HighlightText>
+            </Link>
+          </ButtonInconspicuous>
         </>
       )}
     </>

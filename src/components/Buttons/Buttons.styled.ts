@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import { handleButtonColor } from './utilsButtons'
 import { ButtonVariants } from '../../consts'
+import { motion } from 'framer-motion'
 
 export const ButtonBig = styled.button<{
   variant: ButtonVariants
@@ -11,7 +12,7 @@ export const ButtonBig = styled.button<{
   cursor: pointer;
   padding: 1.1rem 1.5rem;
   border-radius: var(--border-radius0);
-  font-size: 1.25rem;
+  font-size: var(--font-size-big);
   font-weight: 600;
   border-left: 1px solid var(--background-blur1);
   border-bottom: 1px solid var(--background-blur1);
@@ -58,15 +59,15 @@ export const ButtonBig = styled.button<{
 
 export const ButtonMedium = styled(ButtonBig)`
   padding: 0.75rem 1.85rem 0.75rem;
-  font-size: 1.1rem;
+  font-size: var(--font-size-medium-plus);
 `
 export const ButtonSmall = styled(ButtonBig)`
   padding: 0.65rem 1.25rem 0.6rem;
-  font-size: 1rem;
+  font-size: var(--font-medium);
 `
 export const ButtonVerySmall = styled(ButtonBig)`
   padding: 0.275rem 0.55rem;
-  font-size: 0.85rem;
+  font-size: var(--font-size-small-plus);
 `
 export const ButtonSmallGradient = styled.button<{
   variant: ButtonVariants
@@ -122,4 +123,68 @@ export const ButtonSmallGradient = styled.button<{
 
     color: ${props => handleButtonColor(props.variant).buttonColor};
   }
+`
+
+export const ButtonInconspicuous = styled.button<{
+  $active?: boolean
+}>`
+  display: flex;
+  align-items: center;
+  font-size: var(--font-size-medium);
+  font-weight: 600;
+  justify-content: center;
+  cursor: pointer;
+  padding: var(--padding-small);
+  padding: 0;
+
+  border: none;
+  border-radius: var(--border-radius0);
+  /* background: var(--background-gradient0); */
+  background: transparent;
+  width: 125px;
+  /* min-height: 47px; */
+  color: ${({ $active }) =>
+    $active ? `var(--background1-secondary)` : 'var(--background4-main)'};
+
+  transition: all 0.2s ease-out;
+  &:hover {
+    svg {
+      transition: all 0.2s ease-out;
+      color: var(--background1-secondary);
+    }
+  }
+  &:active {
+    color: var(--background1-secondary);
+  }
+  a {
+    text-decoration: none;
+    color: var(--background1-secondary);
+  }
+`
+// needs a layoutId='whatever'
+export const ButtonUnderline = styled(motion.div)`
+  position: absolute;
+  position: relative;
+  /* bottom: -3px; */
+  left: 67px;
+  left: -10px;
+
+  z-index: 12;
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+
+  background: transparent;
+  /* border: 3px solid var(--background-blur1); */
+  border: 3px solid var(--background1-secondary);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--background-blur0),
+    transparent
+  );
+`
+export const ButtonUnderlineTransparent = styled(ButtonUnderline)`
+  background: transparent;
+  border-color: transparent;
 `

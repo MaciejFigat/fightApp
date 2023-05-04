@@ -52,6 +52,7 @@ export const HeroNavThree = styled(HeroNavOne)`
   flex-basis: 0;
   flex-grow: 1;
 
+  border-right: 1px solid var(--background-blur2);
   border-left: 1px solid var(--background-blur2);
 `
 export const HeroNavOneBig = styled(HeroNavOne)`

@@ -26,6 +26,9 @@ export const BetDetails = styled.div`
 `
 export const BetVisualisationLimiter = styled.div`
   max-width: 370px;
+  @media (max-width: 340px) {
+    width: 200px;
+  }
   @media (max-width: 1040px) {
     max-width: 300px;
   }
@@ -58,12 +61,11 @@ export const BetVisualisationLeft = styled.div`
     min-height: 40px;
   }
   @media (max-width: 760px) {
-    width: 50px;
-    min-height: 30px;
+    width: 65px;
+    min-height: 35px;
   }
 `
 export const BetVisualisationMiddle = styled(BetVisualisationLeft)`
-  /* width: 120px; */
   border-radius: 0;
   padding: var(--padding-medium);
   place-items: center;

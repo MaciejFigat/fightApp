@@ -106,8 +106,6 @@ export const getAllBets = createAsyncThunk(
     }
   }
 )
-// /api/bets/:id - route to update a bet
-// private route
 
 //  mandatory: isAccepted, acceptDateTime, acceptedBy
 export const editRegisteredBet = createAsyncThunk(

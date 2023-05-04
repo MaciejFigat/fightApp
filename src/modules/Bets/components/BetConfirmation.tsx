@@ -29,6 +29,7 @@ import {
 } from './BetConfirmation.styled'
 import AccordionArrow from '../../../components/Accordion/AccordionArrow'
 import BetBadges from './BetBadges'
+import OddsNotification from './OddsNotification'
 
 interface BetConfirmationProps {
   // index for Accordion component
@@ -138,7 +139,7 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
               winnerChange={winnerChange}
             />
           )}
-          <i>info</i>
+          <OddsNotification />
         </HorizontalWrapperSpaceBetween>
         <HorizontalWrapperSpaceBetween>
           {' '}

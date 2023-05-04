@@ -9,7 +9,6 @@ import HomePageMobileLayout from '../layout/HomePageMobileLayout'
 import UserBetDisplay from '../modules/Bets/main/UserBetDisplay'
 import AllBetsDisplay from '../modules/Bets/main/AllBetsDisplay'
 import CurrentEvent from '../modules/misc/EventsDisplay/CurrentEvent'
-import { HorizontalWrapperSpaceAround } from '../styles/misc.styles'
 
 interface HomePageScreenProps {}
 
@@ -18,17 +17,13 @@ const HomePageScreen: React.FC<HomePageScreenProps> = () => {
     <>
       <HomePageLayout
         navigationRight={<LoginNavigationLinks />}
-        navigationMiddle={
-          <HorizontalWrapperSpaceAround>
-            <CoinDisplay />
-          </HorizontalWrapperSpaceAround>
-        }
+        navigationMiddle={<CoinDisplay />}
         navigationLeft={<DisciplineDropdown />}
         leftColumn={<EventsScreen />}
         rightColumnOptionOne={<FightsAndBets />}
         rightColumnOptionTwo={<AllBetsDisplay />}
         rightColumnOptionThree={<UserBetDisplay />}
-        optionOneName={'Create Bets'}
+        optionOneName={'New Bets'}
         optionTwoName={'All Bets'}
         optionThreeName={'My Bets'}
         bottomLeft={<CurrentEvent />}

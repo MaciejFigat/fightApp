@@ -68,8 +68,9 @@ const BetRegistration: React.FC<BetRegistrationProps> = () => {
                 expectedPayout={bet.expectedPayout}
               />
               <BetRegisterConfirm
-                handleRegisterBet={handleRegisterBet}
+                handleBet={handleRegisterBet}
                 bet={bet}
+                buttonLabel='Register bet'
               />
 
               <HorizontalWrapperSpaceBetween>

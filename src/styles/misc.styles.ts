@@ -118,6 +118,7 @@ export const HorizontalWrapperCenter = styled.div`
 export const HorizontalWrapperEnd = styled.div`
   display: flex;
   justify-content: flex-end;
+  align-items: center;
   flex-direction: row;
   gap: var(--gap-small);
 `
@@ -203,9 +204,67 @@ export const ColorBadgeEmpty = styled(ColorBadge)<TextProps>`
 export const ColorBadgeLong = styled(ColorBadge)<TextProps>`
   width: fit-content;
 `
-export const HighlightText = styled.b<TextProps>`
+interface HighlightTextProps extends TextProps {
+  hoverEffect?: boolean
+}
+export const HighlightText = styled.b<HighlightTextProps>`
   display: flex;
-
   align-items: center;
   color: ${({ color }) => getColor(color)};
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    color: ${({ color, hoverEffect }) =>
+      hoverEffect ? getAccentColor(color) : null};
+  }
+`
+
+interface HoverColorWrapperProps extends TextProps {
+  contentAfter?: string
+  contentWidth?: string
+  contentTop?: string
+  contentLeft?: string
+}
+export const HoverColorWrapper = styled.div<HoverColorWrapperProps>`
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  color: ${({ color }) => getColor(color)};
+  width: 20px;
+  height: 20px;
+  &:hover {
+    color: ${({ color }) => getAccentColor(color)};
+    &:after {
+      opacity: 1;
+    }
+  }
+  &:after {
+    position: relative;
+    pointer-events: none;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--background-blur3);
+    content: '${({ contentAfter }) => (contentAfter ? contentAfter : '')}';
+    min-width: ${({ contentWidth }) =>
+      contentWidth ? contentWidth : 'fit-content'};
+    padding: var(--gap-small);
+    top: ${({ contentTop }) => (contentTop ? contentTop : '-37px')};
+    left: ${({ contentLeft }) => (contentLeft ? contentLeft : '-37px')};
+    line-height: 1.2;
+    padding: var(--gap-small);
+    transition: all 0.2s ease-in;
+    background: var(--background2-main);
+    border-radius: var(--border-radius0);
+    opacity: 0;
+    padding-right: var(--gap-medium);
+    font-size: var(--font-size-verySmall);
+    font-weight: 400;
+    color: var(--background-blur3);
+    @media (max-width: 1040px) {
+      left: -120px;
+    }
+    /* &:hover {
+      &:after {
+        opacity: 0;
+      }
+    } */
+  }
 `

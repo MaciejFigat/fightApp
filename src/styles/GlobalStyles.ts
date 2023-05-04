@@ -109,7 +109,9 @@ const GlobalStyle = createGlobalStyle`
     
     --font-size-verySmall: 0.7rem;
     --font-size-small: 0.8rem;
+    --font-size-small-plus: 0.85rem;
     --font-size-medium: 1rem;
+    --font-size-medium-plus: 1.1rem;
     --font-size-big: 1.2rem;
     --font-size-bigger: 1.4rem;
 
@@ -165,6 +167,9 @@ const GlobalStyle = createGlobalStyle`
   }
 
   @media (max-width: 610px) {
+ 
+  }
+  @media (max-width: 340px) {
  
   }
    }
