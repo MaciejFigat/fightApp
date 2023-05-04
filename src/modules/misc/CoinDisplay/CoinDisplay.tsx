@@ -10,9 +10,13 @@ const CoinDisplay: React.FC<CoinDisplayProps> = () => {
 
   const coinsAvailable = (userInfo as UserInfo).coinsAvailable
   return (
-    <HighlightText color={TextColor.GOLD}>
-      Coins: {coinsAvailable ?? 0}
-    </HighlightText>
+    <>
+      {Object.keys(userInfo).length > 0 ? (
+        <HighlightText color={TextColor.GOLD}>
+          Coins: {coinsAvailable ?? 0}
+        </HighlightText>
+      ) : null}
+    </>
   )
 }
 export default CoinDisplay
