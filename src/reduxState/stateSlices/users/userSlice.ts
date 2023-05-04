@@ -293,9 +293,6 @@ const userSlice = createSlice({
     setUserInfoFromLocalStorage (state, action) {
       state.userInfo = action.payload
     }
-    // editCoinsAvailable (state, action: PayloadAction<number>) {
-    //   state.userInfo.coinsAvailable = action.payload
-    // }
   },
 
   extraReducers: builder => {
@@ -393,7 +390,16 @@ const userSlice = createSlice({
     })
     builder.addCase(updateUserProfile.fulfilled, (state, action) => {
       state.loading = false
-      state.userInfo = action.payload
+      state.userInfo = action.payload.name !== 'Error' && {
+        id: action.payload._id,
+        name: action.payload.name,
+        email: action.payload.email,
+        isAdmin: action.payload.isAdmin,
+        status: action.payload.status,
+        token: action.payload.token,
+        coinsAvailable: action.payload.coinsAvailable
+      }
+
       state.error = action.payload.message
       state.success = true
     })

@@ -40,18 +40,19 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
 
   const { id: userId, coinsAvailable } = userInfo
   const currentEvent = useAppSelector(state => state.events.currentEvent)
+
   const { EventId } = currentEvent || { EventId: 0 }
+
   const [betFilter, setBetFilter] = useState<BetFilter>(BetFilter.ALL_BETS)
 
   const handleAcceptBet = (bet: ConfirmedBet) => {
-    // todo accept the bet - => isAccepted: true
     const betToAccept: AcceptedBet = {
       ...bet,
       isAccepted: true,
       acceptDateTime: new Date(),
-      acceptedBy: userId ?? null,
-      isResolved: false,
-      expectedPayout: bet.expectedPayout
+      acceptedBy: userId ?? null
+      // isResolved: false,
+      // expectedPayout: bet.expectedPayout
     }
     const updatedUser: UserInfo = {
       id: userId,
@@ -60,9 +61,6 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
     if (coinsAvailable && coinsAvailable > bet.amountBet) {
       dispatch(editRegisteredBet(betToAccept))
       dispatch(updateUserProfile(updatedUser))
-      console.log(userId)
-      // console.log(userInfo.id)
-      // console.log(userInfo)
     }
   }
 
