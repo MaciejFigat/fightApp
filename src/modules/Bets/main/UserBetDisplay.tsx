@@ -1,7 +1,10 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
-import { getUserBets } from '../../../reduxState/stateSlices/bets/betsSlice'
+import {
+  deleteRegisteredBet,
+  getUserBets
+} from '../../../reduxState/stateSlices/bets/betsSlice'
 import {
   FlexEndWrapperOnly,
   FlexStartWrapper,
@@ -20,19 +23,30 @@ import BetProjectedWinner from '../components/BetProjectedWinner'
 import { TextColor } from '../../../consts'
 import OddsNotification from '../components/OddsNotification'
 import BetRegisterConfirm from '../components/BetRegisterConfirm'
+import { UserInfo } from '../../../interfaces'
+import { updateUserProfile } from '../../../reduxState/stateSlices/users/userSlice'
 
 interface UserBetDisplayProps {}
 
 const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
   const userBets = useAppSelector(state => state.bets.userBets)
+  const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
 
+  const { id: userId, coinsAvailable } = userInfo
   useEffect(() => {
     dispatch(getUserBets(1))
   }, [dispatch, userBets.length])
 
-  const handleDeleteBet = (betId: string) => {
-    console.log(betId)
+  const handleDeleteBet = (betId: string, amountBet: number) => {
+    const updatedUser: UserInfo = {
+      id: userId,
+      coinsAvailable: (coinsAvailable || 0) + amountBet
+    }
+
+    dispatch(deleteRegisteredBet(betId))
+    // console.log('Deleting bet with id:', betId)
+    dispatch(updateUserProfile(updatedUser))
   }
   return (
     <GeneralWrapper>
@@ -88,7 +102,8 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
                   {' '}
                   <BetRegisterConfirm
                     deleteBet={handleDeleteBet}
-                    betId={bet.id}
+                    betId={bet._id}
+                    bet={bet}
                     buttonLabel='Delete the bet'
                     customMessage='Last chance to delete'
                   />

@@ -13,7 +13,7 @@ import { ConfirmedBet } from '../../../interfaces'
 interface BetRegisterConfirmProps {
   bet?: ConfirmedBet
   handleBet?: (bet: ConfirmedBet) => void
-  deleteBet?: (id: string) => void
+  deleteBet?: (id: string, amountBet: number) => void
   betId?: string
   buttonLabel?: string
   customMessage?: string
@@ -41,10 +41,10 @@ const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              {deleteBet && betId ? (
+              {deleteBet && betId && bet && bet.amountBet ? (
                 <ButtonSmall
                   variant={ButtonVariants.DANGER_EMPTY}
-                  onClick={() => deleteBet(betId)}
+                  onClick={() => deleteBet(betId, bet?.amountBet)}
                 >
                   {buttonLabel ? buttonLabel : 'I accept'}
                 </ButtonSmall>

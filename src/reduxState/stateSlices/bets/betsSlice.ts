@@ -132,7 +132,28 @@ export const editRegisteredBet = createAsyncThunk(
 
       return data
     } catch (error: any) {
-      console.log(bet._id, 'bet._id')
+      // console.log(bet._id, 'bet._id')
+      return error
+    }
+  }
+)
+export const deleteRegisteredBet = createAsyncThunk(
+  'bet/deleteBet',
+  async (id: string, thunkAPI) => {
+    try {
+      const state: any = thunkAPI.getState()
+      const userInfo = state.user.userInfo
+
+      const config = {
+        headers: {
+          Authorization: `Bearer ${userInfo.token}`
+        }
+      }
+      console.log('deleteBet action:', id)
+      const { data } = await axios.delete(`/api/bets/${id}`, config)
+
+      return data
+    } catch (error: any) {
       return error
     }
   }
@@ -223,6 +244,20 @@ const betsSlice = createSlice({
       state.success = true
     })
     builder.addCase(getAllBets.rejected, (state, action) => {
+      state.loading = false
+    })
+    builder.addCase(deleteRegisteredBet.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(deleteRegisteredBet.fulfilled, (state, action) => {
+      state.loading = false
+      state.userBets = state.userBets.filter(
+        bet => bet._id !== action.payload.id
+      )
+
+      state.success = true
+    })
+    builder.addCase(deleteRegisteredBet.rejected, (state, action) => {
       state.loading = false
     })
   }
