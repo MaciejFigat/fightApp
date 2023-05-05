@@ -3,6 +3,7 @@ import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
 import { getUserBets } from '../../../reduxState/stateSlices/bets/betsSlice'
 import {
+  FlexEndWrapperOnly,
   FlexStartWrapper,
   FlexStartWrapperOnly,
   GeneralWrapper,
@@ -17,6 +18,8 @@ import {
 import { dateFormatter } from '../../utils/helperFunctions/helperFunction'
 import BetProjectedWinner from '../components/BetProjectedWinner'
 import { TextColor } from '../../../consts'
+import OddsNotification from '../components/OddsNotification'
+import BetRegisterConfirm from '../components/BetRegisterConfirm'
 
 interface UserBetDisplayProps {}
 
@@ -28,6 +31,9 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
     dispatch(getUserBets(1))
   }, [dispatch, userBets.length])
 
+  const handleDeleteBet = (betId: string) => {
+    console.log(betId)
+  }
   return (
     <GeneralWrapper>
       <FlexStartWrapper>
@@ -54,9 +60,7 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
                     Bet: {bet.amountBet}
                   </HighlightText>{' '}
                   <HighlightText
-                    color={
-                      bet.isAccepted ? TextColor.SUCCESS : TextColor.WARNING
-                    }
+                    color={bet.isAccepted ? TextColor.SUCCESS : TextColor.INFO}
                   >
                     To win: {bet.expectedPayout}
                   </HighlightText>
@@ -66,11 +70,30 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
                     Accepted
                   </HighlightText>
                 ) : (
-                  <HighlightText color={TextColor.WARNING}>
-                    Pending
-                  </HighlightText>
+                  <FlexEndWrapperOnly>
+                    {' '}
+                    <OddsNotification
+                      noteContent='It is only possible to remove registered bets before they are accepted.'
+                      contentHeader='Reminder'
+                      warningSign
+                    />{' '}
+                    <HighlightText color={TextColor.WARNING}>
+                      Pending
+                    </HighlightText>
+                  </FlexEndWrapperOnly>
                 )}
-              </HorizontalWrapperSpaceBetween>
+              </HorizontalWrapperSpaceBetween>{' '}
+              {bet.isAccepted ? null : (
+                <FlexEndWrapperOnly>
+                  {' '}
+                  <BetRegisterConfirm
+                    deleteBet={handleDeleteBet}
+                    betId={bet.id}
+                    buttonLabel='Delete the bet'
+                    customMessage='Last chance to delete'
+                  />
+                </FlexEndWrapperOnly>
+              )}
             </FightListHeader>
           ))}
       </FlexStartWrapper>

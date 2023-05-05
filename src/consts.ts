@@ -80,6 +80,7 @@ export enum SvgIconVariants {
   STORE = 'store',
   SAVE = 'save',
   QUESTION = 'question',
+  EXCLAMATION = 'exclamation',
   TEXT_LEFT = 'textLeft',
   RIGHT_POINT = 'rightPoint',
   DOWN_POINT = 'downPoint',

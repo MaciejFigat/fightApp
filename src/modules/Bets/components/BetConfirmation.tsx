@@ -139,7 +139,10 @@ const BetConfirmation: React.FC<BetConfirmationProps> = ({
               winnerChange={winnerChange}
             />
           )}
-          <OddsNotification />
+          <OddsNotification
+            noteContent='Any reliance placed on these odds is done so at your own risk.'
+            contentHeader='Odds notification'
+          />
         </HorizontalWrapperSpaceBetween>
         <HorizontalWrapperSpaceBetween>
           {' '}

@@ -103,6 +103,9 @@ export const FlexStartWrapperOnly = styled.div`
   gap: var(--gap-medium);
   width: 100%;
 `
+export const FlexEndWrapperOnly = styled(FlexStartWrapperOnly)`
+  justify-content: flex-end;
+`
 export const FlexStartWrapper = styled.div`
   display: flex;
   flex-direction: column;

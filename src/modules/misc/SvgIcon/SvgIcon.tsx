@@ -10,6 +10,7 @@ import {
   faSave,
   faFolderOpen,
   faQuestionCircle,
+  faExclamationCircle,
   faCog,
   faAlignLeft,
   faCaretRight,
@@ -58,6 +59,8 @@ const SvgIcon: React.FC<SvgIconProps> = ({
         return faSave
       case SvgIconVariants.QUESTION:
         return faQuestionCircle
+      case SvgIconVariants.EXCLAMATION:
+        return faExclamationCircle
       case SvgIconVariants.TEXT_LEFT:
         return faAlignLeft
       case SvgIconVariants.RIGHT_POINT:

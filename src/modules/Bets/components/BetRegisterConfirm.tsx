@@ -11,14 +11,18 @@ import AnimatedSlider from '../../../components/AnimatedSlider/AnimatedSlider'
 import { ConfirmedBet } from '../../../interfaces'
 
 interface BetRegisterConfirmProps {
-  bet: ConfirmedBet
-  handleBet: (bet: ConfirmedBet) => void
+  bet?: ConfirmedBet
+  handleBet?: (bet: ConfirmedBet) => void
+  deleteBet?: (id: string) => void
+  betId?: string
   buttonLabel?: string
   customMessage?: string
 }
 
 const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = ({
   handleBet,
+  deleteBet,
+  betId,
   bet,
   buttonLabel,
   customMessage
@@ -37,12 +41,24 @@ const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = ({
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
             >
-              <ButtonSmall
-                variant={ButtonVariants.SUCCESS_EMPTY}
-                onClick={() => handleBet(bet)}
-              >
-                {buttonLabel ? buttonLabel : 'I accept'}
-              </ButtonSmall>
+              {deleteBet && betId ? (
+                <ButtonSmall
+                  variant={ButtonVariants.DANGER_EMPTY}
+                  onClick={() => deleteBet(betId)}
+                >
+                  {buttonLabel ? buttonLabel : 'I accept'}
+                </ButtonSmall>
+              ) : (
+                handleBet &&
+                bet && (
+                  <ButtonSmall
+                    variant={ButtonVariants.SUCCESS_EMPTY}
+                    onClick={() => handleBet(bet)}
+                  >
+                    {buttonLabel ? buttonLabel : 'I accept'}
+                  </ButtonSmall>
+                )
+              )}
             </motion.div>
           ) : (
             <motion.div
