@@ -4,6 +4,7 @@ import { AppDispatch } from '../../../reduxState/store'
 import { getUserBets } from '../../../reduxState/stateSlices/bets/betsSlice'
 import {
   FlexStartWrapper,
+  FlexStartWrapperOnly,
   GeneralWrapper,
   HighlightText,
   HorizontalWrapperSpaceBetween
@@ -48,9 +49,18 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
                 </BlurredFatText>{' '}
               </HorizontalWrapperSpaceBetween>
               <HorizontalWrapperSpaceBetween>
-                <>
-                  Bet:{bet.amountBet} To win: {bet.expectedPayout}
-                </>{' '}
+                <FlexStartWrapperOnly>
+                  <HighlightText color={TextColor.GOLD}>
+                    Bet: {bet.amountBet}
+                  </HighlightText>{' '}
+                  <HighlightText
+                    color={
+                      bet.isAccepted ? TextColor.SUCCESS : TextColor.WARNING
+                    }
+                  >
+                    To win: {bet.expectedPayout}
+                  </HighlightText>
+                </FlexStartWrapperOnly>
                 {bet.isAccepted ? (
                   <HighlightText color={TextColor.SUCCESS}>
                     Accepted

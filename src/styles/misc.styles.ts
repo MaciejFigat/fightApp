@@ -96,6 +96,13 @@ export const GeneralWrapper = styled.div`
     width: 0.2em;
   }
 `
+export const FlexStartWrapperOnly = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: var(--gap-medium);
+  width: 100%;
+`
 export const FlexStartWrapper = styled.div`
   display: flex;
   flex-direction: column;
