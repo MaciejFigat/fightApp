@@ -12,6 +12,7 @@ interface BetHeaderProps {
   betId: string
   Fighters?: FighterProfile[]
   projectedWinner?: WinnerProjection
+
   winnerChange: (id: string, winnerProjection: WinnerProjection) => void
 }
 

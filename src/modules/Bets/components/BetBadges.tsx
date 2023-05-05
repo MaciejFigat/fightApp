@@ -63,13 +63,17 @@ const BetBadges: React.FC<BetBadgesProps> = ({
           {Fighters && typeof projectedWinner === 'number' ? (
             <ColorBadgeLong
               color={
+                Fighters &&
+                Fighters.length > 0 &&
                 Fighters[projectedWinner].Moneyline > 0
                   ? TextColor.WARNING
                   : TextColor.SUCCESS
               }
             >
-              {Fighters[projectedWinner].FirstName}{' '}
-              {Fighters[projectedWinner].LastName}
+              {Fighters?.[projectedWinner]?.FirstName &&
+              Fighters?.[projectedWinner]?.LastName
+                ? `${Fighters[projectedWinner].FirstName} ${Fighters[projectedWinner].LastName}`
+                : 'No data'}
             </ColorBadgeLong>
           ) : typeof projectedWinner === 'string' ? (
             <ColorBadgeLong color={TextColor.INFO}>Any fighter</ColorBadgeLong>

@@ -5,6 +5,7 @@ import { getUserBets } from '../../../reduxState/stateSlices/bets/betsSlice'
 import {
   FlexStartWrapper,
   GeneralWrapper,
+  HighlightText,
   HorizontalWrapperSpaceBetween
 } from '../../../styles/misc.styles'
 import { FightListHeader, MainListHeaderGrey } from './DragColumns.styled'
@@ -13,6 +14,8 @@ import {
   BlurredSkinnyText
 } from '../components/BetConfirmation.styled'
 import { dateFormatter } from '../../utils/helperFunctions/helperFunction'
+import BetProjectedWinner from '../components/BetProjectedWinner'
+import { TextColor } from '../../../consts'
 
 interface UserBetDisplayProps {}
 
@@ -21,7 +24,6 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
   const userBets = useAppSelector(state => state.bets.userBets)
 
   useEffect(() => {
-    // if (userBets.length === 0) dispatch(getUserBets(1))
     dispatch(getUserBets(1))
   }, [dispatch, userBets.length])
 
@@ -36,7 +38,7 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
               {' '}
               <HorizontalWrapperSpaceBetween>
                 {' '}
-                {bet.name}
+                <BetProjectedWinner bet={bet} />
                 <BlurredSkinnyText>{bet.fightName}</BlurredSkinnyText>
               </HorizontalWrapperSpaceBetween>
               <HorizontalWrapperSpaceBetween>
@@ -45,7 +47,20 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
                   {dateFormatter(bet.dateTime, false)}
                 </BlurredFatText>{' '}
               </HorizontalWrapperSpaceBetween>
-              To win:{bet.amountBet} Expected: {bet.expectedPayout}
+              <HorizontalWrapperSpaceBetween>
+                <>
+                  Bet:{bet.amountBet} To win: {bet.expectedPayout}
+                </>{' '}
+                {bet.isAccepted ? (
+                  <HighlightText color={TextColor.SUCCESS}>
+                    Accepted
+                  </HighlightText>
+                ) : (
+                  <HighlightText color={TextColor.WARNING}>
+                    Pending
+                  </HighlightText>
+                )}
+              </HorizontalWrapperSpaceBetween>
             </FightListHeader>
           ))}
       </FlexStartWrapper>

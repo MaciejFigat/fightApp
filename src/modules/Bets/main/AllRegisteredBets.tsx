@@ -17,7 +17,8 @@ import {
 import {
   filterAcceptedBets,
   filterAllBetsByEarliestDate,
-  filterBetsByEventId
+  filterBetsByEventId,
+  filterUserBetsAway
 } from '../functions/filterBets'
 import { dateFormatter } from '../../utils/helperFunctions/helperFunction'
 import {
@@ -25,17 +26,25 @@ import {
   BlurredSkinnyText
 } from '../components/BetConfirmation.styled'
 import BetVisualisation from '../components/BetVisualisation'
-import { AcceptedBet, ConfirmedBet, UserInfo } from '../../../interfaces'
+import {
+  AcceptedBet,
+  BetsWithUserData,
+  ConfirmedBet,
+  UserInfo
+} from '../../../interfaces'
 import { updateUserProfile } from '../../../reduxState/stateSlices/users/userSlice'
 import BetRegisterConfirm from '../components/BetRegisterConfirm'
 
 import OddsNotification from '../components/OddsNotification'
+import BetProjectedWinner from '../components/BetProjectedWinner'
 
-interface AllBetsDisplayProps {}
+interface AllRegisteredBetsProps {}
 
-const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
+const AllRegisteredBets: React.FC<AllRegisteredBetsProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
-  const allBets = useAppSelector(state => state.bets.allBets)
+  const allBets: BetsWithUserData[] = useAppSelector(
+    state => state.bets.allBets
+  )
   const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
 
   const { id: userId, coinsAvailable } = userInfo
@@ -51,8 +60,6 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
       isAccepted: true,
       acceptDateTime: new Date(),
       acceptedBy: userId ?? null
-      // isResolved: false,
-      // expectedPayout: bet.expectedPayout
     }
     const updatedUser: UserInfo = {
       id: userId,
@@ -63,13 +70,19 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
       dispatch(updateUserProfile(updatedUser))
     }
   }
-
-  const notAcceptedBets = useMemo(() => {
-    if (!allBets) {
+  const noUserBets = useMemo(() => {
+    if (!allBets || !userId) {
       return []
     }
-    return filterAcceptedBets(allBets)
-  }, [allBets])
+    return filterUserBetsAway(allBets, userId)
+  }, [allBets, userId])
+
+  const notAcceptedBets = useMemo(() => {
+    if (!noUserBets) {
+      return []
+    }
+    return filterAcceptedBets(noUserBets)
+  }, [noUserBets])
 
   const currentEventBets = useMemo(() => {
     return filterBetsByEventId(notAcceptedBets, EventId)
@@ -82,7 +95,7 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
   const betsToDisplay = (() => {
     switch (betFilter) {
       case BetFilter.ALL_BETS:
-        return allBets
+        return noUserBets
       case BetFilter.CURRENT_EVENT:
         return currentEventBets
       case BetFilter.NEXT_EVENT:
@@ -130,8 +143,7 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
           betsToDisplay.map(bet => (
             <FightListHeader key={bet.id}>
               <HorizontalWrapperSpaceBetween>
-                {' '}
-                {bet.name}{' '}
+                <BetProjectedWinner bet={bet} />
                 <BlurredSkinnyText>{bet.fightName}</BlurredSkinnyText>
               </HorizontalWrapperSpaceBetween>
               <HorizontalWrapperSpaceBetween>
@@ -165,4 +177,4 @@ const AllBetsDisplay: React.FC<AllBetsDisplayProps> = () => {
     </GeneralWrapper>
   )
 }
-export default AllBetsDisplay
+export default AllRegisteredBets

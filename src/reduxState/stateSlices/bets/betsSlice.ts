@@ -1,5 +1,10 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit'
-import { AcceptedBet, BetData, ConfirmedBet } from '../../../interfaces'
+import {
+  AcceptedBet,
+  BetData,
+  BetsWithUserData,
+  ConfirmedBet
+} from '../../../interfaces'
 import axios from 'axios'
 
 interface BetsState {
@@ -8,7 +13,7 @@ interface BetsState {
   betsRegistered: ConfirmedBet[]
   betsAccepted: AcceptedBet[]
   userBets: ConfirmedBet[]
-  allBets: ConfirmedBet[]
+  allBets: BetsWithUserData[]
   loading: boolean
   success: boolean
 }

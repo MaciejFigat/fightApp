@@ -83,11 +83,12 @@ export const useInitialFighterBets = (
           Fighters: currentFight?.Fighters ?? [],
           activated: false
         },
+
         {
           id: v4(),
-          name: 'Draw',
+          name: 'DQ',
           fightName: fightName,
-          method: WinMethod.DRAW,
+          method: WinMethod.DQ,
           projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
           EventId: EventId,
@@ -97,9 +98,9 @@ export const useInitialFighterBets = (
         },
         {
           id: v4(),
-          name: 'No Contest',
+          name: 'Draw',
           fightName: fightName,
-          method: WinMethod.DQ,
+          method: WinMethod.DRAW,
           projectedWinner: WinnerProjection.ANY,
           FightId: currentFight?.FightId ?? 0,
           EventId: EventId,

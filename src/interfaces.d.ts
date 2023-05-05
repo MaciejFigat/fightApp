@@ -100,9 +100,13 @@ interface AcceptedBet extends ConfirmedBet {
   isResolved?: boolean
   acceptedBy: string | null
   acceptDateTime: Date
-  // userId?: string
 }
-
+interface BetsWithUserData extends ConfirmedBet {
+  user: {
+    _id: string
+    name: string
+  }
+}
 interface UserInfo {
   id?: string
   name?: string
@@ -125,5 +129,6 @@ export {
   BetData,
   ConfirmedBet,
   UserInfo,
-  AcceptedBet
+  AcceptedBet,
+  BetsWithUserData
 }

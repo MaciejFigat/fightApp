@@ -3,7 +3,7 @@ import { Draggable, Droppable } from '@hello-pangea/dnd'
 import { BetData } from '../../../interfaces'
 import { DraggableDiv, DroppableList } from './DragColumns.styled'
 import BetHeader from '../components/BetHeader'
-import { WinnerProjection } from '../../../consts'
+import { WinMethod, WinnerProjection } from '../../../consts'
 import { DraggingIcon } from '../../../styles/misc.styles'
 
 interface AvailableBetsColumnProps {
@@ -50,6 +50,9 @@ const AvailableBetsColumn: React.FC<AvailableBetsColumnProps> = ({
                             betMoneyline={bet.moneyline}
                             betName={bet.name}
                             winnerChange={winnerChange}
+                            noBadgesInHeader={
+                              bet.method === WinMethod.DRAW ? true : false
+                            }
                           />
                         </>
                       </DraggableDiv>

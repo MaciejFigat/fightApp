@@ -7,7 +7,7 @@ import FightsAndBets from '../modules/Bets/main/FightsAndBets'
 import HomePageLayout from '../layout/HomePageLayout'
 import HomePageMobileLayout from '../layout/HomePageMobileLayout'
 import UserBetDisplay from '../modules/Bets/main/UserBetDisplay'
-import AllBetsDisplay from '../modules/Bets/main/AllBetsDisplay'
+import AllBetsDisplay from '../modules/Bets/main/AllRegisteredBets'
 import CurrentEvent from '../modules/misc/EventsDisplay/CurrentEvent'
 
 interface HomePageScreenProps {}

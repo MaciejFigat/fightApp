@@ -13,7 +13,7 @@ import FightsAndBetsMobile from '../modules/Bets/main/mobile/FightsAndBetsMobile
 import EventsColumnMobile from '../modules/misc/EventsDisplay/EventsColumnMobile'
 
 import MobileFooter from './MobileFooter'
-import AllBetsDisplay from '../modules/Bets/main/AllBetsDisplay'
+import AllBetsDisplay from '../modules/Bets/main/AllRegisteredBets'
 import UserBetDisplay from '../modules/Bets/main/UserBetDisplay'
 
 interface HomePageMobileLayoutProps {

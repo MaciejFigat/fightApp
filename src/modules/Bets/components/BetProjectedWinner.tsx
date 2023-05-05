@@ -22,9 +22,9 @@ const BetProjectedWinner: React.FC<BetProjectedWinnerProps> = ({ bet }) => {
         {method !== WinMethod.TBD &&
           typeof projectedWinner === 'number' &&
           Fighters && (
-            <HighlightText color={TextColor.GOLD}>
+            <HighlightText color={TextColor.INFO}>
               {Fighters[projectedWinner].FirstName}
-              {Fighters[projectedWinner].LastName} WINS by
+              {Fighters[projectedWinner].LastName} WINS by {''}
               {method}
             </HighlightText>
           )}

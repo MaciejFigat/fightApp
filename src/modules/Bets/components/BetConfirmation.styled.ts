@@ -6,8 +6,12 @@ export const BlurredFatText = styled.b`
   font-weight: 600;
 `
 export const BlurredSkinnyText = styled(BlurredFatText)`
+  min-width: fit-content;
   transform: uppercase;
   font-weight: 400;
+  @media (max-width: 760px) {
+    min-width: 100px;
+  }
 `
 export const BetDetails = styled.div`
   display: grid;

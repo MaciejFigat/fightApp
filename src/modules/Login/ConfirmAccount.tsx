@@ -65,8 +65,8 @@ const ConfirmAccount: React.FC<ConfirmAccountProps> = () => {
         {errorMessage === '' && (
           <>
             {' '}
-            <h4>Za chwilę zostaniesz przekierowany do ekranu logowania</h4>
-            <h4>Trwa autoryzacja twojego emaila</h4>{' '}
+            <h4>Please wait a moment</h4>
+            <h4>Authorization is pending</h4>{' '}
             <HorizontalWrapperCenter>
               <RotatingLines
                 strokeColor='var(--background2-secondary)'

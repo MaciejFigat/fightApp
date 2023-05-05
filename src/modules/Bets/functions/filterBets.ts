@@ -1,4 +1,8 @@
-import { AvailableEventSimpleData, ConfirmedBet } from '../../../interfaces'
+import {
+  AvailableEventSimpleData,
+  BetsWithUserData,
+  ConfirmedBet
+} from '../../../interfaces'
 
 export function filterAllBetsByEarliestDate (allBets: ConfirmedBet[]) {
   const today = new Date().toISOString().substring(0, 10)
@@ -47,4 +51,16 @@ export function filterFutureEvents (allEvents: AvailableEventSimpleData[]) {
   )
 
   return filteredEvents
+}
+
+export function filterUserBetsAway (
+  allBets: BetsWithUserData[],
+  userId: string
+) {
+  const noUserBets =
+    Array.isArray(allBets) &&
+    allBets &&
+    allBets.filter(bet => bet.user._id !== userId)
+
+  return noUserBets
 }
