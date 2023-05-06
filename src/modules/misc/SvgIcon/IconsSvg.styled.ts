@@ -8,6 +8,7 @@ export const IconsItem = styled.div<{
   contentAfter?: string
   showContent?: boolean
 }>`
+  position: relative;
   padding: 0;
   font-size: var(--font-size-medium);
   display: grid;
@@ -15,9 +16,7 @@ export const IconsItem = styled.div<{
   flex-direction: column;
   max-width: ${props => (props.showContent ? '100%' : '20px')};
   margin-right: 0;
-  @media (max-width: 500px) {
-    max-width: 30px;
-  }
+
   &:hover {
     &:after {
       opacity: ${contentAfter => (contentAfter ? `1` : `0`)};
@@ -33,5 +32,18 @@ export const IconsItem = styled.div<{
     padding-right: var(--gap-medium);
     font-size: var(--font-size-medium);
     font-weight: 600;
+    @media (max-width: 610px) {
+      font-size: var(--font-size-small);
+      /* font-weight: 800; */
+      padding: 0;
+      width: 55px;
+      line-height: 1.05;
+      top: 2px;
+    }
+  }
+  @media (max-width: 610px) {
+    font-size: var(--font-size-small);
+    /* left: -5px; */
+    top: -5px;
   }
 `

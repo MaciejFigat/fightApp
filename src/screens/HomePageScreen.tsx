@@ -32,6 +32,8 @@ const HomePageScreen: React.FC<HomePageScreenProps> = () => {
         navigationRight={<LoginNavigationLinks />}
         navigationMiddle={<CoinDisplay />}
         navigationLeft={<DisciplineDropdown />}
+        optionOneContent={<UserBetDisplay />}
+        optionTwoContent={<AllBetsDisplay />}
       />
     </>
   )

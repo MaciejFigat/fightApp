@@ -121,6 +121,9 @@ export const FooterMobile = styled.div`
   bottom: 0;
   height: 70px;
   padding: 0 var(--gap-small);
+  @media (max-width: 610px) {
+    gap: 2px;
+  }
 `
 export const MobileHomeContainer = styled.div`
   display: grid;

@@ -123,6 +123,9 @@ export const ButtonSmallGradient = styled.button<{
 
     color: ${props => handleButtonColor(props.variant).buttonColor};
   }
+  @media (max-width: 610px) {
+    padding: var(--gap-small);
+  }
 `
 
 export const ButtonInconspicuous = styled.button<{
@@ -136,13 +139,10 @@ export const ButtonInconspicuous = styled.button<{
   cursor: pointer;
   padding: var(--padding-small);
   padding: 0;
-
   border: none;
   border-radius: var(--border-radius0);
-  /* background: var(--background-gradient0); */
   background: transparent;
   width: 125px;
-  /* min-height: 47px; */
   color: ${({ $active }) =>
     $active ? `var(--background1-secondary)` : 'var(--background4-main)'};
 
@@ -175,7 +175,6 @@ export const ButtonUnderline = styled(motion.div)`
   border-radius: 50%;
 
   background: transparent;
-  /* border: 3px solid var(--background-blur1); */
   border: 3px solid var(--background1-secondary);
   background: linear-gradient(
     90deg,

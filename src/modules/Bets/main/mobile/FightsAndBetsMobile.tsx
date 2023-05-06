@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import { MobileHomeContainer } from '../../../../layout/HomePageLayout.styled'
-
 import { OptionsHomeMenu, WinnerProjection } from '../../../../consts'
 import { winnerChange } from '../../functions/winnerChange'
 import { BetData, EventAllData } from '../../../../interfaces'

@@ -50,10 +50,13 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
         <FooterMobileSecondary>
           <FooterButtonSecondary
             onClick={() => setOpenHome(OptionsHomeMenu.FIGHTS)}
+            disabled={Fights && Fights.length > 0 ? false : true}
           >
             <HighlightText color={TextColor.INFO}>
               <HorizontalWrapper>
-                <RoundAccent>
+                <RoundAccent
+                  invisible={Fights && Fights.length > 0 ? false : true}
+                >
                   {' '}
                   {Fights && Fights.length > 0 ? `${Fights.length}` : null}{' '}
                 </RoundAccent>
@@ -65,10 +68,13 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
           </FooterButtonSecondary>
           <FooterButtonSecondary
             onClick={() => setOpenHome(OptionsHomeMenu.BETS_TO_CONFIRM)}
+            disabled={betsUnconfirmed.length > 0 ? false : true}
           >
             <HighlightText color={TextColor.WARNING}>
               <HorizontalWrapper>
-                <RoundAccent>
+                <RoundAccent
+                  invisible={betsUnconfirmed.length > 0 ? false : true}
+                >
                   {' '}
                   {betsUnconfirmed.length > 0
                     ? `${betsUnconfirmed.length}`
@@ -82,10 +88,13 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
           </FooterButtonSecondary>
           <FooterButtonSecondary
             onClick={() => setOpenHome(OptionsHomeMenu.BETS_TO_REGISTER)}
+            disabled={betsConfirmed.length > 0 ? false : true}
           >
             <HighlightText color={TextColor.SUCCESS}>
               <HorizontalWrapper>
-                <RoundAccent>
+                <RoundAccent
+                  invisible={betsConfirmed.length > 0 ? false : true}
+                >
                   {' '}
                   {betsConfirmed.length > 0
                     ? `${betsConfirmed.length}`

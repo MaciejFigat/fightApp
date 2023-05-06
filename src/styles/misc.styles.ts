@@ -27,17 +27,17 @@ export const DraggingIcon = styled.span`
   }
 `
 
-export const RoundAccent = styled.b`
+export const RoundAccent = styled.b<{ invisible?: boolean }>`
   display: grid;
   width: 38px;
   height: 38px;
   place-items: center;
   padding: var(--gap-medium);
-  background-color: var(--background-blur2);
+  background-color: ${({ invisible }) =>
+    invisible ? 'transparent' : 'var(--background-blur2)'};
   border-radius: 50%;
 `
 
-// export const Mobile = styled.div``
 export const ScrollYWrapper = styled.div`
   height: 100%;
   width: 100%;
@@ -278,3 +278,7 @@ export const HoverColorWrapper = styled.div<HoverColorWrapperProps>`
     } */
   }
 `
+
+// @media (max-width: 610px) {
+
+// }
