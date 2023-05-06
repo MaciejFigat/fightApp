@@ -229,6 +229,16 @@ const betsSlice = createSlice({
     builder.addCase(editRegisteredBet.fulfilled, (state, action) => {
       state.loading = false
       state.betsAccepted = [...state.betsRegistered, action.payload]
+      // state.allBets array will have the updated isAccepted property for the matching bet, and all the other bets will be unchanged.
+      state.allBets = state.allBets.map(bet => {
+        if (bet._id === action.payload.id) {
+          return {
+            ...bet,
+            isAccepted: true
+          }
+        }
+        return bet
+      })
       state.success = true
     })
     builder.addCase(editRegisteredBet.rejected, (state, action) => {

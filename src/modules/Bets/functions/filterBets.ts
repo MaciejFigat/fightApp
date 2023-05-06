@@ -35,8 +35,6 @@ export function filterBetsByEventId (allBets: ConfirmedBet[], eventId: number) {
   return filteredBets
 }
 export function filterAcceptedBets (allBets: ConfirmedBet[] | undefined) {
-  // const filteredBets =
-  //   Array.isArray(allBets) && allBets.filter(bet => bet.isAccepted === true)
   const filteredBets = Array.isArray(allBets)
     ? allBets.filter(bet => bet.isAccepted === false)
     : []

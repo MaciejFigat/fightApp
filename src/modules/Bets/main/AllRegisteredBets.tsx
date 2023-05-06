@@ -54,7 +54,11 @@ const AllRegisteredBets: React.FC<AllRegisteredBetsProps> = () => {
 
   const [betFilter, setBetFilter] = useState<BetFilter>(BetFilter.ALL_BETS)
 
-  const handleAcceptBet = (bet: ConfirmedBet) => {
+  const handleAcceptBet = async (bet: ConfirmedBet) => {
+    if (bet.isAccepted === true) {
+      console.log('Bet already accepted')
+      return
+    }
     const betToAccept: AcceptedBet = {
       ...bet,
       isAccepted: true,
@@ -63,9 +67,12 @@ const AllRegisteredBets: React.FC<AllRegisteredBetsProps> = () => {
     }
 
     if (coinsAvailable && coinsAvailable > bet.amountBet) {
-      dispatch(editRegisteredBet(betToAccept))
+      await dispatch(editRegisteredBet(betToAccept))
+      // Refetch the bets data after the edit is completed
+      dispatch(getAllBets(1))
     }
   }
+
   const noUserBets = useMemo(() => {
     if (!allBets || !userId) {
       return []
@@ -91,7 +98,7 @@ const AllRegisteredBets: React.FC<AllRegisteredBetsProps> = () => {
   const betsToDisplay = (() => {
     switch (betFilter) {
       case BetFilter.ALL_BETS:
-        return noUserBets
+        return notAcceptedBets
       case BetFilter.CURRENT_EVENT:
         return currentEventBets
       case BetFilter.NEXT_EVENT:

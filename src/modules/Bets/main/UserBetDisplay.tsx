@@ -23,30 +23,19 @@ import BetProjectedWinner from '../components/BetProjectedWinner'
 import { TextColor } from '../../../consts'
 import OddsNotification from '../components/OddsNotification'
 import BetRegisterConfirm from '../components/BetRegisterConfirm'
-import { UserInfo } from '../../../interfaces'
-import { updateUserProfile } from '../../../reduxState/stateSlices/users/userSlice'
 
 interface UserBetDisplayProps {}
 
 const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
   const userBets = useAppSelector(state => state.bets.userBets)
-  // const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
 
-  // const { id: userId, coinsAvailable } = userInfo
   useEffect(() => {
     dispatch(getUserBets(1))
   }, [dispatch, userBets.length])
 
   const handleDeleteBet = (betId: string, amountBet: number) => {
-    // const updatedUser: UserInfo = {
-    //   id: userId,
-    //   coinsAvailable: (coinsAvailable || 0) + amountBet
-    // }
-
     dispatch(deleteRegisteredBet(betId))
-    // console.log('Deleting bet with id:', betId)
-    // dispatch(updateUserProfile(updatedUser))
   }
   return (
     <GeneralWrapper>
