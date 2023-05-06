@@ -1,6 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { UserInfo } from '../../../interfaces'
+import {
+  createBet,
+  deleteRegisteredBet,
+  editRegisteredBet
+} from '../bets/betsSlice'
 
 interface UserLogin {
   email: string
@@ -269,18 +274,26 @@ export const deleteUser = createAsyncThunk(
     }
   }
 )
+interface UserState {
+  userInfo: UserInfo
+  loading: boolean
+  error: any
+  allUsers: UserInfo[]
+  selectedUserInfo: UserInfo
+  success: boolean
+}
+const initialState: UserState = {
+  userInfo: {},
+  loading: false,
+  error: {},
+  allUsers: [],
+  selectedUserInfo: {},
+  success: false
+}
 
 const userSlice = createSlice({
   name: 'userLogin',
-  initialState: {
-    userInfo: {},
-    loading: false,
-    error: {},
-    allUsers: [],
-    selectedUserInfo: {},
-    success: false,
-    coinsAvailable: 0
-  },
+  initialState: initialState,
   reducers: {
     logout: state => {
       state.userInfo = {}
@@ -301,7 +314,7 @@ const userSlice = createSlice({
     })
     builder.addCase(sendUserId.fulfilled, (state, action) => {
       state.loading = false
-      state.userInfo = action.payload.name !== 'Error' && {
+      state.userInfo = {
         id: action.payload._id,
         name: action.payload.name,
         email: action.payload.email,
@@ -320,7 +333,8 @@ const userSlice = createSlice({
     })
     builder.addCase(resetPassword.fulfilled, (state, action) => {
       state.loading = false
-      state.userInfo = action.payload.name !== 'Error' && {
+
+      state.userInfo = {
         id: action.payload._id,
         name: action.payload.name,
         email: action.payload.email,
@@ -348,7 +362,7 @@ const userSlice = createSlice({
     })
     builder.addCase(sendEmailToResetPassword.fulfilled, (state, action) => {
       state.loading = false
-      state.userInfo = action.payload.name !== 'Error' && {
+      state.userInfo = {
         id: action.payload._id,
         name: action.payload.name,
         email: action.payload.email,
@@ -366,7 +380,7 @@ const userSlice = createSlice({
     })
     builder.addCase(createUser.fulfilled, (state, action) => {
       state.loading = false
-      state.userInfo = action.payload.name !== 'Error' && {
+      state.userInfo = {
         id: action.payload._id,
         name: action.payload.name,
         email: action.payload.email,
@@ -398,7 +412,8 @@ const userSlice = createSlice({
     })
     builder.addCase(updateUserProfile.fulfilled, (state, action) => {
       state.loading = false
-      state.userInfo = action.payload.name !== 'Error' && {
+      // in the controller I'm returning the updated user with _id and not id, I'll leave it for it serves me now
+      state.userInfo = {
         id: action.payload._id,
         name: action.payload.name,
         email: action.payload.email,
@@ -459,6 +474,27 @@ const userSlice = createSlice({
     })
     builder.addCase(getUserDetails.rejected, state => {
       state.loading = false
+    })
+    // deleteRegisteredBet => get res from the server with new coinsAvailable
+    builder.addCase(deleteRegisteredBet.fulfilled, (state, action) => {
+      const { coinsAvailable } = action.payload
+      state.userInfo = { ...state.userInfo, coinsAvailable: coinsAvailable }
+    })
+    builder.addCase(createBet.fulfilled, (state, action) => {
+      const { amountBet } = action.payload
+      if (state.userInfo?.coinsAvailable)
+        state.userInfo = {
+          ...state.userInfo,
+          coinsAvailable: state.userInfo.coinsAvailable - amountBet
+        }
+    })
+    builder.addCase(editRegisteredBet.fulfilled, (state, action) => {
+      const { expectedPayout } = action.payload
+      if (state.userInfo?.coinsAvailable)
+        state.userInfo = {
+          ...state.userInfo,
+          coinsAvailable: state.userInfo.coinsAvailable - expectedPayout
+        }
     })
   }
 })

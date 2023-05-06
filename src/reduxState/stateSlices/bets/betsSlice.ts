@@ -132,7 +132,6 @@ export const editRegisteredBet = createAsyncThunk(
 
       return data
     } catch (error: any) {
-      // console.log(bet._id, 'bet._id')
       return error
     }
   }

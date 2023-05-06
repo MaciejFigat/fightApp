@@ -31,22 +31,22 @@ interface UserBetDisplayProps {}
 const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
   const userBets = useAppSelector(state => state.bets.userBets)
-  const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
+  // const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
 
-  const { id: userId, coinsAvailable } = userInfo
+  // const { id: userId, coinsAvailable } = userInfo
   useEffect(() => {
     dispatch(getUserBets(1))
   }, [dispatch, userBets.length])
 
   const handleDeleteBet = (betId: string, amountBet: number) => {
-    const updatedUser: UserInfo = {
-      id: userId,
-      coinsAvailable: (coinsAvailable || 0) + amountBet
-    }
+    // const updatedUser: UserInfo = {
+    //   id: userId,
+    //   coinsAvailable: (coinsAvailable || 0) + amountBet
+    // }
 
     dispatch(deleteRegisteredBet(betId))
     // console.log('Deleting bet with id:', betId)
-    dispatch(updateUserProfile(updatedUser))
+    // dispatch(updateUserProfile(updatedUser))
   }
   return (
     <GeneralWrapper>

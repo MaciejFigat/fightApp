@@ -32,7 +32,7 @@ import {
   ConfirmedBet,
   UserInfo
 } from '../../../interfaces'
-import { updateUserProfile } from '../../../reduxState/stateSlices/users/userSlice'
+
 import BetRegisterConfirm from '../components/BetRegisterConfirm'
 
 import OddsNotification from '../components/OddsNotification'
@@ -61,13 +61,9 @@ const AllRegisteredBets: React.FC<AllRegisteredBetsProps> = () => {
       acceptDateTime: new Date(),
       acceptedBy: userId ?? null
     }
-    const updatedUser: UserInfo = {
-      id: userId,
-      coinsAvailable: (coinsAvailable || 0) - bet.amountBet
-    }
+
     if (coinsAvailable && coinsAvailable > bet.amountBet) {
       dispatch(editRegisteredBet(betToAccept))
-      dispatch(updateUserProfile(updatedUser))
     }
   }
   const noUserBets = useMemo(() => {
