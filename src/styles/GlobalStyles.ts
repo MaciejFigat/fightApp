@@ -103,9 +103,11 @@ const GlobalStyle = createGlobalStyle`
     --padding-top-sides: 16px 16px 0px;
 
 
+    --gap-verySmall: 4px;
     --gap-small: 6px;
     --gap-medium: 8px;
     --gap-big: 12px;
+    --gap-big-14: 14px;
     --gap-veryBig: 16px;
     --gap-huge: 20px;
     

@@ -61,9 +61,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
                   {' '}
                   {Fights && Fights.length > 0 ? `${Fights.length}` : null}{' '}
                 </RoundAccent>
-                {Fights && Fights.length > 0
-                  ? `Fights in the event`
-                  : 'No fights in the event'}
+                {Fights && Fights.length > 0 ? `Fights` : 'No fights'}
               </HorizontalWrapper>
             </HighlightText>
           </FooterButtonSecondary>

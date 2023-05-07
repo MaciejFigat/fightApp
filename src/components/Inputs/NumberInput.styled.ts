@@ -28,13 +28,15 @@ export const InputContainer = styled.div`
   padding: var(--padding-medium);
   width: 140px;
   transition: all 0.3s ease-out;
-  /* ${Input}:hover {
-    color: var(--background1-secondary);
-  } */
+
   &:focus-within {
     border-color: var(--background1-secondary);
   }
   &:hover {
     border-color: var(--background1-secondary);
+  }
+  @media (max-width: 610px) {
+    padding: var(--padding-small);
+    width: 120px;
   }
 `

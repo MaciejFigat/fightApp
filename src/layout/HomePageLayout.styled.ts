@@ -125,12 +125,25 @@ export const FooterMobile = styled.div`
     gap: 2px;
   }
 `
+export const MobileBetContainer = styled.div`
+  height: 100%;
+  @media (max-width: 1040px) {
+    padding: 0 var(--gap-small);
+  }
+  @media (max-width: 610px) {
+    width: 100%;
+  }
+`
 export const MobileHomeContainer = styled.div`
   display: grid;
-  place-items: center;
+  place-items: center center;
   width: 100%;
   height: 100%;
   min-height: 82vh;
+  @media (max-width: 1040px) {
+    /* padding: 0 var(--gap-verySmall); */
+    /* background: green; */
+  }
 `
 export const FooterMobileSecondary = styled.div`
   display: grid;

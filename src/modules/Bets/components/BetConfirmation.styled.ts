@@ -20,12 +20,9 @@ export const BetDetails = styled.div`
   background: var(--background-blur0);
   gap: var(--gap-huge);
   width: 100%;
-  @media (max-width: 1040px) {
-    width: 600px;
-  }
+
   @media (max-width: 610px) {
-    max-width: 70%;
-    padding: var(--gap-medium) 0;
+    width: 98%;
   }
 `
 export const BetVisualisationLimiter = styled.div`

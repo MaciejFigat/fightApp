@@ -114,6 +114,10 @@ export const HorizontalWrapperSpaceBetween = styled.div`
   align-items: center;
   flex-direction: row;
   width: 100%;
+
+  @media (max-width: 610px) {
+    width: 95%;
+  }
 `
 export const HorizontalWrapperHeader = styled(HorizontalWrapperSpaceBetween)`
   @media (max-width: 1040px) {
@@ -299,11 +303,12 @@ export const HoverColorWrapper = styled.div<HoverColorWrapperProps>`
     display: grid;
     place-items: center;
     border: 1px solid var(--background-blur3);
-    content: ${({ contentAfter }) => contentAfter || "''"};
-    min-width: ${({ contentWidth }) => contentWidth || 'fit-content'};
+    content: ${({ contentAfter }) => (contentAfter ? `'${contentAfter}'` : '')};
+    min-width: ${({ contentWidth }) =>
+      contentWidth ? contentWidth : 'fit-content'};
     padding: var(--gap-small);
-    top: ${({ contentTop }) => contentTop || '-37px'};
-    left: ${({ contentLeft }) => contentLeft || '-37px'};
+    top: ${({ contentTop }) => (contentTop ? contentTop : '-37px')};
+    left: ${({ contentLeft }) => (contentLeft ? contentLeft : '-37px')};
     line-height: 1.2;
     padding: var(--gap-small);
     transition: all 0.2s ease-in;
@@ -314,8 +319,14 @@ export const HoverColorWrapper = styled.div<HoverColorWrapperProps>`
     font-size: var(--font-size-verySmall);
     font-weight: 400;
     color: var(--background-blur3);
+
     @media (max-width: 1040px) {
-      left: -120px;
+      left: -110px;
     }
+  }
+  @media (max-width: 610px) {
+    position: relative;
+    top: 6px;
+    left: -12px;
   }
 `

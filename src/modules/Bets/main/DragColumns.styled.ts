@@ -15,10 +15,8 @@ export const MainColumn = styled.div`
     display: none;
   }
   overflow-y: scroll;
-  /* border-right: 1px solid var(--background-blur2); */
 `
 export const SideColumn = styled.div`
-  /* border-right: 1px solid var(--background-blur2); */
   ::-webkit-scrollbar {
     display: none;
   }
@@ -29,6 +27,7 @@ export const SideColumn = styled.div`
 export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
   display: flex;
   justify-content: center;
+
   align-items: center;
   border-radius: 4px;
   width: 100%;
@@ -103,7 +102,7 @@ export const HeaderWrapper = styled.div`
   padding: var(--padding-big-sides);
   @media (max-width: 610px) {
     max-width: 270px;
-    padding: var(--padding-small-sides);
+    padding-right: var(--gap-small);
   }
 `
 
@@ -118,7 +117,6 @@ export const BetListHeader = styled.div<{ minHeight?: string }>`
   min-height: ${({ minHeight }) => (minHeight ? minHeight : 'fit-content')};
 
   @media (max-width: 610px) {
-    width: 100vw;
     font-size: var(--font-size-small);
     gap: var(--gap-small);
   }
@@ -146,7 +144,11 @@ export const MainListHeaderGrey = styled(MainListHeader)`
     min-width: 600px;
   }
 `
-export const BetContainerMobile = styled.div`
+export const BetContentContainerMobile = styled.div`
+  display: grid;
+  place-items: center;
+  margin-top: var(--gap-big-14);
+  margin-top: 14px;
   gap: var(--gap-medium);
   @media (max-width: 760px) {
     width: 100%;

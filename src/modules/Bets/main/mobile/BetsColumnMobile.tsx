@@ -1,7 +1,7 @@
 import React from 'react'
 import { BetData } from '../../../../interfaces'
 import {
-  BetContainerMobile,
+  BetContentContainerMobile,
   BetListHeader,
   DraggableDiv
 } from '../DragColumns.styled'
@@ -14,7 +14,10 @@ import {
   RoundAccent,
   ScrollYWrapper
 } from '../../../../styles/misc.styles'
-import { MobileHomeContainer } from '../../../../layout/HomePageLayout.styled'
+import {
+  MobileBetContainer,
+  MobileHomeContainer
+} from '../../../../layout/HomePageLayout.styled'
 
 interface BetsColumnMobileProps {
   state: BetData[][]
@@ -32,26 +35,28 @@ const BetsColumnMobile: React.FC<BetsColumnMobileProps> = ({
   return (
     <ScrollYWrapper>
       <MobileHomeContainer>
-        <BetListHeader>
-          <HorizontalWrapper>
-            <RoundAccent>{betsUnconfirmed.length} </RoundAccent>
-            <HighlightText color={TextColor.PRIMARY}>
-              bets to confirm
-            </HighlightText>
-          </HorizontalWrapper>
-        </BetListHeader>
-        <BetContainerMobile>
-          {state[1].map((bet: BetData, index: number) => (
-            <DraggableDiv key={bet.id}>
-              {' '}
-              <BetConfirmation
-                winnerChange={winnerChange}
-                index={index}
-                betData={bet}
-              />
-            </DraggableDiv>
-          ))}
-        </BetContainerMobile>
+        <MobileBetContainer>
+          <BetListHeader>
+            <HorizontalWrapper>
+              <RoundAccent>{betsUnconfirmed.length} </RoundAccent>
+              <HighlightText color={TextColor.PRIMARY}>
+                bets to confirm
+              </HighlightText>
+            </HorizontalWrapper>
+          </BetListHeader>
+          <BetContentContainerMobile>
+            {state[1].map((bet: BetData, index: number) => (
+              <DraggableDiv key={bet.id}>
+                {' '}
+                <BetConfirmation
+                  winnerChange={winnerChange}
+                  index={index}
+                  betData={bet}
+                />
+              </DraggableDiv>
+            ))}
+          </BetContentContainerMobile>
+        </MobileBetContainer>
       </MobileHomeContainer>
     </ScrollYWrapper>
   )
