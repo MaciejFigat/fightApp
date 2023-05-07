@@ -60,7 +60,7 @@ export const RoundAccent = styled.b<{ $invisible?: boolean }>`
       `}
   }
 
-  @media (max-width: 350px) {
+  @media (max-width: 400px) {
     padding: 4px;
     width: 23px;
     height: 23px;

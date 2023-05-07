@@ -6,6 +6,7 @@ import {
   ConfirmedBet
 } from '../../../interfaces'
 import axios from 'axios'
+import { logout } from '../users/userSlice'
 
 interface BetsState {
   betsUnconfirmed: BetData[]
@@ -268,6 +269,16 @@ const betsSlice = createSlice({
     })
     builder.addCase(deleteRegisteredBet.rejected, (state, action) => {
       state.loading = false
+    })
+    builder.addCase(logout, state => {
+      state.betsUnconfirmed = []
+      state.betsConfirmed = []
+      state.betsRegistered = []
+      state.betsAccepted = []
+      state.userBets = []
+      state.allBets = []
+      state.loading = false
+      state.success = false
     })
   }
 })
