@@ -140,10 +140,6 @@ export const MobileHomeContainer = styled.div`
   width: 100%;
   height: 100%;
   min-height: 82vh;
-  @media (max-width: 1040px) {
-    /* padding: 0 var(--gap-verySmall); */
-    /* background: green; */
-  }
 `
 export const FooterMobileSecondary = styled.div`
   display: grid;

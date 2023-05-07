@@ -158,6 +158,12 @@ export const FlexStartWrapper = styled.div`
   width: 100%;
   height: 100%;
   min-height: 82vh;
+  @media (max-width: 1040px) {
+      min-width: 600px;
+  }   
+  @media (max-width: 610px) {
+    min-width: 100%;
+  }
 `
 export const HorizontalWrapperSpaceAround = styled(
   HorizontalWrapperSpaceBetween

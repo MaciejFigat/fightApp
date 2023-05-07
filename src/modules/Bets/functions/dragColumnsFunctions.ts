@@ -81,11 +81,6 @@ export const handleBetDroppedOutside = (
     newState[sourceIndex] = newState[sourceIndex].filter(
       bet => bet.id !== droppedBet.id
     )
-
-    const activatedBet = { ...droppedBet, activated: false }
-    if (activatedBet.FightId === newState[0][0].FightId) {
-      newState[0] = [...newState[0], activatedBet]
-    }
   }
 
   setState(newState)

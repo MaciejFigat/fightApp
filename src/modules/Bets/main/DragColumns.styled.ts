@@ -131,6 +131,9 @@ export const FightListHeader = styled(BetListHeader)`
   width: 100%;
   max-width: 600px;
   font-weight: 500;
+  @media (max-width: 610px) {
+    padding: var(--padding-medium);
+  }
 `
 export const MainListHeader = styled(FightListHeader)`
   background: var(--background5-main);
