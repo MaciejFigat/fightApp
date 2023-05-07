@@ -5,10 +5,8 @@ export const DragColContainer = styled.div`
   width: 100%;
   height: 100%;
   overflow: hidden;
-  /* background: brown; */
   max-width: 1280px;
   gap: var(--gap-big);
-  /* gap: 100px; */
   padding: var(--padding-big);
   grid-template-columns: minmax(380px, 600px) 400px;
 `
@@ -39,9 +37,6 @@ export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
   min-height: 50px;
   height: 100%;
   margin-bottom: var(--gap-big);
-  &:first-of-type {
-    /* margin-top: var(--gap-big); */
-  }
   border: 1px solid var(--background-blur1);
   transition: 0.2s ease;
   transition: border-color 0.3s ease;
@@ -53,10 +48,11 @@ export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
     max-width: 600px;
     justify-content: space-around;
     width: 600px;
-    /* background: brown; */
   }
   @media (max-width: 610px) {
     max-width: 100%;
+    min-width: 270px;
+    width: 100%;
     padding: var(--gap-medium) 0;
   }
 `
@@ -64,17 +60,12 @@ export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
 export const DroppableList = styled.div<{
   isDraggingOver?: boolean
   listEmpty?: boolean
-  width?: string
 }>`
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: ${({ width }) => (width ? width : null)};
-  @media (max-width: 1220px) {
-    width: ${({ width }) => (width ? '100%' : null)};
-  }
+  width: 100%;
   min-height: 150px;
-
   padding-top: var(--padding-small);
   ${({ listEmpty }) =>
     listEmpty &&
@@ -100,12 +91,20 @@ export const DroppableList = styled.div<{
   padding-top: var(--gap-big);
   @media (max-width: 1040px) {
     min-height: 150px;
+    background: var(--background1-main);
+  }
+  @media (max-width: 610px) {
+    max-width: 100%;
   }
 `
 export const HeaderWrapper = styled.div`
   width: 100%;
   max-width: 370px;
   padding: var(--padding-big-sides);
+  @media (max-width: 610px) {
+    max-width: 270px;
+    padding: var(--padding-small-sides);
+  }
 `
 
 export const BetListHeader = styled.div<{ minHeight?: string }>`
@@ -121,8 +120,6 @@ export const BetListHeader = styled.div<{ minHeight?: string }>`
   @media (max-width: 610px) {
     width: 100vw;
     font-size: var(--font-size-small);
-    padding-left: var(--gap-small);
-    padding-right: var(--gap-small);
     gap: var(--gap-small);
   }
 `

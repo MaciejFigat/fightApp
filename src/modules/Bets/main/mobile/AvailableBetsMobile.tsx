@@ -23,7 +23,7 @@ const AvailableBetsMobile: React.FC<AvailableBetsMobileProps> = ({
     dispatch(addUnconfirmedBetNoIndex(bet))
   }
   return (
-    <DroppableList width={'600px'}>
+    <DroppableList>
       {Array.isArray(state[0]) &&
         state[0].map((bet: BetData) => (
           <DraggableDiv key={bet.id}>

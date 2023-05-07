@@ -20,6 +20,7 @@ import {
   HorizontalWrapper,
   RoundAccent
 } from '../styles/misc.styles'
+import { motion } from 'framer-motion'
 
 interface MobileFooterProps {
   setOpenHome: React.Dispatch<React.SetStateAction<OptionsHomeMenu>>
@@ -55,7 +56,7 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
             <HighlightText color={TextColor.INFO}>
               <HorizontalWrapper>
                 <RoundAccent
-                  invisible={Fights && Fights.length > 0 ? false : true}
+                  $invisible={Fights && Fights.length > 0 ? false : true}
                 >
                   {' '}
                   {Fights && Fights.length > 0 ? `${Fights.length}` : null}{' '}
@@ -71,9 +72,11 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
             disabled={betsUnconfirmed.length > 0 ? false : true}
           >
             <HighlightText color={TextColor.WARNING}>
-              <HorizontalWrapper>
+              <HorizontalWrapper as={motion.div} layout='preserve-aspect'>
                 <RoundAccent
-                  invisible={betsUnconfirmed.length > 0 ? false : true}
+                  as={motion.div}
+                  layout
+                  $invisible={betsUnconfirmed.length > 0 ? false : true}
                 >
                   {' '}
                   {betsUnconfirmed.length > 0
@@ -91,9 +94,11 @@ const MobileFooter: React.FC<MobileFooterProps> = ({
             disabled={betsConfirmed.length > 0 ? false : true}
           >
             <HighlightText color={TextColor.SUCCESS}>
-              <HorizontalWrapper>
+              <HorizontalWrapper as={motion.div} layout='preserve-aspect'>
                 <RoundAccent
-                  invisible={betsConfirmed.length > 0 ? false : true}
+                  as={motion.div}
+                  layout
+                  $invisible={betsConfirmed.length > 0 ? false : true}
                 >
                   {' '}
                   {betsConfirmed.length > 0

@@ -93,7 +93,9 @@ const GlobalStyle = createGlobalStyle`
     --border-radius2: 16px;
     --border-radius3: 24px;
 
+    --padding-verySmall: 6px 4px 6px 6px;
     --padding-small: 6px 6px 6px 8px;
+    --padding-small-sides: 0px 6px 0px 10px;;
     --padding-medium: 8px 8px 8px 12px;
     --padding-medium-large: 12px 16px;
     --padding-big: 12px 12px 12px 20px;

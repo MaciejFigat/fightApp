@@ -149,7 +149,7 @@ export const ButtonInconspicuous = styled.button<{
   transition: all 0.2s ease-out;
   &:hover {
     svg {
-      transition: all 0.2s ease-out;
+      transition: all 0.3s ease-out;
       color: var(--background1-secondary);
     }
   }

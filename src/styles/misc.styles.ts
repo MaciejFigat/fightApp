@@ -1,4 +1,4 @@
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 import { TextColor } from '../consts'
 
 export const GridCenterWrapper = styled.div`
@@ -27,15 +27,52 @@ export const DraggingIcon = styled.span`
   }
 `
 
-export const RoundAccent = styled.b<{ invisible?: boolean }>`
+export const RoundAccent = styled.b<{ $invisible?: boolean }>`
   display: grid;
-  width: 38px;
-  height: 38px;
   place-items: center;
   padding: var(--gap-medium);
-  background-color: ${({ invisible }) =>
-    invisible ? 'transparent' : 'var(--background-blur2)'};
+  width: 38px;
+  height: 38px;
+  background-color: var(--background-blur2);
   border-radius: 50%;
+
+  ${({ $invisible }) =>
+    $invisible &&
+    css`
+      padding: 0;
+      width: 0;
+      height: 0;
+      background-color: transparent;
+    `}
+
+  @media (max-width: 610px) {
+    font-size: var(--font-size-small);
+    padding: var(--gap-small);
+    width: 28px;
+    height: 28px;
+
+    ${({ $invisible }) =>
+      $invisible &&
+      css`
+        padding: 0;
+        width: 0;
+        height: 0;
+      `}
+  }
+
+  @media (max-width: 350px) {
+    padding: 4px;
+    width: 23px;
+    height: 23px;
+
+    ${({ $invisible }) =>
+      $invisible &&
+      css`
+        padding: 0;
+        width: 0;
+        height: 0;
+      `}
+  }
 `
 
 export const ScrollYWrapper = styled.div`
@@ -57,6 +94,9 @@ export const HorizontalWrapper = styled.div`
   align-items: center;
   flex-direction: row;
   gap: var(--gap-small);
+  @media (max-width: 610px) {
+    gap: 2px;
+  }
 `
 
 export const HorizontalLineBottom = styled.div`
@@ -136,6 +176,9 @@ export const BoldText = styled.b`
   color: var(--background-secondary1);
   font-weight: 700;
   font-size: var(--font-size-medium);
+  @media (max-width: 610px) {
+    font-size: var(--font-size-small);
+  }
 `
 export const MarginRightBig = styled.div`
   margin-right: var(--gap-big);
@@ -201,6 +244,10 @@ export const ColorBadge = styled.span<TextProps>`
   border-radius: 0.25rem;
   background-color: ${({ color }) => getColor(color)};
   color: var(--background4-main);
+  @media (max-width: 610px) {
+    font-size: var(--font-size-verySmall);
+    padding: var(--padding-verySmall);
+  }
 `
 export const ColorBadgeEmpty = styled(ColorBadge)<TextProps>`
   background-color: var(--background1-main);
@@ -252,12 +299,11 @@ export const HoverColorWrapper = styled.div<HoverColorWrapperProps>`
     display: grid;
     place-items: center;
     border: 1px solid var(--background-blur3);
-    content: '${({ contentAfter }) => (contentAfter ? contentAfter : '')}';
-    min-width: ${({ contentWidth }) =>
-      contentWidth ? contentWidth : 'fit-content'};
+    content: ${({ contentAfter }) => contentAfter || "''"};
+    min-width: ${({ contentWidth }) => contentWidth || 'fit-content'};
     padding: var(--gap-small);
-    top: ${({ contentTop }) => (contentTop ? contentTop : '-37px')};
-    left: ${({ contentLeft }) => (contentLeft ? contentLeft : '-37px')};
+    top: ${({ contentTop }) => contentTop || '-37px'};
+    left: ${({ contentLeft }) => contentLeft || '-37px'};
     line-height: 1.2;
     padding: var(--gap-small);
     transition: all 0.2s ease-in;
@@ -271,14 +317,5 @@ export const HoverColorWrapper = styled.div<HoverColorWrapperProps>`
     @media (max-width: 1040px) {
       left: -120px;
     }
-    /* &:hover {
-      &:after {
-        opacity: 0;
-      }
-    } */
   }
 `
-
-// @media (max-width: 610px) {
-
-// }

@@ -25,6 +25,7 @@ const FightsColumnMobile: React.FC<FightsColumnMobileProps> = ({
   expandedFight,
   state
 }) => {
+  // todo filler for different APIs
   const accordionIds = [0, 1, 2, 3]
   return (
     <ScrollYWrapper>

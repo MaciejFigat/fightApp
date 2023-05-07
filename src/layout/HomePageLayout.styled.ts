@@ -141,6 +141,9 @@ export const FooterMobileSecondary = styled.div`
   height: 62px;
   margin: 0;
   padding: 0 var(--gap-small);
+  @media (max-width: 610px) {
+    gap: 2px;
+  }
 `
 export const FooterButtonSecondary = styled.button`
   display: grid;
@@ -157,5 +160,9 @@ export const FooterButtonSecondary = styled.button`
   }
   &:active {
     background: var(--background-blur2);
+  }
+  @media (max-width: 610px) {
+    font-size: var(--font-size-small);
+    padding: 0;
   }
 `

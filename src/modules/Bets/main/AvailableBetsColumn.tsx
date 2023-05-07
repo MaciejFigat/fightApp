@@ -4,7 +4,7 @@ import { BetData } from '../../../interfaces'
 import { DraggableDiv, DroppableList } from './DragColumns.styled'
 import BetHeader from '../components/BetHeader'
 import { WinMethod, WinnerProjection } from '../../../consts'
-import { DraggingIcon } from '../../../styles/misc.styles'
+import { DraggingIcon, HorizontalWrapper } from '../../../styles/misc.styles'
 
 interface AvailableBetsColumnProps {
   state: BetData[][]
@@ -16,13 +16,12 @@ const AvailableBetsColumn: React.FC<AvailableBetsColumnProps> = ({
   winnerChange
 }) => {
   return (
-    <div>
+    <HorizontalWrapper>
       <Droppable droppableId={`0`}>
         {(provided, snapshot) => (
           <DroppableList
             isDraggingOver={snapshot.isDraggingOver}
             ref={provided.innerRef}
-            width={'600px'}
           >
             {Array.isArray(state[0]) &&
               state[0].map((bet: BetData, index: number) => (
@@ -64,7 +63,7 @@ const AvailableBetsColumn: React.FC<AvailableBetsColumnProps> = ({
           </DroppableList>
         )}
       </Droppable>{' '}
-    </div>
+    </HorizontalWrapper>
   )
 }
 export default AvailableBetsColumn
