@@ -23,6 +23,7 @@ const initialState: BetsState = {
   betsUnconfirmed: [],
   betsConfirmed: [],
   betsRegistered: [],
+
   betsAccepted: [],
   userBets: [],
   allBets: [],
@@ -86,6 +87,27 @@ export const getUserBets = createAsyncThunk(
 
     try {
       const { data } = await axios.get(`/api/bets/mybets`, config)
+      return data
+    } catch (error: any) {
+      return error
+    }
+  }
+)
+export const getAcceptedByUserBets = createAsyncThunk(
+  'bet/getAcceptedByUserBets',
+  // x- serves one pupose only, so thunkAPI is recognized as a parameter
+  async (x: any, thunkAPI) => {
+    const state: any = thunkAPI.getState()
+    const userInfo = state.user.userInfo
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`
+      }
+    }
+
+    try {
+      const { data } = await axios.get(`/api/bets/myacceptedbet`, config)
       return data
     } catch (error: any) {
       return error
@@ -229,8 +251,7 @@ const betsSlice = createSlice({
     })
     builder.addCase(editRegisteredBet.fulfilled, (state, action) => {
       state.loading = false
-      state.betsAccepted = [...state.betsRegistered, action.payload]
-      // state.allBets array will have the updated isAccepted property for the matching bet, and all the other bets will be unchanged.
+
       state.allBets = state.allBets.map(bet => {
         if (bet._id === action.payload.id) {
           return {
@@ -254,6 +275,17 @@ const betsSlice = createSlice({
       state.success = true
     })
     builder.addCase(getAllBets.rejected, (state, action) => {
+      state.loading = false
+    })
+    builder.addCase(getAcceptedByUserBets.pending, (state, action) => {
+      state.loading = true
+    })
+    builder.addCase(getAcceptedByUserBets.fulfilled, (state, action) => {
+      state.loading = false
+      state.betsAccepted = action.payload
+      state.success = true
+    })
+    builder.addCase(getAcceptedByUserBets.rejected, (state, action) => {
       state.loading = false
     })
     builder.addCase(deleteRegisteredBet.pending, (state, action) => {

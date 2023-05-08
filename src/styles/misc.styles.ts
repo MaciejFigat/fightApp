@@ -134,6 +134,7 @@ export const GeneralWrapper = styled.div`
   display: grid;
   place-items: center;
   width: 100%;
+
   height: 100%;
   overflow-y: scroll;
   ::-webkit-scrollbar {
@@ -154,13 +155,14 @@ export const FlexStartWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: center
+  align-items: center;
   width: 100%;
   height: 100%;
   min-height: 82vh;
+  min-width: 100%;
   @media (max-width: 1040px) {
-      min-width: 600px;
-  }   
+    min-width: 600px;
+  }
   @media (max-width: 610px) {
     min-width: 100%;
   }

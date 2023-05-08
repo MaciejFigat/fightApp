@@ -8,6 +8,7 @@ export const DragColContainer = styled.div`
   max-width: 1280px;
   gap: var(--gap-big);
   padding: var(--padding-big);
+  padding-bottom: 0;
   grid-template-columns: minmax(380px, 600px) 400px;
 `
 export const MainColumn = styled.div`
@@ -21,7 +22,6 @@ export const SideColumn = styled.div`
     display: none;
   }
   overflow-y: scroll;
-  background: var(--background2-main);
 `
 
 export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
@@ -143,9 +143,9 @@ export const MainListHeader = styled(FightListHeader)`
 export const MainListHeaderGrey = styled(MainListHeader)`
   background: var(--background2-main);
 
-  @media (min-width: 1040px) {
+  /* @media (min-width: 1040px) {
     min-width: 600px;
-  }
+  } */
 `
 export const BetContentContainerMobile = styled.div`
   display: grid;

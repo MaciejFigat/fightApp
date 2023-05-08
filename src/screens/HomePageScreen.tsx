@@ -6,9 +6,11 @@ import EventsScreen from './EventsScreen'
 import FightsAndBets from '../modules/Bets/main/FightsAndBets'
 import HomePageLayout from '../layout/HomePageLayout'
 import HomePageMobileLayout from '../layout/HomePageMobileLayout'
-import UserBetDisplay from '../modules/Bets/main/UserBetDisplay'
+import UserCreatedBets from '../modules/Bets/main/UserCreatedBets'
 import AllBetsDisplay from '../modules/Bets/main/AllRegisteredBets'
 import CurrentEvent from '../modules/misc/EventsDisplay/CurrentEvent'
+// import UserAcceptedBets from '../modules/Bets/main/UserAcceptedBets'
+import BetsDisplayDesktop from '../modules/Bets/main/BetsDisplayDesktop'
 
 interface HomePageScreenProps {}
 
@@ -22,7 +24,7 @@ const HomePageScreen: React.FC<HomePageScreenProps> = () => {
         leftColumn={<EventsScreen />}
         rightColumnOptionOne={<FightsAndBets />}
         rightColumnOptionTwo={<AllBetsDisplay />}
-        rightColumnOptionThree={<UserBetDisplay />}
+        rightColumnOptionThree={<BetsDisplayDesktop />}
         optionOneName={'New Bets'}
         optionTwoName={'All Bets'}
         optionThreeName={'My Bets'}
@@ -32,7 +34,7 @@ const HomePageScreen: React.FC<HomePageScreenProps> = () => {
         navigationRight={<LoginNavigationLinks />}
         navigationMiddle={<CoinDisplay />}
         navigationLeft={<DisciplineDropdown />}
-        optionOneContent={<UserBetDisplay />}
+        optionOneContent={<UserCreatedBets />}
         optionTwoContent={<AllBetsDisplay />}
       />
     </>

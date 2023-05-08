@@ -1,12 +1,8 @@
 import React, { useEffect } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
+import { getAcceptedByUserBets } from '../../../reduxState/stateSlices/bets/betsSlice'
 import {
-  deleteRegisteredBet,
-  getUserBets
-} from '../../../reduxState/stateSlices/bets/betsSlice'
-import {
-  FlexEndWrapperOnly,
   FlexStartWrapper,
   FlexStartWrapperOnly,
   GeneralWrapper,
@@ -21,29 +17,24 @@ import {
 import { dateFormatter } from '../../utils/helperFunctions/helperFunction'
 import BetProjectedWinner from '../components/BetProjectedWinner'
 import { TextColor } from '../../../consts'
-import OddsNotification from '../components/OddsNotification'
-import BetRegisterConfirm from '../components/BetRegisterConfirm'
 
-interface UserBetDisplayProps {}
+interface UserAcceptedBetsProps {}
 
-const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
+const UserAcceptedBets: React.FC<UserAcceptedBetsProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
-  const userBets = useAppSelector(state => state.bets.userBets)
+  const betsAccepted = useAppSelector(state => state.bets.betsAccepted)
 
   useEffect(() => {
-    dispatch(getUserBets(1))
-  }, [dispatch, userBets.length])
+    dispatch(getAcceptedByUserBets(1))
+  }, [dispatch, betsAccepted.length])
 
-  const handleDeleteBet = (betId: string, amountBet: number) => {
-    dispatch(deleteRegisteredBet(betId))
-  }
   return (
     <GeneralWrapper>
       <FlexStartWrapper>
-        <MainListHeaderGrey>My Bets</MainListHeaderGrey>
-        {userBets &&
-          userBets.length > 0 &&
-          userBets.map(bet => (
+        <MainListHeaderGrey>Bets user accepted</MainListHeaderGrey>
+        {betsAccepted &&
+          betsAccepted.length > 0 &&
+          betsAccepted.map(bet => (
             <FightListHeader key={bet.id}>
               {' '}
               <HorizontalWrapperSpaceBetween>
@@ -68,40 +59,11 @@ const UserBetDisplay: React.FC<UserBetDisplayProps> = () => {
                     To win: {bet.expectedPayout}
                   </HighlightText>
                 </FlexStartWrapperOnly>
-                {bet.isAccepted ? (
-                  <HighlightText color={TextColor.SUCCESS}>
-                    Accepted
-                  </HighlightText>
-                ) : (
-                  <FlexEndWrapperOnly>
-                    {' '}
-                    <OddsNotification
-                      noteContent='It is only possible to remove registered bets before they are accepted.'
-                      contentHeader='Reminder'
-                      warningSign
-                    />{' '}
-                    <HighlightText color={TextColor.WARNING}>
-                      Pending
-                    </HighlightText>
-                  </FlexEndWrapperOnly>
-                )}
               </HorizontalWrapperSpaceBetween>{' '}
-              {bet.isAccepted ? null : (
-                <FlexEndWrapperOnly>
-                  {' '}
-                  <BetRegisterConfirm
-                    deleteBet={handleDeleteBet}
-                    betId={bet._id}
-                    bet={bet}
-                    buttonLabel='Delete the bet'
-                    customMessage='Last chance to delete'
-                  />
-                </FlexEndWrapperOnly>
-              )}
             </FightListHeader>
           ))}
       </FlexStartWrapper>
     </GeneralWrapper>
   )
 }
-export default UserBetDisplay
+export default UserAcceptedBets
