@@ -152,6 +152,10 @@ export const MainListHeaderGrey = styled(MainListHeader)`
     padding-right: 0;
   }
 `
+export const MainListHeaderInconspicuous = styled(MainListHeaderGrey)`
+  border-bottom: none;
+  background: transparent;
+`
 export const BetContentContainerMobile = styled.div`
   display: grid;
   place-items: center;

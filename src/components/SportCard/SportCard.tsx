@@ -14,7 +14,7 @@ const SportCard: React.FC<SportCardProps> = ({ data }) => {
         {data.name === 'MMA' ? (
           data.name
         ) : (
-          <BlurredFatText>{data.name} comming soon</BlurredFatText>
+          <BlurredFatText>{data.name} coming soon</BlurredFatText>
         )}
       </b>
     </SportCardWrapper>

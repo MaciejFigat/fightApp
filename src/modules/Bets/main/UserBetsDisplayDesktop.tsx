@@ -3,9 +3,9 @@ import UserCreatedBets from './UserCreatedBets'
 import UserAcceptedBets from './UserAcceptedBets'
 import { DragColContainer, MainColumn, SideColumn } from './DragColumns.styled'
 
-interface BetsDisplayDesktopProps {}
+interface UserBetsDisplayDesktopProps {}
 
-const BetsDisplayDesktop: React.FC<BetsDisplayDesktopProps> = () => {
+const UserBetsDisplayDesktop: React.FC<UserBetsDisplayDesktopProps> = () => {
   return (
     <DragColContainer>
       {' '}
@@ -20,4 +20,4 @@ const BetsDisplayDesktop: React.FC<BetsDisplayDesktopProps> = () => {
     </DragColContainer>
   )
 }
-export default BetsDisplayDesktop
+export default UserBetsDisplayDesktop
