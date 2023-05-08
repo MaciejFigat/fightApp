@@ -26,14 +26,16 @@ const BetVisualisation: React.FC<BetVisualisationProps> = ({
       <HorizontalWrapperSpaceBetween>
         {' '}
         <BetVisualisationLeft>
-          <HighlightText color={TextColor.GOLD}>Bet {amountBet}</HighlightText>
+          <HighlightText color={TextColor.GOLD}>
+            Bet {amountBet.toFixed(2)}
+          </HighlightText>
         </BetVisualisationLeft>
         <BetVisualisationMiddle>
           <ColorText color={TextColor.INFO}>Win</ColorText>
         </BetVisualisationMiddle>
         <BetVisualisationRight>
           <HighlightText color={TextColor.SUCCESS}>
-            +{expectedPayout}
+            +{expectedPayout.toFixed(2)}
           </HighlightText>
         </BetVisualisationRight>
       </HorizontalWrapperSpaceBetween>

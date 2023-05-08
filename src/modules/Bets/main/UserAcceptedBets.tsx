@@ -112,12 +112,12 @@ const UserAcceptedBets: React.FC<UserAcceptedBetsProps> = () => {
               <HorizontalWrapperSpaceBetween>
                 <FlexStartWrapperOnly>
                   <HighlightText color={TextColor.GOLD}>
-                    Bet: {bet.amountBet}
+                    Bet: {bet.amountBet.toFixed(2)}
                   </HighlightText>{' '}
                   <HighlightText
                     color={bet.isAccepted ? TextColor.SUCCESS : TextColor.INFO}
                   >
-                    To win: {bet.expectedPayout}
+                    To win: {bet.expectedPayout.toFixed(2)}
                   </HighlightText>
                 </FlexStartWrapperOnly>
               </HorizontalWrapperSpaceBetween>{' '}

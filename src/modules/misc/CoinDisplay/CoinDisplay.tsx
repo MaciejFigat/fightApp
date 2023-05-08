@@ -13,7 +13,7 @@ const CoinDisplay: React.FC<CoinDisplayProps> = () => {
     <>
       {Object.keys(userInfo).length > 0 ? (
         <HighlightText color={TextColor.GOLD}>
-          Coins: {coinsAvailable ?? 0}
+          Coins: {coinsAvailable?.toFixed(2) ?? 0}
         </HighlightText>
       ) : null}
     </>
