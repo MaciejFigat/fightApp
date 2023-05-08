@@ -13,7 +13,7 @@ interface BetsState {
   betsConfirmed: ConfirmedBet[]
   betsRegistered: ConfirmedBet[]
   betsAccepted: AcceptedBet[]
-  userBets: ConfirmedBet[]
+  userBets: AcceptedBet[]
   allBets: BetsWithUserData[]
   loading: boolean
   success: boolean

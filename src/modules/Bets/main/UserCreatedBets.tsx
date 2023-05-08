@@ -39,6 +39,29 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
   const [betFilter, setBetFilter] = useState<CreatedBetsFilter>(
     CreatedBetsFilter.PENDING
   )
+  const betsToDisplay = (() => {
+    switch (betFilter) {
+      case CreatedBetsFilter.PENDING:
+        return userBets.filter(
+          bet => bet.isAccepted === false && bet.isResolved === false
+        )
+      case CreatedBetsFilter.ACCEPTED:
+        return userBets.filter(
+          bet => bet.isAccepted === true && bet.isResolved === false
+        )
+      case CreatedBetsFilter.EXPIRED:
+        return userBets.filter(
+          bet => bet.isResolved === true && bet.isAccepted === false
+        )
+      case CreatedBetsFilter.RETIRED:
+        return userBets.filter(
+          bet => bet.isResolved === true && bet.isAccepted === true
+        )
+
+      default:
+        return userBets
+    }
+  })()
   useEffect(() => {
     dispatch(getUserBets(1))
   }, [dispatch, userBets.length])
@@ -110,7 +133,7 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
                 onClick={() => setBetFilter(CreatedBetsFilter.RETIRED)}
                 $active={betFilter === CreatedBetsFilter.RETIRED}
               >
-                Retired
+                Resolved
               </ButtonInconspicuousSecondary>
               {betFilter === CreatedBetsFilter.RETIRED ? (
                 <ButtonUnderlineSecondary
@@ -123,9 +146,9 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
             </HorizontalWrapper>
           </HorizontalWrapperCenter>
         </MainListHeaderGrey>
-        {userBets &&
-          userBets.length > 0 &&
-          userBets.map(bet => (
+        {betsToDisplay &&
+          betsToDisplay.length > 0 &&
+          betsToDisplay.map(bet => (
             <FightListHeader key={bet.id}>
               {' '}
               <HorizontalWrapperSpaceBetween>
