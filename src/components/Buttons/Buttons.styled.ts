@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 import { handleButtonColor } from './utilsButtons'
-import { ButtonVariants } from '../../consts'
+import { ButtonVariants, TextColor } from '../../consts'
 import { motion } from 'framer-motion'
 
 export const ButtonBig = styled.button<{
@@ -158,17 +158,55 @@ export const ButtonInconspicuous = styled.button<{
   }
   a {
     text-decoration: none;
-    color: var(--background1-secondary);
+    color: var(--background-secondary);
   }
 `
+interface TextProps {
+  color: TextColor
+}
+const getColor = (color: TextColor): string => {
+  switch (color) {
+    case TextColor.SUCCESS:
+      return 'var(--success1)'
+    case TextColor.INFO:
+      return 'var(--info1)'
+    case TextColor.WARNING:
+      return 'var(--warning1)'
+    case TextColor.DANGER:
+      return 'var(--danger1)'
+    case TextColor.PRIMARY:
+      return 'var(--background4-main)'
+    case TextColor.SECONDARY:
+      return 'var(--background2-main)'
+    case TextColor.GOLD:
+      return 'var(--gold2)'
+    default:
+      return 'inherit'
+  }
+}
+export const ButtonInconspicuousSecondary = styled(
+  ButtonInconspicuous
+)<TextProps>`
+  width: 105px;
+  font-weight: 600;
+  font-size: var(--font-size-medium);
+  color: ${({ $active, color }) =>
+    $active ? getColor(color) : 'var(--background4-main)'};
+  &:active {
+    color: ${({ color }) =>
+      color ? getColor(color) : 'var(--background4-main)'};
+  }
+  @media screen and (max-width: 1300px) and (min-width: 1040px) {
+    width: 72px;
+    font-size: var(--font-size-small-plus);
+  }
+`
+
 // needs a layoutId='whatever'
 export const ButtonUnderline = styled(motion.div)`
   position: absolute;
   position: relative;
-  /* bottom: -3px; */
-  left: 67px;
   left: -10px;
-
   z-index: 12;
   height: 20px;
   width: 20px;
@@ -183,7 +221,30 @@ export const ButtonUnderline = styled(motion.div)`
     transparent
   );
 `
+export const ButtonUnderlineSecondary = styled(ButtonUnderline)<TextProps>`
+  border-color: ${({ color }) => getColor(color)};
+  height: 15px;
+  width: 15px;
+  @media screen and (max-width: 1300px) and (min-width: 1040px) {
+    top: -1px;
+    left: -7px;
+    width: 10px;
+    height: 10px;
+  }
+`
 export const ButtonUnderlineTransparent = styled(ButtonUnderline)`
   background: transparent;
   border-color: transparent;
+`
+export const ButtonUnderlineTransparentSecondary = styled(
+  ButtonUnderlineTransparent
+)`
+  height: 15px;
+  width: 15px;
+  @media screen and (max-width: 1300px) and (min-width: 1040px) {
+    top: -1px;
+    left: -7px;
+    width: 10px;
+    height: 10px;
+  }
 `

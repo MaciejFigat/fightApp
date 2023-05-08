@@ -143,9 +143,10 @@ export const MainListHeader = styled(FightListHeader)`
 export const MainListHeaderGrey = styled(MainListHeader)`
   background: var(--background2-main);
 
-  /* @media (min-width: 1040px) {
-    min-width: 600px;
-  } */
+  @media screen and (max-width: 1300px) and (min-width: 1040px) {
+    padding-left: var(--gap-verySmall);
+    padding-right: 0;
+  }
 `
 export const BetContentContainerMobile = styled.div`
   display: grid;

@@ -53,6 +53,12 @@ export enum BetFilter {
   CURRENT_EVENT = 'CURRENT_EVENT',
   NEXT_EVENT = 'NEXT_EVENT'
 }
+export enum CreatedBetsFilter {
+  ACCEPTED = 'ACCEPTED',
+  PENDING = 'PENDING',
+  EXPIRED = 'EXPIRED',
+  RETIRED = 'RETIRED'
+}
 export enum OptionsOpen {
   HOME,
   EVENTS,

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
 import {
@@ -11,6 +11,8 @@ import {
   FlexStartWrapperOnly,
   GeneralWrapper,
   HighlightText,
+  HorizontalWrapper,
+  HorizontalWrapperCenter,
   HorizontalWrapperSpaceBetween
 } from '../../../styles/misc.styles'
 import { FightListHeader, MainListHeaderGrey } from './DragColumns.styled'
@@ -20,16 +22,23 @@ import {
 } from '../components/BetConfirmation.styled'
 import { dateFormatter } from '../../utils/helperFunctions/helperFunction'
 import BetProjectedWinner from '../components/BetProjectedWinner'
-import { TextColor } from '../../../consts'
+import { CreatedBetsFilter, TextColor } from '../../../consts'
 import OddsNotification from '../components/OddsNotification'
 import BetRegisterConfirm from '../components/BetRegisterConfirm'
+import {
+  ButtonInconspicuousSecondary,
+  ButtonUnderlineSecondary,
+  ButtonUnderlineTransparentSecondary
+} from '../../../components/Buttons/Buttons.styled'
 
 interface UserCreatedBetsProps {}
 
 const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
   const userBets = useAppSelector(state => state.bets.userBets)
-
+  const [betFilter, setBetFilter] = useState<CreatedBetsFilter>(
+    CreatedBetsFilter.PENDING
+  )
   useEffect(() => {
     dispatch(getUserBets(1))
   }, [dispatch, userBets.length])
@@ -37,10 +46,83 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
   const handleDeleteBet = (betId: string) => {
     dispatch(deleteRegisteredBet(betId))
   }
+
   return (
     <GeneralWrapper>
       <FlexStartWrapper>
-        <MainListHeaderGrey>My Bets - created</MainListHeaderGrey>
+        <MainListHeaderGrey>
+          <HorizontalWrapperCenter>Bets created</HorizontalWrapperCenter>
+          <HorizontalWrapperCenter>
+            <HorizontalWrapper>
+              <ButtonInconspicuousSecondary
+                color={TextColor.INFO}
+                onClick={() => setBetFilter(CreatedBetsFilter.PENDING)}
+                $active={betFilter === CreatedBetsFilter.PENDING}
+              >
+                Pending
+              </ButtonInconspicuousSecondary>
+              {betFilter === CreatedBetsFilter.PENDING ? (
+                <ButtonUnderlineSecondary
+                  color={TextColor.INFO}
+                  layoutId='chosenBetFilter'
+                />
+              ) : (
+                <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
+              )}
+            </HorizontalWrapper>
+            <HorizontalWrapper>
+              <ButtonInconspicuousSecondary
+                color={TextColor.SUCCESS}
+                onClick={() => setBetFilter(CreatedBetsFilter.ACCEPTED)}
+                $active={betFilter === CreatedBetsFilter.ACCEPTED}
+              >
+                Active
+              </ButtonInconspicuousSecondary>
+              {betFilter === CreatedBetsFilter.ACCEPTED ? (
+                <ButtonUnderlineSecondary
+                  color={TextColor.SUCCESS}
+                  layoutId='chosenBetFilter'
+                />
+              ) : (
+                <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
+              )}
+            </HorizontalWrapper>
+            <HorizontalWrapper>
+              <ButtonInconspicuousSecondary
+                onClick={() => setBetFilter(CreatedBetsFilter.EXPIRED)}
+                $active={betFilter === CreatedBetsFilter.EXPIRED}
+                color={TextColor.WARNING}
+              >
+                Expired
+              </ButtonInconspicuousSecondary>
+              {betFilter === CreatedBetsFilter.EXPIRED ? (
+                <ButtonUnderlineSecondary
+                  color={TextColor.WARNING}
+                  layoutId='chosenBetFilter'
+                />
+              ) : (
+                <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
+              )}
+            </HorizontalWrapper>
+            <HorizontalWrapper>
+              <ButtonInconspicuousSecondary
+                color={TextColor.GOLD}
+                onClick={() => setBetFilter(CreatedBetsFilter.RETIRED)}
+                $active={betFilter === CreatedBetsFilter.RETIRED}
+              >
+                Retired
+              </ButtonInconspicuousSecondary>
+              {betFilter === CreatedBetsFilter.RETIRED ? (
+                <ButtonUnderlineSecondary
+                  color={TextColor.GOLD}
+                  layoutId='chosenBetFilter'
+                />
+              ) : (
+                <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
+              )}
+            </HorizontalWrapper>
+          </HorizontalWrapperCenter>
+        </MainListHeaderGrey>
         {userBets &&
           userBets.length > 0 &&
           userBets.map(bet => (

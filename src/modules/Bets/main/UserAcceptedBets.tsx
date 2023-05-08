@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
 import { getAcceptedByUserBets } from '../../../reduxState/stateSlices/bets/betsSlice'
@@ -7,6 +7,8 @@ import {
   FlexStartWrapperOnly,
   GeneralWrapper,
   HighlightText,
+  HorizontalWrapper,
+  HorizontalWrapperCenter,
   HorizontalWrapperSpaceBetween
 } from '../../../styles/misc.styles'
 import { FightListHeader, MainListHeaderGrey } from './DragColumns.styled'
@@ -16,14 +18,21 @@ import {
 } from '../components/BetConfirmation.styled'
 import { dateFormatter } from '../../utils/helperFunctions/helperFunction'
 import BetProjectedWinner from '../components/BetProjectedWinner'
-import { TextColor } from '../../../consts'
+import { CreatedBetsFilter, TextColor } from '../../../consts'
+import {
+  ButtonInconspicuousSecondary,
+  ButtonUnderlineSecondary,
+  ButtonUnderlineTransparentSecondary
+} from '../../../components/Buttons/Buttons.styled'
 
 interface UserAcceptedBetsProps {}
 
 const UserAcceptedBets: React.FC<UserAcceptedBetsProps> = () => {
   const dispatch: AppDispatch = useAppDispatch()
   const betsAccepted = useAppSelector(state => state.bets.betsAccepted)
-
+  const [betFilter, setBetFilter] = useState<CreatedBetsFilter>(
+    CreatedBetsFilter.ACCEPTED
+  )
   useEffect(() => {
     dispatch(getAcceptedByUserBets(1))
   }, [dispatch, betsAccepted.length])
@@ -31,7 +40,46 @@ const UserAcceptedBets: React.FC<UserAcceptedBetsProps> = () => {
   return (
     <GeneralWrapper>
       <FlexStartWrapper>
-        <MainListHeaderGrey>Bets user accepted</MainListHeaderGrey>
+        <MainListHeaderGrey>
+          {' '}
+          <HorizontalWrapperCenter>Bets accepted</HorizontalWrapperCenter>
+          <HorizontalWrapperCenter>
+            <HorizontalWrapper>
+              <ButtonInconspicuousSecondary
+                color={TextColor.SUCCESS}
+                onClick={() => setBetFilter(CreatedBetsFilter.ACCEPTED)}
+                $active={betFilter === CreatedBetsFilter.ACCEPTED}
+              >
+                Active
+              </ButtonInconspicuousSecondary>
+              {betFilter === CreatedBetsFilter.ACCEPTED ? (
+                <ButtonUnderlineSecondary
+                  color={TextColor.SUCCESS}
+                  layoutId='acceptedBetFilter'
+                />
+              ) : (
+                <ButtonUnderlineTransparentSecondary layoutId='notVisibleAcceptedBetFilter' />
+              )}
+            </HorizontalWrapper>
+            <HorizontalWrapper>
+              <ButtonInconspicuousSecondary
+                color={TextColor.GOLD}
+                onClick={() => setBetFilter(CreatedBetsFilter.RETIRED)}
+                $active={betFilter === CreatedBetsFilter.RETIRED}
+              >
+                Retired
+              </ButtonInconspicuousSecondary>
+              {betFilter === CreatedBetsFilter.RETIRED ? (
+                <ButtonUnderlineSecondary
+                  color={TextColor.GOLD}
+                  layoutId='acceptedBetFilter'
+                />
+              ) : (
+                <ButtonUnderlineTransparentSecondary layoutId='notVisibleAcceptedBetFilter' />
+              )}
+            </HorizontalWrapper>
+          </HorizontalWrapperCenter>
+        </MainListHeaderGrey>
         {betsAccepted &&
           betsAccepted.length > 0 &&
           betsAccepted.map(bet => (
@@ -40,13 +88,13 @@ const UserAcceptedBets: React.FC<UserAcceptedBetsProps> = () => {
               <HorizontalWrapperSpaceBetween>
                 {' '}
                 <BetProjectedWinner bet={bet} />
-                <BlurredSkinnyText>{bet.fightName}</BlurredSkinnyText>
               </HorizontalWrapperSpaceBetween>
               <HorizontalWrapperSpaceBetween>
                 {' '}
                 <BlurredFatText>
                   {dateFormatter(bet.dateTime, false)}
                 </BlurredFatText>{' '}
+                <BlurredSkinnyText>{bet.fightName}</BlurredSkinnyText>
               </HorizontalWrapperSpaceBetween>
               <HorizontalWrapperSpaceBetween>
                 <FlexStartWrapperOnly>

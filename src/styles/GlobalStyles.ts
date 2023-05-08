@@ -176,7 +176,8 @@ const GlobalStyle = createGlobalStyle`
   @media (max-width: 340px) {
  
   }
-   }
+   
+  @media screen and (max-width: 1300px) and (min-width: 1040px) {}
 `
 
 export { GlobalStyle }
