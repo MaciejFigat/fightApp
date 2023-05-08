@@ -200,6 +200,10 @@ export const ButtonInconspicuousSecondary = styled(
     width: 72px;
     font-size: var(--font-size-small-plus);
   }
+  @media screen and (max-width: 610px) {
+    width: 68px;
+    font-size: var(--font-size-small-plus);
+  }
 `
 
 // needs a layoutId='whatever'
@@ -231,6 +235,12 @@ export const ButtonUnderlineSecondary = styled(ButtonUnderline)<TextProps>`
     width: 10px;
     height: 10px;
   }
+  @media screen and (max-width: 610px) {
+    top: -1px;
+    left: -5px;
+    width: 10px;
+    height: 10px;
+  }
 `
 export const ButtonUnderlineTransparent = styled(ButtonUnderline)`
   background: transparent;
@@ -244,6 +254,12 @@ export const ButtonUnderlineTransparentSecondary = styled(
   @media screen and (max-width: 1300px) and (min-width: 1040px) {
     top: -1px;
     left: -7px;
+    width: 10px;
+    height: 10px;
+  }
+  @media screen and (max-width: 610px) {
+    top: -1px;
+    left: -5px;
     width: 10px;
     height: 10px;
   }

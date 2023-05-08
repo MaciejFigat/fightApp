@@ -147,6 +147,10 @@ export const MainListHeaderGrey = styled(MainListHeader)`
     padding-left: var(--gap-verySmall);
     padding-right: 0;
   }
+  @media screen and (max-width: 610px) {
+    padding-left: var(--gap-verySmall);
+    padding-right: 0;
+  }
 `
 export const BetContentContainerMobile = styled.div`
   display: grid;
