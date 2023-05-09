@@ -42,8 +42,11 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
   const betsToDisplay = (() => {
     switch (betFilter) {
       case CreatedBetsFilter.PENDING:
-        return userBets.filter(
-          bet => bet.isAccepted === false && bet.isResolved === false
+        return (
+          Array.isArray(userBets) &&
+          userBets.filter(
+            bet => bet.isAccepted === false && bet.isResolved === false
+          )
         )
       case CreatedBetsFilter.ACCEPTED:
         return userBets.filter(

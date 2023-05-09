@@ -260,6 +260,10 @@ export const ColorBadge = styled.span<TextProps>`
     font-size: var(--font-size-verySmall);
     padding: var(--padding-verySmall);
   }
+  @media (max-width: 360px) {
+    padding: 3px;
+    width: 40px;
+  }
 `
 export const ColorBadgeEmpty = styled(ColorBadge)<TextProps>`
   background-color: var(--background1-main);

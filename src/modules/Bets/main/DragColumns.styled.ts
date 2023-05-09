@@ -27,7 +27,6 @@ export const SideColumn = styled.div`
 export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
   display: flex;
   justify-content: center;
-
   align-items: center;
   border-radius: 4px;
   width: 100%;
@@ -53,6 +52,10 @@ export const DraggableDiv = styled.div<{ isDragging?: boolean }>`
     min-width: 270px;
     width: 100%;
     padding: var(--gap-medium) 0;
+  }
+  @media (max-width: 360px) {
+    justify-content: flex-start;
+    margin-bottom: var(--gap-medium);
   }
 `
 
@@ -86,7 +89,6 @@ export const DroppableList = styled.div<{
     isDraggingOver ? 'var(--background-blur0)' : 'var(--background2-main)'};
   border-bottom-left-radius: var(--border-radius1);
   border-bottom-right-radius: var(--border-radius1);
-
   padding-top: var(--gap-big);
   @media (max-width: 1040px) {
     min-height: 150px;
@@ -94,6 +96,9 @@ export const DroppableList = styled.div<{
   }
   @media (max-width: 610px) {
     max-width: 100%;
+  }
+  @media (max-width: 360px) {
+    padding-top: var(--gap-medium);
   }
 `
 export const HeaderWrapper = styled.div`
@@ -103,6 +108,12 @@ export const HeaderWrapper = styled.div`
   @media (max-width: 610px) {
     max-width: 270px;
     padding-right: var(--gap-small);
+
+    padding-left: var(--gap-small);
+  }
+  @media (max-width: 360px) {
+    max-width: 250px;
+    padding-right: 0;
   }
 `
 
@@ -117,8 +128,10 @@ export const BetListHeader = styled.div<{ minHeight?: string }>`
   min-height: ${({ minHeight }) => (minHeight ? minHeight : 'fit-content')};
 
   @media (max-width: 610px) {
-    font-size: var(--font-size-small);
     gap: var(--gap-small);
+  }
+  @media (max-width: 360px) {
+    font-size: var(--font-size-small-plus);
   }
 `
 export const FightListHeader = styled(BetListHeader)`
@@ -127,18 +140,21 @@ export const FightListHeader = styled(BetListHeader)`
   gap: var(--gap-big);
   border-top-left-radius: var(--border-radius0);
   border-top-right-radius: var(--border-radius0);
-
   width: 100%;
   max-width: 600px;
   font-weight: 500;
   @media (max-width: 610px) {
-    padding: var(--padding-medium);
+    padding-left: var(--gap-verySmall);
   }
 `
 export const MainListHeader = styled(FightListHeader)`
   background: var(--background5-main);
   margin-bottom: var(--gap-small);
   font-weight: 700;
+  @media screen and (max-width: 610px) {
+    place-items: flex-start;
+    padding-left: var(--gap-big-14);
+  }
 `
 export const MainListHeaderGrey = styled(MainListHeader)`
   background: var(--background2-main);
@@ -160,7 +176,7 @@ export const BetContentContainerMobile = styled.div`
   display: grid;
   place-items: center;
   margin-top: var(--gap-big-14);
-  margin-top: 14px;
+
   gap: var(--gap-medium);
   @media (max-width: 760px) {
     width: 100%;
