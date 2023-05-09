@@ -37,6 +37,7 @@ import BetRegisterConfirm from '../components/BetRegisterConfirm'
 
 import OddsNotification from '../components/OddsNotification'
 import BetProjectedWinner from '../components/BetProjectedWinner'
+import PleaseLogin from '../components/PleaseLogin'
 
 interface AllRegisteredBetsProps {}
 
@@ -179,6 +180,10 @@ const AllRegisteredBets: React.FC<AllRegisteredBetsProps> = () => {
               />
             </FightListHeader>
           ))}
+        <PleaseLogin
+          header='No active bets'
+          subtitle='You must be logged in to see bets.'
+        />
       </FlexStartWrapper>
     </GeneralWrapper>
   )

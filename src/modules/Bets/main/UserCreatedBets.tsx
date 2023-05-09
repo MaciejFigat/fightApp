@@ -30,6 +30,7 @@ import {
   ButtonUnderlineSecondary,
   ButtonUnderlineTransparentSecondary
 } from '../../../components/Buttons/Buttons.styled'
+import PleaseLogin from '../components/PleaseLogin'
 
 interface UserCreatedBetsProps {}
 
@@ -145,7 +146,7 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
                 onClick={() => setBetFilter(CreatedBetsFilter.RETIRED)}
                 $active={betFilter === CreatedBetsFilter.RETIRED}
               >
-                Resolved
+                Settled
               </ButtonInconspicuousSecondary>
               {betFilter === CreatedBetsFilter.RETIRED ? (
                 <ButtonUnderlineSecondary
@@ -217,6 +218,10 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
               )}
             </FightListHeader>
           ))}
+        <PleaseLogin
+          header='No active bets'
+          subtitle='You must be logged in to see bets.'
+        />
       </FlexStartWrapper>
     </GeneralWrapper>
   )

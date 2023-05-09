@@ -25,6 +25,7 @@ import {
   MobileBetContainer,
   MobileHomeContainer
 } from '../../../layout/HomePageLayout.styled'
+import PleaseLogin from './PleaseLogin'
 
 interface BetRegistrationProps {}
 
@@ -88,6 +89,10 @@ const BetRegistration: React.FC<BetRegistrationProps> = () => {
                 <HorizontalLineBottom />
               </BetDetails>
             ))}
+            <PleaseLogin
+              header='Registration disabled'
+              subtitle='You must be logged in to register bets.'
+            />
           </MobileBetContainer>
         </MobileHomeContainer>
       ) : null}

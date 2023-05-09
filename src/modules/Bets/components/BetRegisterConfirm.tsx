@@ -8,7 +8,8 @@ import { motion } from 'framer-motion'
 import { ButtonSmall } from '../../../components/Buttons/Buttons.styled'
 import { ButtonVariants, TextColor } from '../../../consts'
 import AnimatedSlider from '../../../components/AnimatedSlider/AnimatedSlider'
-import { ConfirmedBet } from '../../../interfaces'
+import { ConfirmedBet, UserInfo } from '../../../interfaces'
+import { useAppSelector } from '../../../reduxState/reduxHooks'
 
 interface BetRegisterConfirmProps {
   bet?: ConfirmedBet
@@ -27,6 +28,8 @@ const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = ({
   buttonLabel,
   customMessage
 }) => {
+  const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
+
   const [accepted, setAccepted] = useState<boolean>(false)
 
   return (
@@ -52,7 +55,11 @@ const BetRegisterConfirm: React.FC<BetRegisterConfirmProps> = ({
                 handleBet &&
                 bet && (
                   <ButtonSmall
-                    variant={ButtonVariants.SUCCESS_EMPTY}
+                    variant={
+                      Object.keys(userInfo).length > 0
+                        ? ButtonVariants.SUCCESS_EMPTY
+                        : ButtonVariants.DISABLED
+                    }
                     onClick={() => handleBet(bet)}
                   >
                     {buttonLabel ? buttonLabel : 'I accept'}
