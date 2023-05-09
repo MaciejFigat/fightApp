@@ -4,7 +4,7 @@ import { useAppSelector } from '../../../reduxState/reduxHooks'
 import { HighlightText, HorizontalWrapper } from '../../../styles/misc.styles'
 import { ButtonVariants, TextColor } from '../../../consts'
 import { Link } from 'react-router-dom'
-import { BetDetails } from './BetConfirmation.styled'
+import { BetDetailsSecondary } from './BetConfirmation.styled'
 import { ButtonMedium } from '../../../components/Buttons/Buttons.styled'
 
 interface PleaseLoginProps {
@@ -21,9 +21,9 @@ const PleaseLogin: React.FC<PleaseLoginProps> = ({
   const userInfo: UserInfo = useAppSelector(state => state.user.userInfo)
 
   return (
-    <BetDetails>
+    <>
       {Object.keys(userInfo).length > 0 ? null : (
-        <>
+        <BetDetailsSecondary>
           <HighlightText color={TextColor.PRIMARY}>{header}</HighlightText>
           <HighlightText color={TextColor.SUCCESS}>{subtitle}</HighlightText>
           {noButtons ? null : (
@@ -39,9 +39,9 @@ const PleaseLogin: React.FC<PleaseLoginProps> = ({
             </HorizontalWrapper>
           )}
           <HorizontalWrapper></HorizontalWrapper>
-        </>
+        </BetDetailsSecondary>
       )}
-    </BetDetails>
+    </>
   )
 }
 export default PleaseLogin

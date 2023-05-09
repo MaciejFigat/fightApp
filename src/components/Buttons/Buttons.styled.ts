@@ -225,10 +225,14 @@ export const ButtonUnderline = styled(motion.div)`
     transparent
   );
 `
-export const ButtonUnderlineSecondary = styled(ButtonUnderline)<TextProps>`
+interface UnderlineProps extends TextProps {
+  left?: string
+}
+export const ButtonUnderlineSecondary = styled(ButtonUnderline)<UnderlineProps>`
   border-color: ${({ color }) => getColor(color)};
   height: 15px;
   width: 15px;
+  left: ${({ left }) => (left ? left : '0')};
   @media screen and (max-width: 1300px) and (min-width: 1040px) {
     top: -1px;
     left: -7px;
@@ -251,6 +255,7 @@ export const ButtonUnderlineTransparentSecondary = styled(
 )`
   height: 15px;
   width: 15px;
+
   @media screen and (max-width: 1300px) and (min-width: 1040px) {
     top: -1px;
     left: -7px;
@@ -264,3 +269,5 @@ export const ButtonUnderlineTransparentSecondary = styled(
     height: 10px;
   }
 `
+/* left: ${({ left }) => (left ? left : '0')}; */
+// <{ left?: boolean }>

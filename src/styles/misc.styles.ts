@@ -175,6 +175,7 @@ export const HorizontalWrapperSpaceAround = styled(
 export const HorizontalWrapperCenter = styled.div`
   display: flex;
   justify-content: center;
+  align-items: center;
   flex-direction: row;
 `
 export const HorizontalWrapperEnd = styled.div`

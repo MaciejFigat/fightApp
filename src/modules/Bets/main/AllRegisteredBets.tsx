@@ -1,6 +1,10 @@
 import React, { useState, useMemo, useEffect } from 'react'
-import { ButtonSmallGradient } from '../../../components/Buttons/Buttons.styled'
-import { BetFilter, ButtonVariants } from '../../../consts'
+import {
+  ButtonInconspicuousSecondary,
+  ButtonUnderlineSecondary,
+  ButtonUnderlineTransparentSecondary
+} from '../../../components/Buttons/Buttons.styled'
+import { BetFilter, TextColor } from '../../../consts'
 import { useAppDispatch, useAppSelector } from '../../../reduxState/reduxHooks'
 import { AppDispatch } from '../../../reduxState/store'
 import {
@@ -11,8 +15,12 @@ import { FightListHeader, MainListHeaderGrey } from './DragColumns.styled'
 import {
   FlexStartWrapper,
   GeneralWrapper,
+  HighlightText,
+  HorizontalWrapper,
+  HorizontalWrapperCenter,
   HorizontalWrapperSpaceAround,
-  HorizontalWrapperSpaceBetween
+  HorizontalWrapperSpaceBetween,
+  RoundAccent
 } from '../../../styles/misc.styles'
 import {
   filterAcceptedBets,
@@ -107,7 +115,7 @@ const AllRegisteredBets: React.FC<AllRegisteredBetsProps> = () => {
       default:
         return allBets
     }
-  })() // () to invoke immediately
+  })()
 
   useEffect(() => {
     dispatch(getAllBets(1))
@@ -117,29 +125,72 @@ const AllRegisteredBets: React.FC<AllRegisteredBetsProps> = () => {
     <GeneralWrapper>
       <FlexStartWrapper>
         <MainListHeaderGrey>
+          <HorizontalWrapperCenter>
+            <RoundAccent>
+              {betsToDisplay && betsToDisplay.length > 0
+                ? betsToDisplay.length
+                : 0}
+            </RoundAccent>
+            <HighlightText color={TextColor.PRIMARY}>
+              {' '}
+              &nbsp;to chose from
+            </HighlightText>
+          </HorizontalWrapperCenter>
           <HorizontalWrapperSpaceAround>
             {' '}
-            <ButtonSmallGradient
-              variant={ButtonVariants.SECONDARY}
-              onClick={() => setBetFilter(BetFilter.ALL_BETS)}
-              $active={betFilter === BetFilter.ALL_BETS ? true : false}
-            >
-              All bets
-            </ButtonSmallGradient>{' '}
-            <ButtonSmallGradient
-              variant={ButtonVariants.SECONDARY_EMPTY}
-              onClick={() => setBetFilter(BetFilter.CURRENT_EVENT)}
-              $active={betFilter === BetFilter.CURRENT_EVENT ? true : false}
-            >
-              Chosen event
-            </ButtonSmallGradient>{' '}
-            <ButtonSmallGradient
-              variant={ButtonVariants.PRIMARY_EMPTY}
-              onClick={() => setBetFilter(BetFilter.NEXT_EVENT)}
-              $active={betFilter === BetFilter.NEXT_EVENT ? true : false}
-            >
-              Closest event
-            </ButtonSmallGradient>{' '}
+            <HorizontalWrapper>
+              <ButtonInconspicuousSecondary
+                color={TextColor.PRIMARY}
+                onClick={() => setBetFilter(BetFilter.ALL_BETS)}
+                $active={betFilter === BetFilter.ALL_BETS}
+              >
+                All
+              </ButtonInconspicuousSecondary>
+              {betFilter === BetFilter.ALL_BETS ? (
+                <ButtonUnderlineSecondary
+                  color={TextColor.PRIMARY}
+                  layoutId='registeredBetFilter'
+                  left='-35px'
+                />
+              ) : (
+                <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
+              )}
+            </HorizontalWrapper>
+            <HorizontalWrapper>
+              <ButtonInconspicuousSecondary
+                color={TextColor.GOLD}
+                onClick={() => setBetFilter(BetFilter.CURRENT_EVENT)}
+                $active={betFilter === BetFilter.CURRENT_EVENT}
+              >
+                Chosen event
+              </ButtonInconspicuousSecondary>
+              {betFilter === BetFilter.CURRENT_EVENT ? (
+                <ButtonUnderlineSecondary
+                  color={TextColor.GOLD}
+                  layoutId='registeredBetFilter'
+                  left='5px'
+                />
+              ) : (
+                <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
+              )}
+            </HorizontalWrapper>
+            <HorizontalWrapper>
+              <ButtonInconspicuousSecondary
+                color={TextColor.SUCCESS}
+                onClick={() => setBetFilter(BetFilter.NEXT_EVENT)}
+                $active={betFilter === BetFilter.NEXT_EVENT}
+              >
+                Closest event
+              </ButtonInconspicuousSecondary>
+              {betFilter === BetFilter.NEXT_EVENT ? (
+                <ButtonUnderlineSecondary
+                  color={TextColor.SUCCESS}
+                  layoutId='registeredBetFilter'
+                />
+              ) : (
+                <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
+              )}
+            </HorizontalWrapper>
           </HorizontalWrapperSpaceAround>
         </MainListHeaderGrey>
         {betsToDisplay &&

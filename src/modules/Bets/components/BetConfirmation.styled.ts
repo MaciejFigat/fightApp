@@ -25,6 +25,13 @@ export const BetDetails = styled.div`
     width: 98%;
   }
 `
+export const BetDetailsSecondary = styled(BetDetails)`
+  @media (max-width: 610px) {
+    background: transparent;
+    width: 98%;
+    padding: var(--padding-small);
+  }
+`
 export const BetVisualisationLimiter = styled.div`
   max-width: 370px;
   @media (max-width: 340px) {

@@ -101,6 +101,7 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
                 <ButtonUnderlineSecondary
                   color={TextColor.INFO}
                   layoutId='chosenBetFilter'
+                  left='-18px'
                 />
               ) : (
                 <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
@@ -118,6 +119,7 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
                 <ButtonUnderlineSecondary
                   color={TextColor.SUCCESS}
                   layoutId='chosenBetFilter'
+                  left='-25px'
                 />
               ) : (
                 <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
@@ -135,6 +137,7 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
                 <ButtonUnderlineSecondary
                   color={TextColor.WARNING}
                   layoutId='chosenBetFilter'
+                  left='-20px'
                 />
               ) : (
                 <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
@@ -152,6 +155,7 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
                 <ButtonUnderlineSecondary
                   color={TextColor.GOLD}
                   layoutId='chosenBetFilter'
+                  left='-23px'
                 />
               ) : (
                 <ButtonUnderlineTransparentSecondary layoutId='notVisibleBetFilter' />
