@@ -39,7 +39,10 @@ const UserAcceptedBets: React.FC<UserAcceptedBetsProps> = () => {
       case CreatedBetsFilter.ACCEPTED:
         return betsAccepted
       case CreatedBetsFilter.RETIRED:
-        return betsAccepted.filter(bet => bet.isResolved === true)
+        return (
+          Array.isArray(betsAccepted) &&
+          betsAccepted.filter(bet => bet.isResolved === true)
+        )
 
       default:
         return betsAccepted

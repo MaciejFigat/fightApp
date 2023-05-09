@@ -49,16 +49,25 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
           )
         )
       case CreatedBetsFilter.ACCEPTED:
-        return userBets.filter(
-          bet => bet.isAccepted === true && bet.isResolved === false
+        return (
+          Array.isArray(userBets) &&
+          userBets.filter(
+            bet => bet.isAccepted === true && bet.isResolved === false
+          )
         )
       case CreatedBetsFilter.EXPIRED:
-        return userBets.filter(
-          bet => bet.isResolved === true && bet.isAccepted === false
+        return (
+          Array.isArray(userBets) &&
+          userBets.filter(
+            bet => bet.isResolved === true && bet.isAccepted === false
+          )
         )
       case CreatedBetsFilter.RETIRED:
-        return userBets.filter(
-          bet => bet.isResolved === true && bet.isAccepted === true
+        return (
+          Array.isArray(userBets) &&
+          userBets.filter(
+            bet => bet.isResolved === true && bet.isAccepted === true
+          )
         )
 
       default:
