@@ -14,7 +14,7 @@ const AllRegisteredBetsDesktop: React.FC<
         {' '}
         <AllRegisteredBets />
       </MainColumn>
-      <SideColumn> </SideColumn>
+      <SideColumn></SideColumn>
     </DragColContainer>
   )
 }

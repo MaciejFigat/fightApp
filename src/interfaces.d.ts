@@ -61,6 +61,37 @@ interface FightAllData {
   WeightClass: string
   WinnerId: number | null
 }
+interface FightStats {
+  Advances: number
+  DecisionWin: boolean
+  FantasyPoints: number
+  FantasyPointsDraftKings: number
+  FifthRoundWin: boolean
+  FighterId: number
+  FirstName: string
+  FirstRoundWin: boolean
+  FourthRoundWin: boolean
+  Knockdowns: number
+  LastName: string
+  Reversals: number
+  SecondRoundWin: boolean
+  SigStrikesAttempted: number
+  SigStrikesLanded: number
+  SlamRate: number
+  Submissions: number
+  TakedownAccuracy: number
+  TakedownsAttempted: number
+  TakedownsLanded: number
+  TakedownsSlams: number
+  ThirdRoundWin: boolean
+  TimeInControl: number
+  TotalStrikesAttempted: number
+  TotalStrikesLanded: number
+  Winner: boolean
+}
+interface FinishedFightData extends FightAllData {
+  FightStats: FightStats[]
+}
 // those will be returned upon providing eventId - https://api.sportsdata.io/v3/mma/scores/json/Event/{eventid}?key=${MMA_API_KEY}
 // contains most of the data that we need
 interface EventAllData {

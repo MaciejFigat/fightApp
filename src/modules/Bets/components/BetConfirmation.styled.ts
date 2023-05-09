@@ -34,6 +34,9 @@ export const BetDetailsSecondary = styled(BetDetails)`
 `
 export const BetVisualisationLimiter = styled.div`
   max-width: 370px;
+  @media screen and (max-width: 1300px) and (min-width: 1040px) {
+    max-width: 270px;
+  }
   @media (max-width: 340px) {
     width: 200px;
   }
@@ -63,6 +66,11 @@ export const BetVisualisationLeft = styled.div`
       var(--background-blur0) 0%,
       var(--background3-main) 100%
     );
+  @media screen and (max-width: 1300px) and (min-width: 1040px) {
+    width: 70px;
+    min-height: 40px;
+    font-size: var(--font-size-small);
+  }
   @media (max-width: 1040px) {
     font-size: var(--font-size-small);
     width: 70px;

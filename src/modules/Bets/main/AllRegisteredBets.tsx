@@ -126,15 +126,7 @@ const AllRegisteredBets: React.FC<AllRegisteredBetsProps> = () => {
       <FlexStartWrapper>
         <MainListHeaderGrey>
           <HorizontalWrapperCenter>
-            <RoundAccent>
-              {betsToDisplay && betsToDisplay.length > 0
-                ? betsToDisplay.length
-                : 0}
-            </RoundAccent>
-            <HighlightText color={TextColor.PRIMARY}>
-              {' '}
-              &nbsp;to chose from
-            </HighlightText>
+            <HighlightText color={TextColor.INFO}>All bets</HighlightText>
           </HorizontalWrapperCenter>
           <HorizontalWrapperSpaceAround>
             {' '}

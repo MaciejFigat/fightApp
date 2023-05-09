@@ -105,7 +105,7 @@ const GlobalStyle = createGlobalStyle`
 
     --gap-verySmall: 4px;
     --gap-small: 6px;
-    --gap-: 8px;
+    --gap-medium: 8px;
     --gap-big: 12px;
     --gap-big-14: 14px;
     --gap-veryBig: 16px;
