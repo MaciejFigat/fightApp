@@ -21,6 +21,14 @@
 
 This is a proof of concept of a betting application, made for educational purposes during my time at the [Evolution Typescript Bootcamp](https://typescript-bootcamp.evolution.com/).
 
+### Features
+
+- [x] User can register and login
+- [x] User can see upcoming fights
+- [x] User can bet on a fight [simple flow](https://scribehow.com/shared/FightBet_simple_flow__w0kHTws2SieivUZrN84REw)
+- [x] User can see his [bets](https://scribehow.com/shared/Settled_and_expired_bets__RV-EHJUJRcKoJLctzg88Jw)
+- [x] User can see his balance
+
 
 
 ### Built With
