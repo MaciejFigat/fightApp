@@ -180,35 +180,69 @@ const UserCreatedBets: React.FC<UserCreatedBetsProps> = () => {
                 </BlurredFatText>{' '}
               </HorizontalWrapperSpaceBetween>
               <HorizontalWrapperSpaceBetween>
-                <FlexStartWrapperOnly>
-                  <HighlightText color={TextColor.GOLD}>
-                    Bet: {bet.amountBet.toFixed(2)}
-                  </HighlightText>{' '}
-                  <HighlightText
-                    color={bet.isAccepted ? TextColor.SUCCESS : TextColor.INFO}
-                  >
-                    To win: {bet.expectedPayout.toFixed(2)}
-                  </HighlightText>
-                </FlexStartWrapperOnly>
-                {bet.isAccepted ? (
-                  <HighlightText color={TextColor.SUCCESS}>
-                    Accepted
-                  </HighlightText>
-                ) : (
-                  <FlexEndWrapperOnly>
-                    {' '}
-                    <OddsNotification
-                      noteContent='It is only possible to remove registered bets before they are accepted.'
-                      contentHeader='Reminder'
-                      warningSign
-                    />{' '}
+                {betFilter !== CreatedBetsFilter.EXPIRED &&
+                  betFilter !== CreatedBetsFilter.RETIRED && (
+                    <>
+                      <FlexStartWrapperOnly>
+                        <HighlightText color={TextColor.GOLD}>
+                          Bet: {bet.amountBet.toFixed(2)}
+                        </HighlightText>{' '}
+                        <HighlightText
+                          color={
+                            bet.isAccepted ? TextColor.SUCCESS : TextColor.INFO
+                          }
+                        >
+                          To win: {bet.expectedPayout.toFixed(2)}
+                        </HighlightText>
+                      </FlexStartWrapperOnly>
+                      {bet.isAccepted ? (
+                        <HighlightText color={TextColor.SUCCESS}>
+                          Accepted
+                        </HighlightText>
+                      ) : (
+                        <FlexEndWrapperOnly>
+                          {' '}
+                          <OddsNotification
+                            noteContent='It is only possible to remove registered bets before they are accepted.'
+                            contentHeader='Reminder'
+                            warningSign
+                          />{' '}
+                          <HighlightText color={TextColor.WARNING}>
+                            Pending
+                          </HighlightText>
+                        </FlexEndWrapperOnly>
+                      )}
+                    </>
+                  )}{' '}
+                {betFilter === CreatedBetsFilter.EXPIRED ? (
+                  <FlexStartWrapperOnly>
                     <HighlightText color={TextColor.WARNING}>
-                      Pending
+                      EXPIRED
+                    </HighlightText>{' '}
+                    <HighlightText color={TextColor.SUCCESS}>
+                      Refunded: {bet.amountBet.toFixed(2)}
                     </HighlightText>
-                  </FlexEndWrapperOnly>
-                )}
+                  </FlexStartWrapperOnly>
+                ) : null}
+                {/* retired bet - show win/lost note*/}
+                {betFilter === CreatedBetsFilter.RETIRED ? (
+                  <HorizontalWrapperSpaceBetween>
+                    <FlexStartWrapperOnly>
+                      {bet.betResultWin ? (
+                        <HighlightText color={TextColor.WARNING}>
+                          LOST: {bet.expectedPayout.toFixed(2)}
+                        </HighlightText>
+                      ) : (
+                        <HighlightText color={TextColor.SUCCESS}>
+                          WON: {bet.amountBet.toFixed(2)}
+                        </HighlightText>
+                      )}
+                    </FlexStartWrapperOnly>
+                  </HorizontalWrapperSpaceBetween>
+                ) : null}
               </HorizontalWrapperSpaceBetween>{' '}
-              {bet.isAccepted ? null : (
+              {bet.isAccepted ||
+              betFilter === CreatedBetsFilter.EXPIRED ? null : (
                 <FlexEndWrapperOnly>
                   {' '}
                   <BetRegisterConfirm

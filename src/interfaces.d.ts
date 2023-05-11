@@ -131,6 +131,7 @@ interface AcceptedBet extends ConfirmedBet {
   isResolved?: boolean
   acceptedBy: string | null
   acceptDateTime: Date
+  betResultWin?: boolean
 }
 interface BetsWithUserData extends ConfirmedBet {
   user: {

@@ -116,16 +116,33 @@ const UserAcceptedBets: React.FC<UserAcceptedBetsProps> = () => {
                 </BlurredFatText>{' '}
                 <BlurredSkinnyText>{bet.fightName}</BlurredSkinnyText>
               </HorizontalWrapperSpaceBetween>
-              <HorizontalWrapperSpaceBetween>
-                <FlexStartWrapperOnly>
-                  <HighlightText color={TextColor.GOLD}>
-                    Bet: {bet.expectedPayout.toFixed(2)}
-                  </HighlightText>{' '}
-                  <HighlightText color={TextColor.INFO}>
-                    To win: {bet.amountBet.toFixed(2)}
-                  </HighlightText>
-                </FlexStartWrapperOnly>
-              </HorizontalWrapperSpaceBetween>{' '}
+              {betFilter === CreatedBetsFilter.RETIRED ? (
+                <HorizontalWrapperSpaceBetween>
+                  <FlexStartWrapperOnly>
+                    {bet.betResultWin ? (
+                      <HighlightText color={TextColor.WARNING}>
+                        LOST: {bet.expectedPayout.toFixed(2)}
+                      </HighlightText>
+                    ) : (
+                      <HighlightText color={TextColor.SUCCESS}>
+                        WON: {bet.amountBet.toFixed(2)}
+                      </HighlightText>
+                    )}
+                  </FlexStartWrapperOnly>
+                </HorizontalWrapperSpaceBetween>
+              ) : (
+                <HorizontalWrapperSpaceBetween>
+                  <FlexStartWrapperOnly>
+                    {/* user accepted so he bet expectedPayout */}
+                    <HighlightText color={TextColor.GOLD}>
+                      Bet: {bet.expectedPayout.toFixed(2)}
+                    </HighlightText>{' '}
+                    <HighlightText color={TextColor.INFO}>
+                      To win: {bet.amountBet.toFixed(2)}
+                    </HighlightText>
+                  </FlexStartWrapperOnly>
+                </HorizontalWrapperSpaceBetween>
+              )}
             </FightListHeader>
           ))}
         <PleaseLogin
