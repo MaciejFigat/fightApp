@@ -21,7 +21,7 @@
 
 This is a proof of concept of a betting application, made for educational purposes during my time at the [Evolution Typescript Bootcamp](https://typescript-bootcamp.evolution.com/).
 
-<iframe src="https://scribehow.com/embed/Settled_and_expired_bets__RV-EHJUJRcKoJLctzg88Jw" width="100%" height="640" allowfullscreen frameborder="0"></iframe>
+
 
 ### Built With
 
