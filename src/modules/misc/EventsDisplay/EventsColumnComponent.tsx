@@ -64,9 +64,10 @@ const EventsColumnComponent: React.FC<EventsColumnComponentProps> = () => {
 
   // todo for presentation purposes
   useEffect(() => {
-    if (availableEvents.length > 0)
-      dispatch(fetchEvent(availableEvents[0].EventId))
-  }, [availableEvents.length, dispatch, availableEvents])
+    if (filteredEvents.length > 0) {
+      dispatch(fetchEvent(filteredEvents[0].EventId))
+    }
+  }, [filteredEvents.length, dispatch, filteredEvents])
 
   return (
     <EventCardContainer>
