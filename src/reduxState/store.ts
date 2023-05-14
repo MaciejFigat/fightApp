@@ -1,4 +1,5 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore, AnyAction } from '@reduxjs/toolkit'
+import { Store } from 'redux'
 import userReducer from '../reduxState/stateSlices/users/userSlice'
 import sportsReducer from '../reduxState/stateSlices/sports/sportsSlice'
 import eventsReducer from '../reduxState/stateSlices/sportEvents/eventsSlice'
@@ -22,3 +23,4 @@ export const store = configureStore({
 setupListeners(store.dispatch)
 export type AppDispatch = typeof store.dispatch
 export type RootState = ReturnType<typeof store.getState>
+export type AppStore = Store<RootState, AnyAction>

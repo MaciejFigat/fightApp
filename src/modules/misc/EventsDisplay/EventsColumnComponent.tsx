@@ -63,6 +63,7 @@ const EventsColumnComponent: React.FC<EventsColumnComponentProps> = () => {
   }, [disciplineChosen, dispatch, availableEvents.length])
 
   // todo for presentation purposes
+  
   useEffect(() => {
     if (filteredEvents.length > 0) {
       dispatch(fetchEvent(filteredEvents[0].EventId))
