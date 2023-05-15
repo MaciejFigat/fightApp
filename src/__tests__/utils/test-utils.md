@@ -4,8 +4,8 @@ import type { RenderOptions } from '@testing-library/react'
 import type { PreloadedState } from '@reduxjs/toolkit'
 import { Provider } from 'react-redux'
 
-import { setupStore } from '../reduxState/testStore'
-import type { AppStore, RootState } from '../reduxState/testStore'
+import { setupStore } from '../../reduxState/testStore'
+import type { AppStore, RootState } from '../../reduxState/testStore'
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store.
