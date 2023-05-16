@@ -6,7 +6,10 @@ import {
   createUser,
   updateUserProfile,
   getUsers,
-  deleteUser
+  deleteUser,
+  sendUserId,
+  sendEmailToResetPassword,
+  resetPassword
 } from '../reduxState/stateSlices/users/userSlice'
 import axios from 'axios'
 
@@ -32,9 +35,58 @@ beforeEach(() => {
   mockedAxios.put.mockClear()
   mockedAxios.post.mockClear()
   mockedAxios.delete.mockClear()
+  Storage.prototype.setItem = jest.fn()
 })
 afterEach(() => {
   jest.resetAllMocks()
+})
+
+test('receive user/sendUser/rejected when user login fails', async () => {
+  const userLogin = {
+    email: 'testuser@example.com',
+    password: 'password123'
+  }
+
+  mockedAxios.post.mockRejectedValueOnce({
+    response: {
+      status: 500,
+      statusText: 'Internal Server Error',
+      data: { message: 'Something went wrong' },
+      headers: {},
+      config: {}
+    }
+  })
+
+  const expectedActions = [
+    {
+      type: 'user/sendUser/pending',
+      meta: {
+        arg: userLogin,
+        requestId: expect.any(String),
+        requestStatus: 'pending'
+      },
+      payload: undefined
+    },
+    expect.objectContaining({
+      type: 'user/sendUser/rejected',
+      meta: expect.objectContaining({
+        arg: userLogin,
+        requestId: expect.any(String),
+        requestStatus: 'rejected'
+      })
+    })
+  ]
+
+  const store = mockStore({
+    user: { userInfo: { token: 'testToken' } }
+  } as RootState)
+
+  await (store.dispatch as ThunkDispatch<RootState, undefined, AnyAction>)(
+    sendUserId(userLogin)
+  )
+  const dispatchedActions = store.getActions()
+
+  expect(dispatchedActions).toEqual(expectedActions)
 })
 
 test('receive user/registerUser/rejected when creating user fails', async () => {
@@ -210,6 +262,70 @@ test('receive user/deleteUser/rejected when deleting a user fails', async () => 
   } as RootState)
   await (store.dispatch as ThunkDispatch<RootState, undefined, AnyAction>)(
     deleteUser('1')
+  )
+  const dispatchedActions = store.getActions()
+
+  expect(dispatchedActions).toEqual(expectedActions)
+})
+
+test('receive user/forgotPassword/rejected when sending email to reset password fails', async () => {
+  mockedAxios.post.mockRejectedValueOnce(new Error('Failed to send email'))
+
+  const expectedActions = [
+    {
+      type: 'user/forgotPassword/pending',
+      meta: {
+        arg: { email: 'test@example.com' },
+        requestId: expect.any(String),
+        requestStatus: 'pending'
+      },
+      payload: undefined
+    },
+    expect.objectContaining({
+      type: 'user/forgotPassword/rejected',
+      meta: expect.objectContaining({
+        arg: { email: 'test@example.com' },
+        requestId: expect.any(String),
+        requestStatus: 'rejected'
+      })
+    })
+  ]
+
+  const store = mockStore({} as RootState)
+  await (store.dispatch as ThunkDispatch<RootState, undefined, AnyAction>)(
+    sendEmailToResetPassword({ email: 'test@example.com' })
+  )
+  const dispatchedActions = store.getActions()
+
+  expect(dispatchedActions).toEqual(expectedActions)
+})
+
+test('receive user/resetPassword/rejected when resetting password fails', async () => {
+  mockedAxios.post.mockRejectedValueOnce(new Error('Failed to reset password'))
+
+  const expectedActions = [
+    {
+      type: 'user/resetPassword/pending',
+      meta: {
+        arg: { resetPasswordToken: 'token' },
+        requestId: expect.any(String),
+        requestStatus: 'pending'
+      },
+      payload: undefined
+    },
+    expect.objectContaining({
+      type: 'user/resetPassword/rejected',
+      meta: expect.objectContaining({
+        arg: { resetPasswordToken: 'token' },
+        requestId: expect.any(String),
+        requestStatus: 'rejected'
+      })
+    })
+  ]
+
+  const store = mockStore({} as RootState)
+  await (store.dispatch as ThunkDispatch<RootState, undefined, AnyAction>)(
+    resetPassword({ resetPasswordToken: 'token' })
   )
   const dispatchedActions = store.getActions()
 

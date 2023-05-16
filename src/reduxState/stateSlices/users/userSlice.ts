@@ -298,6 +298,7 @@ const userSlice = createSlice({
     logout: state => {
       state.userInfo = {}
       state.error = {}
+      localStorage.clear()
     },
     userSuccessReset (state) {
       state.success = false

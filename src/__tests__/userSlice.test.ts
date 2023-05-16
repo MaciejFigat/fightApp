@@ -6,7 +6,10 @@ import {
   createUser,
   updateUserProfile,
   getUsers,
-  deleteUser
+  deleteUser,
+  sendUserId,
+  sendEmailToResetPassword,
+  resetPassword
 } from '../reduxState/stateSlices/users/userSlice'
 import axios from 'axios'
 
@@ -26,6 +29,7 @@ beforeEach(() => {
   mockedAxios.put.mockClear()
   mockedAxios.post.mockClear()
   mockedAxios.delete.mockClear()
+  Storage.prototype.setItem = jest.fn()
 })
 // Define the mock store type
 type MockStore = ReturnType<typeof configureMockStore<RootState, AppDispatch>>
@@ -50,7 +54,58 @@ beforeAll(() =>
 afterEach(() => {
   jest.resetAllMocks()
 })
+test('receive user/sendUser/fulfilled when user login is successful', async () => {
+  const userLogin = {
+    email: 'testuser@example.com',
+    password: 'password123'
+  }
 
+  const mockResponse = {
+    name: 'Test User',
+    email: 'testuser@example.com',
+    token: 'testToken'
+  }
+
+  mockedAxios.post.mockResolvedValueOnce({
+    data: mockResponse
+  })
+
+  const expectedActions = [
+    {
+      type: 'user/sendUser/pending',
+      meta: {
+        arg: userLogin,
+        requestId: expect.any(String),
+        requestStatus: 'pending'
+      },
+      payload: undefined
+    },
+    {
+      type: 'user/sendUser/fulfilled',
+      meta: expect.objectContaining({
+        arg: userLogin,
+        requestId: expect.any(String),
+        requestStatus: 'fulfilled'
+      }),
+      payload: mockResponse
+    }
+  ]
+
+  const store = mockStore({
+    user: { userInfo: { token: 'testToken' } }
+  } as RootState)
+
+  await (store.dispatch as ThunkDispatch<RootState, undefined, AnyAction>)(
+    sendUserId(userLogin)
+  )
+  const dispatchedActions = store.getActions()
+
+  expect(dispatchedActions).toEqual(expectedActions)
+  expect(localStorage.setItem).toHaveBeenLastCalledWith(
+    'userInfo',
+    JSON.stringify(mockResponse)
+  )
+})
 test('receive USER/registerUser/fulfilled when creating a user has been done', async () => {
   // Mock axios.post to return specific data
   mockedAxios.post.mockResolvedValueOnce({
@@ -241,5 +296,71 @@ test('user/deleteUser/fulfilled received when deleting a user was successfull', 
     deleteUser('1')
   )
   const dispatchedActions = store.getActions()
+  expect(dispatchedActions).toEqual(expectedActions)
+})
+
+test('user/forgotPassword/fulfilled received when sending email to reset password is successful', async () => {
+  mockedAxios.post.mockResolvedValueOnce({ data: 'Success' })
+
+  const expectedActions = [
+    {
+      type: 'user/forgotPassword/pending',
+      meta: {
+        arg: { email: 'test@example.com' },
+        requestId: expect.any(String),
+        requestStatus: 'pending'
+      },
+      payload: undefined
+    },
+    {
+      type: 'user/forgotPassword/fulfilled',
+      payload: 'Success',
+      meta: expect.objectContaining({
+        arg: { email: 'test@example.com' },
+        requestId: expect.any(String),
+        requestStatus: 'fulfilled'
+      })
+    }
+  ]
+
+  const store = mockStore({} as RootState)
+  await (store.dispatch as ThunkDispatch<RootState, undefined, AnyAction>)(
+    sendEmailToResetPassword({ email: 'test@example.com' })
+  )
+  const dispatchedActions = store.getActions()
+
+  expect(dispatchedActions).toEqual(expectedActions)
+})
+
+test('user/resetPassword/fulfilled received when resetting password is successful', async () => {
+  mockedAxios.post.mockResolvedValueOnce({ data: 'Success' })
+
+  const expectedActions = [
+    {
+      type: 'user/resetPassword/pending',
+      meta: {
+        arg: { resetPasswordToken: 'token' },
+        requestId: expect.any(String),
+        requestStatus: 'pending'
+      },
+      payload: undefined
+    },
+    {
+      type: 'user/resetPassword/fulfilled',
+      payload: 'Success',
+      meta: expect.objectContaining({
+        arg: { resetPasswordToken: 'token' },
+        requestId: expect.any(String),
+        requestStatus: 'fulfilled'
+      })
+    }
+  ]
+
+  const store = mockStore({} as RootState)
+  await (store.dispatch as ThunkDispatch<RootState, undefined, AnyAction>)(
+    resetPassword({ resetPasswordToken: 'token' })
+  )
+  const dispatchedActions = store.getActions()
+
   expect(dispatchedActions).toEqual(expectedActions)
 })
