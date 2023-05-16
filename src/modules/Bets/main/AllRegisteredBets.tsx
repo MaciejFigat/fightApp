@@ -19,8 +19,7 @@ import {
   HorizontalWrapper,
   HorizontalWrapperCenter,
   HorizontalWrapperSpaceAround,
-  HorizontalWrapperSpaceBetween,
-  RoundAccent
+  HorizontalWrapperSpaceBetween
 } from '../../../styles/misc.styles'
 import {
   filterAcceptedBets,

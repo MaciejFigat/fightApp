@@ -89,7 +89,7 @@ export const getUserBets = createAsyncThunk(
       const { data } = await axios.get(`/api/bets/mybets`, config)
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -110,7 +110,7 @@ export const getAcceptedByUserBets = createAsyncThunk(
       const { data } = await axios.get(`/api/bets/myacceptedbet`, config)
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -130,7 +130,7 @@ export const getAllBets = createAsyncThunk(
       const { data } = await axios.get(`/api/bets/`, config)
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -155,7 +155,7 @@ export const editRegisteredBet = createAsyncThunk(
 
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -176,7 +176,7 @@ export const deleteRegisteredBet = createAsyncThunk(
 
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )

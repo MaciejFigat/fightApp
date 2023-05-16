@@ -33,7 +33,7 @@ export const sendUserId = createAsyncThunk(
 
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -62,7 +62,7 @@ export const sendEmailToResetPassword = createAsyncThunk(
 
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -80,7 +80,7 @@ export const resetPassword = createAsyncThunk(
       })
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -100,7 +100,7 @@ export const activateUser = createAsyncThunk(
       })
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -132,7 +132,7 @@ export const createUser = createAsyncThunk(
       )
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -159,7 +159,7 @@ export const updateUserProfile = createAsyncThunk(
       )
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -186,7 +186,7 @@ export const updateUser = createAsyncThunk(
       )
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -208,7 +208,7 @@ export const getUserById = createAsyncThunk(
       const { data } = await axios.get(`/api/users/${id}`, config)
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -250,7 +250,7 @@ export const getUsers = createAsyncThunk(
       const { data } = await axios.get(`/api/users/`, config)
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
@@ -270,7 +270,7 @@ export const deleteUser = createAsyncThunk(
       const { data } = await axios.delete(`/api/users/${id}`, config)
       return data
     } catch (error: any) {
-      return error
+      throw error
     }
   }
 )
