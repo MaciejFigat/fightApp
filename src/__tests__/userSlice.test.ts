@@ -10,8 +10,16 @@ import {
 } from '../reduxState/stateSlices/users/userSlice'
 import axios from 'axios'
 
-jest.mock('axios')
+// jest.mock('axios')
 const mockedAxios = axios as jest.Mocked<typeof axios>
+
+jest.mock('axios', () => ({
+  get: jest.fn(),
+  delete: jest.fn(),
+  put: jest.fn(),
+  post: jest.fn()
+}))
+
 beforeEach(() => {
   // Clear all instances and calls to constructor and all methods:
   mockedAxios.get.mockClear()
@@ -25,44 +33,6 @@ type MockStore = ReturnType<typeof configureMockStore<RootState, AppDispatch>>
 // Initialize the mock store with the necessary middlewares
 const mockStore: MockStore = configureMockStore<RootState, AppDispatch>([thunk])
 
-jest.mock('axios', () => ({
-  post: jest.fn(() =>
-    Promise.resolve({
-      status: 200,
-      statusText: 'OK',
-      data: { message: 'User Created' },
-      headers: {},
-      config: {}
-    })
-  ),
-  put: jest.fn(() =>
-    Promise.resolve({
-      status: 200,
-      statusText: 'OK',
-      data: { message: 'Profile Updated' },
-      headers: {},
-      config: {}
-    })
-  ),
-  get: jest.fn(() =>
-    Promise.resolve({
-      status: 200,
-      statusText: 'OK',
-      data: [{ id: '1', name: 'Test User' }],
-      headers: {},
-      config: {}
-    })
-  ),
-  delete: jest.fn(() =>
-    Promise.resolve({
-      status: 200,
-      statusText: 'OK',
-      data: { message: 'User Deleted' },
-      headers: {},
-      config: {}
-    })
-  )
-}))
 beforeAll(() =>
   jest.mock('axios', () => ({
     post: jest.fn(() =>
@@ -84,6 +54,10 @@ afterEach(() => {
 test('receive USER/registerUser/fulfilled when creating a user has been done', async () => {
   // Mock axios.post to return specific data
   mockedAxios.post.mockResolvedValueOnce({
+    status: 200,
+    statusText: 'OK',
+    headers: {},
+    config: {},
     data: { message: 'User created successfully' }
   })
 
@@ -133,6 +107,10 @@ test('receive USER/registerUser/fulfilled when creating a user has been done', a
 test('receive user/updateUserProfile/fulfilled when updating a user profile was successfull', async () => {
   // Mock axios.put to return specific data
   mockedAxios.put.mockResolvedValueOnce({
+    status: 200,
+    statusText: 'OK',
+    headers: {},
+    config: {},
     data: { message: 'User updated successfully' }
   })
 
@@ -187,6 +165,11 @@ test('receive user/updateUserProfile/fulfilled when updating a user profile was 
 test('user/getUsers/fulfilled is received when getting users was successfull', async () => {
   // Mock axios.get to return specific data
   mockedAxios.get.mockResolvedValueOnce({
+    status: 200,
+    statusText: 'OK',
+    // data: [{ id: '1', name: 'Test User' }],
+    headers: {},
+    config: {},
     data: { message: 'Users fetched successfully' }
   })
   const expectedActions = [
@@ -224,6 +207,10 @@ test('user/getUsers/fulfilled is received when getting users was successfull', a
 test('user/deleteUser/fulfilled received when deleting a user was successfull', async () => {
   // Mock axios.delete to return specific data
   mockedAxios.delete.mockResolvedValueOnce({
+    status: 200,
+    statusText: 'OK',
+    headers: {},
+    config: {},
     data: { message: 'User deleted successfully' }
   })
   const expectedActions = [
