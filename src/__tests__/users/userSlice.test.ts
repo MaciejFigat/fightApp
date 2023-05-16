@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store'
 import thunk, { ThunkDispatch } from 'redux-thunk'
-import { AppDispatch, RootState } from '../reduxState/testStore'
+import { AppDispatch, RootState } from '../../reduxState/testStore'
 import { AnyAction } from 'redux'
 import {
   createUser,
@@ -10,10 +10,11 @@ import {
   sendUserId,
   sendEmailToResetPassword,
   resetPassword
-} from '../reduxState/stateSlices/users/userSlice'
+} from '../../reduxState/stateSlices/users/userSlice'
 import axios from 'axios'
 
-// jest.mock('axios')
+// Here I'm mocking Axios to simulate different responses from the API, then checking that the correct actions are dispatched in response to these simulated API calls. The expected actions include both the initial 'pending' action that is dispatched when the async thunk is first called, and then either a 'fulfilled' action (in the case of a successful API response) or a 'rejected' action (in the case of an error).
+
 const mockedAxios = axios as jest.Mocked<typeof axios>
 
 jest.mock('axios', () => ({
@@ -255,7 +256,7 @@ test('user/getUsers/fulfilled is received when getting users was successfull', a
     getUsers({})
   )
   const dispatchedActions = store.getActions()
-  console.log(dispatchedActions)
+
   expect(dispatchedActions).toEqual(expectedActions)
 })
 

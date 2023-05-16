@@ -135,7 +135,7 @@ export const getAllBets = createAsyncThunk(
   }
 )
 
-//  mandatory: isAccepted, acceptDateTime, acceptedBy
+//  mandatory: acceptDateTime, acceptedBy
 export const editRegisteredBet = createAsyncThunk(
   'bet/editRegisteredBet',
 

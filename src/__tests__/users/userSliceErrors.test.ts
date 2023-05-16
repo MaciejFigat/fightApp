@@ -1,6 +1,6 @@
 import configureMockStore from 'redux-mock-store'
 import thunk, { ThunkDispatch } from 'redux-thunk'
-import { AppDispatch, RootState } from '../reduxState/testStore'
+import { AppDispatch, RootState } from '../../reduxState/testStore'
 import { AnyAction } from 'redux'
 import {
   createUser,
@@ -10,7 +10,7 @@ import {
   sendUserId,
   sendEmailToResetPassword,
   resetPassword
-} from '../reduxState/stateSlices/users/userSlice'
+} from '../../reduxState/stateSlices/users/userSlice'
 import axios from 'axios'
 
 // jest.mock('axios')
