@@ -3,7 +3,7 @@ module.exports = {
   testEnvironment: 'jsdom',
   roots: ['<rootDir>/src'],
   moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
-  // transformIgnorePatterns: ['node_modules/(?!axios/.*)'],
+  transformIgnorePatterns: ['node_modules/(?!axios/.*)'],
 }
 
 // module.exports = {

@@ -8,7 +8,7 @@ import {
 import axios from 'axios'
 import { logout } from '../users/userSlice'
 
-interface BetsState {
+export interface BetsState {
   betsUnconfirmed: BetData[]
   betsConfirmed: ConfirmedBet[]
   betsRegistered: ConfirmedBet[]
@@ -23,7 +23,6 @@ const initialState: BetsState = {
   betsUnconfirmed: [],
   betsConfirmed: [],
   betsRegistered: [],
-
   betsAccepted: [],
   userBets: [],
   allBets: [],
