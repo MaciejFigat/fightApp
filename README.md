@@ -14,6 +14,8 @@
     <a href="https://github.com/MaciejFigat/fightAppBE">BE repository</a>
     &#9898;
     <a href="https://scribehow.com/page/Fight_Bet__d-qZ4wCnQEqq2Z0j9HF4xA">Scribe documentation</a>
+    &#9898;
+    <a href="https://646b92a74814fa6f70ee5192-fbaytfhsxj.chromatic.com">Storybook</a>
    </p>
 </div>
 

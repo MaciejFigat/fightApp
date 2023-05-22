@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/react'
 import { WinMethod, WinnerProjection } from '../consts'
-import BetConfirmation from '../modules/Bets/components/BetConfirmation'
 import { Provider } from 'react-redux'
 import { PayloadAction, configureStore, createSlice } from '@reduxjs/toolkit'
 import { BetsState } from '../reduxState/stateSlices/bets/betsSlice'
@@ -13,7 +12,6 @@ import {
   unconfirmedBetOne
 } from './mockBets'
 import BetRegistration from '../modules/Bets/components/BetRegistration'
-//? STATE MOCKED
 
 export const MockedState: BetsState = {
   betsUnconfirmed: [unconfirmedBetOne],
@@ -29,7 +27,20 @@ interface MockStoreProps {
   betsState: BetsState
   children: ReactNode
 }
-
+const userInitialState = {
+  userInfo: {
+    id: '1414141',
+    coinsAvailable: 1002
+  }
+}
+// Create user slice
+const userSlice = createSlice({
+  name: 'user',
+  initialState: userInitialState,
+  reducers: {
+    // add your user actions here
+  }
+})
 const Mockstore: React.FC<MockStoreProps> = ({ betsState, children }) => (
   <Provider
     store={configureStore({
@@ -47,15 +58,14 @@ const Mockstore: React.FC<MockStoreProps> = ({ betsState, children }) => (
               )
             }
           }
-        }).reducer
+        }).reducer,
+        user: userSlice.reducer
       }
     })}
   >
     {children}
   </Provider>
 )
-
-//? STATE MOCKED - END
 
 const meta: Meta<typeof BetRegistration> = {
   title: 'BetRegistration',
