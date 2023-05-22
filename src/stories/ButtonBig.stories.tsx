@@ -2,33 +2,27 @@ import { Meta, StoryObj } from '@storybook/react'
 import { ButtonBig } from '../components/Buttons/Buttons.styled'
 import { ButtonVariants } from '../consts'
 
-interface ButtonProps {
-  variant: ButtonVariants
-}
-
 const meta: Meta<typeof ButtonBig> = {
   title: 'Buttons Testing Styled only',
   component: ButtonBig,
   argTypes: {
     variant: {
-      control: {
-        type: 'select',
-        options: [
-          ButtonVariants.PRIMARY,
-          ButtonVariants.SECONDARY,
-          ButtonVariants.DANGER,
-          ButtonVariants.SUCCESS,
-          ButtonVariants.SUCCESS_EMPTY,
-          ButtonVariants.INFO,
-          ButtonVariants.WARNING,
-          ButtonVariants.SECONDARY_EMPTY,
-          ButtonVariants.DANGER_EMPTY,
-          ButtonVariants.INFO_EMPTY,
-          ButtonVariants.WARNING_EMPTY,
-          ButtonVariants.DANGER_EMPTY,
-          ButtonVariants.DISABLED
-        ]
-      }
+      control: { type: 'radio' },
+      options: [
+        ButtonVariants.PRIMARY,
+        ButtonVariants.SECONDARY,
+        ButtonVariants.DANGER,
+        ButtonVariants.SUCCESS,
+        ButtonVariants.SUCCESS_EMPTY,
+        ButtonVariants.INFO,
+        ButtonVariants.WARNING,
+        ButtonVariants.SECONDARY_EMPTY,
+        ButtonVariants.DANGER_EMPTY,
+        ButtonVariants.INFO_EMPTY,
+        ButtonVariants.WARNING_EMPTY,
+        ButtonVariants.DANGER_EMPTY,
+        ButtonVariants.DISABLED
+      ]
     },
     children: {
       control: 'text'
@@ -43,7 +37,8 @@ type Story = StoryObj<typeof meta>
 export const Success: Story = {
   args: {
     variant: ButtonVariants.SUCCESS,
-    children: 'Success'
+
+    children: 'Click me'
   }
 }
 export const SuccessEmpty: Story = {
