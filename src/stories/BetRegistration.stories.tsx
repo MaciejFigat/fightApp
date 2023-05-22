@@ -12,6 +12,7 @@ import {
   newConfirmedBet,
   unconfirmedBetOne
 } from './mockBets'
+import BetRegistration from '../modules/Bets/components/BetRegistration'
 //? STATE MOCKED
 
 export const MockedState: BetsState = {
@@ -56,9 +57,9 @@ const Mockstore: React.FC<MockStoreProps> = ({ betsState, children }) => (
 
 //? STATE MOCKED - END
 
-const meta: Meta<typeof BetConfirmation> = {
-  title: 'BetConfirmation',
-  component: BetConfirmation,
+const meta: Meta<typeof BetRegistration> = {
+  title: 'BetRegistration',
+  component: BetRegistration,
   decorators: [story => <div style={{ padding: '3rem' }}>{story()}</div>],
   //   tags: ['autodocs'],
   argTypes: {
