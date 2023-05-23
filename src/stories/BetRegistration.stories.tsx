@@ -38,7 +38,7 @@ const userSlice = createSlice({
   name: 'user',
   initialState: userInitialState,
   reducers: {
-    // add your user actions here
+    // add reducers
   }
 })
 const Mockstore: React.FC<MockStoreProps> = ({ betsState, children }) => (
@@ -71,7 +71,7 @@ const meta: Meta<typeof BetRegistration> = {
   title: 'BetRegistration',
   component: BetRegistration,
   decorators: [story => <div style={{ padding: '3rem' }}>{story()}</div>],
-  //   tags: ['autodocs'],
+  tags: ['autodocs'],
   argTypes: {
     // Fighters: {
     //   control: 'object'
