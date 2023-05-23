@@ -15,7 +15,7 @@
     &#9898;
     <a href="https://scribehow.com/page/Fight_Bet__d-qZ4wCnQEqq2Z0j9HF4xA">Scribe documentation</a>
     &#9898;
-    <a href="https://646b92a74814fa6f70ee5192-pejdjpobrh.chromatic.com/?path=/story/betregistration--primary">Storybook</a>
+    <a href="https://646b92a74814fa6f70ee5192-wuuofkjlmv.chromatic.com">Storybook</a>
    </p>
 </div>
 
