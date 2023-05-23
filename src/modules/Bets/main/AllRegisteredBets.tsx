@@ -64,7 +64,6 @@ const AllRegisteredBets: React.FC<AllRegisteredBetsProps> = () => {
 
   const handleAcceptBet = async (bet: ConfirmedBet) => {
     if (bet.isAccepted === true) {
-      console.log('Bet already accepted')
       return
     }
     const betToAccept: AcceptedBet = {
