@@ -47,7 +47,6 @@ const meta: Meta<typeof UserRegister> = {
   title: 'UserRegister',
   component: UserRegister,
   decorators: [story => <div style={{ padding: '3rem' }}>{story()}</div>],
-  tags: ['autodocs'],
   argTypes: {},
   excludeStories: /.*MockedState$/
 }

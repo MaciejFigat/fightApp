@@ -48,7 +48,6 @@ const meta: Meta<typeof UserLogin> = {
   title: 'UserLogin',
   component: UserLogin,
   decorators: [story => <div style={{ padding: '3rem' }}>{story()}</div>],
-  tags: ['autodocs'],
   argTypes: {},
   excludeStories: /.*MockedState$/
 }
